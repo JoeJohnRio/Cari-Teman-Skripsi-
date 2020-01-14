@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/space_decent"
+        android:textColor="@color/black_effective"
+        android:textSize="@dimen/text_more_than_normal"
+        android:textStyle="bold"
+        android:text="@string/tools_selamat_datang"
+        tools:text="@string/tools_selamat_datang" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tools_email"
+        tools:text="@string/tools_email"
+        android:textSize="@dimen/text_normal"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/space_little"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/black_effective"
+        android:layout_marginTop="@dimen/space_more_than_little"/>
+    <LinearLayout
+        android:id="@+id/b_profil_saya"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/space_more_than_little"
+        android:layout_marginEnd="@dimen/space_more_than_little"
+        android:layout_marginTop="@dimen/space_more_than_little">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_undraw_profile_pic_ic5t"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="start|center"
+            android:layout_marginStart="@dimen/space_more_than_little"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profil_saya"
+                android:textColor="@color/black_effective"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_more_than_normal"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profil_says_desc"
+                android:textSize="@dimen/text_normal"
+                android:layout_marginTop="@dimen/space_little"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/black"
+        android:layout_marginTop="@dimen/space_more_than_little"
+        android:layout_marginEnd="@dimen/space_more_than_little"
+        android:layout_marginStart="@dimen/space_more_than_little"/>
+
+    <LinearLayout
+        android:id="@+id/b_pengaturan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/space_more_than_little"
+        android:layout_marginEnd="@dimen/space_more_than_little"
+        android:layout_marginTop="@dimen/space_more_than_little">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/pengaturan"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="start|center"
+            android:layout_marginStart="@dimen/space_more_than_little"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pengaturan"
+                android:textColor="@color/black_effective"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_more_than_normal"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pengaturan_desc"
+                android:textSize="@dimen/text_normal"
+                android:layout_marginTop="@dimen/space_little"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/black"
+        android:layout_marginTop="@dimen/space_more_than_little"
+        android:layout_marginEnd="@dimen/space_more_than_little"
+        android:layout_marginStart="@dimen/space_more_than_little"/>
+
+    <LinearLayout
+        android:id="@+id/b_daftar_kelompok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/space_more_than_little"
+        android:layout_marginEnd="@dimen/space_more_than_little"
+        android:layout_marginTop="@dimen/space_more_than_little">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/daftar_kelompok"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="start|center"
+            android:layout_marginStart="@dimen/space_more_than_little"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/daftar_kelompok"
+                android:textColor="@color/black_effective"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_more_than_normal"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/daftar_kelompok_desc"
+                android:textSize="@dimen/text_normal"
+                android:layout_marginTop="@dimen/space_little"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/black"
+        android:layout_marginTop="@dimen/space_more_than_little"
+        android:layout_marginEnd="@dimen/space_more_than_little"
+        android:layout_marginStart="@dimen/space_more_than_little"/>
+
+    <LinearLayout
+        android:id="@+id/b_pengalaman"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/space_more_than_little"
+        android:layout_marginEnd="@dimen/space_more_than_little"
+        android:layout_marginTop="@dimen/space_more_than_little">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/pengalaman"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="start|center"
+            android:layout_marginStart="@dimen/space_more_than_little"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pengalaman"
+                android:textColor="@color/black_effective"
+                android:textSize="@dimen/text_more_than_normal"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pengalaman_desc"
+                android:textSize="@dimen/text_normal"
+                android:layout_marginTop="@dimen/space_little"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/black"
+        android:layout_marginTop="@dimen/space_more_than_little"
+        android:layout_marginEnd="@dimen/space_more_than_little"
+        android:layout_marginStart="@dimen/space_more_than_little"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bnv_dashboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:itemBackground="@color/white_high"
+            app:itemIconTint="@color/black_effective"
+            app:itemTextColor="@color/black_effective"
+            app:menu="@menu/menu_nav_bottom_dashboard"
+            />
+    </LinearLayout>
+
+</LinearLayout>
+
+</layout>

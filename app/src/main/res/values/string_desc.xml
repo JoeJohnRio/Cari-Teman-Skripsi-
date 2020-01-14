@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sign_in">Masuk Sekarang</string>
+    <string name="sign_in_desc">Masuk menggunakan akun yang anda punya</string>
+    <string name="not_having_an_account">Tidak punya akun? Daftar Sekarang</string>
+    <string name="register">Daftar Sekarang</string>
+    <string name="register_top_text">Profil mu membantu orang lain menemukanmu</string>
+    <string name="foto_ktm">Foto KTM</string>
+    <string name="register_desc">Daftar sekarang untuk mendapatkan akun</string>
+    <string name="have_an_account">Sudah punya akun? Masuk Sekarang</string>
+    <string name="masuk">Masuk</string>
+    <string name="selanjutnya">Selanjutnya</string>
+    <string name="fakultas">Fakultas</string>
+    <string name="program_studi">Program Studi</string>
+    <string name="keminatan">Keminatan</string>
+    <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="tools_selamat_datang">Selamat Datang, Joel Johanes Cirio</string>
+    <string name="nama_joel">Joel Johanes Cirio, 20</string>
+    <string name="kirim_pesan">Kirim Pesan</string>
+    <string name="tambah_kelompok">Tambah Kelompok</string>
+    <string name="tools_email">joejohnrio@gmail.com</string>
+    <string name="profil_saya">Profil Saya</string>
+    <string name="profil_says_desc">Melihat profil anda</string>
+    <string name="pengaturan">Pengaturan</string>
+    <string name="pengaturan_desc">Setelan aplikasi </string>
+    <string name="daftar_kelompok">Daftar Kelompok</string>
+    <string name="daftar_kelompok_desc">Melihat, menambah, menghapus, dan
+mengganti kelompok.</string>
+    <string name="pengalaman">Pengalaman</string>
+    <string name="pengalaman_desc">Melihat, menambah, menghapus, dan
+mengganti pengalaman. </string>
+
+    <string name="semester">Semester</string>
+    <string name="skill_hobi">Skill dan Hobi</string>
+    <string name="login">login</string>
+    <string name="email">email</string>
+    <string name="nim">NIM</string>
+    <string name="password">Password</string>
+    <string name="nama">nama</string>
+    <string name="ulangi_password">Ulangi password</string>
+    <string name="cari_teman">Cari teman</string>
+    <string name="search_description">Nama orang, nama tempat PKL</string>
+    <string name="pkl">PKL</string>
+    <string name="lomba">Lomba</string>
+    <string name="reset">RESET</string>
+    <string name="tempat_pkl">Tempat PKL</string>
+    <string name="baru_dilihat">Terakhir Dilihat</string>
+    <string name="lihat_semua">LIHAT SEMUA</string>
+    <string name="rekomendasi">Rekomendasi</string>
+    <string name="beranda">Beranda</string>
+    <string name="favorite">Favorite</string>
+    <string name="profil">Profil</string>
+    <string name="head_of_division">Head of Creative Division at BEM Filkom UB</string>
+    <string name="last_achievement">1st in Creative Apps at Creat...</string>
+</resources>

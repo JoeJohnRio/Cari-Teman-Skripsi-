@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_little">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/iv_back"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_back"/>
+
+                <TextView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_back"
+                    android:id="@+id/tv_toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/baru_dilihat"
+                    android:textStyle="bold"
+                    android:textColor="@color/black_effective"
+                    android:textSize="20sp"
+                    android:layout_marginStart="@dimen/space_more_than_little"/>
+
+                <TextView
+                    android:id="@+id/tv_reset_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@string/reset"
+                    android:textColor="@color/navy_blue_mid"
+                    android:layout_marginEnd="@dimen/space_more_than_little"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_low"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_more_than_little"
+        android:layout_marginEnd="@dimen/space_more_than_little"
+        android:layout_marginTop="@dimen/space_really_small"
+        android:layout_marginBottom="@dimen/space_little"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_type_filter_pkl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            app:cornerRadius="8dp"
+            android:backgroundTint="@color/white_high"
+            android:textColor="@color/navy_blue_high"
+            android:text="@string/pkl"
+            android:textSize="20sp"
+            android:layout_gravity="center"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_type_filter_lomba"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_little"
+            app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat"
+            app:layout_constraintStart_toEndOf="@id/b_filter_pkl"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            app:cornerRadius="8dp"
+            android:backgroundTint="@color/white_high"
+            android:textColor="@color/navy_blue_high"
+            android:text="@string/lomba"
+            android:textSize="20sp"
+            android:layout_gravity="center"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_type_filter_tempat_pkl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_little"
+            app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat"
+            app:layout_constraintStart_toEndOf="@id/b_filter_lomba"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            app:cornerRadius="8dp"
+            android:backgroundTint="@color/white_high"
+            android:textColor="@color/navy_blue_high"
+            android:text="@string/tempat_pkl"
+            android:textSize="20sp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_low"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/space_little"
+        android:layout_marginStart="@dimen/space_more_than_little"
+        android:layout_marginEnd="@dimen/space_more_than_little"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fakultas"
+            android:layout_marginTop="@dimen/space_little"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/black_effective"/>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_fakultas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_little"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/program_studi"
+            android:layout_marginTop="@dimen/space_little"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/black_effective"/>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_program_studi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_little"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/keminatan"
+            android:layout_marginTop="@dimen/space_little"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/black_effective"/>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_keminatan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_little"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/jenis_kelamin"
+            android:layout_marginTop="@dimen/space_little"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/black_effective"/>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_jenis_kelamin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_little"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/semester"
+            android:layout_marginTop="@dimen/space_little"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/black_effective"/>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_semester"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_little"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_hobi"
+            android:layout_marginTop="@dimen/space_little"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/black_effective"/>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_skill_hobi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_little"
+            />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_filter"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/navy_blue_high"
+            app:cornerRadius="10dp"
+            style="@style/AppTheme.RoundedCornerMaterialButton"
+            android:textColor="@color/bg_color"
+            android:text="@string/cari_teman"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:layout_marginTop="@dimen/space_decent"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
+</layout>

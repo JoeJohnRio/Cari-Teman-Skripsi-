@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/navy_blue_high">
+
+        <TextView
+            android:id="@+id/tv_sign_in"
+            android:layout_marginTop="60dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_big"
+            android:textStyle="bold"
+            android:textColor="@color/orange_high"
+            android:text="@string/register"
+            android:layout_marginBottom="@dimen/space_little"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_sign_in_desc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_sign_in_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_more_than_little"
+            android:layout_gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_in"
+            app:layout_constraintBottom_toTopOf="@id/cv_login"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/orange_high"
+            android:text="@string/register_desc" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_big_register"
+            android:layout_width="330dp"
+            android:layout_height="600dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/space_more_than_little"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_in_desc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_sign_up_not_have_account"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="22dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/space_decent"
+                android:layout_marginBottom="@dimen/space_decent"
+                android:layout_marginStart="@dimen/space_more_than_little"
+                android:layout_marginEnd="@dimen/space_more_than_little">
+
+                <TextView
+                    android:id="@+id/tv_register_top_text"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_pretty_big"
+                    android:textColor="@color/orange_high"
+                    android:textAlignment="center"
+                    android:text="@string/register_top_text" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp"
+                    android:layout_marginTop="@dimen/space_more_than_little"
+                    android:orientation="horizontal"
+                    >
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_pkl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1.6"
+                        app:cardCornerRadius="22dp"
+                        android:layout_margin="@dimen/space_little"
+                        android:backgroundTint="@color/white_low">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/space_more_than_little"
+                            android:src="@drawable/ic_undraw_work_time_lhoj"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_pkl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/space_more_than_little"
+                            android:textSize="@dimen/text_normal"
+                            android:textColor="@color/navy_blue_high"
+                            android:text="@string/pkl"/>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_lomba"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="22dp"
+                        android:layout_margin="@dimen/space_little"
+                        android:backgroundTint="@color/navy_blue_high">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/space_more_than_little"
+                            android:src="@drawable/ic_group_10536"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_lomba"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/space_more_than_little"
+                            android:textSize="@dimen/text_normal"
+                            android:textColor="@color/white_low"
+                            android:text="@string/lomba"/>
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/b_register"
+                    android:padding="10dp"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/navy_blue_high"
+                    app:cornerRadius="10dp"
+                    style="@style/AppTheme.RoundedCornerMaterialButton"
+                    android:layout_marginTop="@dimen/space_decent"
+                    android:textColor="@color/bg_color"
+                    android:text="@string/selanjutnya"
+                    android:textAllCaps="false"
+                    android:textSize="20sp"
+                    android:layout_gravity="center_horizontal"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/tv_sign_up_not_have_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/orange_high"
+            android:text="@string/have_an_account" />
+
+
+    </LinearLayout>
+
+</layout>

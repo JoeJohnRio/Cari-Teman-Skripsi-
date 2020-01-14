@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="127.249" height="118.249" viewBox="0 0 127.249 118.249">
+  <defs>
+    <filter id="Button_bg" x="57.249" y="48.249" width="70" height="70" filterUnits="userSpaceOnUse">
+      <feOffset dy="6" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.239"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_10662" data-name="Group 10662" transform="translate(-252.751 -789.915)">
+    <path id="Icon" d="M271.507,81.673V12.834A9.863,9.863,0,0,0,261.673,3H192.834A9.863,9.863,0,0,0,183,12.834V81.673a9.863,9.863,0,0,0,9.834,9.834h68.839A9.863,9.863,0,0,0,271.507,81.673ZM210.044,54.629,222.336,69.38l17.21-22.127,22.127,29.5H192.834Z" transform="translate(69.751 786.915)" fill="rgba(0,0,0,0.54)"/>
+    <g transform="matrix(1, 0, 0, 1, 252.75, 789.91)" filter="url(#Button_bg)">
+      <circle id="Button_bg-2" data-name="Button bg" cx="26" cy="26" r="26" transform="translate(66.25 51.25)" fill="#363636"/>
+    </g>
+    <path id="Icon-2" data-name="Icon" d="M10.573,5v5.573H5v1.858h5.573V18h1.858V12.431H18V10.573H12.431V5Z" transform="translate(333.507 855.67)" fill="#fff"/>
+  </g>
+</svg>

@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_low">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/abl_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="@dimen/space_more_than_little">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_back"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_back"/>
+
+                        <TextView
+                            android:id="@+id/tv_toolbar_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Profil Saya"
+                            android:textStyle="bold"
+                            android:textColor="@color/black_effective"
+                            android:textSize="20sp"
+                            android:layout_marginStart="@dimen/space_more_than_little"/>
+
+                    </LinearLayout>
+                </com.google.android.material.appbar.MaterialToolbar>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_low"
+                    />
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_profil_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/white_high"
+                android:layout_marginTop="150dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nama_joel"
+                    android:textSize="@dimen/text_big"
+                    android:textColor="@color/blue_low"
+                    android:layout_marginTop="@dimen/space_big"
+                    android:gravity="center"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/space_little"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/b_kirim_pesan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/blue_low"
+                        android:paddingStart="15dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="15dp"
+                        android:paddingBottom="2dp"
+                        android:text="@string/kirim_pesan"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white_high"
+                        android:textSize="15sp"
+                        app:cornerRadius="4dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat" />
+
+                    <Button
+                        android:id="@+id/b_tambah_kelompok"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/blue_low"
+                        android:paddingStart="15dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="15dp"
+                        android:paddingBottom="2dp"
+                        android:text="@string/tambah_kelompok"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white_high"
+                        android:textSize="15sp"
+                        app:cornerRadius="4dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/space_little">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="201"
+                            android:textColor="@color/blue_low"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_more_than_normal"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rekomendasi"
+                            android:textColor="@color/blue_low"
+                            android:textSize="@dimen/text_normal"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10"
+                            android:textColor="@color/blue_low"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_more_than_normal"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/blue_low"
+                            android:text="Tim"
+                            android:textSize="@dimen/text_normal"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="89"
+                            android:textColor="@color/blue_low"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_more_than_normal"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Teman"
+                            android:textColor="@color/blue_low"
+                            android:textSize="@dimen/text_normal"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_more_than_normal"
+                    android:layout_marginTop="@dimen/space_more_than_little"
+                    android:layout_marginBottom="@dimen/space_more_than_little"
+                    android:text="Fakultas Ilmu Komputer, Teknik Informatika
+Rekayasa Perangkat Lunak"
+                    android:textColor="@color/blue_low"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_pengalaman"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/ll_profil_desc"
+                android:background="@color/white_high"
+                android:padding="@dimen/space_more_than_little"
+                android:layout_marginTop="@dimen/space_more_than_little">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pengalaman"
+                    android:textSize="@dimen/text_pretty_big"
+                    android:textColor="@color/blue_low"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/space_little"
+                    android:background="@color/black"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/space_more_than_little">
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/sertifikat"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="@dimen/space_little"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Head of Creative Division di BEM
+FILKOM UB"
+                            android:textColor="@color/blue_low"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_more_than_normal"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Juni 2018 - Agustus 2019"
+                            android:textColor="@color/blue_low"
+                            android:textSize="@dimen/text_normal"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/space_more_than_little">
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/sertifikat"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="@dimen/space_little"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Head of Creative Division di BEM
+FILKOM UB"
+                            android:textColor="@color/blue_low"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_more_than_normal"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Juni 2018 - Agustus 2019"
+                            android:textColor="@color/blue_low"
+                            android:textSize="@dimen/text_normal"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_rekomendasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/ll_pengalaman"
+                android:background="@color/white_high"
+                android:paddingStart="@dimen/space_more_than_little"
+                android:paddingBottom="@dimen/space_more_than_little"
+                android:paddingEnd="@dimen/space_more_than_little"
+                android:paddingTop="@dimen/space_little"
+                android:layout_marginTop="@dimen/space_more_than_little">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv_pengalaman"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/rekomendasi"
+                        android:textSize="@dimen/text_pretty_big"
+                        android:textColor="@color/blue_low"
+                        android:gravity="center|left"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/b_tambah_pengalaman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+"
+                        app:cornerRadius="8dp"
+                        android:textColor="@color/white_high"
+                        android:paddingStart="@dimen/space_more_than_little"
+                        android:paddingEnd="@dimen/space_more_than_little"
+                        android:paddingTop="@dimen/space_really_small"
+                        android:paddingBottom="@dimen/space_really_small"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_pretty_big"
+                        android:backgroundTint="@color/orange_high"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_marginTop="@dimen/space_little"
+                    android:background="@color/black"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little"
+
+                    android:orientation="horizontal">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/profile_picture"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_little"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rio Dewantara Bayu"
+                            android:textColor="@color/blue_low"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_more_than_normal"
+                            />
+                        <RatingBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:rating="5"
+                            android:clickable="true"
+                            style="?android:attr/ratingBarStyleSmall"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Joel merupakan orang yang baik dan
+sangat kooperatif dalam berkelompok
+maupun berteman."
+                            android:textColor="@color/blue_low"
+                            android:textSize="@dimen/text_normal"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little"
+
+                    android:orientation="horizontal">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/profile_picture"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_little"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rio Dewantara Bayu"
+                            android:textColor="@color/blue_low"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_more_than_normal"
+                            />
+                        <RatingBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="?android:attr/ratingBarStyleSmall"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Joel merupakan orang yang baik dan
+sangat kooperatif dalam berkelompok
+maupun berteman."
+                            android:textColor="@color/blue_low"
+                            android:textSize="@dimen/text_normal"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little"
+
+                    android:orientation="horizontal">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/profile_picture"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_little"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rio Dewantara Bayu"
+                            android:textColor="@color/blue_low"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_more_than_normal"
+                            />
+                        <RatingBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="?android:attr/ratingBarStyleSmall"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Joel merupakan orang yang baik dan
+sangat kooperatif dalam berkelompok
+maupun berteman."
+                            android:textColor="@color/blue_low"
+                            android:textSize="@dimen/text_normal"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ_profil"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:src="@drawable/profile_picture"
+                android:layout_marginTop="@dimen/space_more_than_little"
+                app:layout_constraintTop_toBottomOf="@id/abl_name"
+                android:foregroundGravity="center"
+                />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

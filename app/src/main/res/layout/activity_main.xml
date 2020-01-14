@@ -1,37 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/drawerLayout"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:fitsSystemWindows="true"
-  tools:openDrawer="start">
-  <android.support.design.widget.CoordinatorLayout
-    android:id="@+id/cl_root_view"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <include
-    layout="@layout/app_bar_navigation"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-  <com.mindorks.placeholderview.SwipePlaceHolderView
-    android:id="@+id/questionHolder"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-  </android.support.design.widget.CoordinatorLayout>
+        </LinearLayout>
 
-  <android.support.design.widget.NavigationView
-    android:id="@+id/navView"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_gravity="start"
-    android:fitsSystemWindows="true"
-    app:headerLayout="@layout/nav_header_navigation"
-    app:menu="@menu/drawer_items"/>
+        <TextView
+            android:id="@+id/tv_baru_dilihat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/baru_dilihat"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/black_effective"/>
 
-</android.support.v4.widget.DrawerLayout>
+
+        <TextView
+            android:id="@+id/tv_lihat_semua"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="8dp"
+            android:text="@string/lihat_semua"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/blue_low"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_filter_pkl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            app:cornerRadius="8dp"
+            android:backgroundTint="@color/white_high"
+            android:textColor="@color/navy_blue_high"
+            android:text="@string/pkl"
+            android:textSize="20sp"
+            android:layout_gravity="center"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_filter_lomba"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_little"
+            app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat"
+            app:layout_constraintStart_toEndOf="@id/b_filter_pkl"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            app:cornerRadius="8dp"
+            android:backgroundTint="@color/white_high"
+            android:textColor="@color/navy_blue_high"
+            android:text="@string/lomba"
+            android:textSize="20sp"
+            android:layout_gravity="center"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_filter_tempat_pkl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_little"
+            app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat"
+            app:layout_constraintStart_toEndOf="@id/b_filter_lomba"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            app:cornerRadius="8dp"
+            android:backgroundTint="@color/white_high"
+            android:textColor="@color/navy_blue_high"
+            android:text="@string/tempat_pkl"
+            android:textSize="20sp"
+            android:layout_gravity="center"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

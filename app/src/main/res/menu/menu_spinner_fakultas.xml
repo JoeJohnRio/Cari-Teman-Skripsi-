@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <string android:name="app_name">SpinnerInKotlin</string>
+    <string android:name="selected_item">Selected item:</string>
+
+    <string-array android:name="Languages">
+        <item android:title="TODO">Java</item>
+        <item android:title="TODO">Kotlin</item>
+    </string-array>
+</resources>

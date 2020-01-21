@@ -46,6 +46,10 @@
         </activity>
         <activity android:name=".MessageActivity">
         </activity>
+        <activity android:name=".DetailKelompokActivity">
+        </activity>
+        <activity android:name=".TambahAnggota1">
+        </activity>
     </application>
 
 </manifest>

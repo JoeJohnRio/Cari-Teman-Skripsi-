@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="70" height="70" viewBox="0 0 70 70">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="84.5" height="84.5" viewBox="0 0 84.5 84.5">
   <defs>
-    <filter id="Button_bg" x="0" y="0" width="70" height="70" filterUnits="userSpaceOnUse">
+    <filter id="Button_bg" x="0" y="0" width="84.5" height="84.5" filterUnits="userSpaceOnUse">
       <feOffset dy="6" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur"/>
       <feFlood flood-opacity="0.239"/>
@@ -9,6 +9,6 @@
     </filter>
   </defs>
   <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Button_bg)">
-    <circle id="Button_bg-2" data-name="Button bg" cx="26" cy="26" r="26" transform="translate(9 3)" fill="#363636"/>
+    <circle id="Button_bg-2" data-name="Button bg" cx="33" cy="33" r="33" transform="translate(9.25 3.25)" fill="#363636" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
   </g>
 </svg>

@@ -48,7 +48,15 @@
         </activity>
         <activity android:name=".DetailKelompokActivity">
         </activity>
-        <activity android:name=".TambahAnggota1">
+        <activity android:name=".TambahKelompok1Activity">
+        </activity>
+        <activity android:name=".TambahKelompok2Activity">
+        </activity>
+        <activity android:name=".TambahAnggota1Activity">
+        </activity>
+        <activity android:name=".PengalamanLombaActivity">
+        </activity>
+        <activity android:name=".PengalamanOrganisasiActivity">
         </activity>
     </application>
 

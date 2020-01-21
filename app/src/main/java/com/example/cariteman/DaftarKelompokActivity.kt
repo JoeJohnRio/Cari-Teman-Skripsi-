@@ -17,6 +17,11 @@ class DaftarKelompokActivity: AppCompatActivity(){
             val intent= Intent(this, DetailKelompokActivity::class.java)
             startActivity(intent)
         }
+
+        viewBind.fabAddKelompok.setOnClickListener{
+            val intent = Intent(this, TambahKelompok1Activity::class.java)
+            startActivity(intent)
+        }
     }
 
 }

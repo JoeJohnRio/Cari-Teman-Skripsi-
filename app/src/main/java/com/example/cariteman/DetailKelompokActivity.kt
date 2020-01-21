@@ -14,7 +14,7 @@ class DetailKelompokActivity: AppCompatActivity(){
         var viewBind: ActivityDetailKelompokBinding = DataBindingUtil.setContentView(this, R.layout.activity_detail_kelompok)
 
         viewBind.bTambahAnggota.setOnClickListener {
-            val intent = Intent(this, TambahAnggota1::class.java)
+            val intent = Intent(this, TambahAnggota1Activity::class.java)
             startActivity(intent)
         }
 

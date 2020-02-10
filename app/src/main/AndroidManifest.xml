@@ -58,6 +58,8 @@
         </activity>
         <activity android:name=".PengalamanOrganisasiActivity">
         </activity>
+        <activity android:name=".NotifikasiActivity">
+        </activity>
     </application>
 
 </manifest>

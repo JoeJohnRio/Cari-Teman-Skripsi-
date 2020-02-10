@@ -20,6 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:id="@+id/iv_profil_pic"
                     android:layout_width="150dp"
                     android:layout_height="200dp"
                     android:src="@drawable/profile_picture"
@@ -55,6 +56,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_name"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/space_more_than_little"
                     android:layout_marginTop="@dimen/space_really_small"
@@ -63,6 +65,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
+                    android:id="@+id/tv_jabatan"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/space_decent"
                     android:layout_marginTop="@dimen/space_really_small"
@@ -70,52 +73,58 @@
                     android:textColor="@color/black_effective"/>
 
                 <TextView
+                    android:id="@+id/tv_riwayat_lomba"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_really_small"
                     android:text="(Belum Memiliki Riwayat Lomba)"/>
 
-                    <LinearLayout
+                    <ScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/space_really_small"
-                        android:orientation="horizontal">
+                        android:layout_height="wrap_content">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/civ_image_one"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            app:civ_border_width="2dp"
-                            android:layout_marginTop="@dimen/space_really_small"
-                            android:layout_marginEnd="@dimen/space_really_small"
-                            app:civ_border_color="@color/white_high"
-                            android:src="@drawable/profile_picture"/>
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/civ_image_two"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_marginTop="@dimen/space_really_small"
-                            android:layout_marginEnd="@dimen/space_really_small"
-                            app:civ_border_width="2dp"
-                            app:civ_border_color="@color/white_high"
-                            android:src="@drawable/profile_picture"/>
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/civ_image_three"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            app:civ_border_width="2dp"
-                            android:layout_marginTop="@dimen/space_really_small"
-                            android:layout_marginEnd="@dimen/space_really_small"
-                            app:civ_border_color="@color/white_high"
-                            android:src="@drawable/profile_picture"/>
-                        <ImageView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="12dp"
-                            android:src="@drawable/ic_arrow_check_now"
-                            android:layout_gravity="end|bottom"/>
-                    </LinearLayout>
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_really_small"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/civ_image_one"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                app:civ_border_width="2dp"
+                                android:layout_marginTop="@dimen/space_really_small"
+                                android:layout_marginEnd="@dimen/space_really_small"
+                                app:civ_border_color="@color/white_high"
+                                android:src="@drawable/profile_picture"/>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/civ_image_two"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginTop="@dimen/space_really_small"
+                                android:layout_marginEnd="@dimen/space_really_small"
+                                app:civ_border_width="2dp"
+                                app:civ_border_color="@color/white_high"
+                                android:src="@drawable/profile_picture"/>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/civ_image_three"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                app:civ_border_width="2dp"
+                                android:layout_marginTop="@dimen/space_really_small"
+                                android:layout_marginEnd="@dimen/space_really_small"
+                                app:civ_border_color="@color/white_high"
+                                android:src="@drawable/profile_picture"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="12dp"
+                                android:src="@drawable/ic_arrow_check_now"
+                                android:layout_gravity="end|bottom"/>
+                        </LinearLayout>
+                    </ScrollView>
 
 
             </LinearLayout>

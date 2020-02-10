@@ -23,6 +23,11 @@ class DashboardActivity : AppCompatActivity(){
 
     fun utilButton(){
 
+        viewBind.ivNotifikasiIc.setOnClickListener {
+            val intent = Intent(this, NotifikasiActivity::class.java)
+            startActivity(intent)
+        }
+
         viewBind.bnvDashboard.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_item_beranda -> {

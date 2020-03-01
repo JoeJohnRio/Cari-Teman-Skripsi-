@@ -11,6 +11,7 @@
     <string name="masuk">Masuk</string>
     <string name="selanjutnya">Selanjutnya</string>
     <string name="fakultas">Fakultas</string>
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
     <string name="program_studi">Program Studi</string>
     <string name="keminatan">Keminatan</string>
     <string name="jenis_kelamin">Jenis Kelamin</string>

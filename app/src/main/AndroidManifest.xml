@@ -2,64 +2,76 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cariteman">
 
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:name=".MvpApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DashboardActivity">
+        <activity android:name=".ui.dashboard.DashboardActivity">
         </activity>
-        <activity android:name=".BaruDilihatActivity">
+        <activity android:name=".ui.barudilihat.BaruDilihatActivity">
         </activity>
-        <activity android:name=".RecommendationActivity">
+        <activity android:name=".ui.RecommendationActivity">
         </activity>
-        <activity android:name=".FavoritActivity">
+        <activity android:name=".ui.FavoritActivity">
         </activity>
-        <activity android:name=".ProfileActivity">
+        <activity android:name=".ui.ProfileActivity">
         </activity>
-        <activity android:name=".SearchActivity">
+        <activity android:name=".ui.SearchActivity">
         </activity>
-        <activity android:name=".FilterDialog">
+        <activity android:name=".ui.filter.FilterDialog">
         </activity>
-        <activity android:name=".Register2Activity">
+<!--        <activity android:name=".ui.register.view.Register2Fragment">-->
+<!--        </activity>-->
+        <activity android:name=".ui.register.view.Register1Activity">
         </activity>
-        <activity android:name=".Register1Activity">
+        <activity android:name=".ui.register.view.Register3Activity">
         </activity>
-        <activity android:name=".Register3Activity">
+        <activity android:name=".ui.UserProfilActivity">
         </activity>
-        <activity android:name=".UserProfilActivity">
+        <activity android:name=".ui.DaftarKelompokActivity">
         </activity>
-        <activity android:name=".DaftarKelompokActivity">
+        <activity android:name=".ui.pengalaman.PengalamanActivity">
         </activity>
-        <activity android:name=".PengalamanActivity">
+        <activity android:name=".ui.PengaturanActivity">
         </activity>
-        <activity android:name=".PengaturanActivity">
+        <activity android:name=".ui.MessageActivity">
         </activity>
-        <activity android:name=".MessageActivity">
+        <activity android:name=".ui.DetailKelompokActivity">
         </activity>
-        <activity android:name=".DetailKelompokActivity">
+        <activity android:name=".ui.TambahKelompok1Activity">
         </activity>
-        <activity android:name=".TambahKelompok1Activity">
+        <activity android:name=".ui.TambahKelompok2Activity">
         </activity>
-        <activity android:name=".TambahKelompok2Activity">
+        <activity android:name=".ui.TambahAnggota1Activity">
         </activity>
-        <activity android:name=".TambahAnggota1Activity">
+        <activity android:name=".ui.pengalaman.PengalamanLombaActivity">
         </activity>
-        <activity android:name=".PengalamanLombaActivity">
+        <activity android:name=".ui.pengalaman.PengalamanOrganisasiActivity">
         </activity>
-        <activity android:name=".PengalamanOrganisasiActivity">
+        <activity android:name=".ui.NotifikasiActivity">
         </activity>
-        <activity android:name=".NotifikasiActivity">
-        </activity>
+
+        <service
+            android:name=".ui.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

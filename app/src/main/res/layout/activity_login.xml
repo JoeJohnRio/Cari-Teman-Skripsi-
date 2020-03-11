@@ -62,7 +62,7 @@
                 <ImageView
                     android:layout_marginTop="@dimen/space_more_than_little"
                     android:layout_width="wrap_content"
-                    android:layout_height="240dp"
+                    android:layout_height="180dp"
                     android:src="@drawable/ic_undraw_mobile_login_ikmv"
                     android:layout_marginBottom="@dimen/space_decent"/>
 
@@ -73,6 +73,7 @@
                     android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -86,10 +87,10 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:passwordToggleEnabled="true"
-                    android:layout_marginBottom="@dimen/space_more_than_little">
+                    app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -98,6 +99,25 @@
                         android:textSize="18sp"
                         android:inputType="textPassword"
                         android:hint="@string/password"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:passwordToggleEnabled="true"
+                    android:layout_marginBottom="@dimen/space_more_than_little">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_password_confirmation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                        android:textStyle="italic"
+                        android:textSize="18sp"
+                        android:inputType="textPassword"
+                        android:hint="@string/password_confirmation"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton

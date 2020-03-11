@@ -70,7 +70,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/nama_joel"
+                    android:text="@string/nama_login"
                     android:textSize="@dimen/text_big"
                     android:textColor="@color/blue_low"
                     android:layout_marginTop="@dimen/space_big"

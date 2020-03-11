@@ -1,9 +1,9 @@
 package com.example.cariteman.ui.base.interactor
 
-interface MVPInteractor {
-
-    fun isUserLoggedIn(): Boolean
-
-    fun performUserLogout()
-
-}
+//interface MVPInteractor {
+//
+//    fun isUserLoggedIn(): Boolean
+//
+//    fun performUserLogout()
+//
+//}

@@ -23,6 +23,8 @@ ext {
     rxjava2Version = '2.0.6'
     androidNetworkingAmitshekar = '1.0.2'
     rxandroidVersion = '2.0.1'
+    retrofit_version = '2.7.2'
+    okhttpVersion = '4.4.0'
 }
 
 allprojects {

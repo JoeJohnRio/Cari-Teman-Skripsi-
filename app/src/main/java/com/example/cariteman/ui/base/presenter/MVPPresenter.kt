@@ -1,9 +1,8 @@
 package com.example.cariteman.ui.base.presenter
 
 import com.example.cariteman.ui.base.MVPView
-import com.example.cariteman.ui.base.interactor.MVPInteractor
 
-interface MVPPresenter<V : MVPView, I : MVPInteractor> {
+interface MVPPresenter<V : MVPView> {
 
     fun onAttach(view: V?)
 

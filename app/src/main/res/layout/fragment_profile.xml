@@ -218,23 +218,6 @@
         android:layout_marginTop="@dimen/space_more_than_little"
         android:layout_marginEnd="@dimen/space_more_than_little"
         android:layout_marginStart="@dimen/space_more_than_little"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom">
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bnv_dashboard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            app:itemBackground="@color/white_high"
-            app:itemIconTint="@color/black_effective"
-            app:itemTextColor="@color/black_effective"
-            app:menu="@menu/menu_nav_bottom_dashboard"
-            />
-    </LinearLayout>
-
 </LinearLayout>
 
 </layout>

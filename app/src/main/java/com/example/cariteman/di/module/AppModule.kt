@@ -1,4 +1,4 @@
-package com.example.cariteman.di
+package com.example.cariteman.di.module
 
 import android.app.Application
 import android.content.Context

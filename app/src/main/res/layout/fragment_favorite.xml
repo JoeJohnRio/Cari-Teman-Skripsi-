@@ -74,19 +74,6 @@
                 layout="@layout/item_people_and_place"/>
         </LinearLayout>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bnv_dashboard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:itemBackground="@color/white_high"
-            app:itemIconTint="@color/black_effective"
-            app:itemTextColor="@color/black_effective"
-            app:menu="@menu/menu_nav_bottom_dashboard"
-            />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
    </layout>

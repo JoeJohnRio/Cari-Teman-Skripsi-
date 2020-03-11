@@ -12,33 +12,26 @@
         android:name=".MvpApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.login.LoginActivity">
+        <activity android:name=".ui.login.view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.dashboard.DashboardActivity">
-        </activity>
         <activity android:name=".ui.barudilihat.BaruDilihatActivity">
         </activity>
         <activity android:name=".ui.RecommendationActivity">
-        </activity>
-        <activity android:name=".ui.FavoritActivity">
-        </activity>
-        <activity android:name=".ui.ProfileActivity">
         </activity>
         <activity android:name=".ui.SearchActivity">
         </activity>
         <activity android:name=".ui.filter.FilterDialog">
         </activity>
-<!--        <activity android:name=".ui.register.view.Register2Fragment">-->
-<!--        </activity>-->
-        <activity android:name=".ui.register.view.Register1Activity">
+        <activity android:name=".ui.dashboard.view.DashboardBottomViewActivity">
         </activity>
-        <activity android:name=".ui.register.view.Register3Activity">
+        <activity android:name=".ui.register.view.Register1Activity">
         </activity>
         <activity android:name=".ui.UserProfilActivity">
         </activity>

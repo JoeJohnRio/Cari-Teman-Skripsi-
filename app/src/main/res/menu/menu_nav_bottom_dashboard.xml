@@ -2,17 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
         <item
             android:id="@+id/nav_item_beranda"
-            android:checked="true"
             android:icon="@drawable/ic_beranda"
             android:title="@string/beranda" />
         <item
             android:id="@+id/nav_item_favorite"
-            android:checked="true"
             android:icon="@drawable/ic_favorite_unchecked"
             android:title="@string/favorite" />
         <item
             android:id="@+id/nav_item_profil"
-            android:checked="true"
             android:icon="@drawable/ic_profil"
             android:title="@string/profil" />
 </menu>

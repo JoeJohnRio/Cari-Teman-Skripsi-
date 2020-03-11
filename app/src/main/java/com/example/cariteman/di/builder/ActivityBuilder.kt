@@ -1,6 +1,11 @@
 package com.example.cariteman.di.builder
 
-import com.example.cariteman.ui.register.Register2Provider
+import com.example.cariteman.ui.dashboard.DashboardModule
+import com.example.cariteman.ui.dashboard.view.DashboardBottomViewActivity
+import com.example.cariteman.ui.dashboard.DashboardFragmentProvider
+import com.example.cariteman.ui.login.LoginActivityModule
+import com.example.cariteman.ui.login.view.LoginActivity
+import com.example.cariteman.ui.register.RegisterFragmentProvider
 import com.example.cariteman.ui.register.RegisterActivityModule
 import com.example.cariteman.ui.register.view.Register1Activity
 import dagger.Module
@@ -15,8 +20,14 @@ abstract class ActivityBuilder {
 //    @ContributesAndroidInjector(modules = [(SplashActivityModule::class)])
 //    abstract fun bindSplashActivity(): SplashMVPActivity
 
-    @ContributesAndroidInjector(modules = [(RegisterActivityModule::class), (Register2Provider::class)])
+    @ContributesAndroidInjector(modules = [(RegisterActivityModule::class), (RegisterFragmentProvider::class)])
     abstract fun bindRegisterActivity(): Register1Activity
+
+    @ContributesAndroidInjector(modules = [(LoginActivityModule::class)])
+    abstract fun bindLoginActivity(): LoginActivity
+
+    @ContributesAndroidInjector(modules = [(DashboardModule::class), (DashboardFragmentProvider::class)])
+    abstract fun bindDashboardActivity(): DashboardBottomViewActivity
 //
 //    @ContributesAndroidInjector(modules = [(LoginActivityModule::class)])
 //    abstract fun bindLoginActivity(): LoginActivity

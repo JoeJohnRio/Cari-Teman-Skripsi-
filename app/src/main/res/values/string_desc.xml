@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="name_login">joel johanes cirio</string>
+    <string name="nim_login">165150201111157</string>
+    <string name="email_login">joel@joel.joel</string>
+    <string name="password_login">secret</string>
+    <string name="password_confirm_login">secret</string>
     <string name="sign_in">Masuk Sekarang</string>
+    <string name="title_home">Home</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="title_profile">Profile</string>
     <string name="sign_in_desc">Masuk menggunakan akun yang anda punya</string>
     <string name="not_having_an_account">Tidak punya akun? Daftar Sekarang</string>
     <string name="register">Daftar Sekarang</string>
@@ -16,7 +24,7 @@
     <string name="keminatan">Keminatan</string>
     <string name="jenis_kelamin">Jenis Kelamin</string>
     <string name="tools_selamat_datang">Selamat Datang, Joel Johanes Cirio</string>
-    <string name="nama_joel">Joel Johanes Cirio, 20</string>
+    <string name="nama_login">Joel Johanes Cirio, 20</string>
     <string name="kirim_pesan">Kirim Pesan</string>
     <string name="tambah_kelompok">Tambah Kelompok</string>
     <string name="tools_email">joejohnrio@gmail.com</string>
@@ -34,9 +42,10 @@ mengganti pengalaman. </string>
     <string name="semester">Semester</string>
     <string name="skill_hobi">Skill dan Hobi</string>
     <string name="login">login</string>
-    <string name="email">email</string>
+    <string name="email">Email</string>
     <string name="nim">NIM</string>
     <string name="password">Password</string>
+    <string name="password_confirmation">Konfirmasi password</string>
     <string name="nama">nama</string>
     <string name="ulangi_password">Ulangi password</string>
     <string name="cari_teman">Cari teman</string>
@@ -53,4 +62,6 @@ mengganti pengalaman. </string>
     <string name="profil">Profil</string>
     <string name="head_of_division">Head of Creative Division at BEM Filkom UB</string>
     <string name="last_achievement">1st in Creative Apps at Creat...</string>
+    <string name="laki_laki">Laki Laki</string>
+    <string name="perempuan">Perempuan</string>
 </resources>

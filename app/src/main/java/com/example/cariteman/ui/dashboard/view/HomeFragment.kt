@@ -1,70 +1,58 @@
-package com.example.cariteman.ui.dashboard
+package com.example.cariteman.ui.dashboard.view
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.Toast
 import com.example.cariteman.R
-import com.example.cariteman.databinding.ActivityDashboardBinding
+import com.example.cariteman.databinding.FragmentHomeBinding
 import com.example.cariteman.ui.*
 import com.example.cariteman.ui.barudilihat.BaruDilihatActivity
+import com.example.cariteman.ui.base.view.BaseFragment
+import com.example.cariteman.util.Utils
+import com.example.cariteman.util.extension.addFragment
 import com.google.android.material.button.MaterialButton
 
-private lateinit var viewBind: ActivityDashboardBinding
 
-class DashboardActivity : AppCompatActivity(){
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
-        viewBind = DataBindingUtil.setContentView(this,
-            R.layout.activity_dashboard
-        )
+class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, DashboardMVPView{
 
+    private lateinit var viewBind: FragmentHomeBinding
 
-        utilButton()
-
-
+    companion object {
+        val TAG: String = HomeFragment::class.java.simpleName
+        fun newInstance() = HomeFragment()
     }
 
-    fun utilButton(){
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+        viewBind = FragmentHomeBinding.inflate(inflater, container, false)
+
+        Toast.makeText(context, "Home", Toast.LENGTH_LONG).show()
+        activity?.title = getString(R.string.title_home)
+        Utils.loadData(context!!)
+        return viewBind.root
+    }
+
+    override fun setUp() {
         viewBind.ivNotifikasiIc.setOnClickListener {
-            val intent = Intent(this, NotifikasiActivity::class.java)
+            val intent = Intent(context, NotifikasiActivity::class.java)
             startActivity(intent)
         }
 
-        viewBind.bnvDashboard.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.nav_item_beranda -> {
-                    true
-                }
-                R.id.nav_item_favorite -> {
-                    val intent = Intent(this, FavoritActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-                R.id.nav_item_profil -> {
-                    val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-
-                else ->{
-                    true
-                }
-            }
-        }
         viewBind.bSearchCariTeman.setOnClickListener{
-            val intent = Intent(this, SearchActivity::class.java)
+            val intent = Intent(context, SearchActivity::class.java)
             startActivity(intent)
         }
         viewBind.tvLihatSemuaBaruDilihat.setOnClickListener{
-            var intent = Intent(this, BaruDilihatActivity::class.java)
+            var intent = Intent(context, BaruDilihatActivity::class.java)
             startActivity(intent)
         }
 
         viewBind.tvLihatSemuaRecommendation.setOnClickListener{
-            var intent = Intent(this, RecommendationActivity::class.java)
+            var intent = Intent(context, RecommendationActivity::class.java)
             startActivity(intent)
         }
 
@@ -142,5 +130,13 @@ class DashboardActivity : AppCompatActivity(){
         turnDown.setTextColor(resources.getColor(colorOn))
         turnDown1.setBackgroundColor(resources.getColor(colorOff))
         turnDown1.setTextColor(resources.getColor(colorOn))
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        //notImplemented
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        //notImplemented
     }
 }

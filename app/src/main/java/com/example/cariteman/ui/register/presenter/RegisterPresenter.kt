@@ -16,7 +16,6 @@ import javax.inject.Inject
 
 class RegisterPresenter<V : RegisterMVPView> @Inject internal constructor(schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V>(schedulerProvider = schedulerProvider, compositeDisposable = disposable), RegisterMVPPresenter<V> {
 
-
     @Inject
     lateinit var mNetworkApi: INetworkApi
 
@@ -36,7 +35,8 @@ class RegisterPresenter<V : RegisterMVPView> @Inject internal constructor(schedu
 //        var mahasiswaResponse = Mapper.mahasiswaToMahasiswaResponseMapper(mahasiswa)
         getView()?.let {
             it.showProgress()
-            addDisposable(mNetworkApi.registerApi(mahasiswa = mahasiswa).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread())
+            addDisposable(mNetworkApi.registerApi(mahasiswa = mahasiswa).subscribeOn(IoScheduler()).
+                observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     { result ->
                         getView()?.hideProgress()

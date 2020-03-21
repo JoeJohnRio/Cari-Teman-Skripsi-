@@ -25,4 +25,31 @@ interface INetworkApi {
 
     @GET(Endpoints.keminatan)
     fun getKeminatan(@Path("id") id: Int?): Observable<List<KeminatanResponse>>
+
+    //History Dashboard
+    @GET(Endpoints.historyDashboardLomba)
+    @Headers("No-Authentication: true")
+    fun getHistoryDashboardLomba(@Header("app-key") string: String?): Observable<List<MahasiswaHistoryDashboardResponse>>
+
+    @GET(Endpoints.historyDashboardPkl)
+    @Headers("No-Authentication: true")
+    fun getHistoryDashboardPkl(@Header("app-key") string: String?): Observable<List<MahasiswaHistoryDashboardResponse>>
+
+    @GET(Endpoints.historyDashboardTempatPkl)
+    @Headers("No-Authentication: true")
+    fun getHistoryDashboardTempatPkl(@Header("app-key") string: String?): Observable<List<MahasiswaHistoryDashboardResponse>>
+
+    @GET(Endpoints.showUlasanTempat)
+    @Headers("No-Authentication: true")
+    fun getUlasanTempatPkl(@Header("app-key") string: String?): Observable<List<UlasanTempatPkl>>
+
+    @GET(Endpoints.pengalamanLomba)
+    @Headers("No-Authentication: true")
+    fun getPengalamanLomba(@Header("app-key") string: String?): Observable<List<MahasiswaHistoryDashboardResponse>>
+
+    @GET(Endpoints.pengalamanOrganisasi)
+    @Headers("No-Authentication: true")
+    fun getPengalamanOrganisasi(@Header("app-key") string: String?): Observable<TotalPengalamanResponse>
+
+
 }

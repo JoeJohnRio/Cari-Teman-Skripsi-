@@ -10,9 +10,9 @@ class RecommendationActivity: AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_list_orang)
+        setContentView(R.layout.activity_list_orang)
         var viewBind: FragmentListOrangBinding = DataBindingUtil.setContentView(this,
-            R.layout.fragment_list_orang
+            R.layout.activity_list_orang
         )
 
         viewBind.tvToolbarTitle.text = "Rekomendasi"

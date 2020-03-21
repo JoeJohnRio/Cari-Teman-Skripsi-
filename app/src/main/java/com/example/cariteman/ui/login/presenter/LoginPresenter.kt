@@ -1,12 +1,9 @@
 package com.example.cariteman.ui.login.presenter
 
-import android.util.Log
-import android.widget.Toast
 import com.example.cariteman.data.model.Login
 import com.example.cariteman.data.network.INetworkApi
 import com.example.cariteman.ui.base.presenter.BasePresenter
 import com.example.cariteman.ui.login.view.LoginMVPView
-import com.example.cariteman.util.CommonUtil
 import com.example.cariteman.util.SchedulerProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

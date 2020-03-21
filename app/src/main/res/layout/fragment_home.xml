@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll_outer_dashboard"
             android:layout_width="match_parent"
@@ -249,21 +248,15 @@
                                     app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat" />
                             </LinearLayout>
 
-                            <include
-                                android:id="@+id/container_dashboard_baru_dilihat"
-                                layout="@layout/item_profile_dashboard"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv_dashboard_baru_lihat"
+                                tools:listitem="@layout/item_profile_dashboard"
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_marginTop="@dimen/space_little" />
 
-                            <!--        <androidx.recyclerview.widget.RecyclerView-->
-                            <!--            android:id="@+id/rv_item_dashboard"-->
-                            <!--            android:layout_width="match_parent"-->
-                            <!--            android:layout_height="match_parent"-->
-                            <!--            android:layout_marginTop="@dimen/space_more_than_little"-->
-                            <!--            android:orientation="horizontal"-->
-                            <!--            tools:listitem="@layout/item_profile_dashboard"/>-->
-                        </LinearLayout>
+                            </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout

@@ -39,18 +39,24 @@ class Register2Fragment : BaseFragment(), AdapterView.OnItemSelectedListener, Re
     private lateinit var viewBind: ActivityRegister2Binding
     private lateinit var contextActivity: Activity
     private lateinit var spinnerTahunMulai: List<String>
+
     companion object {
         internal val TAG = "Register1"
         fun newInstance(): Register2Fragment {
             return Register2Fragment()
         }
     }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         viewBind = ActivityRegister2Binding.inflate(inflater, container, false)
         viewBind.bRegister.setOnClickListener {
-            if (positionFakultas * positionProgramStudi * positionTahun == 0){
+            if (positionFakultas * positionProgramStudi * positionTahun == 0) {
                 Toast.makeText(context, "Isi informasi terlebih dahulu", Toast.LENGTH_LONG).show()
-            }else{
+            } else {
                 (contextActivity as Register1Activity).mahasiswa.let {
                     var file = File("image/ss.jpg")
 //                    var request : RequestBody = ResponseBody.create(MediaType.parse("image/*"), file)
@@ -58,18 +64,22 @@ class Register2Fragment : BaseFragment(), AdapterView.OnItemSelectedListener, Re
 //                    var someData: RequestBody = RequestBody.create(MediaType.parse("text/plain"), "this is a new image")
 
 
-
                     it.foto_ktm = file
                     it.id_fakultas = positionFakultas
                     it.id_program_studi = positionProgramStudi
                     it.id_keminatan = positionKeminatan
-                    if (it.id_keminatan==0) it.id_keminatan=null
+                    if (it.id_keminatan == 0) it.id_keminatan = null
                     it.tahun_mulai = positionTahun + 2012
-                    it.jenis_kelamin = viewBind.rgJenisKelamin.checkedRadioButtonId.equals(viewBind.rPerempuan)
-                    Toast.makeText(context,"" +  it.jenis_kelamin, Toast.LENGTH_LONG).show()
+                    it.jenis_kelamin =
+                        viewBind.rgJenisKelamin.checkedRadioButtonId.equals(viewBind.rPerempuan)
+                    Toast.makeText(context, "" + it.jenis_kelamin, Toast.LENGTH_LONG).show()
                 }
 
-                fragmentManager?.addFragment(R.id.cl_register_next, Register3Fragment.newInstance(), Register3Fragment.TAG)
+                fragmentManager?.addFragment(
+                    R.id.cl_register_next,
+                    Register3Fragment.newInstance(),
+                    Register3Fragment.TAG
+                )
             }
         }
 
@@ -93,89 +103,95 @@ class Register2Fragment : BaseFragment(), AdapterView.OnItemSelectedListener, Re
     override fun showFakultas(responses: ArrayList<Fakultas>) {
         var counter = 0
         val fakultasArray = arrayOfNulls<String>(responses.size)
-        for (response in responses){
+        for (response in responses) {
             fakultasArray[counter] = response.name
             counter++
         }
         val spinnerItemFakultas = fakultasArray
-        val spinnerAdapterFakultas = ArrayAdapter(context!!, android.R.layout.simple_spinner_item, spinnerItemFakultas)
+        val spinnerAdapterFakultas =
+            ArrayAdapter(context!!, android.R.layout.simple_spinner_item, spinnerItemFakultas)
         spinnerAdapterFakultas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         viewBind.spinnerFakultas.adapter = spinnerAdapterFakultas
-        viewBind.spinnerFakultas.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                //notImplemented
-            }
+        viewBind.spinnerFakultas.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    //notImplemented
+                }
 
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                positionFakultas = position
-                positionKeminatan = 0
-                positionProgramStudi = 0
-                presenter.getProgramStudiResponse(position)
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    positionFakultas = position
+                    positionKeminatan = 0
+                    positionProgramStudi = 0
+                    presenter.getProgramStudiResponse(position)
+                }
             }
-        }
     }
 
     override fun showProgramStudi(responses: ArrayList<ProgramStudi>) {
         var counter = 0
         val programStudiArray = arrayOfNulls<String>(responses.size)
-        for (response in responses){
+        for (response in responses) {
             programStudiArray[counter] = response.name
             counter++
         }
         val spinnerItemProgramStudi = programStudiArray
-        val spinnerAdapterProgramStudi = ArrayAdapter(context!!, android.R.layout.simple_spinner_item, spinnerItemProgramStudi)
+        val spinnerAdapterProgramStudi =
+            ArrayAdapter(context!!, android.R.layout.simple_spinner_item, spinnerItemProgramStudi)
         spinnerAdapterProgramStudi.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         viewBind.spinnerProgramStudi.adapter = spinnerAdapterProgramStudi
 
-        viewBind.spinnerProgramStudi.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                //notImplemented
-            }
+        viewBind.spinnerProgramStudi.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    //notImplemented
+                }
 
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                positionProgramStudi = position
-                positionKeminatan = 0
-                presenter.getKeminatanResponse(position)
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    positionProgramStudi = position
+                    positionKeminatan = 0
+                    presenter.getKeminatanResponse(position)
+                }
             }
-        }
     }
 
     override fun showKeminatan(responses: ArrayList<Keminatan>) {
         var counter = 0
         val programStudiArray = arrayOfNulls<String>(responses.size)
-        for (response in responses){
+        for (response in responses) {
             programStudiArray[counter] = response.name
             counter++
         }
         val spinnerItemProgramStudi = programStudiArray
-        val spinnerAdapterProgramStudi = ArrayAdapter(context!!, android.R.layout.simple_spinner_item, spinnerItemProgramStudi)
+        val spinnerAdapterProgramStudi =
+            ArrayAdapter(context!!, android.R.layout.simple_spinner_item, spinnerItemProgramStudi)
         spinnerAdapterProgramStudi.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         viewBind.spinnerKeminatan.adapter = spinnerAdapterProgramStudi
 
-        viewBind.spinnerKeminatan.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                //notImplemented
-            }
+        viewBind.spinnerKeminatan.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    //notImplemented
+                }
 
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                positionKeminatan = position
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    positionKeminatan = position
+                }
             }
-        }
     }
 
     override fun openRegisterFragment() {
@@ -183,26 +199,29 @@ class Register2Fragment : BaseFragment(), AdapterView.OnItemSelectedListener, Re
     }
 
     override fun setUp() {
-        spinnerTahunMulai = listOf("Tahun Mulai", "2013", "2014", "2015", "2016", "2017", "2018", "2019")
+        spinnerTahunMulai =
+            listOf("Tahun Mulai", "2013", "2014", "2015", "2016", "2017", "2018", "2019")
         viewBind.spinnerTahunMulai.setOnItemSelectedListener(this)
         val spinnerItemTahunMulai = spinnerTahunMulai
-        val spinnerAdapterTahunMulai = ArrayAdapter(context!!, android.R.layout.simple_spinner_item, spinnerItemTahunMulai)
+        val spinnerAdapterTahunMulai =
+            ArrayAdapter(context!!, android.R.layout.simple_spinner_item, spinnerItemTahunMulai)
         spinnerAdapterTahunMulai.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         viewBind.spinnerTahunMulai.adapter = spinnerAdapterTahunMulai
 
-        viewBind.spinnerTahunMulai.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                //notImplemented
-            }
+        viewBind.spinnerTahunMulai.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    //notImplemented
+                }
 
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                positionTahun = position
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    positionTahun = position
+                }
             }
-        }
     }
 }

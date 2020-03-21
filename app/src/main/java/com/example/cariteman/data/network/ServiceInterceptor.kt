@@ -5,9 +5,9 @@ import okhttp3.Response
 
 class ServiceInterceptor : Interceptor {
 
-    var token : String? = ""
+    var token: String? = ""
 
-    fun Token(token: String ) {
+    fun Token(token: String) {
         this.token = token;
     }
 
@@ -15,15 +15,15 @@ class ServiceInterceptor : Interceptor {
         var request = chain.request()
 //
 //        if(request.header("No-Authentication")==null){
-            //val token = getTokenFromSharedPreference();
-            //or use Token Function
+        //val token = getTokenFromSharedPreference();
+        //or use Token Function
 //            if(!token.isNullOrEmpty())
 //            {
-                token = request.header("app-key")
-                val finalToken =  "Bearer "+token
-                request = request.newBuilder()
-                    .addHeader("Authorization",finalToken)
-                    .build()
+        token = request.header("app-key")
+        val finalToken = "Bearer " + token
+        request = request.newBuilder()
+            .addHeader("Authorization", finalToken)
+            .build()
 //            }
 
 //        }

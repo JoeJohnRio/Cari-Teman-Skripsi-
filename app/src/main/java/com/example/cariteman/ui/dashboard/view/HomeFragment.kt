@@ -7,19 +7,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cariteman.R
+import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
 import com.example.cariteman.databinding.FragmentHomeBinding
 import com.example.cariteman.ui.*
-import com.example.cariteman.ui.barudilihat.BaruDilihatActivity
+import com.example.cariteman.ui.dashboard.barudilihat.view.BaruDilihatActivity
 import com.example.cariteman.ui.base.view.BaseFragment
+import com.example.cariteman.ui.dashboard.presenter.DashboardPresenter
+import com.example.cariteman.util.Mapper
 import com.example.cariteman.util.Utils
-import com.example.cariteman.util.extension.addFragment
 import com.google.android.material.button.MaterialButton
+import javax.inject.Inject
 
 
 class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, DashboardMVPView{
-
+    @Inject
+    lateinit var presenter: DashboardPresenter<DashboardMVPView>
     private lateinit var viewBind: FragmentHomeBinding
+
+
 
     companion object {
         val TAG: String = HomeFragment::class.java.simpleName
@@ -27,16 +34,21 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         viewBind = FragmentHomeBinding.inflate(inflater, container, false)
-
-        Toast.makeText(context, "Home", Toast.LENGTH_LONG).show()
         activity?.title = getString(R.string.title_home)
-        Utils.loadData(context!!)
+        toggleTurnOf(
+            viewBind.bFilterPklBaruDilihat, viewBind.bSearchLomba, viewBind.bSearchTempatPkl,
+            R.color.navy_blue,
+            R.color.white
+        )
+
+        presenter.setKey(Utils.loadData(context!!))
+        presenter.onAttach(this)
         return viewBind.root
     }
 
     override fun setUp() {
+        presenter.getHistoryDashboardPklResponse()
         viewBind.ivNotifikasiIc.setOnClickListener {
             val intent = Intent(context, NotifikasiActivity::class.java)
             startActivity(intent)
@@ -47,12 +59,12 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
             startActivity(intent)
         }
         viewBind.tvLihatSemuaBaruDilihat.setOnClickListener{
-            var intent = Intent(context, BaruDilihatActivity::class.java)
+            val intent = Intent(context, BaruDilihatActivity::class.java)
             startActivity(intent)
         }
 
         viewBind.tvLihatSemuaRecommendation.setOnClickListener{
-            var intent = Intent(context, RecommendationActivity::class.java)
+            val intent = Intent(context, RecommendationActivity::class.java)
             startActivity(intent)
         }
 
@@ -84,6 +96,7 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
                 R.color.navy_blue,
                 R.color.white
             )
+            presenter.getHistoryDashboardLombaResponse()
         }
         viewBind.bFilterPklBaruDilihat.setOnClickListener{
             toggleTurnOf(
@@ -91,6 +104,7 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
                 R.color.navy_blue,
                 R.color.white
             )
+            presenter.getHistoryDashboardPklResponse()
         }
         viewBind.bFilterTempatPklBaruDilihat.setOnClickListener{
             toggleTurnOf(
@@ -98,6 +112,7 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
                 R.color.navy_blue,
                 R.color.white
             )
+            presenter.getHistoryDashboardTempatPklResponse()
         }
 
         viewBind.bFilterLombaRecommendation.setOnClickListener{
@@ -121,6 +136,26 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
                 R.color.white
             )
         }
+    }
+
+    private lateinit var adapterWithList: ProfilDashboardPklListAdapter
+    override fun populateLombaDanPklDashboard(responses: List<MahasiswaHistoryDashboardResponse>) {
+        val data = Mapper.dashboardHistoryLombaResponseMapper(responses)
+        adapterWithList = ProfilDashboardPklListAdapter()
+        adapterWithList.submitList(data)
+        viewBind.rvDashboardBaruLihat.apply {
+            adapter = adapterWithList
+            if (layoutManager == null){
+                layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            }
+            adapter?.notifyDataSetChanged()
+        }
+            viewBind.rvDashboardBaruLihat.smoothScrollToPosition(4)
+    }
+
+    override fun onDetach() {
+        Toast.makeText(context, "Home On Detach", Toast.LENGTH_LONG).show()
+        super.onDetach()
     }
 
     fun toggleTurnOf(turnUp: MaterialButton, turnDown: MaterialButton, turnDown1: MaterialButton, colorOn: Int, colorOff: Int){

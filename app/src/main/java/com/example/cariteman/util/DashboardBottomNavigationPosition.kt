@@ -7,7 +7,7 @@ import com.example.cariteman.ui.dashboard.view.HomeFragment
 import com.example.cariteman.ui.dashboard.view.ProfileFragment
 
 enum class BottomNavigationPosition(val position: Int, val id: Int) {
-    HOME(0,  R.id.nav_item_beranda ),
+    HOME(0, R.id.nav_item_beranda),
     FAVORITE(1, R.id.nav_item_favorite),
     PROFILE(2, R.id.nav_item_profil)
 }

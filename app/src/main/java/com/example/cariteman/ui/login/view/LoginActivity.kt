@@ -16,7 +16,7 @@ import com.example.cariteman.util.Utils.SHARED_PREFS
 import com.example.cariteman.util.Utils.TEXT
 import javax.inject.Inject
 
-class LoginActivity : BaseActivity(), LoginMVPView{
+class LoginActivity : BaseActivity(), LoginMVPView {
 
     @Inject
     lateinit var presenter: LoginMVPPresenter<LoginMVPView>
@@ -33,18 +33,28 @@ class LoginActivity : BaseActivity(), LoginMVPView{
         viewBind.etPassword.setText(R.string.password_login)
         viewBind.etPasswordConfirmation.setText(R.string.password_confirm_login)
 
-        viewBind.bSignIn.setOnClickListener{
-            if(viewBind.etEmail.getText().toString().isEmpty()) {
-                Toast.makeText(getApplicationContext(),"enter email address",Toast.LENGTH_SHORT).show();
-            }else {
+        viewBind.bSignIn.setOnClickListener {
+            if (viewBind.etEmail.getText().toString().isEmpty()) {
+                Toast.makeText(getApplicationContext(), "enter email address", Toast.LENGTH_SHORT)
+                    .show();
+            } else {
                 if (viewBind.etEmail.getText().toString().trim().matches(emailPattern.toRegex())) {
 
                 } else {
-                    Toast.makeText(getApplicationContext(),"Invalid email address", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(
+                        getApplicationContext(),
+                        "Invalid email address",
+                        Toast.LENGTH_SHORT
+                    ).show();
                 }
             }
-
-            presenter.onLoginBtnClicked(Login(email = viewBind.etEmail.text.toString(), password = viewBind.etPassword.text.toString(), passwordConfirmation = viewBind.etPasswordConfirmation.text.toString() ))
+            presenter.onLoginBtnClicked(
+                Login(
+                    email = viewBind.etEmail.text.toString(),
+                    password = viewBind.etPassword.text.toString(),
+                    passwordConfirmation = viewBind.etPasswordConfirmation.text.toString()
+                )
+            )
         }
 
         viewBind.tvSignUpNotHaveAccount.setOnClickListener {
@@ -52,9 +62,10 @@ class LoginActivity : BaseActivity(), LoginMVPView{
             startActivity(intent)
         }
     }
+
     override fun goToDashboard() {
         val intent = Intent(this, DashboardBottomViewActivity::class.java)
-        Toast.makeText(getApplicationContext(),"Anda telah masuk",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Anda telah masuk", Toast.LENGTH_SHORT).show();
         startActivity(intent)
     }
 

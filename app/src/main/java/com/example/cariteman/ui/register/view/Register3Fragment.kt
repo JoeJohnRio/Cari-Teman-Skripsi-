@@ -16,7 +16,7 @@ import com.example.cariteman.ui.base.view.BaseFragment
 import com.example.cariteman.ui.register.presenter.RegisterMVPPresenter
 import javax.inject.Inject
 
-class Register3Fragment: BaseFragment(), RegisterMVPView{
+class Register3Fragment : BaseFragment(), RegisterMVPView {
 
     companion object {
 
@@ -34,7 +34,11 @@ class Register3Fragment: BaseFragment(), RegisterMVPView{
     private lateinit var viewBind: ActivityRegister3Binding
     private lateinit var contextActivity: Activity
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         viewBind = ActivityRegister3Binding.inflate(inflater, container, false)
         presenter.onAttach(this)
         return viewBind.root
@@ -57,7 +61,8 @@ class Register3Fragment: BaseFragment(), RegisterMVPView{
 
         viewBind.cvLomba.setOnClickListener {
             togglePreferensiPklorLomba = true
-            viewBind.cvLomba.backgroundTintList = resources.getColorStateList(R.color.navy_blue_high)
+            viewBind.cvLomba.backgroundTintList =
+                resources.getColorStateList(R.color.navy_blue_high)
             viewBind.tvLomba.setTextColor(resources.getColorStateList(R.color.white_low))
 
             viewBind.cvPkl.backgroundTintList = resources.getColorStateList(R.color.white_low)
@@ -73,6 +78,7 @@ class Register3Fragment: BaseFragment(), RegisterMVPView{
             viewBind.tvPkl.setTextColor(resources.getColorStateList(R.color.white_low))
         }
     }
+
     override fun openRegisterFragment() {
         //notImplemented
     }

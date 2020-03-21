@@ -69,6 +69,7 @@ dependencies {
 
     //RETROFIT ...  NETWORK LIBRARY
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit_version"
+
     // RETROFIT .. CONVERTER
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofit_version"
@@ -78,6 +79,10 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
 
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+    kapt 'androidx.annotation:annotation:1.1.0'
 
     kapt "com.android.databinding:compiler:$android_plugin_version"
 

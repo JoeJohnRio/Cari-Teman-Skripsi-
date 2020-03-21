@@ -15,7 +15,7 @@ import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
 
-class Register1Activity: BaseActivity(), RegisterMVPView, HasSupportFragmentInjector{
+class Register1Activity : BaseActivity(), RegisterMVPView, HasSupportFragmentInjector {
 
     @Inject
     internal lateinit var presenter: RegisterMVPPresenter<RegisterMVPView>
@@ -37,12 +37,16 @@ class Register1Activity: BaseActivity(), RegisterMVPView, HasSupportFragmentInje
         mahasiswa = Mahasiswa()
         mahasiswa.let {
             it.name = viewBind.etNameLogin.text.toString()
-            it.nim= viewBind.etNimLogin.text.toString()
-            it.email= viewBind.etEmailLogin.text.toString()
+            it.nim = viewBind.etNimLogin.text.toString()
+            it.email = viewBind.etEmailLogin.text.toString()
             it.password = viewBind.etPasswordLogin.text.toString()
             it.password_confirmation = viewBind.etPasswordConfirmationLogin.text.toString()
         }
-        supportFragmentManager.addFragment(R.id.cl_register_2, Register2Fragment.newInstance(), Register2Fragment.TAG)
+        supportFragmentManager.addFragment(
+            R.id.cl_register_2,
+            Register2Fragment.newInstance(),
+            Register2Fragment.TAG
+        )
     }
 
     override fun onBackPressed() {

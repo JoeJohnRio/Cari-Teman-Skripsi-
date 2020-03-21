@@ -52,6 +52,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <include
+        android:id="@+id/i_item_people"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         layout="@layout/item_people_and_place"/>

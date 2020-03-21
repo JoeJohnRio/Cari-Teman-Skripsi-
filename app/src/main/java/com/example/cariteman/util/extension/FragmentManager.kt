@@ -11,23 +11,27 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.cariteman.R
 
 
-internal fun FragmentManager.removeFragment(tag: String,
-                                            slideIn: Int = R.anim.slide_left,
-                                            slideOut: Int = R.anim.slide_right) {
+internal fun FragmentManager.removeFragment(
+    tag: String,
+    slideIn: Int = R.anim.slide_left,
+    slideOut: Int = R.anim.slide_right
+) {
     this.findFragmentByTag(tag)?.let {
         this.beginTransaction()
-        .disallowAddToBackStack()
-        .setCustomAnimations(slideIn, slideOut)
-        .remove(it)
-        .commitNow()
+            .disallowAddToBackStack()
+            .setCustomAnimations(slideIn, slideOut)
+            .remove(it)
+            .commitNow()
     }
 }
 
-internal fun FragmentManager.addFragment(containerViewId: Int,
-                                         fragment: Fragment,
-                                         tag: String,
-                                         slideIn: Int = R.anim.slide_left,
-                                         slideOut: Int = R.anim.slide_right) {
+internal fun FragmentManager.addFragment(
+    containerViewId: Int,
+    fragment: Fragment,
+    tag: String,
+    slideIn: Int = R.anim.slide_left,
+    slideOut: Int = R.anim.slide_right
+) {
     this.beginTransaction().disallowAddToBackStack()
         .setCustomAnimations(slideIn, slideOut)
         .replace(containerViewId, fragment, tag)
@@ -40,7 +44,7 @@ fun FragmentManager.detach() {
     }
 }
 
-fun FragmentManager.attach(fragment : Fragment, tag: String) {
+fun FragmentManager.attach(fragment: Fragment, tag: String) {
     if (fragment.isDetached) {
         beginTransaction().attach(fragment).commit()
     } else {

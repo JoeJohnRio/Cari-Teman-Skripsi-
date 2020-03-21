@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-public class PageViewModel: ViewModel() {
+public class PageViewModel : ViewModel() {
     /**
      * Live Data Instance
      */

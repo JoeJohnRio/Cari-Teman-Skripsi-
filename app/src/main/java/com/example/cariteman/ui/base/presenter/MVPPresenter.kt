@@ -10,4 +10,8 @@ interface MVPPresenter<V : MVPView> {
 
     fun getView(): V?
 
+    fun getKey(): String?
+
+    fun setKey(key: String?)
+
 }

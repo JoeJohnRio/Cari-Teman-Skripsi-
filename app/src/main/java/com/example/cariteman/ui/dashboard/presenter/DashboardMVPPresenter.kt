@@ -5,4 +5,9 @@ import com.example.cariteman.ui.dashboard.view.DashboardMVPView
 
 interface DashboardMVPPresenter <V : DashboardMVPView> : MVPPresenter<V> {
 
+    fun getHistoryDashboardLombaResponse()
+
+    fun getHistoryDashboardPklResponse()
+
+    fun getHistoryDashboardTempatPklResponse()
 }

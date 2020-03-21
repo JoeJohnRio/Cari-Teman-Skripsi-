@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class RegisterFragmentProvider{
+abstract class RegisterFragmentProvider {
     @ContributesAndroidInjector
     abstract internal fun provideRegister2Fragment(): Register2Fragment
 

@@ -1,9 +1,5 @@
 package com.example.cariteman.ui.base.interactor
 
-import com.example.cariteman.data.network.ApiHelper
-import com.example.cariteman.data.preferences.PreferenceHelper
-import com.example.cariteman.util.AppConstants
-
 
 //open class BaseInteractor() : MVPInteractor {
 //

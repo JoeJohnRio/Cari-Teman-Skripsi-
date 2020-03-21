@@ -21,10 +21,11 @@ object Utils {
         }
     }
 
-    fun loadData(context: Context) {
+    fun loadData(context: Context) : String?{
         val sharedPreferences = context.getSharedPreferences(SHARED_PREFS,
             AppCompatActivity.MODE_PRIVATE
         )
+        return sharedPreferences.getString(TEXT, "")
 //        Toast.makeText(context, sharedPreferences.getString(TEXT, ""), Toast.LENGTH_LONG ).show()
     }
 

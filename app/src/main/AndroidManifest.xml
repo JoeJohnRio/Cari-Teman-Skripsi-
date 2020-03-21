@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.barudilihat.BaruDilihatActivity">
+        <activity android:name=".ui.dashboard.barudilihat.view.BaruDilihatActivity">
         </activity>
         <activity android:name=".ui.RecommendationActivity">
         </activity>

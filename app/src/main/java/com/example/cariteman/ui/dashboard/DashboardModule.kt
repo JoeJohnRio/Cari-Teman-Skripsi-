@@ -7,9 +7,8 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class DashboardModule{
-
+class DashboardModule {
     @Provides
-    internal fun provideMainPresenter(mainPresenter: DashboardPresenter<DashboardMVPView>)
+    internal fun provideDashboardPresenter(mainPresenter: DashboardPresenter<DashboardMVPView>)
             : DashboardMVPPresenter<DashboardMVPView> = mainPresenter
 }

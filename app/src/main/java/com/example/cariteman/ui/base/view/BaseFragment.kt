@@ -4,9 +4,11 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.cariteman.ui.base.MVPView
 import com.example.cariteman.util.CommonUtil
+import com.example.cariteman.util.Utils.SHARED_PREFS
 import dagger.android.support.AndroidSupportInjection
 
 abstract class BaseFragment : Fragment(), MVPView {
@@ -23,6 +25,12 @@ abstract class BaseFragment : Fragment(), MVPView {
         }
     }
 
+    fun getKey(): String {
+            val sharedPreferences = context?.getSharedPreferences(SHARED_PREFS,
+                AppCompatActivity.MODE_PRIVATE
+            )
+        return sharedPreferences.toString()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         performDependencyInjection()

@@ -1,11 +1,15 @@
 package com.example.cariteman.ui.dashboard.view
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.cariteman.R
+import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
 import com.example.cariteman.databinding.NavigationBottomParentBinding
 import com.example.cariteman.ui.base.view.BaseActivity
+import com.example.cariteman.ui.dashboard.presenter.DashboardPresenter
 import com.example.cariteman.util.*
 import com.example.cariteman.util.extension.attach
 import com.example.cariteman.util.extension.detach
@@ -16,8 +20,16 @@ import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
 class DashboardBottomViewActivity : BaseActivity(), DashboardMVPView, HasSupportFragmentInjector {
+
+    override fun populateLombaDanPklDashboard(responses: List<MahasiswaHistoryDashboardResponse>) {
+        //notImplemented
+    }
+
     @Inject
     internal lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+
+    @Inject
+    lateinit var presenter: DashboardPresenter<DashboardMVPView>
 
     private lateinit var binding: NavigationBottomParentBinding
 
@@ -29,6 +41,7 @@ class DashboardBottomViewActivity : BaseActivity(), DashboardMVPView, HasSupport
 
         binding = DataBindingUtil.setContentView(this, R.layout.navigation_bottom_parent)
 
+        presenter.onAttach(this)
         binding.bottomNavigation.apply {
             // This is required in Support Library 27 or lower:
             // bottomNavigation.disableShiftMode()
@@ -50,6 +63,7 @@ class DashboardBottomViewActivity : BaseActivity(), DashboardMVPView, HasSupport
     }
 
     override fun supportFragmentInjector() = fragmentDispatchingAndroidInjector
+
     override fun onFragmentAttached() {
         //notImplemented
     }

@@ -1,9 +1,11 @@
 package com.example.cariteman.util
 
 import android.content.Context
+import android.content.res.Resources
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
 
 object Utils {
     lateinit var fakultas: Array<String>
@@ -19,6 +21,15 @@ object Utils {
         }else{
             return false
         }
+    }
+
+    fun toggleThreeButton(turnUp: MaterialButton, turnDown: MaterialButton, turnDown1: MaterialButton, colorOn: Int, colorOff: Int, resources: Resources){
+        turnUp.setBackgroundColor(resources.getColor(colorOn))
+        turnUp.setTextColor(resources.getColor(colorOff))
+        turnDown.setBackgroundColor(resources.getColor(colorOff))
+        turnDown.setTextColor(resources.getColor(colorOn))
+        turnDown1.setBackgroundColor(resources.getColor(colorOff))
+        turnDown1.setTextColor(resources.getColor(colorOn))
     }
 
     fun loadData(context: Context) : String?{

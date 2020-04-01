@@ -23,6 +23,25 @@ object Mapper {
         return responseDashboard.toList()
     }
 
+    fun historyLombaResponseMapper(responses: List<MahasiswaHistoryDashboardResponse>): List<MahasiswaHistoryDashboardResponse?> {
+        var index = 0
+        val responsesMapped: MutableList<MahasiswaHistoryDashboardResponse> = mutableListOf()
+        for (item in responses){
+            if (item.mahasiswaTwoLomba != null){
+                responsesMapped.add(index, item)
+                index++
+            }else if (item.mahasiswaTwoPkl != null){
+                responsesMapped.add(index, item)
+                index++
+            }else if (item.tempatPkl != null){
+                responsesMapped.add(index, item)
+                index++
+            }
+        }
+
+        return responsesMapped
+    }
+
     fun fakultasResponseMapper(responses: List<FakultasResponse>): ArrayList<Fakultas>{
         val responseFakultas: ArrayList<Fakultas> = arrayListOf(Fakultas("Fakultas"))
         for(response in responses){

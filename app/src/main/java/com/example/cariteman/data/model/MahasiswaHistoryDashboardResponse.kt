@@ -32,7 +32,8 @@ class MahasiswaResponseNotSerialized(
     @SerializedName("id_keminatan") var id_keminatan: Int? = null,
     @SerializedName("created_at") var created_at: String? = null,
     @SerializedName("updated_at") var updated_at: String? = null,
-    @SerializedName("count_pengalaman") var countPengalaman: List<CountPengalaman>? = null,
+//    @SerializedName("relation_teman") var relationTeman: List<RelationTeman>? = null,
+    @SerializedName("count_rekomendasi") var countPengalaman: List<CountPengalaman>? = null,
     @SerializedName("pengalaman_lomba") var pengalamanLomba: List<PengalamanLomba>? = null,
     @SerializedName("pengalaman_organisasi") var pengalamanOrganisasi: List<PengalamanOrganisasi>? = null
 )
@@ -44,7 +45,7 @@ data class CountPengalaman(
     @SerializedName("is_hidden") var isHidden: Int? = null,
     @SerializedName("id_pengirim") var idPengirim: Int? = null,
     @SerializedName("id_penerima") var idPenerima: String? = null,
-    @SerializedName("created_at") var createdAt: Int? = null,
+    @SerializedName("created_at") var createdAt: String? = null,
     @SerializedName("updated_at") var updatedAt: String? = null
 )
 
@@ -55,7 +56,7 @@ data class PengalamanLomba(
     @SerializedName("gambar") var gambar: String? = null,
     @SerializedName("id_mahasiswa") var idMahasiswa: Int? = null,
     @SerializedName("tanggal") var tanggal: String? = null,
-    @SerializedName("created_at") var createdAt: Int? = null,
+    @SerializedName("created_at") var createdAt: String? = null,
     @SerializedName("updated_at") var updatedAt: String? = null
 )
 
@@ -68,6 +69,7 @@ data class PengalamanOrganisasi(
     @SerializedName("tanggal_selesai") var tanggalSelesai: String? = null,
     @SerializedName("id_mahasiswa") var idMahasiswa: Int? = null,
     @SerializedName("id_bidang_kerja") var idBidangKerja: Int? = null,
+    @SerializedName("bidang_kerja") var bidangKerja: BidangKerjaResponse? = null,
     @SerializedName("created_at") var createdAt: String? = null,
     @SerializedName("updated_at") var updatedAt: String? = null
 )
@@ -80,10 +82,31 @@ data class TempatPklResponse(
     @SerializedName("gambar") var gambar: String? = null,
     @SerializedName("bidang_kerja") var bidangKerja: BidangKerjaResponse? = null,
     @SerializedName("lokasi_pkl") var lokasiPkl: LokasiPklResponse? = null,
+    @SerializedName("relation_tempat_pkl") var relationTempatPkl: RelationTempatPkl? = null,
     @SerializedName("count_ulasan_tempat_pkl") var countUlasanTempatPkl: List<UlasanTempatPkl>? = null,
     @SerializedName("created_at") var createdAt: String? = null,
     @SerializedName("updated_at") var updatedAt: String? = null
 )
+
+data class RelationTempatPkl(
+    @SerializedName("id") var userId: Int? = null,
+    @SerializedName("is_favorite") var isFavorite: Int? = null,
+    @SerializedName("id_mahasiswa") var idMahasiswa: Int? = null,
+    @SerializedName("id_tempat_pkl") var idTempatPkl: Int? = null,
+    @SerializedName("created_at") var createdAt: String? = null,
+    @SerializedName("updated_at") var updatedAt: String? = null
+)
+
+data class RelationTeman(
+    @SerializedName("id") var userId: Int? = null,
+    @SerializedName("status") var status: Int? = null,
+    @SerializedName("is_favorite") var isFavorite: Int? = null,
+    @SerializedName("id_mahasiswa") var idMahasiswa: Int? = null,
+    @SerializedName("id_tempat_pkl") var idTempatPkl: Int? = null,
+    @SerializedName("created_at") var createdAt: String? = null,
+    @SerializedName("updated_at") var updatedAt: String? = null
+)
+
 
 data class BidangKerjaResponse(
     @SerializedName("id") var userId: Int? = null,

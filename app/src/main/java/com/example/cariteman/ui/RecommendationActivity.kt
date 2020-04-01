@@ -4,14 +4,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.cariteman.R
-import com.example.cariteman.databinding.FragmentListOrangBinding
+import com.example.cariteman.databinding.ActivityListOrangBinding
 
 class RecommendationActivity: AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_orang)
-        var viewBind: FragmentListOrangBinding = DataBindingUtil.setContentView(this,
+        var viewBind: ActivityListOrangBinding = DataBindingUtil.setContentView(this,
             R.layout.activity_list_orang
         )
 

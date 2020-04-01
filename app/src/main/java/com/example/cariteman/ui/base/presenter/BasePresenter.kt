@@ -16,7 +16,6 @@ abstract class BasePresenter<V : MVPView> internal constructor(protected val sch
         this.view = view
     }
 
-
     override fun setKey(key: String?){
         keyApi = key
     }

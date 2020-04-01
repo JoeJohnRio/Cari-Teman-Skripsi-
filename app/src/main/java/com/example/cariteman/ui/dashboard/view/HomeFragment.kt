@@ -1,12 +1,12 @@
 package com.example.cariteman.ui.dashboard.view
 
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
@@ -17,6 +17,7 @@ import com.example.cariteman.ui.base.view.BaseFragment
 import com.example.cariteman.ui.dashboard.presenter.DashboardPresenter
 import com.example.cariteman.util.Mapper
 import com.example.cariteman.util.Utils
+import com.example.cariteman.util.Utils.toggleThreeButton
 import com.google.android.material.button.MaterialButton
 import javax.inject.Inject
 
@@ -25,8 +26,7 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
     @Inject
     lateinit var presenter: DashboardPresenter<DashboardMVPView>
     private lateinit var viewBind: FragmentHomeBinding
-
-
+    private lateinit var adapterWithList: ProfilDashboardPklListAdapter
 
     companion object {
         val TAG: String = HomeFragment::class.java.simpleName
@@ -36,10 +36,10 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewBind = FragmentHomeBinding.inflate(inflater, container, false)
         activity?.title = getString(R.string.title_home)
-        toggleTurnOf(
+        toggleThreeButton(
             viewBind.bFilterPklBaruDilihat, viewBind.bSearchLomba, viewBind.bSearchTempatPkl,
             R.color.navy_blue,
-            R.color.white
+            R.color.white, resources
         )
 
         presenter.setKey(Utils.loadData(context!!))
@@ -69,79 +69,79 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
         }
 
         viewBind.bSearchPkl.setOnClickListener{
-            toggleTurnOf(
+            toggleThreeButton(
                 viewBind.bSearchPkl, viewBind.bSearchLomba, viewBind.bSearchTempatPkl,
                 R.color.orange_high,
-                R.color.white
+                R.color.white, resources
             )
         }
         viewBind.bSearchLomba.setOnClickListener{
-            toggleTurnOf(
+            toggleThreeButton(
                 viewBind.bSearchLomba, viewBind.bSearchPkl, viewBind.bSearchTempatPkl,
                 R.color.orange_high,
-                R.color.white
+                R.color.white, resources
             )
         }
         viewBind.bSearchTempatPkl.setOnClickListener{
-            toggleTurnOf(
+            toggleThreeButton(
                 viewBind.bSearchTempatPkl, viewBind.bSearchLomba, viewBind.bSearchPkl,
                 R.color.orange_high,
-                R.color.white
+                R.color.white, resources
             )
         }
 
         viewBind.bFilterLombaBaruDilihat.setOnClickListener{
-            toggleTurnOf(
+            toggleThreeButton(
                 viewBind.bFilterLombaBaruDilihat, viewBind.bFilterPklBaruDilihat, viewBind.bFilterTempatPklBaruDilihat,
                 R.color.navy_blue,
-                R.color.white
+                R.color.white, resources
             )
             presenter.getHistoryDashboardLombaResponse()
         }
         viewBind.bFilterPklBaruDilihat.setOnClickListener{
-            toggleTurnOf(
+            toggleThreeButton(
                 viewBind.bFilterPklBaruDilihat, viewBind.bFilterLombaBaruDilihat, viewBind.bFilterTempatPklBaruDilihat,
                 R.color.navy_blue,
-                R.color.white
+                R.color.white, resources
             )
             presenter.getHistoryDashboardPklResponse()
         }
         viewBind.bFilterTempatPklBaruDilihat.setOnClickListener{
-            toggleTurnOf(
+            toggleThreeButton(
                 viewBind.bFilterTempatPklBaruDilihat, viewBind.bFilterPklBaruDilihat, viewBind.bFilterLombaBaruDilihat,
                 R.color.navy_blue,
-                R.color.white
+                R.color.white, resources
             )
             presenter.getHistoryDashboardTempatPklResponse()
         }
 
         viewBind.bFilterLombaRecommendation.setOnClickListener{
-            toggleTurnOf(
+            toggleThreeButton(
                 viewBind.bFilterLombaRecommendation, viewBind.bFilterPklRecommendation, viewBind.bFilterTempatPklRecommendation,
                 R.color.navy_blue,
-                R.color.white
+                R.color.white, resources
             )
         }
         viewBind.bFilterPklRecommendation.setOnClickListener{
-            toggleTurnOf(
+            toggleThreeButton(
                 viewBind.bFilterPklRecommendation, viewBind.bFilterLombaRecommendation, viewBind.bFilterTempatPklRecommendation,
                 R.color.navy_blue,
-                R.color.white
+                R.color.white, resources
             )
         }
         viewBind.bFilterTempatPklRecommendation.setOnClickListener{
-            toggleTurnOf(
+            toggleThreeButton(
                 viewBind.bFilterTempatPklRecommendation, viewBind.bFilterPklRecommendation, viewBind.bFilterLombaRecommendation,
                 R.color.navy_blue,
-                R.color.white
+                R.color.white, resources
             )
         }
     }
 
-    private lateinit var adapterWithList: ProfilDashboardPklListAdapter
     override fun populateLombaDanPklDashboard(responses: List<MahasiswaHistoryDashboardResponse>) {
         val data = Mapper.dashboardHistoryLombaResponseMapper(responses)
         adapterWithList = ProfilDashboardPklListAdapter()
+
         adapterWithList.submitList(data)
         viewBind.rvDashboardBaruLihat.apply {
             adapter = adapterWithList
@@ -151,20 +151,6 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
             adapter?.notifyDataSetChanged()
         }
             viewBind.rvDashboardBaruLihat.smoothScrollToPosition(4)
-    }
-
-    override fun onDetach() {
-        Toast.makeText(context, "Home On Detach", Toast.LENGTH_LONG).show()
-        super.onDetach()
-    }
-
-    fun toggleTurnOf(turnUp: MaterialButton, turnDown: MaterialButton, turnDown1: MaterialButton, colorOn: Int, colorOff: Int){
-        turnUp.setBackgroundColor(resources.getColor(colorOn))
-        turnUp.setTextColor(resources.getColor(colorOff))
-        turnDown.setBackgroundColor(resources.getColor(colorOff))
-        turnDown.setTextColor(resources.getColor(colorOn))
-        turnDown1.setBackgroundColor(resources.getColor(colorOff))
-        turnDown1.setTextColor(resources.getColor(colorOn))
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

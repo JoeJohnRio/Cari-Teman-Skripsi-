@@ -12,7 +12,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_more_than_little">
+        android:layout_marginBottom="@dimen/space_little">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
@@ -51,20 +51,75 @@
                 />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include
-        android:id="@+id/i_item_people"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/item_people_and_place"/>
 
-    <include
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/item_people_and_place"/>
+        android:layout_marginEnd="@dimen/space_more_than_little"
+        android:layout_marginStart="@dimen/space_more_than_little"
+        android:layout_marginBottom="@dimen/space_little"
+        android:orientation="horizontal">
 
-    <include
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_filter_pkl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            app:cornerRadius="8dp"
+            android:backgroundTint="@color/white_high"
+            android:textColor="@color/navy_blue_high"
+            android:text="@string/pkl"
+            android:textSize="20sp"
+            android:layout_gravity="center"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_filter_lomba"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_little"
+            app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat"
+            app:layout_constraintStart_toEndOf="@id/b_filter_pkl"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            app:cornerRadius="8dp"
+            android:backgroundTint="@color/white_high"
+            android:textColor="@color/navy_blue_high"
+            android:text="@string/lomba"
+            android:textSize="20sp"
+            android:layout_gravity="center"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_filter_tempat_pkl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_little"
+            app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat"
+            app:layout_constraintStart_toEndOf="@id/b_filter_lomba"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            app:cornerRadius="8dp"
+            android:backgroundTint="@color/white_high"
+            android:textColor="@color/navy_blue_high"
+            android:text="@string/tempat_pkl"
+            android:textSize="20sp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_item_people"
+        tools:listitem="@layout/item_people_and_place"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/item_people_and_place"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/space_little" />
 </LinearLayout>
 </layout>

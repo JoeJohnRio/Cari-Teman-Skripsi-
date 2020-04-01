@@ -3,6 +3,8 @@ package com.example.cariteman.di.builder
 import com.example.cariteman.ui.dashboard.DashboardModule
 import com.example.cariteman.ui.dashboard.view.DashboardBottomViewActivity
 import com.example.cariteman.ui.dashboard.DashboardFragmentProvider
+import com.example.cariteman.ui.dashboard.barudilihat.BaruDilihatModule
+import com.example.cariteman.ui.dashboard.barudilihat.view.BaruDilihatActivity
 import com.example.cariteman.ui.login.LoginActivityModule
 import com.example.cariteman.ui.login.view.LoginActivity
 import com.example.cariteman.ui.register.RegisterFragmentProvider
@@ -28,6 +30,9 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [(DashboardModule::class), (DashboardFragmentProvider::class)])
     abstract fun bindDashboardActivity(): DashboardBottomViewActivity
+
+    @ContributesAndroidInjector(modules = [(BaruDilihatModule::class)])
+    abstract fun bindBaruDilihatActivity(): BaruDilihatActivity
 //
 //    @ContributesAndroidInjector(modules = [(LoginActivityModule::class)])
 //    abstract fun bindLoginActivity(): LoginActivity

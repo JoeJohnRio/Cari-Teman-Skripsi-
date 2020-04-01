@@ -5,4 +5,5 @@ import com.example.cariteman.ui.dashboard.barudilihat.view.BaruDilihatMVPView
 
 interface BaruDilihatMVPPresenter <V : BaruDilihatMVPView> : MVPPresenter<V>{
 
+    fun getHistoryProfilPkl(isRefresh: Boolean, page: Int)
 }

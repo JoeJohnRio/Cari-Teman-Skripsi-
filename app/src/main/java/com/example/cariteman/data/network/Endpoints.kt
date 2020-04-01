@@ -14,6 +14,9 @@ object Endpoints {
     const val historyDashboardLomba = "history/lihatprofil/dashboard/lomba"
     const val historyDashboardPkl = "history/lihatprofil/dashboard/pkl"
     const val historyDashboardTempatPkl = "history/lihattempatpkl/dashboard"
+    const val historyProfilPkl = "history/lihatprofil/pkl"
+    const val historyProfilLomba = "history/lihatprofil/lomba"
+    const val historyProfilTempatPkl = "history/lihattempatpkl"
 
     //rekomendasi
     const val totalPengalaman = "rekomendasi/count"

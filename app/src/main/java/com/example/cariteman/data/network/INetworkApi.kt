@@ -31,6 +31,18 @@ interface INetworkApi {
     @Headers("No-Authentication: true")
     fun getHistoryDashboardLomba(@Header("app-key") string: String?): Observable<List<MahasiswaHistoryDashboardResponse>>
 
+    @GET(Endpoints.historyProfilPkl)
+    @Headers("No-Authentication: true")
+    fun getHistoryProfilPkl(@Header("app-key") string: String?,@Query("page") page: Int): Observable<Pagination<MahasiswaHistoryDashboardResponse>>
+
+    @GET(Endpoints.historyProfilLomba)
+    @Headers("No-Authentication: true")
+    fun getHistoryProfilLomba(@Header("app-key") string: String?): Observable<List<MahasiswaHistoryDashboardResponse>>
+
+    @GET(Endpoints.historyProfilTempatPkl)
+    @Headers("No-Authentication: true")
+    fun getHistoryProfilTempatPkl(@Header("app-key") string: String?): Observable<List<MahasiswaHistoryDashboardResponse>>
+
     @GET(Endpoints.historyDashboardPkl)
     @Headers("No-Authentication: true")
     fun getHistoryDashboardPkl(@Header("app-key") string: String?): Observable<List<MahasiswaHistoryDashboardResponse>>

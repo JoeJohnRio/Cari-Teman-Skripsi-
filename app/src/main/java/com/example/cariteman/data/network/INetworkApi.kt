@@ -21,10 +21,10 @@ interface INetworkApi {
 
     @GET(Endpoints.programStudi)
     @Headers("No-Authentication: true")
-    fun getProgramStudi(@Path("id") id: Int): Observable<List<ProgramStudiResponse>>
+    fun getProgramStudi(@Path("isVerified") id: Int): Observable<List<ProgramStudiResponse>>
 
     @GET(Endpoints.keminatan)
-    fun getKeminatan(@Path("id") id: Int?): Observable<List<KeminatanResponse>>
+    fun getKeminatan(@Path("isVerified") id: Int?): Observable<List<KeminatanResponse>>
 
     //History Dashboard
     @GET(Endpoints.historyDashboardLomba)
@@ -37,11 +37,11 @@ interface INetworkApi {
 
     @GET(Endpoints.historyProfilLomba)
     @Headers("No-Authentication: true")
-    fun getHistoryProfilLomba(@Header("app-key") string: String?): Observable<List<MahasiswaHistoryDashboardResponse>>
+    fun getHistoryProfilLomba(@Header("app-key") string: String?,@Query("page") page: Int): Observable<Pagination<MahasiswaHistoryDashboardResponse>>
 
     @GET(Endpoints.historyProfilTempatPkl)
     @Headers("No-Authentication: true")
-    fun getHistoryProfilTempatPkl(@Header("app-key") string: String?): Observable<List<MahasiswaHistoryDashboardResponse>>
+    fun getHistoryProfilTempatPkl(@Header("app-key") string: String?,@Query("page") page: Int): Observable<Pagination<MahasiswaHistoryDashboardResponse>>
 
     @GET(Endpoints.historyDashboardPkl)
     @Headers("No-Authentication: true")
@@ -50,6 +50,14 @@ interface INetworkApi {
     @GET(Endpoints.historyDashboardTempatPkl)
     @Headers("No-Authentication: true")
     fun getHistoryDashboardTempatPkl(@Header("app-key") string: String?): Observable<List<MahasiswaHistoryDashboardResponse>>
+
+    @PUT(Endpoints.toggleFavoriteFriend)
+    @Headers("No-Authentication: true")
+    fun toggleFavoriteFriend(@Header("app-key") string: String?, @Path("isVerified") id: Int?): Observable<RelationTeman>
+
+    @PUT(Endpoints.toggleFavoriteFriend)
+    @Headers("No-Authentication: true")
+    fun toggleFavoriteTempatPkl(@Header("app-key") string: String?, @Path("isVerified") id: Int?): Observable<RelationTeman>
 
     @GET(Endpoints.showUlasanTempat)
     @Headers("No-Authentication: true")

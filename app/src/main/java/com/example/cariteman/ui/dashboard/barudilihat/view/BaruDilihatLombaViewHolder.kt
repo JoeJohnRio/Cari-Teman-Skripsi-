@@ -1,5 +1,6 @@
 package com.example.cariteman.ui.dashboard.barudilihat.view
 
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.BounceInterpolator
@@ -12,11 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
-import com.example.cariteman.ui.dashboard.barudilihat.presenter.BaruDilihatPresenter
 import kotlinx.android.extensions.LayoutContainer
 import java.lang.Exception
 
-class BaruDilihatPklViewHolder(override val containerView: View) :
+class BaruDilihatLombaViewHolder(override val containerView: View) :
     RecyclerView.ViewHolder(containerView),
     LayoutContainer {
 
@@ -28,7 +28,6 @@ class BaruDilihatPklViewHolder(override val containerView: View) :
     private var tvJabatanOrganisasi: TextView? = null
     private var tvPrestasiLomba: TextView? = null
     private var tbFavorite: ToggleButton? = null
-    private var isTerisi: Boolean = false
 
     init {
         ivProfilPicWithFavorite = itemView.findViewById(R.id.iv_profil_pic_with_favorite)
@@ -40,30 +39,31 @@ class BaruDilihatPklViewHolder(override val containerView: View) :
     }
 
 
-    fun bind(response: MahasiswaHistoryDashboardResponse, presenter: BaruDilihatPresenter<BaruDilihatMVPView>) {
+    fun bind(response: MahasiswaHistoryDashboardResponse) {
 
         try {
             Glide.with(this.itemView.context)
-                .load(response.mahasiswaTwoPkl?.foto_profil ?: url)
+                .load(response.mahasiswaTwoLomba?.foto_profil ?: url)
                 .into(ivProfilPicWithFavorite)
         } catch (e: Throwable) {
             Glide.with(this.itemView.context).load(url)
                 .into(ivProfilPicWithFavorite)
         }
 
-        tvItemType?.text = "PKL"
-        tvItemName?.text = response.mahasiswaTwoPkl?.name
+
+
+        tvItemType?.text = "Lomba"
+        tvItemName?.text = response.mahasiswaTwoLomba?.name
         try {
-            if (response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja != null && response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
+            if (response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja != null && response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
                     0
                 )?.namaOrganisasi != null
-            ){
+            ) {
                 tvJabatanOrganisasi?.text =
-                    "" + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja + " at " + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
+                    "" + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja + " at " + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
                         0
                     )?.namaOrganisasi
-            }
-            else{
+            } else {
                 tvJabatanOrganisasi?.text = "Belum memiliki pengalaman berorganisasi"
             }
         } catch (e: Exception) {
@@ -71,7 +71,7 @@ class BaruDilihatPklViewHolder(override val containerView: View) :
         }
         try {
             tvPrestasiLomba?.text =
-                "" + response.mahasiswaTwoPkl?.pengalamanLomba?.get(0)?.namaKompetisi + " at " + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
+                "" + response.mahasiswaTwoLomba?.pengalamanLomba?.get(0)?.namaKompetisi + " at " + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
                     0
                 )?.namaOrganisasi
         } catch (e: Exception) {
@@ -92,28 +92,18 @@ class BaruDilihatPklViewHolder(override val containerView: View) :
         val bounceInterpolator = BounceInterpolator()
         scaleAnimation?.setInterpolator(bounceInterpolator)
 
-//        if (isTerisi == false){
-//            tbFavorite?.isChecked = (response.mahasiswaTwoPkl?.relationTeman?.isFavorite == 1)
-//            isTerisi = true
-//        }
-
         tbFavorite?.setOnCheckedChangeListener(object :
             View.OnClickListener, CompoundButton.OnCheckedChangeListener {
             override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
-                p0?.startAnimation(scaleAnimation)
-
-                response.mahasiswaTwoPkl?.id?.let {
-                    presenter.toggleFavoriteFriend(it, true) }
-
-//                if (response.mahasiswaTwoPkl?.relationTeman?.isFavorite == 0){
-//                    response.mahasiswaTwoPkl?.relationTeman?.isFavorite = 1
-//                }else{
-//                    response.mahasiswaTwoPkl?.relationTeman?.isFavorite = 0
-//                }
-
+                p0?.startAnimation(scaleAnimation);
+                Log.d(
+                    "fav",
+                    "am i here"
+                ) //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onClick(p0: View?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         })
     }

@@ -3,6 +3,7 @@ package com.example.cariteman.ui.base.view
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.example.cariteman.util.CommonUtil
@@ -42,6 +43,10 @@ abstract class BaseDialogView : DialogFragment(), DialogMVPView {
         if (progressDialog != null && progressDialog?.isShowing!!) {
             progressDialog?.cancel()
         }
+    }
+
+    override fun showMessageToast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 
     override fun showProgress() {

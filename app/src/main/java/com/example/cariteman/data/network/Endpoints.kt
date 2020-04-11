@@ -7,8 +7,8 @@ object Endpoints {
 
     //fakultas
     const val fakultas = "fakultas/"
-    const val programStudi = "fakultas/programstudi/{id}"
-    const val keminatan = "fakultas/programstudi/keminatan/{id}"
+    const val programStudi = "fakultas/programstudi/{isVerified}"
+    const val keminatan = "fakultas/programstudi/keminatan/{isVerified}"
 
     //historyDashboard
     const val historyDashboardLomba = "history/lihatprofil/dashboard/lomba"
@@ -17,6 +17,9 @@ object Endpoints {
     const val historyProfilPkl = "history/lihatprofil/pkl"
     const val historyProfilLomba = "history/lihatprofil/lomba"
     const val historyProfilTempatPkl = "history/lihattempatpkl"
+
+    //relasiTeman
+    const val toggleFavoriteFriend = "relationteman/favorite/toggle/{isVerified}"
 
     //rekomendasi
     const val totalPengalaman = "rekomendasi/count"

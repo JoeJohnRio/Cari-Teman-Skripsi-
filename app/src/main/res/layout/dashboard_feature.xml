@@ -116,7 +116,7 @@
             layout="@layout/item_profile_dashboard"/>
 
 <!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/rv_item_dashboard"-->
+<!--            android:isVerified="@+isVerified/rv_item_dashboard"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="match_parent"-->
 <!--            android:layout_marginTop="@dimen/space_more_than_little"-->

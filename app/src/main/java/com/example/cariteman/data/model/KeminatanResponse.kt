@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class KeminatanResponse(
-    @SerializedName("id") var id: Int? = null,
+    @SerializedName("isVerified") var id: Int? = null,
     @SerializedName("name") var name: String? = null,
     @SerializedName("id_program_studi") var idProgramStudi: Int? = null,
     @SerializedName("created_at") var createdAt: Date? = null,

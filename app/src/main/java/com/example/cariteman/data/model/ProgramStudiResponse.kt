@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class ProgramStudiResponse(
-    @SerializedName("id") var id: Int? = null,
+    @SerializedName("isVerified") var id: Int? = null,
     @SerializedName("name") var name: String? = null,
     @SerializedName("id_fakultas") var idFakultas: Int? = null,
     @SerializedName("created_at") var createdAt: Date? = null,

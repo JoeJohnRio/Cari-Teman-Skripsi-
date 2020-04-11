@@ -17,13 +17,11 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(sche
 
     override fun getHistoryDashboardLombaResponse() {
         getView()?.let {
-            it.showProgress()
             addDisposable(mNetworkApi.getHistoryDashboardLomba(getKey()).subscribeOn(IoScheduler()).observeOn(
                 AndroidSchedulers.mainThread())
                 .subscribe(
                     { result ->
                         getView().let {
-                            it?.hideProgress()
                             if (!result.isNullOrEmpty()){
                                 it?.populateLombaDanPklDashboard(result)
                             }
@@ -31,9 +29,6 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(sche
                     },
                     { error ->
                         Log.d("error", error.message+"test")
-                        getView().let {
-                            it?.hideProgress()
-                        }
                     }
                 )
             )
@@ -42,13 +37,11 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(sche
 
     override fun getHistoryDashboardPklResponse() {
         getView()?.let {
-            it.showProgress()
             addDisposable(mNetworkApi.getHistoryDashboardPkl(getKey()).subscribeOn(IoScheduler()).observeOn(
                 AndroidSchedulers.mainThread())
                 .subscribe(
                     { result ->
                         getView().let {
-                            it?.hideProgress()
                             if (!result.isNullOrEmpty()){
                                 it?.populateLombaDanPklDashboard(result)
                             }
@@ -56,9 +49,6 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(sche
                     },
                     { error ->
                         Log.d("error", error.message+"test")
-                        getView().let {
-                            it?.hideProgress()
-                        }
                     }
                 )
             )
@@ -67,13 +57,11 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(sche
 
     override fun getHistoryDashboardTempatPklResponse() {
         getView()?.let {
-            it.showProgress()
             addDisposable(mNetworkApi.getHistoryDashboardTempatPkl(getKey()).subscribeOn(IoScheduler()).observeOn(
                 AndroidSchedulers.mainThread())
                 .subscribe(
                     { result ->
                         getView().let {
-                            it?.hideProgress()
                             if (!result.isNullOrEmpty()){
                                 it?.populateLombaDanPklDashboard(result)
                             }
@@ -81,9 +69,6 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(sche
                     },
                     { error ->
                         Log.d("error", error.message+"test")
-                        getView().let {
-                            it?.hideProgress()
-                        }
                     }
                 )
             )

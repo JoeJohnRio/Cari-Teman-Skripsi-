@@ -1,6 +1,7 @@
 package com.example.cariteman.ui.register.presenter
 
 import android.os.Bundle
+import android.widget.Toast
 import com.example.cariteman.data.model.*
 import com.example.cariteman.data.network.INetworkApi
 import com.example.cariteman.ui.base.presenter.BasePresenter
@@ -13,6 +14,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.internal.schedulers.IoScheduler
 import javax.inject.Inject
+import kotlin.coroutines.coroutineContext
 
 class RegisterPresenter<V : RegisterMVPView> @Inject internal constructor(schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V>(schedulerProvider = schedulerProvider, compositeDisposable = disposable), RegisterMVPPresenter<V> {
 
@@ -39,9 +41,11 @@ class RegisterPresenter<V : RegisterMVPView> @Inject internal constructor(schedu
                 observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     { result ->
+                        getView()?.showMessageToast("Sedang direview")
                         getView()?.hideProgress()
                     },
                     { error ->
+                        getView()?.showMessageToast(error.message!!)
                         getView()?.hideProgress()
                     }
                 ))

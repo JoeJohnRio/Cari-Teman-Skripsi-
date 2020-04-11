@@ -27,6 +27,10 @@ abstract class BaseActivity : AppCompatActivity(), MVPView,
         progressDialog?.let { if (it.isShowing) it.cancel() }
     }
 
+    override fun showMessageToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
     override fun showProgress() {
         hideProgress()
         progressDialog = CommonUtil.showLoadingDialog(this)

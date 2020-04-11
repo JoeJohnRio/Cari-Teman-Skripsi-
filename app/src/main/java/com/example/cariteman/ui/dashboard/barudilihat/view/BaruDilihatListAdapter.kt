@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
+import com.example.cariteman.ui.dashboard.barudilihat.presenter.BaruDilihatPresenter
 
-class BaruDilihatListAdapter :
+class BaruDilihatListAdapter(presenter: BaruDilihatPresenter<BaruDilihatMVPView>) :
     ListAdapter<MahasiswaHistoryDashboardResponse, RecyclerView.ViewHolder>(BaruDilihatDiffCallBack()) {
     override fun getItemViewType(position: Int): Int {
         if (getItem(position).mahasiswaTwoPkl != null) {
@@ -21,8 +22,26 @@ class BaruDilihatListAdapter :
         }
     }
 
+    var presenterAdapter = presenter
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
         BaruDilihatType.PKL -> BaruDilihatPklViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.item_people_and_place ,
+                parent,
+                false
+            )
+        ) as RecyclerView.ViewHolder
+
+        BaruDilihatType.LOMBA -> BaruDilihatLombaViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.item_people_and_place ,
+                parent,
+                false
+            )
+        ) as RecyclerView.ViewHolder
+
+        BaruDilihatType.TEMPATPKL -> BaruDilihatTempatPklViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.item_people_and_place ,
                 parent,
@@ -35,9 +54,17 @@ class BaruDilihatListAdapter :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is BaruDilihatPklViewHolder) {
-            val statusPost = getItem(position) as MahasiswaHistoryDashboardResponse
+            val response = getItem(position) as MahasiswaHistoryDashboardResponse
 
-            holder.bind(statusPost)
+            holder.bind(response, presenterAdapter)
+        }else if (holder is BaruDilihatLombaViewHolder) {
+            val response = getItem(position) as MahasiswaHistoryDashboardResponse
+
+            holder.bind(response, presenterAdapter)
+        }else if (holder is BaruDilihatTempatPklViewHolder) {
+            val response = getItem(position) as MahasiswaHistoryDashboardResponse
+
+            holder.bind(response)
         }
     }
 }

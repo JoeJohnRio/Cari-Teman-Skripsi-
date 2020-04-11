@@ -151,6 +151,8 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
             adapter?.notifyDataSetChanged()
         }
             viewBind.rvDashboardBaruLihat.smoothScrollToPosition(4)
+
+            viewBind.rvDashboardBaruLihat.smoothScrollToPosition(0)
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

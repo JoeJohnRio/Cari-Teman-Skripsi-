@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.cariteman.ui.base.MVPView
@@ -47,6 +48,10 @@ abstract class BaseFragment : Fragment(), MVPView {
         if (progressDialog != null && progressDialog?.isShowing!!) {
             progressDialog?.cancel()
         }
+    }
+
+    override fun showMessageToast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 
     override fun showProgress() {

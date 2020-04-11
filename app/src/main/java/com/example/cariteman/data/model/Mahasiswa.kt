@@ -11,7 +11,7 @@ data class Mahasiswa(
     var password: String? = null,
     var password_confirmation: String? = null,
     var email: String? = null,
-    var foto_ktm: File? = null,
+    var foto_ktm: String? = null,
     var foto_profil: String? = null,
     var nim: String? = null,
     var jenis_kelamin: Boolean? = null,

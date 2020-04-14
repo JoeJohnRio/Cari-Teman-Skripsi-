@@ -35,6 +35,8 @@
         </activity>
         <activity android:name=".ui.UserProfilActivity">
         </activity>
+        <activity android:name=".ui.profile.view.ProfileActivity">
+        </activity>
         <activity android:name=".ui.DaftarKelompokActivity">
         </activity>
         <activity android:name=".ui.pengalaman.PengalamanActivity">

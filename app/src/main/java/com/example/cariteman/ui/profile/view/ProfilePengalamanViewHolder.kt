@@ -24,7 +24,7 @@ import com.example.cariteman.util.Utils
 import kotlinx.android.extensions.LayoutContainer
 import java.lang.Exception
 
-class BaruDilihatLombaViewHolder(override val containerView: View) :
+class ProfilePengalamanViewHolder(override val containerView: View) :
     RecyclerView.ViewHolder(containerView),
     LayoutContainer {
 

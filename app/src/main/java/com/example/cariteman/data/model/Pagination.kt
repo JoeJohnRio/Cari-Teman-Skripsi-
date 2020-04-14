@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Pagination<E>(
     @SerializedName("current_page") var currentPage: Int? = null,
-    @SerializedName("data") var data: List<E>? = null,
+    @SerializedName("data") var data: MutableList<E>? = null,
     @SerializedName("first_page_url") var firstPageUrl: String? = null,
     @SerializedName("from") var from: Int? = null,
     @SerializedName("last_page") var lastPage: Int? = null,

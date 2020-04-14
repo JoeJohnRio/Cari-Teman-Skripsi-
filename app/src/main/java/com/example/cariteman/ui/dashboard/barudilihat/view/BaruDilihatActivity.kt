@@ -1,14 +1,10 @@
 package com.example.cariteman.ui.dashboard.barudilihat.view
 
 import android.app.Activity
-import android.graphics.drawable.ColorDrawable
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.view.animation.Animation
-import android.view.animation.BounceInterpolator
-import android.view.animation.ScaleAnimation
-import android.widget.CompoundButton
+import android.view.MotionEvent
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +13,7 @@ import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
 import com.example.cariteman.databinding.ActivityListOrangBinding
 import com.example.cariteman.ui.base.view.BaseActivity
 import com.example.cariteman.ui.dashboard.barudilihat.presenter.BaruDilihatPresenter
+import com.example.cariteman.ui.profile.view.ProfileActivity
 import com.example.cariteman.util.Mapper
 import com.example.cariteman.util.Utils
 import dagger.android.AndroidInjector
@@ -42,7 +39,7 @@ class BaruDilihatActivity : BaseActivity(), BaruDilihatMVPView, HasActivityInjec
         setContentView(R.layout.activity_list_orang)
         presenter.onAttach(this)
         presenter.setKey(Utils.loadData(applicationContext))
-        adapterWithList = BaruDilihatListAdapter(presenter)
+        adapterWithList = BaruDilihatListAdapter(applicationContext, presenter)
 
         viewBind = DataBindingUtil.setContentView(this, R.layout.activity_list_orang)
 
@@ -59,6 +56,7 @@ class BaruDilihatActivity : BaseActivity(), BaruDilihatMVPView, HasActivityInjec
         viewBind.ivBack.setOnClickListener {
             this.finish()
         }
+
         viewBind.bFilterPkl.setOnClickListener {
             if (type != 0) {
                 type = 0
@@ -75,6 +73,7 @@ class BaruDilihatActivity : BaseActivity(), BaruDilihatMVPView, HasActivityInjec
                 presenter.getHistoryProfilPkl(true, pageNumber)
             }
         }
+
         viewBind.bFilterLomba.setOnClickListener {
             if (type != 1) {
                 type = 1
@@ -91,6 +90,7 @@ class BaruDilihatActivity : BaseActivity(), BaruDilihatMVPView, HasActivityInjec
                 presenter.getHistoryProfilLomba(true, pageNumber)
             }
         }
+
         viewBind.bFilterTempatPkl.setOnClickListener {
             if (type != 2) {
                 type = 2
@@ -136,7 +136,7 @@ class BaruDilihatActivity : BaseActivity(), BaruDilihatMVPView, HasActivityInjec
     }
 
     override fun populateBaruDilihatProfil(responses: List<MahasiswaHistoryDashboardResponse>) {
-        dataPkl = dataPkl + Mapper.historyLombaResponseMapper(responses)
+        dataPkl = dataPkl + Mapper.historyResponseMapper(responses)
 
         adapterWithList.submitList(dataPkl)
         viewBind.rvItemPeople.apply {
@@ -147,20 +147,6 @@ class BaruDilihatActivity : BaseActivity(), BaruDilihatMVPView, HasActivityInjec
                 layoutManager = LinearLayoutManager(context)
             }
             adapter?.notifyDataSetChanged()
-
-            val scaleAnimation = ScaleAnimation(
-                0.7f,
-                1.0f,
-                0.7f,
-                1.0f,
-                Animation.RELATIVE_TO_SELF,
-                0.7f,
-                Animation.RELATIVE_TO_SELF,
-                0.7f
-            )
-            scaleAnimation?.setDuration(500)
-            val bounceInterpolator = BounceInterpolator()
-            scaleAnimation?.setInterpolator(bounceInterpolator)
 
             viewBind.rvItemPeople.tb_favorite.setOnClickListener{
                 super.showMessageToast("FAVORITE")

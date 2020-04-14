@@ -23,12 +23,17 @@ class BaruDilihatPresenter<V : BaruDilihatMVPView> @Inject internal constructor(
 
     override fun getHistoryProfilPkl(isRefresh: Boolean, pageNumber: Int) {
         getView()?.let {
-            addDisposable(mNetworkApi.getHistoryProfilPkl(getKey(), pageNumber+1).subscribeOn(IoScheduler()).observeOn(
+            if (pageNumber == 0) getView()?.showProgress()
+            addDisposable(mNetworkApi.getHistoryProfilPkl(
+                getKey(),
+                pageNumber + 1
+            ).subscribeOn(IoScheduler()).observeOn(
                 AndroidSchedulers.mainThread()
             )
                 .subscribe(
                     { result ->
                         getView().let {
+                            it?.hideProgress()
                             if (!result.data.isNullOrEmpty()) {
                                 it?.populateBaruDilihatProfil(result.data!!)
                                 it?.setLastPageLimiter(result.lastPage!!)
@@ -37,9 +42,7 @@ class BaruDilihatPresenter<V : BaruDilihatMVPView> @Inject internal constructor(
                     },
                     { error ->
                         Log.d("error", error.message + "test")
-                        getView().let {
-                            it?.hideProgress()
-                        }
+                        getView()?.hideProgress()
                     }
                 )
             )
@@ -48,12 +51,17 @@ class BaruDilihatPresenter<V : BaruDilihatMVPView> @Inject internal constructor(
 
     override fun getHistoryProfilLomba(isRefresh: Boolean, pageNumber: Int) {
         getView()?.let {
-            addDisposable(mNetworkApi.getHistoryProfilLomba(getKey(), pageNumber+1).subscribeOn(IoScheduler()).observeOn(
+            if (pageNumber == 0) getView()?.showProgress()
+            addDisposable(mNetworkApi.getHistoryProfilLomba(
+                getKey(),
+                pageNumber + 1
+            ).subscribeOn(IoScheduler()).observeOn(
                 AndroidSchedulers.mainThread()
             )
                 .subscribe(
                     { result ->
                         getView().let {
+                            it?.hideProgress()
                             if (!result.data.isNullOrEmpty()) {
                                 it?.populateBaruDilihatProfil(result.data!!)
                                 it?.setLastPageLimiter(result.lastPage!!)
@@ -62,6 +70,7 @@ class BaruDilihatPresenter<V : BaruDilihatMVPView> @Inject internal constructor(
                     },
                     { error ->
                         Log.d("error", error.message + "test")
+                        getView()?.hideProgress()
                     }
                 )
             )
@@ -70,12 +79,19 @@ class BaruDilihatPresenter<V : BaruDilihatMVPView> @Inject internal constructor(
 
     override fun getHistoryProfilTempatPkl(isRefresh: Boolean, pageNumber: Int) {
         getView()?.let {
-            addDisposable(mNetworkApi.getHistoryProfilTempatPkl(getKey(), pageNumber+1).subscribeOn(IoScheduler()).observeOn(
+            if (pageNumber == 0) getView()?.showProgress()
+            addDisposable(mNetworkApi.getHistoryProfilTempatPkl(
+                getKey(),
+                pageNumber + 1
+            ).subscribeOn(
+                IoScheduler()
+            ).observeOn(
                 AndroidSchedulers.mainThread()
             )
                 .subscribe(
                     { result ->
                         getView().let {
+                            it?.hideProgress()
                             if (!result.data.isNullOrEmpty()) {
                                 it?.populateBaruDilihatProfil(result.data!!)
                                 it?.setLastPageLimiter(result.lastPage!!)
@@ -84,6 +100,7 @@ class BaruDilihatPresenter<V : BaruDilihatMVPView> @Inject internal constructor(
                     },
                     { error ->
                         Log.d("error", error.message + "test")
+                        getView()?.hideProgress()
                     }
                 )
             )
@@ -92,14 +109,17 @@ class BaruDilihatPresenter<V : BaruDilihatMVPView> @Inject internal constructor(
 
     override fun toggleFavoriteFriend(idTarget: Int, isActive: Boolean) {
         getView()?.let {
-            addDisposable(mNetworkApi.toggleFavoriteFriend(getKey(), idTarget).subscribeOn(IoScheduler()).observeOn(
+            addDisposable(mNetworkApi.toggleFavoriteFriend(
+                getKey(),
+                idTarget
+            ).subscribeOn(IoScheduler()).observeOn(
                 AndroidSchedulers.mainThread()
             )
                 .subscribe(
                     { result ->
-                        if (isActive){
+                        if (isActive) {
                             getView()?.showMessageToast("Ditambahkan ke dalam daftar favorit")
-                        }else{
+                        } else {
                             getView()?.showMessageToast("Dihapus dari daftar favorit")
                         }
 
@@ -114,14 +134,17 @@ class BaruDilihatPresenter<V : BaruDilihatMVPView> @Inject internal constructor(
 
     override fun toggleFavoriteTempatPkl(idTarget: Int, isActive: Boolean) {
         getView()?.let {
-            addDisposable(mNetworkApi.toggleFavoriteFriend(getKey(), idTarget).subscribeOn(IoScheduler()).observeOn(
+            addDisposable(mNetworkApi.toggleFavoriteTempatPkl(
+                getKey(),
+                idTarget
+            ).subscribeOn(IoScheduler()).observeOn(
                 AndroidSchedulers.mainThread()
             )
                 .subscribe(
                     { result ->
-                        if (isActive){
+                        if (isActive) {
                             getView()?.showMessageToast("Ditambahkan ke dalam daftar favorit")
-                        }else{
+                        } else {
                             getView()?.showMessageToast("Dihapus dari daftar favorit")
                         }
 

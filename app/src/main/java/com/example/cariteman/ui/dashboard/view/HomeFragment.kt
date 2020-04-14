@@ -10,11 +10,13 @@ import android.widget.AdapterView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
+import com.example.cariteman.data.model.RelationTempatPklFavorite
 import com.example.cariteman.databinding.FragmentHomeBinding
 import com.example.cariteman.ui.*
 import com.example.cariteman.ui.dashboard.barudilihat.view.BaruDilihatActivity
 import com.example.cariteman.ui.base.view.BaseFragment
 import com.example.cariteman.ui.dashboard.presenter.DashboardPresenter
+import com.example.cariteman.ui.profile.view.ProfileActivity
 import com.example.cariteman.util.Mapper
 import com.example.cariteman.util.Utils
 import com.example.cariteman.util.Utils.toggleThreeButton
@@ -23,6 +25,14 @@ import javax.inject.Inject
 
 
 class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, DashboardMVPView{
+    override fun setLastPageLimiter(lastPage: Int) {
+        //notImplemented
+    }
+
+    override fun populateFavoriteProfil(responses: MutableList<RelationTempatPklFavorite>) {
+        //notimplemented
+    }
+
     @Inject
     lateinit var presenter: DashboardPresenter<DashboardMVPView>
     private lateinit var viewBind: FragmentHomeBinding

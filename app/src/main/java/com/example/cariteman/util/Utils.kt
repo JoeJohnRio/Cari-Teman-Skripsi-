@@ -13,16 +13,6 @@ object Utils {
     val SHARED_PREFS = "sharedPrefs"
     val TEXT = "text"
 
-    fun intToBoolean(integer : Int): Boolean {
-        if (integer == 0){
-            return false
-        }else if (integer == 1){
-            return true
-        }else{
-            return false
-        }
-    }
-
     fun toggleThreeButton(turnUp: MaterialButton, turnDown: MaterialButton, turnDown1: MaterialButton, colorOn: Int, colorOff: Int, resources: Resources){
         turnUp.setBackgroundColor(resources.getColor(colorOn))
         turnUp.setTextColor(resources.getColor(colorOff))
@@ -30,6 +20,22 @@ object Utils {
         turnDown.setTextColor(resources.getColor(colorOn))
         turnDown1.setBackgroundColor(resources.getColor(colorOff))
         turnDown1.setTextColor(resources.getColor(colorOn))
+    }
+
+    fun toggleBoolean(intBoolean: Int): Int{
+        if (intBoolean==1){
+            return 0
+        }else{
+            return 1
+        }
+    }
+
+    fun intToBoolean(intNumber: Int?): Boolean{
+        if (intNumber==1){
+            return true
+        }else{
+            return false
+        }
     }
 
     fun loadData(context: Context) : String?{

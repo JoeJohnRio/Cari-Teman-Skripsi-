@@ -1,5 +1,6 @@
 package com.example.cariteman.ui.dashboard.view
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
+import com.example.cariteman.ui.profile.view.ProfileActivity
 import kotlinx.android.extensions.LayoutContainer
 
 class ProfilDashboardPklListAdapter :
@@ -62,6 +64,12 @@ class DashboardHistoryViewHolder(override val containerView: View) :
     }
 
     fun bind(response: MahasiswaHistoryDashboardResponse?) {
+
+        itemView.setOnClickListener{
+            val intent = Intent(itemView.context, ProfileActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.putExtra("MAHASISWA_ID", response?.idMahasiswaTwo)
+            itemView.context.startActivity(intent)
+        }
 
         if (response != null) {
             if (response.mahasiswaTwoPkl != null) {

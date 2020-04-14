@@ -9,6 +9,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:layout_marginTop="@dimen/space_little"
             android:layout_marginStart="@dimen/space_more_than_little"
             android:layout_marginEnd="@dimen/space_more_than_little"
             >
@@ -108,7 +109,6 @@
             android:layout_height="0.5dp"
             android:background="@color/grey_low"
             android:layout_marginTop="@dimen/space_little"
-            android:layout_marginBottom="@dimen/space_little"
             />
 
 </LinearLayout>

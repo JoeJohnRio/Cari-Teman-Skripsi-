@@ -18,13 +18,22 @@ object Endpoints {
     const val historyProfilLomba = "history/lihatprofil/lomba"
     const val historyProfilTempatPkl = "history/lihattempatpkl"
 
+    //dashboardFavorite
+    const val favoriteDashboardPkl = "relationteman/favorite/pkl"
+    const val favoriteDashboardLomba= "relationteman/favorite/lomba"
+    const val favoriteDashboardTempatPkl = "relationtempatpkl/favorite"
+
     //relasiTeman
-    const val toggleFavoriteFriend = "relationteman/favorite/toggle/{isVerified}"
+    const val toggleFavoriteFriend = "relationteman/favorite/toggle/{id}"
+
+    //relasiTempatPkl
+    const val toggleFavoriteTempatPkl = "relationtempatpkl/favorite/toogle/{id}"
 
     //rekomendasi
     const val totalPengalaman = "rekomendasi/count"
     const val pengalamanLomba = "pengalaman/lomba"
     const val pengalamanOrganisasi = "pengalaman/organisasi"
+    const val profilInfoOthers = "rekomendasi/profil/{id}"
 
     //ulasanTempatPkl
     const val showUlasanTempat = "ulasantempatpkl/show"

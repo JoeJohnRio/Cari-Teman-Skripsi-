@@ -43,6 +43,7 @@ interface INetworkApi {
     @Headers("No-Authentication: true")
     fun getHistoryProfilTempatPkl(@Header("app-key") string: String?,@Query("page") page: Int): Observable<Pagination<MahasiswaHistoryDashboardResponse>>
 
+    //Dashboard Home
     @GET(Endpoints.historyDashboardPkl)
     @Headers("No-Authentication: true")
     fun getHistoryDashboardPkl(@Header("app-key") string: String?): Observable<List<MahasiswaHistoryDashboardResponse>>
@@ -53,11 +54,27 @@ interface INetworkApi {
 
     @PUT(Endpoints.toggleFavoriteFriend)
     @Headers("No-Authentication: true")
-    fun toggleFavoriteFriend(@Header("app-key") string: String?, @Path("isVerified") id: Int?): Observable<RelationTeman>
+    fun toggleFavoriteFriend(@Header("app-key") string: String?, @Path("id") id: Int?): Observable<RelationTeman>
 
-    @PUT(Endpoints.toggleFavoriteFriend)
+    //Dashboard Favorite
+    @GET(Endpoints.favoriteDashboardPkl)
     @Headers("No-Authentication: true")
-    fun toggleFavoriteTempatPkl(@Header("app-key") string: String?, @Path("isVerified") id: Int?): Observable<RelationTeman>
+    fun getDashboardFavoriteFriendPkl(@Header("app-key") string: String?,@Query("page") page: Int): Observable<Pagination<RelationTempatPklFavorite>>
+
+    //Dashboard Favorite
+    @GET(Endpoints.favoriteDashboardLomba)
+    @Headers("No-Authentication: true")
+    fun getDashboardFavoriteFriendLomba(@Header("app-key") string: String?,@Query("page") page: Int): Observable<Pagination<RelationTempatPklFavorite>>
+
+    //Dashboard Favorite
+    @GET(Endpoints.favoriteDashboardTempatPkl)
+    @Headers("No-Authentication: true")
+    fun getDashboardFavoriteTempatPkl(@Header("app-key") string: String?,@Query("page") page: Int): Observable<Pagination<RelationTempatPklFavorite>>
+
+    //Favorite
+    @PUT(Endpoints.toggleFavoriteTempatPkl)
+    @Headers("No-Authentication: true")
+    fun toggleFavoriteTempatPkl(@Header("app-key") string: String?, @Path("id") id: Int?): Observable<RelationTempatPkl>
 
     @GET(Endpoints.showUlasanTempat)
     @Headers("No-Authentication: true")
@@ -71,5 +88,9 @@ interface INetworkApi {
     @Headers("No-Authentication: true")
     fun getPengalamanOrganisasi(@Header("app-key") string: String?): Observable<TotalPengalamanResponse>
 
+    //Rekomendasi
+    @GET(Endpoints.profilInfoOthers)
+    @Headers("No-Authentication: true")
+    fun getProfilInfoOthers(@Header("app-key") string: String?,  @Path("id") id: Int?): Observable<ProfilInfoOthers>
 
 }

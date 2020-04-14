@@ -1,16 +1,18 @@
 package com.example.cariteman.ui.dashboard.barudilihat.view
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
-import com.example.cariteman.ui.dashboard.barudilihat.presenter.BaruDilihatPresenter
+import com.example.cariteman.data.model.RelationTempatPklFavorite
+import com.example.cariteman.ui.dashboard.presenter.DashboardPresenter
+import com.example.cariteman.ui.dashboard.view.DashboardMVPView
+import com.example.cariteman.ui.dashboard.view.FavoriteDiffCallback
 
-class BaruDilihatListAdapter(context: Context, presenter: BaruDilihatPresenter<BaruDilihatMVPView>) :
-    ListAdapter<MahasiswaHistoryDashboardResponse, RecyclerView.ViewHolder>(BaruDilihatDiffCallBack()) {
+class FavoriteListAdapter(presenter: DashboardPresenter<DashboardMVPView>) :
+    ListAdapter<RelationTempatPklFavorite, RecyclerView.ViewHolder>(FavoriteDiffCallback()) {
     override fun getItemViewType(position: Int): Int {
         if (getItem(position).mahasiswaTwoPkl != null) {
             return 0
@@ -23,11 +25,10 @@ class BaruDilihatListAdapter(context: Context, presenter: BaruDilihatPresenter<B
         }
     }
 
-    var contextAdapter = context
     var presenterAdapter = presenter
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
-        BaruDilihatType.PKL -> BaruDilihatPklViewHolder(
+        FavoriteType.PKL -> BaruDilihatPklViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.item_people_and_place ,
                 parent,
@@ -35,7 +36,7 @@ class BaruDilihatListAdapter(context: Context, presenter: BaruDilihatPresenter<B
             )
         ) as RecyclerView.ViewHolder
 
-        BaruDilihatType.LOMBA -> BaruDilihatLombaViewHolder(
+        FavoriteType.LOMBA -> BaruDilihatLombaViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.item_people_and_place ,
                 parent,
@@ -43,7 +44,7 @@ class BaruDilihatListAdapter(context: Context, presenter: BaruDilihatPresenter<B
             )
         ) as RecyclerView.ViewHolder
 
-        BaruDilihatType.TEMPATPKL -> BaruDilihatTempatPklViewHolder(
+        FavoriteType.TEMPATPKL -> BaruDilihatTempatPklViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.item_people_and_place ,
                 parent,
@@ -56,22 +57,22 @@ class BaruDilihatListAdapter(context: Context, presenter: BaruDilihatPresenter<B
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is BaruDilihatPklViewHolder) {
-            val response = getItem(position) as MahasiswaHistoryDashboardResponse
+            val response = getItem(position) as RelationTempatPklFavorite
 
-            holder.bindHistory(contextAdapter, response, presenterAdapter)
+            holder.bindFavorite(response, presenterAdapter)
         }else if (holder is BaruDilihatLombaViewHolder) {
-            val response = getItem(position) as MahasiswaHistoryDashboardResponse
+            val response = getItem(position) as RelationTempatPklFavorite
 
-            holder.bindHistory(contextAdapter, response, presenterAdapter)
+            holder.bindFavorite(response, presenterAdapter)
         }else if (holder is BaruDilihatTempatPklViewHolder) {
-            val response = getItem(position) as MahasiswaHistoryDashboardResponse
+            val response = getItem(position) as RelationTempatPklFavorite
 
-            holder.bindHistory(contextAdapter, response, presenterAdapter)
+            holder.bindFavorite(response, presenterAdapter)
         }
     }
 }
 
-object BaruDilihatType {
+object FavoriteType {
     const val PKL = 0
     const val LOMBA = 1
     const val TEMPATPKL = 2

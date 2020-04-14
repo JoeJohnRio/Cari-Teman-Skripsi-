@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import android.widget.Toast
 import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
+import com.example.cariteman.data.model.RelationTempatPklFavorite
 import com.example.cariteman.databinding.FragmentProfileBinding
 import com.example.cariteman.ui.DaftarKelompokActivity
 import com.example.cariteman.ui.PengaturanActivity
@@ -21,6 +22,14 @@ import com.example.cariteman.util.extension.addFragment
 import javax.inject.Inject
 
 class ProfileFragment : BaseFragment(), AdapterView.OnItemSelectedListener, DashboardMVPView{
+    override fun setLastPageLimiter(lastPage: Int) {
+        //notImplemented
+    }
+
+    override fun populateFavoriteProfil(responses: MutableList<RelationTempatPklFavorite>) {
+        //notimplemented
+    }
+
     override fun populateLombaDanPklDashboard(responses: List<MahasiswaHistoryDashboardResponse>) {
         //notimplemented
     }

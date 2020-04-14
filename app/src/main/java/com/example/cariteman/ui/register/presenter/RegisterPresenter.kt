@@ -34,7 +34,7 @@ class RegisterPresenter<V : RegisterMVPView> @Inject internal constructor(schedu
     }
 
     override fun sendMahasiswaData(mahasiswa: Mahasiswa){
-//        var mahasiswaResponse = Mapper.mahasiswaToMahasiswaResponseMapper(mahasiswa)
+//        var mahasiswaTwoPkl = Mapper.mahasiswaToMahasiswaResponseMapper(mahasiswa)
         getView()?.let {
             it.showProgress()
             addDisposable(mNetworkApi.registerApi(mahasiswa = mahasiswa).subscribeOn(IoScheduler()).

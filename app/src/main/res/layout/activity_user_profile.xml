@@ -68,6 +68,7 @@
                 android:layout_marginTop="150dp">
 
                 <TextView
+                    android:id="@+id/tv_nama_profil"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/nama_login"
@@ -135,6 +136,7 @@
                         >
 
                         <TextView
+                            android:id="@+id/tv_jumlah_rekomendasi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="201"
@@ -160,6 +162,7 @@
                         >
 
                         <TextView
+                            android:id="@+id/tv_jumlah_tim"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="10"
@@ -184,6 +187,7 @@
                         >
 
                         <TextView
+                            android:id="@+id/tv_jumlah_teman"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="89"
@@ -203,6 +207,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_fakultas_prodi_keminatan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -235,77 +240,13 @@ Rekayasa Perangkat Lunak"
                     android:layout_height="0.5dp"
                     android:layout_marginTop="@dimen/space_little"
                     android:background="@color/black"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_item_pengalaman_profile"
                     android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/space_more_than_little">
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/sertifikat"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="@dimen/space_little"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Head of Creative Division di BEM
-FILKOM UB"
-                            android:textColor="@color/blue_low"
-                            android:textStyle="bold"
-                            android:textSize="@dimen/text_more_than_normal"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Juni 2018 - Agustus 2019"
-                            android:textColor="@color/blue_low"
-                            android:textSize="@dimen/text_normal"/>
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/space_more_than_little">
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/sertifikat"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="@dimen/space_little"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Head of Creative Division di BEM
-FILKOM UB"
-                            android:textColor="@color/blue_low"
-                            android:textStyle="bold"
-                            android:textSize="@dimen/text_more_than_normal"
-                            />
+                    android:layout_height="wrap_content"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Juni 2018 - Agustus 2019"
-                            android:textColor="@color/blue_low"
-                            android:textSize="@dimen/text_normal"/>
-                    </LinearLayout>
-
-
-                </LinearLayout>
 
             </LinearLayout>
 
@@ -366,142 +307,31 @@ FILKOM UB"
                     android:background="@color/black"/>
 
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_item_rekomendasi_profile"
+                    android:orientation="horizontal"
+                    tools:listitem="@layout/item_rekomendasi_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_little"
+                    android:layout_height="wrap_content"/>
 
-                    android:orientation="horizontal">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:src="@drawable/profile_picture"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_little"
-                        android:orientation="vertical"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rio Dewantara Bayu"
-                            android:textColor="@color/blue_low"
-                            android:textStyle="bold"
-                            android:textSize="@dimen/text_more_than_normal"
-                            />
-                        <RatingBar
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:rating="5"
-                            android:clickable="true"
-                            style="?android:attr/ratingBarStyleSmall"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Joel merupakan orang yang baik dan
-sangat kooperatif dalam berkelompok
-maupun berteman."
-                            android:textColor="@color/blue_low"
-                            android:textSize="@dimen/text_normal"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_little"
-
-                    android:orientation="horizontal">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:src="@drawable/profile_picture"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_little"
-                        android:orientation="vertical"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rio Dewantara Bayu"
-                            android:textColor="@color/blue_low"
-                            android:textStyle="bold"
-                            android:textSize="@dimen/text_more_than_normal"
-                            />
-                        <RatingBar
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="?android:attr/ratingBarStyleSmall"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Joel merupakan orang yang baik dan
-sangat kooperatif dalam berkelompok
-maupun berteman."
-                            android:textColor="@color/blue_low"
-                            android:textSize="@dimen/text_normal"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_little"
-
-                    android:orientation="horizontal">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:src="@drawable/profile_picture"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_little"
-                        android:orientation="vertical"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rio Dewantara Bayu"
-                            android:textColor="@color/blue_low"
-                            android:textStyle="bold"
-                            android:textSize="@dimen/text_more_than_normal"
-                            />
-                        <RatingBar
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="?android:attr/ratingBarStyleSmall"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Joel merupakan orang yang baik dan
-sangat kooperatif dalam berkelompok
-maupun berteman."
-                            android:textColor="@color/blue_low"
-                            android:textSize="@dimen/text_normal"/>
-                    </LinearLayout>
-                </LinearLayout>
             </LinearLayout>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/civ_profil"
-                android:layout_width="match_parent"
+                android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:src="@drawable/profile_picture"
                 android:layout_marginTop="@dimen/space_more_than_little"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/abl_name"
                 android:foregroundGravity="center"
                 />
 
-
+<!--            <com.mikhaellopez.circularimageview.CircularImageView-->
+<!--                android:layout_width="250dp"-->
+<!--                android:layout_height="250dp"-->
+<!--                android:src="@drawable/image"/>-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

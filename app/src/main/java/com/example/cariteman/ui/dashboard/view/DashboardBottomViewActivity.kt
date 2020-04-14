@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
+import com.example.cariteman.data.model.RelationTempatPklFavorite
 import com.example.cariteman.databinding.NavigationBottomParentBinding
 import com.example.cariteman.ui.base.view.BaseActivity
 import com.example.cariteman.ui.dashboard.presenter.DashboardPresenter
@@ -21,18 +22,14 @@ import javax.inject.Inject
 
 class DashboardBottomViewActivity : BaseActivity(), DashboardMVPView, HasSupportFragmentInjector {
 
-    override fun populateLombaDanPklDashboard(responses: List<MahasiswaHistoryDashboardResponse>) {
-        //notImplemented
-    }
-
     @Inject
     internal lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
     @Inject
     lateinit var presenter: DashboardPresenter<DashboardMVPView>
 
+    var isFirst: Boolean = true
     private lateinit var binding: NavigationBottomParentBinding
-
     private var navPosition: BottomNavigationPosition = BottomNavigationPosition.HOME
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +51,15 @@ class DashboardBottomViewActivity : BaseActivity(), DashboardMVPView, HasSupport
         }
 
         initFragment(savedInstanceState)
+    }
+
+    override fun onBackPressed() {
+        if (isFirst){
+            showMessageToast("Press back again to leave")
+            isFirst = false
+        }else{
+            super.onBackPressed()
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -101,6 +107,17 @@ class DashboardBottomViewActivity : BaseActivity(), DashboardMVPView, HasSupport
             ?: position.createFragment()
     }
 
+    override fun setLastPageLimiter(lastPage: Int) {
+        //notImplemented
+    }
+
+    override fun populateFavoriteProfil(responses: MutableList<RelationTempatPklFavorite>) {
+        //notImplemented
+    }
+
+    override fun populateLombaDanPklDashboard(responses: List<MahasiswaHistoryDashboardResponse>) {
+        //notImplemented
+    }
 
     companion object {
         const val KEY_POSITION = "keyPosition"

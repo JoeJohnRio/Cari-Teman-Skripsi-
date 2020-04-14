@@ -10,4 +10,14 @@ interface DashboardMVPPresenter <V : DashboardMVPView> : MVPPresenter<V> {
     fun getHistoryDashboardPklResponse()
 
     fun getHistoryDashboardTempatPklResponse()
+
+    fun getFavoriteFriendLombaResponse(isRefresh: Boolean, pageNumber: Int)
+
+    fun getFavoriteFriendPklResponse(isRefresh: Boolean, pageNumber: Int)
+
+    fun getFavoriteTempatPklResponse(isRefresh: Boolean, pageNumber: Int)
+
+    fun toggleFavoriteFriend(idTarget: Int, isActive: Boolean)
+
+    fun toggleFavoriteTempatPkl(idTarget: Int, isActive: Boolean)
 }

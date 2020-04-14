@@ -9,7 +9,7 @@ import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
 import com.example.cariteman.ui.dashboard.barudilihat.presenter.BaruDilihatPresenter
 
-class BaruDilihatListAdapter(context: Context, presenter: BaruDilihatPresenter<BaruDilihatMVPView>) :
+class ProfileListAdapter(context: Context, presenter: BaruDilihatPresenter<BaruDilihatMVPView>) :
     ListAdapter<MahasiswaHistoryDashboardResponse, RecyclerView.ViewHolder>(BaruDilihatDiffCallBack()) {
     override fun getItemViewType(position: Int): Int {
         if (getItem(position).mahasiswaTwoPkl != null) {
@@ -71,7 +71,7 @@ class BaruDilihatListAdapter(context: Context, presenter: BaruDilihatPresenter<B
     }
 }
 
-object BaruDilihatType {
+object ProfileType {
     const val PKL = 0
     const val LOMBA = 1
     const val TEMPATPKL = 2

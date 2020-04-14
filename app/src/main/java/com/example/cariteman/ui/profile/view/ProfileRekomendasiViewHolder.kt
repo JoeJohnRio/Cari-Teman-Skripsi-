@@ -2,7 +2,6 @@ package com.example.cariteman.ui.dashboard.barudilihat.view
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.BounceInterpolator
@@ -11,6 +10,7 @@ import android.widget.CompoundButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ToggleButton
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cariteman.R
@@ -24,7 +24,7 @@ import com.example.cariteman.util.Utils
 import kotlinx.android.extensions.LayoutContainer
 import java.lang.Exception
 
-class BaruDilihatLombaViewHolder(override val containerView: View) :
+class ProfileRekomendasiViewHolder(override val containerView: View) :
     RecyclerView.ViewHolder(containerView),
     LayoutContainer {
 
@@ -46,37 +46,32 @@ class BaruDilihatLombaViewHolder(override val containerView: View) :
         tbFavorite = itemView.findViewById(R.id.tb_favorite)
     }
 
-
-    fun bindHistory(context: Context, response: MahasiswaHistoryDashboardResponse, presenter: BaruDilihatPresenter<BaruDilihatMVPView>) {
-
-        itemView.setOnClickListener {
-            val intent = Intent(context, ProfileActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.putExtra("MAHASISWA_ID", response.idMahasiswaTwo)
-            context.startActivity(intent)
-        }
+    fun bindHistory(response: MahasiswaHistoryDashboardResponse, presenter: BaruDilihatPresenter<BaruDilihatMVPView>) {
 
         try {
             Glide.with(this.itemView.context)
-                .load(response.mahasiswaTwoLomba?.foto_profil ?: url)
+                .load(response.mahasiswaTwoPkl?.foto_profil ?: url)
                 .into(ivProfilPicWithFavorite)
         } catch (e: Throwable) {
             Glide.with(this.itemView.context).load(url)
                 .into(ivProfilPicWithFavorite)
         }
 
-        tvItemType?.text = "Lomba"
-        tbFavorite?.isChecked = Utils.intToBoolean(response.mahasiswaTwoLomba?.relationTeman?.isFavorite)
-        tvItemName?.text = response.mahasiswaTwoLomba?.name
+        tvItemType?.text = "PKL"
+        tbFavorite?.isChecked = Utils.intToBoolean(response.mahasiswaTwoPkl?.relationTeman?.isFavorite)
+
+        tvItemName?.text = response.mahasiswaTwoPkl?.name
         try {
-            if (response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja != null && response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
+            if (response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja != null && response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
                     0
                 )?.namaOrganisasi != null
-            ) {
+            ){
                 tvJabatanOrganisasi?.text =
-                    "" + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja + " at " + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
+                    "" + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja + " at " + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
                         0
                     )?.namaOrganisasi
-            } else {
+            }
+            else{
                 tvJabatanOrganisasi?.text = "Belum memiliki pengalaman berorganisasi"
             }
         } catch (e: Exception) {
@@ -84,7 +79,7 @@ class BaruDilihatLombaViewHolder(override val containerView: View) :
         }
         try {
             tvPrestasiLomba?.text =
-                "" + response.mahasiswaTwoLomba?.pengalamanLomba?.get(0)?.namaKompetisi + " at " + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
+                "" + response.mahasiswaTwoPkl?.pengalamanLomba?.get(0)?.namaKompetisi + " at " + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
                     0
                 )?.namaOrganisasi
         } catch (e: Exception) {
@@ -108,36 +103,40 @@ class BaruDilihatLombaViewHolder(override val containerView: View) :
         tbFavorite?.setOnClickListener{
             tbFavorite?.startAnimation(scaleAnimation)
 
-            response.mahasiswaTwoLomba?.id?.let {
+            response.mahasiswaTwoPkl?.id?.let {
                 presenter.toggleFavoriteFriend(it, tbFavorite?.isChecked!!)
-                response.mahasiswaTwoLomba?.relationTeman?.isFavorite = Utils.toggleBoolean(response.mahasiswaTwoLomba?.relationTeman?.isFavorite!!)
+                response.mahasiswaTwoPkl?.relationTeman?.isFavorite = Utils.toggleBoolean(response.mahasiswaTwoPkl?.relationTeman?.isFavorite!!)
             }
         }
+
     }
 
     fun bindFavorite(response: RelationTempatPklFavorite, presenter: DashboardPresenter<DashboardMVPView>) {
+
         try {
             Glide.with(this.itemView.context)
-                .load(response.mahasiswaTwoLomba?.foto_profil ?: url)
+                .load(response.mahasiswaTwoPkl?.foto_profil ?: url)
                 .into(ivProfilPicWithFavorite)
         } catch (e: Throwable) {
             Glide.with(this.itemView.context).load(url)
                 .into(ivProfilPicWithFavorite)
         }
 
-        tvItemType?.text = "Lomba"
+        tvItemType?.text = "PKL"
         tbFavorite?.isChecked = Utils.intToBoolean(response.isFavorite)
-        tvItemName?.text = response.mahasiswaTwoLomba?.name
+
+        tvItemName?.text = response.mahasiswaTwoPkl?.name
         try {
-            if (response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja != null && response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
+            if (response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja != null && response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
                     0
                 )?.namaOrganisasi != null
-            ) {
+            ){
                 tvJabatanOrganisasi?.text =
-                    "" + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja + " at " + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
+                    "" + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja + " at " + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
                         0
                     )?.namaOrganisasi
-            } else {
+            }
+            else{
                 tvJabatanOrganisasi?.text = "Belum memiliki pengalaman berorganisasi"
             }
         } catch (e: Exception) {
@@ -145,7 +144,7 @@ class BaruDilihatLombaViewHolder(override val containerView: View) :
         }
         try {
             tvPrestasiLomba?.text =
-                "" + response.mahasiswaTwoLomba?.pengalamanLomba?.get(0)?.namaKompetisi + " at " + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
+                "" + response.mahasiswaTwoPkl?.pengalamanLomba?.get(0)?.namaKompetisi + " at " + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
                     0
                 )?.namaOrganisasi
         } catch (e: Exception) {
@@ -169,10 +168,10 @@ class BaruDilihatLombaViewHolder(override val containerView: View) :
         tbFavorite?.setOnClickListener{
             tbFavorite?.startAnimation(scaleAnimation)
 
-            response.mahasiswaTwoLomba?.id?.let {
+            response.mahasiswaTwoPkl?.id?.let {
                 presenter.toggleFavoriteFriend(it, tbFavorite?.isChecked!!)
-                response.isFavorite = Utils.toggleBoolean(response.isFavorite!!)
-            }
+                response.isFavorite = Utils.toggleBoolean(response.isFavorite!!)}
         }
+
     }
 }

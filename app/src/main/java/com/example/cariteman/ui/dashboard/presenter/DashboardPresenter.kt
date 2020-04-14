@@ -10,25 +10,29 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.internal.schedulers.IoScheduler
 import javax.inject.Inject
 
-class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V>(schedulerProvider = schedulerProvider, compositeDisposable = disposable), DashboardMVPPresenter<V> {
-
+class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(
+    schedulerProvider: SchedulerProvider,
+    disposable: CompositeDisposable
+) : BasePresenter<V>(schedulerProvider = schedulerProvider, compositeDisposable = disposable),
+    DashboardMVPPresenter<V> {
     @Inject
     lateinit var mNetworkApi: INetworkApi
 
     override fun getHistoryDashboardLombaResponse() {
         getView()?.let {
             addDisposable(mNetworkApi.getHistoryDashboardLomba(getKey()).subscribeOn(IoScheduler()).observeOn(
-                AndroidSchedulers.mainThread())
+                AndroidSchedulers.mainThread()
+            )
                 .subscribe(
                     { result ->
                         getView().let {
-                            if (!result.isNullOrEmpty()){
+                            if (!result.isNullOrEmpty()) {
                                 it?.populateLombaDanPklDashboard(result)
                             }
                         }
                     },
                     { error ->
-                        Log.d("error", error.message+"test")
+                        Log.d("error", error.message + "test")
                     }
                 )
             )
@@ -38,17 +42,18 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(sche
     override fun getHistoryDashboardPklResponse() {
         getView()?.let {
             addDisposable(mNetworkApi.getHistoryDashboardPkl(getKey()).subscribeOn(IoScheduler()).observeOn(
-                AndroidSchedulers.mainThread())
+                AndroidSchedulers.mainThread()
+            )
                 .subscribe(
                     { result ->
                         getView().let {
-                            if (!result.isNullOrEmpty()){
+                            if (!result.isNullOrEmpty()) {
                                 it?.populateLombaDanPklDashboard(result)
                             }
                         }
                     },
                     { error ->
-                        Log.d("error", error.message+"test")
+                        Log.d("error", error.message + "test")
                     }
                 )
             )
@@ -58,17 +63,134 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(sche
     override fun getHistoryDashboardTempatPklResponse() {
         getView()?.let {
             addDisposable(mNetworkApi.getHistoryDashboardTempatPkl(getKey()).subscribeOn(IoScheduler()).observeOn(
-                AndroidSchedulers.mainThread())
+                AndroidSchedulers.mainThread()
+            )
                 .subscribe(
                     { result ->
                         getView().let {
-                            if (!result.isNullOrEmpty()){
+                            if (!result.isNullOrEmpty()) {
                                 it?.populateLombaDanPklDashboard(result)
                             }
                         }
                     },
                     { error ->
-                        Log.d("error", error.message+"test")
+                        Log.d("error", error.message + "test")
+                    }
+                )
+            )
+        }
+    }
+
+    override fun getFavoriteFriendLombaResponse(isRefresh: Boolean, pageNumber: Int) {
+        getView()?.let {
+            addDisposable(mNetworkApi.getDashboardFavoriteFriendLomba(
+                getKey(),
+                pageNumber
+            ).subscribeOn(IoScheduler()).observeOn(
+                AndroidSchedulers.mainThread()
+            )
+                .subscribe(
+                    { result ->
+                        getView()?.populateFavoriteProfil(result.data!!)
+                        getView()?.setLastPageLimiter(result.lastPage!!)
+                    },
+                    { error ->
+                        it?.showMessageToast(error.message!!)
+                        Log.d("error", error.message + "test")
+                    }
+                )
+            )
+        }
+    }
+
+    override fun getFavoriteFriendPklResponse(isRefresh: Boolean, pageNumber: Int) {
+        getView()?.let {
+            addDisposable(mNetworkApi.getDashboardFavoriteFriendPkl(
+                getKey(),
+                pageNumber
+            ).subscribeOn(IoScheduler()).observeOn(
+                AndroidSchedulers.mainThread()
+            )
+                .subscribe(
+                    { result ->
+                        getView()?.populateFavoriteProfil(result.data!!)
+                        getView()?.setLastPageLimiter(result.lastPage!!)
+                    },
+                    { error ->
+                        it?.showMessageToast(error.message!!)
+                        Log.d("error", error.message + "test")
+                    }
+                )
+            )
+        }
+    }
+
+    override fun getFavoriteTempatPklResponse(isRefresh: Boolean, pageNumber: Int) {
+        getView()?.let {
+        addDisposable(mNetworkApi.getDashboardFavoriteTempatPkl(
+            getKey(),
+            pageNumber
+        ).subscribeOn(IoScheduler()).observeOn(
+            AndroidSchedulers.mainThread()
+        )
+            .subscribe(
+                { result ->
+                    getView()?.populateFavoriteProfil(result.data!!)
+                    getView()?.setLastPageLimiter(result.lastPage!!)
+                },
+                { error ->
+                    it?.showMessageToast(error.message!!)
+                    Log.d("error", error.message + "test")
+                }
+            )
+        )
+    }
+    }
+
+    override fun toggleFavoriteFriend(idTarget: Int, isActive: Boolean) {
+        getView()?.let {
+            addDisposable(mNetworkApi.toggleFavoriteFriend(
+                getKey(),
+                idTarget
+            ).subscribeOn(IoScheduler()).observeOn(
+                AndroidSchedulers.mainThread()
+            )
+                .subscribe(
+                    { result ->
+                        if (isActive) {
+                            it?.showMessageToast("Ditambahkan dalam daftar favorit")
+                        } else {
+                            it?.showMessageToast("Dihapus dari daftar favorit")
+                        }
+                    },
+                    { error ->
+                        it?.showMessageToast(error.message!!)
+                        Log.d("error", error.message + "test")
+                    }
+                )
+            )
+        }
+    }
+
+    override fun toggleFavoriteTempatPkl(idTarget: Int, isActive: Boolean) {
+        getView()?.let {
+            addDisposable(mNetworkApi.toggleFavoriteTempatPkl(
+                getKey(),
+                idTarget
+            ).subscribeOn(IoScheduler()).observeOn(
+                AndroidSchedulers.mainThread()
+            )
+                .subscribe(
+                    { result ->
+                        if (isActive) {
+                            getView()?.showMessageToast("Ditambahkan ke dalam daftar favorit")
+                        } else {
+                            getView()?.showMessageToast("Dihapus dari daftar favorit")
+                        }
+
+                    },
+                    { error ->
+                        error.message?.let { getView()?.showMessageToast(it) }
                     }
                 )
             )

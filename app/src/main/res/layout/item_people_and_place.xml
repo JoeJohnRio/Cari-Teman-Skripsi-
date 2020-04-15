@@ -1,30 +1,30 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <LinearLayout
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/space_little"
             android:layout_marginStart="@dimen/space_more_than_little"
+            android:layout_marginTop="@dimen/space_little"
             android:layout_marginEnd="@dimen/space_more_than_little"
-            >
+            android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="10dp"
-                >
+                app:cardCornerRadius="10dp">
+
                 <ImageView
                     android:id="@+id/iv_profil_pic_with_favorite"
                     android:layout_width="90dp"
                     android:layout_height="120dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/capture"/>
+                    android:src="@drawable/capture" />
             </androidx.cardview.widget.CardView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,49 +36,48 @@
                     android:id="@+id/tv_item_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     android:text="@string/pkl"
                     android:textSize="22sp"
-                    />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_item_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_item_type"
                     android:text="Joel Johanes Cirio"
-                    android:textSize="22sp"
                     android:textColor="@color/black_effective"
-                    android:textStyle="bold"/>
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_item_type" />
 
 
                 <TextView
                     android:id="@+id/tv_jabatan_organisasi"
                     android:layout_width="190dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_item_name"
-                    android:text="@string/head_of_division"
                     android:ellipsize="end"
-                    android:maxLines="2"
-                    android:textColor="@color/black_effective"
                     android:lineSpacingExtra="3dp"
-                    android:textSize="14sp"/>
+                    android:maxLines="2"
+                    android:text="@string/head_of_division"
+                    android:textColor="@color/black_effective"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_item_name" />
 
                 <TextView
                     android:id="@+id/tv_prestasi_lomba"
                     android:layout_width="190dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_jabatan_organisasi"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="3dp"
+                    android:maxLines="2"
                     android:text="@string/last_achievement"
                     android:textColor="@color/grey_high"
-                    android:lineSpacingExtra="3dp"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_jabatan_organisasi" />
 
                 <ToggleButton
                     android:id="@+id/tb_favorite"
@@ -90,15 +89,14 @@
                     android:textOff=""
                     android:textOn=""
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_check_now"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    />
+                    app:layout_constraintEnd_toEndOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -107,10 +105,9 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/grey_low"
             android:layout_marginTop="@dimen/space_little"
-            />
+            android:background="@color/grey_low" />
 
-</LinearLayout>
+    </LinearLayout>
 
 </layout>

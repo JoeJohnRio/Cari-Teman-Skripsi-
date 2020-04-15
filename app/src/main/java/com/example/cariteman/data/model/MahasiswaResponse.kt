@@ -20,7 +20,7 @@ data class MahasiswaResponse(
     @SerializedName("created_at") var created_at: String? = null,
     @SerializedName("updated_at") var updated_at: String? = null,
 //    @SerializedName("relation_teman") var relationTeman: List<RelationTeman>? = null,
-    @SerializedName("count_rekomendasi") var countRekomendasi: MutableList<CountRekomendasi>? = null,
+    @SerializedName("count_rekomendasi") var countRekomendasi: MutableList<Rekomendasi>? = null,
     @SerializedName("pengalaman_lomba") var pengalamanLomba: MutableList<PengalamanLomba>? = null,
     @SerializedName("pengalaman_organisasi") var pengalamanOrganisasi: MutableList<PengalamanOrganisasi>? = null,
     @SerializedName("relation_teman") var relationTeman: RelationTeman? = null

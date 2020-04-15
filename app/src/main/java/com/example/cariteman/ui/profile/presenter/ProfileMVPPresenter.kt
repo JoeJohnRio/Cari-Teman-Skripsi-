@@ -7,4 +7,6 @@ interface ProfileMVPPresenter <V : ProfileMVPView> : MVPPresenter<V> {
 
     fun getProfilInfoOthers(id: Int)
 
+    fun getPengalamanAndRekomendasi(id: Int)
+
 }

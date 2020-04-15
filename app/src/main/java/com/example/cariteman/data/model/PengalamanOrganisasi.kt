@@ -3,7 +3,7 @@ package com.example.cariteman.data.model
 import com.google.gson.annotations.SerializedName
 
 data class PengalamanOrganisasi(
-    @SerializedName("isVerified") var userId: Int? = null,
+    @SerializedName("id") var userId: Int? = null,
     @SerializedName("nama_organisasi") var namaOrganisasi: String? = null,
     @SerializedName("deskripsi") var deskripsi: String? = null,
     @SerializedName("gambar") var gambar: String? = null,
@@ -11,7 +11,7 @@ data class PengalamanOrganisasi(
     @SerializedName("tanggal_selesai") var tanggalSelesai: String? = null,
     @SerializedName("id_mahasiswa") var idMahasiswa: Int? = null,
     @SerializedName("id_bidang_kerja") var idBidangKerja: Int? = null,
-    @SerializedName("bidang_kerja") var bidangKerja: BidangKerja? = null,
     @SerializedName("created_at") var createdAt: String? = null,
-    @SerializedName("updated_at") var updatedAt: String? = null
+    @SerializedName("updated_at") var updatedAt: String? = null,
+    @SerializedName("relation_bidang_kerja") var relationBidangKerja: RelationBidangKerja? = null
 )

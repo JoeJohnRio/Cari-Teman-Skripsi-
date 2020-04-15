@@ -3,7 +3,7 @@ package com.example.cariteman.data.model
 import com.google.gson.annotations.SerializedName
 
 data class RelationBidangKerja(
-    @SerializedName("isVerified") var id: Int? = null,
+    @SerializedName("id") var id: Int? = null,
     @SerializedName("id_mahasiswa") var idMahasiswa: Int? = null,
     @SerializedName("id_bidang_kerja") var idBidangKerja: Int? = null,
     @SerializedName("id_tempat_pkl") var idTempatPkl: Int? = null,

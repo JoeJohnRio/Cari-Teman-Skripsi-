@@ -107,7 +107,7 @@ class DashboardHistoryViewHolder(override val containerView: View) :
                     tvRecommendationTotal?.text =
                         response.mahasiswaTwoPkl?.countRekomendasi?.size.toString() + " of Recommendation" ?: "0 of Recommendation"
                 }
-                tvName?.text = "PKL - " + response.mahasiswaTwoPkl?.name ?: "no name"
+                tvName?.text = "Organisasi - " + response.mahasiswaTwoPkl?.name ?: "no name"
 
                 try {
                     tvRiwayatLomba?.text =
@@ -191,7 +191,7 @@ class DashboardHistoryViewHolder(override val containerView: View) :
                     tvRecommendationTotal?.text =
                         response.tempatPkl?.countUlasanTempatPkl?.size.toString() + " of Recommendation" ?: "0 of Recommendation"
                 }
-                tvName?.text = "PKL - " + response.tempatPkl?.namaPerusahaan ?: "no name"
+                tvName?.text = "Organisasi - " + response.tempatPkl?.namaPerusahaan ?: "no name"
 
                 try {
                     tvRiwayatLomba?.text = response.tempatPkl?.lokasiPkl?.namaKota ?: "Kota Error"

@@ -64,7 +64,7 @@ class BaruDilihatTempatPklViewHolder(override val containerView: View) :
                 .into(ivProfilPic)
         }
 
-        tvItemType?.text = "Tempat PKL"
+        tvItemType?.text = "Tempat Organisasi"
         tvItemName?.text = response.tempatPkl?.namaPerusahaan
         tbFavorite?.isChecked = Utils.intToBoolean(response.tempatPkl?.relationTempatPkl?.isFavorite)
 
@@ -84,7 +84,7 @@ class BaruDilihatTempatPklViewHolder(override val containerView: View) :
             tvBidangKerja?.text = "Tidak memiliki bidang kerja"
         }
 
-        tvBanyakUlasan?.text = "${response.tempatPkl?.countUlasanTempatPkl?.size} orang pernah PKL di sini"
+        tvBanyakUlasan?.text = "${response.tempatPkl?.countUlasanTempatPkl?.size} orang pernah Organisasi di sini"
 
         val scaleAnimation = ScaleAnimation(
             0.7f,
@@ -121,7 +121,7 @@ class BaruDilihatTempatPklViewHolder(override val containerView: View) :
                 .into(ivProfilPic)
         }
 
-        tvItemType?.text = "Tempat PKL"
+        tvItemType?.text = "Tempat Organisasi"
         tvItemName?.text = response.tempatPkl?.namaPerusahaan
         tbFavorite?.isChecked = Utils.intToBoolean(response.isFavorite)
 
@@ -141,7 +141,7 @@ class BaruDilihatTempatPklViewHolder(override val containerView: View) :
             tvBidangKerja?.text = "Tidak memiliki bidang kerja"
         }
 
-        tvBanyakUlasan?.text = "${response.tempatPkl?.countUlasanTempatPkl?.size} orang pernah PKL di sini"
+        tvBanyakUlasan?.text = "${response.tempatPkl?.countUlasanTempatPkl?.size} orang pernah Organisasi di sini"
 
         val scaleAnimation = ScaleAnimation(
             0.7f,

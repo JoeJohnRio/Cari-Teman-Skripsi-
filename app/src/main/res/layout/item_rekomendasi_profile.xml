@@ -1,40 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_little"
-
         android:orientation="horizontal">
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_gambar_perekomendasi"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/profile_picture"/>
+            android:src="@drawable/profile_picture" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_little"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/tv_nama_perekomendasi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rio Dewantara Bayu"
                 android:textColor="@color/blue_low"
-                android:textStyle="bold"
                 android:textSize="@dimen/text_more_than_normal"
-                />
+                android:textStyle="bold" />
+
             <RatingBar
                 android:id="@+id/rb_rating_rekomendasi"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:rating="5"
                 android:clickable="true"
-                style="?android:attr/ratingBarStyleSmall"/>
+                android:rating="5" />
 
             <TextView
                 android:id="@+id/tv_isi_rekomendasi"
@@ -44,7 +44,7 @@
 sangat kooperatif dalam berkelompok
 maupun berteman."
                 android:textColor="@color/blue_low"
-                android:textSize="@dimen/text_normal"/>
+                android:textSize="@dimen/text_normal" />
         </LinearLayout>
     </LinearLayout>
 

@@ -68,12 +68,12 @@ class BaruDilihatLombaViewHolder(override val containerView: View) :
         tbFavorite?.isChecked = Utils.intToBoolean(response.mahasiswaTwoLomba?.relationTeman?.isFavorite)
         tvItemName?.text = response.mahasiswaTwoLomba?.name
         try {
-            if (response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja != null && response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
+            if (response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(0)?.relationBidangKerja?.bidangKerja?.namaBidangKerja != null && response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
                     0
                 )?.namaOrganisasi != null
             ) {
                 tvJabatanOrganisasi?.text =
-                    "" + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja + " at " + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
+                    "" + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(0)?.relationBidangKerja?.bidangKerja?.namaBidangKerja + " at " + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
                         0
                     )?.namaOrganisasi
             } else {
@@ -129,12 +129,12 @@ class BaruDilihatLombaViewHolder(override val containerView: View) :
         tbFavorite?.isChecked = Utils.intToBoolean(response.isFavorite)
         tvItemName?.text = response.mahasiswaTwoLomba?.name
         try {
-            if (response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja != null && response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
+            if (response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(0)?.relationBidangKerja?.bidangKerja?.namaBidangKerja != null && response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
                     0
                 )?.namaOrganisasi != null
             ) {
                 tvJabatanOrganisasi?.text =
-                    "" + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja + " at " + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
+                    "" + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(0)?.relationBidangKerja?.bidangKerja?.namaBidangKerja + " at " + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
                         0
                     )?.namaOrganisasi
             } else {

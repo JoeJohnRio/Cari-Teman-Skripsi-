@@ -34,6 +34,7 @@ object Endpoints {
     const val pengalamanLomba = "pengalaman/lomba"
     const val pengalamanOrganisasi = "pengalaman/organisasi"
     const val profilInfoOthers = "rekomendasi/profil/{id}"
+    const val pengalamanLombaOrganisasi = "pengalaman/both/{id}"
 
     //ulasanTempatPkl
     const val showUlasanTempat = "ulasantempatpkl/show"

@@ -64,7 +64,7 @@ class BaruDilihatTempatPklViewHolder(override val containerView: View) :
                 .into(ivProfilPic)
         }
 
-        tvItemType?.text = "Tempat Organisasi"
+        tvItemType?.text = "Tempat PKL"
         tvItemName?.text = response.tempatPkl?.namaPerusahaan
         tbFavorite?.isChecked = Utils.intToBoolean(response.tempatPkl?.relationTempatPkl?.isFavorite)
 
@@ -121,7 +121,7 @@ class BaruDilihatTempatPklViewHolder(override val containerView: View) :
                 .into(ivProfilPic)
         }
 
-        tvItemType?.text = "Tempat Organisasi"
+        tvItemType?.text = "Tempat PKL"
         tvItemName?.text = response.tempatPkl?.namaPerusahaan
         tbFavorite?.isChecked = Utils.intToBoolean(response.isFavorite)
 

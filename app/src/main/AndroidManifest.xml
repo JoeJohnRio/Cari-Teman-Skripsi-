@@ -39,7 +39,7 @@
         </activity>
         <activity android:name=".ui.DaftarKelompokActivity">
         </activity>
-        <activity android:name=".ui.pengalaman.PengalamanActivity">
+        <activity android:name=".ui.pengalaman.view.PengalamanActivity">
         </activity>
         <activity android:name=".ui.PengaturanActivity">
         </activity>
@@ -53,9 +53,9 @@
         </activity>
         <activity android:name=".ui.TambahAnggota1Activity">
         </activity>
-        <activity android:name=".ui.pengalaman.PengalamanLombaActivity">
+        <activity android:name=".ui.pengalaman.view.TambahPengalamanLombaActivity">
         </activity>
-        <activity android:name=".ui.pengalaman.PengalamanOrganisasiActivity">
+        <activity android:name=".ui.pengalaman.view.TambahPengalamanOrganisasiActivity">
         </activity>
         <activity android:name=".ui.NotifikasiActivity">
         </activity>

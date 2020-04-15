@@ -130,7 +130,7 @@
                 android:id="@+id/fab_add_kelompok"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_mode_edit_modify_black_24dp"
+                android:src="@drawable/ic_mode_edit_modify_white_24dp"
                 app:backgroundTint="@color/black_effective"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

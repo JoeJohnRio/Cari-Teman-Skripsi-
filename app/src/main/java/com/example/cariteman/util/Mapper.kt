@@ -46,9 +46,9 @@ object Mapper {
         var index = 0
         val responsesMapped: MutableList<PengalamanLombaOrganisasiResponse> = mutableListOf()
 
-        for (response in responses!!.pengalamanLomba) {
+        for (response in responses?.pengalamanLomba!!) {
             responsesMapped.add(index,
-                response!!.let {
+                response.let {
                     PengalamanLombaOrganisasiResponse(
                         id = it.id,
                         namaKompetisi = it.namaKompetisi,
@@ -64,9 +64,9 @@ object Mapper {
             )
             index++
         }
-        for (response in responses.pengalamanOrganisasi) {
+        for (response in responses?.pengalamanOrganisasi!!) {
             responsesMapped.add(index,
-                response!!.let {
+                response.let {
                     PengalamanLombaOrganisasiResponse(
                         id = it.id,
                         namaOrganisasi = it.namaOrganisasi,

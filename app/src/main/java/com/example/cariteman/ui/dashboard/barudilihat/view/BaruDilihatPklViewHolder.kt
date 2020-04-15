@@ -63,17 +63,17 @@ class BaruDilihatPklViewHolder(override val containerView: View) :
                 .into(ivProfilPicWithFavorite)
         }
 
-        tvItemType?.text = "Organisasi"
+        tvItemType?.text = "PKL"
         tbFavorite?.isChecked = Utils.intToBoolean(response.mahasiswaTwoPkl?.relationTeman?.isFavorite)
 
         tvItemName?.text = response.mahasiswaTwoPkl?.name
         try {
-            if (response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja != null && response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
+            if (response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(0)?.relationBidangKerja?.bidangKerja?.namaBidangKerja != null && response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
                     0
                 )?.namaOrganisasi != null
             ){
                 tvJabatanOrganisasi?.text =
-                    "" + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja + " at " + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
+                    "" + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(0)?.relationBidangKerja?.bidangKerja?.namaBidangKerja + " at " + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
                         0
                     )?.namaOrganisasi
             }
@@ -128,17 +128,17 @@ class BaruDilihatPklViewHolder(override val containerView: View) :
                 .into(ivProfilPicWithFavorite)
         }
 
-        tvItemType?.text = "Organisasi"
+        tvItemType?.text = "PKL"
         tbFavorite?.isChecked = Utils.intToBoolean(response.isFavorite)
 
         tvItemName?.text = response.mahasiswaTwoPkl?.name
         try {
-            if (response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja != null && response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
+            if (response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(0)?.relationBidangKerja?.bidangKerja?.namaBidangKerja != null && response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
                     0
                 )?.namaOrganisasi != null
             ){
                 tvJabatanOrganisasi?.text =
-                    "" + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(0)?.bidangKerja?.namaBidangKerja + " at " + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
+                    "" + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(0)?.relationBidangKerja?.bidangKerja?.namaBidangKerja + " at " + response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(
                         0
                     )?.namaOrganisasi
             }

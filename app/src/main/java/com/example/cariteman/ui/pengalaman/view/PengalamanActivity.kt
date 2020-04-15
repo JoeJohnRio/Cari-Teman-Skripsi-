@@ -1,4 +1,4 @@
-package com.example.cariteman.ui.pengalaman
+package com.example.cariteman.ui.pengalaman.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -18,12 +18,12 @@ class PengalamanActivity: AppCompatActivity(){
         )
 
         viewBind.llPengalamanLomba.setOnClickListener{
-            val intent= Intent(this, PengalamanLombaActivity::class.java)
+            val intent= Intent(this, TambahPengalamanLombaActivity::class.java)
             startActivity(intent)
         }
 
         viewBind.llPengalamanOrganisasi.setOnClickListener{
-            val intent= Intent(this, PengalamanOrganisasiActivity::class.java)
+            val intent= Intent(this, TambahPengalamanOrganisasiActivity::class.java)
             startActivity(intent)
         }
     }

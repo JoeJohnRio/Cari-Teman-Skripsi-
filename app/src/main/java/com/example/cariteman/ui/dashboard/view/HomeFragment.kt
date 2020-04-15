@@ -25,14 +25,6 @@ import javax.inject.Inject
 
 
 class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, DashboardMVPView{
-    override fun setLastPageLimiter(lastPage: Int) {
-        //notImplemented
-    }
-
-    override fun populateFavoriteProfil(responses: MutableList<RelationTempatPklFavorite>) {
-        //notimplemented
-    }
-
     @Inject
     lateinit var presenter: DashboardPresenter<DashboardMVPView>
     private lateinit var viewBind: FragmentHomeBinding
@@ -163,6 +155,14 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
             viewBind.rvDashboardBaruLihat.smoothScrollToPosition(4)
 
             viewBind.rvDashboardBaruLihat.smoothScrollToPosition(0)
+    }
+
+    override fun setLastPageLimiter(lastPage: Int) {
+        //notImplemented
+    }
+
+    override fun populateFavoriteProfil(responses: MutableList<RelationTempatPklFavorite>) {
+        //notimplemented
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

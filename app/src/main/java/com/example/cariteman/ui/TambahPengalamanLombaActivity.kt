@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.cariteman.R
 import com.example.cariteman.databinding.ActivityTambahPengalamanLombaBinding
-import com.example.cariteman.ui.pengalaman.PengalamanActivity
+import com.example.cariteman.ui.pengalaman.view.PengalamanActivity
 
 class TambahPengalamanLombaActivity: AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {

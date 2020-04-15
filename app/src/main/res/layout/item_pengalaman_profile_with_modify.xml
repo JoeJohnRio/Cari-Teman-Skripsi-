@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_little"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_gambar_pengalaman"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/sertifikat" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_pengalaman_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_little"
+            app:layout_constraintStart_toEndOf="@id/iv_gambar_pengalaman"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_judul_pengalaman"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue_low"
+                android:textSize="@dimen/text_more_than_normal"
+                android:textStyle="bold"
+                android:text="1st at yayaya"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iv_modify_pengalaman"/>
+
+            <TextView
+                android:id="@+id/tv_tanggal_pengalaman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Juni 2018 - Agustus 2019"
+                android:textStyle="italic"
+                android:textColor="@color/blue_low"
+                android:textSize="@dimen/text_normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_judul_pengalaman"/>
+
+            <TextView
+                android:id="@+id/tv_deskripsi_pengalaman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kerjanya enak"
+                android:textColor="@color/blue_low"
+                android:textSize="@dimen/text_normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_tanggal_pengalaman"/>
+
+
+            <ImageView
+                android:id="@+id/iv_modify_pengalaman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_mode_edit_modify_black_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/v_black_line_3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/black_effective"
+            android:layout_marginTop="@dimen/space_little"
+            android:layout_marginBottom="@dimen/space_more_than_little"
+            app:layout_constraintTop_toBottomOf="@id/cl_pengalaman_item"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

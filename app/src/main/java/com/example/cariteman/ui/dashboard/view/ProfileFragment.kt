@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.Toast
 import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
 import com.example.cariteman.data.model.RelationTempatPklFavorite
@@ -16,9 +15,8 @@ import com.example.cariteman.ui.PengaturanActivity
 import com.example.cariteman.ui.UserProfilActivity
 import com.example.cariteman.ui.base.view.BaseFragment
 import com.example.cariteman.ui.dashboard.presenter.DashboardPresenter
-import com.example.cariteman.ui.pengalaman.PengalamanActivity
+import com.example.cariteman.ui.pengalaman.view.PengalamanActivity
 import com.example.cariteman.util.Utils
-import com.example.cariteman.util.extension.addFragment
 import javax.inject.Inject
 
 class ProfileFragment : BaseFragment(), AdapterView.OnItemSelectedListener, DashboardMVPView{

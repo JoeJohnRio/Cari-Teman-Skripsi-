@@ -1,4 +1,4 @@
-package com.example.cariteman.ui.pengalaman
+package com.example.cariteman.ui.pengalaman.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.cariteman.R
 import com.example.cariteman.databinding.ActivityTambahPengalamanLombaBinding
 
-class PengalamanLombaActivity: AppCompatActivity(){
+class TambahPengalamanLombaActivity: AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

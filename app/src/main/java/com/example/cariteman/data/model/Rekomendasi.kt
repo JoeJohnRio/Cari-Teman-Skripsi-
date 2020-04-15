@@ -3,7 +3,7 @@ package com.example.cariteman.data.model
 import com.google.gson.annotations.SerializedName
 
 data class Rekomendasi(
-    @SerializedName("id") var userId: Int? = null,
+    @SerializedName("id") var id: Int? = null,
     @SerializedName("jumlah_rating") var jumlahRating: Int? = null,
     @SerializedName("deskripsi") var deskripsi: String? = null,
     @SerializedName("is_hidden") var isHidden: Int? = null,

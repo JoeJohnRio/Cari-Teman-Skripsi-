@@ -93,7 +93,7 @@ interface INetworkApi {
     @Headers("No-Authentication: true")
     fun getProfilInfoOthers(@Header("app-key") string: String?,  @Path("id") id: Int?): Observable<ProfilInfoOthers>
 
-    @GET(Endpoints.profilInfoOthers)
+    @GET(Endpoints.pengalamanLombaOrganisasi)
     @Headers("No-Authentication: true")
     fun getPengalamanAndRekomendasi(@Header("app-key") string: String?,  @Path("id") id: Int?): Observable<ProfilePengalamanRekomendasi>
 

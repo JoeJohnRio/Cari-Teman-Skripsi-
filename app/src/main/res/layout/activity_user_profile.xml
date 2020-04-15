@@ -243,7 +243,6 @@ Rekayasa Perangkat Lunak"
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_item_pengalaman_profile"
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
@@ -306,11 +305,8 @@ Rekayasa Perangkat Lunak"
                     android:layout_marginTop="@dimen/space_little"
                     android:background="@color/black"/>
 
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_item_rekomendasi_profile"
-                    android:orientation="horizontal"
-                    tools:listitem="@layout/item_rekomendasi_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 

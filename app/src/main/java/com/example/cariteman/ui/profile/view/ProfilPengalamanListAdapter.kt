@@ -5,12 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cariteman.R
-import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
 import com.example.cariteman.data.model.PengalamanLombaOrganisasiResponse
 import com.example.cariteman.ui.dashboard.presenter.ProfilePresenter
 import com.example.cariteman.ui.profile.view.ProfileMVPView
 
-class PengalamanListAdapter(presenter: ProfilePresenter<ProfileMVPView>) :
+class ProfilPengalamanListAdapter(presenter: ProfilePresenter<ProfileMVPView>) :
     ListAdapter<PengalamanLombaOrganisasiResponse, RecyclerView.ViewHolder>(ProfileDiffCallBack()) {
     var presenterAdapter = presenter
 
@@ -48,11 +47,11 @@ class PengalamanListAdapter(presenter: ProfilePresenter<ProfileMVPView>) :
         if (holder is ProfilePengalamanOrganisasiViewHolder) {
             val response = getItem(position) as PengalamanLombaOrganisasiResponse
 
-            holder.bindHistory(response, presenterAdapter)
+            holder.bindProfilPengalaman(response, presenterAdapter)
         }else if (holder is ProfilePengalamanLombaViewHolder) {
             val response = getItem(position) as PengalamanLombaOrganisasiResponse
 
-            holder.bindHistory(response, presenterAdapter)
+            holder.bindProfilPengalaman(response, presenterAdapter)
         }
     }
 }

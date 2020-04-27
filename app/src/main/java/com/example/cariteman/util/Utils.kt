@@ -6,12 +6,17 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
+import java.text.SimpleDateFormat
 
 object Utils {
     lateinit var fakultas: Array<String>
 
     val SHARED_PREFS = "sharedPrefs"
     val TEXT = "text"
+
+
+    val parserDate = SimpleDateFormat("yyyy-MM-dd")
+    val formatterDate = SimpleDateFormat("dd MMMM, yyyy")
 
     fun toggleThreeButton(turnUp: MaterialButton, turnDown: MaterialButton, turnDown1: MaterialButton, colorOn: Int, colorOff: Int, resources: Resources){
         turnUp.setBackgroundColor(resources.getColor(colorOn))

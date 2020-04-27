@@ -8,7 +8,8 @@
     <dimen name="app_bar_height">0dp</dimen>
     <dimen name="text_normal">16sp</dimen>
     <dimen name="text_more_than_normal">18sp</dimen>
-    <dimen name="text_pretty_big">20sp</dimen>
+    <dimen name="text_kinda_big">20sp</dimen>
+    <dimen name="text_pretty_big">24</dimen>
     <dimen name="text_big">28sp</dimen>
     <dimen name="space_really_small">5dp</dimen>
     <dimen name="space_little">10dp</dimen>

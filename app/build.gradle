@@ -84,6 +84,9 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
     kapt 'androidx.annotation:annotation:1.1.0'
 
+    //coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.4"
+
     kapt "com.android.databinding:compiler:$android_plugin_version"
 
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'

@@ -1,13 +1,13 @@
 package com.example.cariteman.ui.dashboard.view
 
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
 import com.example.cariteman.data.model.RelationTempatPklFavorite
@@ -16,11 +16,10 @@ import com.example.cariteman.ui.*
 import com.example.cariteman.ui.dashboard.barudilihat.view.BaruDilihatActivity
 import com.example.cariteman.ui.base.view.BaseFragment
 import com.example.cariteman.ui.dashboard.presenter.DashboardPresenter
-import com.example.cariteman.ui.profile.view.ProfileActivity
 import com.example.cariteman.util.Mapper
 import com.example.cariteman.util.Utils
 import com.example.cariteman.util.Utils.toggleThreeButton
-import com.google.android.material.button.MaterialButton
+import kotlinx.android.synthetic.main.item_profile_dashboard.view.*
 import javax.inject.Inject
 
 
@@ -138,23 +137,48 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
                 R.color.white, resources
             )
         }
+
+        viewBind.incItemKosong.iv_profil_pic
+        Glide.with(context).load(url)
+            .into(viewBind.incItemKosong.iv_profil_pic)
+        Glide.with(context)
+            .load(url)
+            .into(viewBind.incItemKosong.civ_image_one)
+        Glide.with(context)
+            .load(url)
+            .into(viewBind.incItemKosong.civ_image_two)
+        Glide.with(context)
+            .load(url)
+            .into(viewBind.incItemKosong.civ_image_three)
+        viewBind.incItemKosong.tv_recommendation_total?.text = "0 of Recommendation"
+
+        viewBind.incItemKosong.tv_jabatan?.text = "Belum mengikuti organisasi"
+
+        viewBind.incItemKosong.tv_riwayat_lomba?.text = "Belum mengikuti kompetisi"
+        viewBind.incItemKosong.tv_name?.text = "Tidak ada data"
     }
 
+    var url = "https://cdn.clipart.email/23d5eca3a775fad9d1e33d343ae57328_silhouette-man-face-at-getdrawingscom-free-for-personal-use-_1000-563.jpeg"
+
     override fun populateLombaDanPklDashboard(responses: List<MahasiswaHistoryDashboardResponse>) {
-        val data = Mapper.dashboardHistoryLombaResponseMapper(responses)
-        adapterWithList = ProfilDashboardPklListAdapter()
+        if(responses.isNullOrEmpty()){
+            viewBind.incItemKosong.visibility = View.VISIBLE
+            viewBind.rvDashboardBaruLihat.visibility = View.GONE
+        }else{
+            viewBind.incItemKosong.visibility = View.GONE
+            viewBind.rvDashboardBaruLihat.visibility = View.VISIBLE
+            val data = Mapper.dashboardHistoryLombaResponseMapper(responses)
+            adapterWithList = ProfilDashboardPklListAdapter()
 
-        adapterWithList.submitList(data)
-        viewBind.rvDashboardBaruLihat.apply {
-            adapter = adapterWithList
-            if (layoutManager == null){
-                layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            adapterWithList.submitList(data)
+            viewBind.rvDashboardBaruLihat.apply {
+                adapter = adapterWithList
+                if (layoutManager == null){
+                    layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+                }
+                adapter?.notifyDataSetChanged()
             }
-            adapter?.notifyDataSetChanged()
         }
-            viewBind.rvDashboardBaruLihat.smoothScrollToPosition(4)
-
-            viewBind.rvDashboardBaruLihat.smoothScrollToPosition(0)
     }
 
     override fun setLastPageLimiter(lastPage: Int) {

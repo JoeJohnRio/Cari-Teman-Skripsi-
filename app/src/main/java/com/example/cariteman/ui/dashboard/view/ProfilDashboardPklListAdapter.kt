@@ -64,7 +64,6 @@ class DashboardHistoryViewHolder(override val containerView: View) :
     }
 
     fun bind(response: MahasiswaHistoryDashboardResponse?) {
-
         itemView.setOnClickListener{
             val intent = Intent(itemView.context, ProfileActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.putExtra("MAHASISWA_ID", response?.idMahasiswaTwo)
@@ -113,6 +112,7 @@ class DashboardHistoryViewHolder(override val containerView: View) :
                     tvRiwayatLomba?.text =
                         response.mahasiswaTwoPkl?.pengalamanLomba?.get(0)?.namaKompetisi
                             ?: "Belum mengikuti kompetisi"
+
                 } catch (e: Throwable) {
                     tvRiwayatLomba?.text = "Belum mengikuti kompetisi"
                 }

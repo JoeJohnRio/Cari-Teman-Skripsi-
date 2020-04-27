@@ -19,7 +19,7 @@
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/space_more_than_little">
+                android:layout_marginBottom="@dimen/space_little">
 
                 <com.google.android.material.appbar.MaterialToolbar
                     android:layout_width="match_parent"
@@ -126,12 +126,19 @@
                 android:background="@color/grey_low"
                 />
 
+            <include
+                android:id="@+id/inc_item_kosong_favorite"
+                layout="@layout/view_not_found"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_item_people"
                 tools:listitem="@layout/item_people_and_place"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:visibility="gone"/>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

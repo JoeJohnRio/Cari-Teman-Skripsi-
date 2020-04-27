@@ -2,12 +2,10 @@ package com.example.cariteman.ui.dashboard.barudilihat.view
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.BounceInterpolator
 import android.view.animation.ScaleAnimation
-import android.widget.CompoundButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ToggleButton

@@ -16,13 +16,13 @@ package com.example.cariteman.ui
 //    )
 //    override fun getItemCount() = users.size
 //    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-//        holder.bindHistory(users[position])
+//        holder.bindBidangKerja(users[position])
 //    }
 //    class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 //        private val imageView = view.imageView
 //        private val userName = view.name
 //        private val userEmail = view.email
-//        fun bindHistory(country: User) {
+//        fun bindBidangKerja(country: User) {
 //            userName.text = country.firstName + " " + country.lastName
 //            userEmail.text = country.email
 //            imageView.loadImage(country.avatar)

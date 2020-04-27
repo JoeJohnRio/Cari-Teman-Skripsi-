@@ -3,11 +3,16 @@ package com.example.cariteman.di.builder
 import com.example.cariteman.ui.dashboard.DashboardModule
 import com.example.cariteman.ui.dashboard.view.DashboardBottomViewActivity
 import com.example.cariteman.ui.dashboard.DashboardFragmentProvider
+import com.example.cariteman.ui.dashboard.PengalamanModule
 import com.example.cariteman.ui.dashboard.ProfileModule
 import com.example.cariteman.ui.dashboard.barudilihat.BaruDilihatModule
 import com.example.cariteman.ui.dashboard.barudilihat.view.BaruDilihatActivity
 import com.example.cariteman.ui.login.LoginActivityModule
 import com.example.cariteman.ui.login.view.LoginActivity
+import com.example.cariteman.ui.pengalaman.pengalamanhome.BidangKerjaFragmentProvider
+import com.example.cariteman.ui.pengalaman.pengalamanhome.PengalamanHomeFragmentProvider
+import com.example.cariteman.ui.pengalaman.tambahpengalaman.TambahPengalamanFragmentProvider
+import com.example.cariteman.ui.pengalaman.view.PengalamanActivity
 import com.example.cariteman.ui.profile.view.ProfileActivity
 import com.example.cariteman.ui.register.RegisterFragmentProvider
 import com.example.cariteman.ui.register.RegisterActivityModule
@@ -20,9 +25,6 @@ import dagger.android.ContributesAndroidInjector
  */
 @Module
 abstract class ActivityBuilder {
-
-//    @ContributesAndroidInjector(modules = [(SplashActivityModule::class)])
-//    abstract fun bindSplashActivity(): SplashMVPActivity
 
     @ContributesAndroidInjector(modules = [(RegisterActivityModule::class), (RegisterFragmentProvider::class)])
     abstract fun bindRegisterActivity(): Register1Activity
@@ -38,11 +40,8 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [(ProfileModule::class)])
     abstract fun bindProfilActivity(): ProfileActivity
-//
-//    @ContributesAndroidInjector(modules = [(LoginActivityModule::class)])
-//    abstract fun bindLoginActivity(): LoginActivity
-//
-//    @ContributesAndroidInjector(modules = [(BlogFragmentProvider::class), (OpenSourceFragmentProvider::class)])
-//    abstract fun bindFeedActivity(): FeedActivity
+
+    @ContributesAndroidInjector(modules = [(PengalamanModule::class), (TambahPengalamanFragmentProvider::class), (PengalamanHomeFragmentProvider::class), (BidangKerjaFragmentProvider::class)])
+    abstract fun bindPengalamanActivity(): PengalamanActivity
 
 }

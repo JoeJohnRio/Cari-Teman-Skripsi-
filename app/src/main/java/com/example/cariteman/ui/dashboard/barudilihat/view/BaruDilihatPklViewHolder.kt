@@ -6,11 +6,9 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.BounceInterpolator
 import android.view.animation.ScaleAnimation
-import android.widget.CompoundButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ToggleButton
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cariteman.R

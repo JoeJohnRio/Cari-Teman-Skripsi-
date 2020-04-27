@@ -21,5 +21,5 @@ object CommonUtil {
         }
     }
 
-    val emailPattern: String = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+    val emailPattern: String = "[addFragmentWithBackStack-zA-Z0-9._-]+@[addFragmentWithBackStack-z]+\\.+[addFragmentWithBackStack-z]+"
 }

@@ -10,7 +10,7 @@ import com.example.cariteman.data.model.ProfilInfoOthers
 import com.example.cariteman.data.model.Rekomendasi
 import com.example.cariteman.databinding.ActivityUserProfileBinding
 import com.example.cariteman.ui.base.view.BaseActivity
-import com.example.cariteman.ui.dashboard.barudilihat.view.PengalamanListAdapter
+import com.example.cariteman.ui.dashboard.barudilihat.view.ProfilPengalamanListAdapter
 import com.example.cariteman.ui.dashboard.barudilihat.view.RekomendasiListAdapter
 import com.example.cariteman.ui.dashboard.presenter.ProfilePresenter
 import com.example.cariteman.util.Utils
@@ -20,7 +20,7 @@ class ProfileActivity: BaseActivity(), ProfileMVPView{
     @Inject
     lateinit var presenter: ProfilePresenter<ProfileMVPView>
 
-    lateinit var adapterPengalaman: PengalamanListAdapter
+    lateinit var adapterPengalaman: ProfilPengalamanListAdapter
     lateinit var adapterRekomendasi: RekomendasiListAdapter
     var url = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png"
     lateinit private var viewBind: ActivityUserProfileBinding
@@ -32,7 +32,7 @@ class ProfileActivity: BaseActivity(), ProfileMVPView{
         presenter.setKey(Utils.loadData(applicationContext))
         val mahasiswaId = intent.getIntExtra("MAHASISWA_ID", -1)
         adapterRekomendasi = RekomendasiListAdapter(presenter)
-        adapterPengalaman = PengalamanListAdapter(presenter)
+        adapterPengalaman = ProfilPengalamanListAdapter(presenter)
         if (mahasiswaId==-1){
             showMessageToast("ID Error, please try again later")
         }else{

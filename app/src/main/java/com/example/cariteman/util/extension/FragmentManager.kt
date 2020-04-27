@@ -10,7 +10,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.cariteman.R
 
-
 internal fun FragmentManager.removeFragment(
     tag: String,
     slideIn: Int = R.anim.slide_left,
@@ -25,7 +24,35 @@ internal fun FragmentManager.removeFragment(
     }
 }
 
-internal fun FragmentManager.addFragment(
+internal fun FragmentManager.addFragmentWithBackStack(
+    containerViewId: Int,
+    fragment: Fragment,
+    tag: String,
+    slideIn: Int = R.anim.slide_left,
+    slideOut: Int = R.anim.slide_right
+) {
+    this.beginTransaction()
+        .setCustomAnimations(slideIn, slideOut, slideIn, slideOut)
+        .replace(containerViewId, fragment, tag)
+        .addToBackStack(tag)
+        .commit()
+}
+
+internal fun FragmentManager.addFragmentWithBackStackWithSetTargetFragment(
+    containerViewId: Int,
+    fragment: Fragment,
+    tag: String,
+    slideIn: Int = R.anim.slide_left,
+    slideOut: Int = R.anim.slide_right
+) {
+    this.beginTransaction()
+        .setCustomAnimations(slideIn, slideOut, slideIn, slideOut)
+        .replace(containerViewId, fragment, tag)
+        .addToBackStack(tag)
+        .commit()
+}
+
+internal fun FragmentManager.addFragmentWithoutBackStack(
     containerViewId: Int,
     fragment: Fragment,
     tag: String,
@@ -33,7 +60,7 @@ internal fun FragmentManager.addFragment(
     slideOut: Int = R.anim.slide_right
 ) {
     this.beginTransaction().disallowAddToBackStack()
-        .setCustomAnimations(slideIn, slideOut)
+        .setCustomAnimations(slideIn, slideOut, slideIn, slideOut)
         .replace(containerViewId, fragment, tag)
         .commit()
 }
@@ -50,6 +77,6 @@ fun FragmentManager.attach(fragment: Fragment, tag: String) {
     } else {
         beginTransaction().add(R.id.container, fragment, tag).commit()
     }
-    // Set a transition animation for this transaction.
+    // Set addFragmentWithBackStack transition animation for this transaction.
     beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit()
 }

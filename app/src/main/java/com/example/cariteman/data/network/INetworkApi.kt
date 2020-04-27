@@ -33,15 +33,15 @@ interface INetworkApi {
 
     @GET(Endpoints.historyProfilPkl)
     @Headers("No-Authentication: true")
-    fun getHistoryProfilPkl(@Header("app-key") string: String?,@Query("page") page: Int): Observable<Pagination<MahasiswaHistoryDashboardResponse>>
+    fun getHistoryProfilPkl(@Header("app-key") string: String?, @Query("page") page: Int): Observable<Pagination<MahasiswaHistoryDashboardResponse>>
 
     @GET(Endpoints.historyProfilLomba)
     @Headers("No-Authentication: true")
-    fun getHistoryProfilLomba(@Header("app-key") string: String?,@Query("page") page: Int): Observable<Pagination<MahasiswaHistoryDashboardResponse>>
+    fun getHistoryProfilLomba(@Header("app-key") string: String?, @Query("page") page: Int): Observable<Pagination<MahasiswaHistoryDashboardResponse>>
 
     @GET(Endpoints.historyProfilTempatPkl)
     @Headers("No-Authentication: true")
-    fun getHistoryProfilTempatPkl(@Header("app-key") string: String?,@Query("page") page: Int): Observable<Pagination<MahasiswaHistoryDashboardResponse>>
+    fun getHistoryProfilTempatPkl(@Header("app-key") string: String?, @Query("page") page: Int): Observable<Pagination<MahasiswaHistoryDashboardResponse>>
 
     //Dashboard Home
     @GET(Endpoints.historyDashboardPkl)
@@ -59,17 +59,17 @@ interface INetworkApi {
     //Dashboard Favorite
     @GET(Endpoints.favoriteDashboardPkl)
     @Headers("No-Authentication: true")
-    fun getDashboardFavoriteFriendPkl(@Header("app-key") string: String?,@Query("page") page: Int): Observable<Pagination<RelationTempatPklFavorite>>
+    fun getDashboardFavoriteFriendPkl(@Header("app-key") string: String?, @Query("page") page: Int): Observable<Pagination<RelationTempatPklFavorite>>
 
     //Dashboard Favorite
     @GET(Endpoints.favoriteDashboardLomba)
     @Headers("No-Authentication: true")
-    fun getDashboardFavoriteFriendLomba(@Header("app-key") string: String?,@Query("page") page: Int): Observable<Pagination<RelationTempatPklFavorite>>
+    fun getDashboardFavoriteFriendLomba(@Header("app-key") string: String?, @Query("page") page: Int): Observable<Pagination<RelationTempatPklFavorite>>
 
     //Dashboard Favorite
     @GET(Endpoints.favoriteDashboardTempatPkl)
     @Headers("No-Authentication: true")
-    fun getDashboardFavoriteTempatPkl(@Header("app-key") string: String?,@Query("page") page: Int): Observable<Pagination<RelationTempatPklFavorite>>
+    fun getDashboardFavoriteTempatPkl(@Header("app-key") string: String?, @Query("page") page: Int): Observable<Pagination<RelationTempatPklFavorite>>
 
     //Favorite
     @PUT(Endpoints.toggleFavoriteTempatPkl)
@@ -80,23 +80,37 @@ interface INetworkApi {
     @Headers("No-Authentication: true")
     fun getUlasanTempatPkl(@Header("app-key") string: String?): Observable<List<UlasanTempatPkl>>
 
-    @GET(Endpoints.pengalamanLomba)
-    @Headers("No-Authentication: true")
-    fun getPengalamanLomba(@Header("app-key") string: String?): Observable<List<MahasiswaHistoryDashboardResponse>>
-
-    @GET(Endpoints.pengalamanOrganisasi)
-    @Headers("No-Authentication: true")
-    fun getPengalamanOrganisasi(@Header("app-key") string: String?): Observable<TotalPengalamanResponse>
-
     //Rekomendasi
     @GET(Endpoints.profilInfoOthers)
     @Headers("No-Authentication: true")
-    fun getProfilInfoOthers(@Header("app-key") string: String?,  @Path("id") id: Int?): Observable<ProfilInfoOthers>
+    fun getProfilInfoOthers(@Header("app-key") string: String?, @Path("id") id: Int?): Observable<ProfilInfoOthers>
+
+    @GET(Endpoints.pengalamanLombaOrganisasiWithRekomendasi)
+    @Headers("No-Authentication: true")
+    fun getPengalamanAndRekomendasi(@Header("app-key") string: String?, @Path("id") id: Int?): Observable<ProfilePengalamanRekomendasi>
 
     @GET(Endpoints.pengalamanLombaOrganisasi)
     @Headers("No-Authentication: true")
-    fun getPengalamanAndRekomendasi(@Header("app-key") string: String?,  @Path("id") id: Int?): Observable<ProfilePengalamanRekomendasi>
+    fun getPengalamanBoth(@Header("app-key") string: String?): Observable<PengalamanLombaOrganisasi>
 
+    @PUT(Endpoints.modifyPengalamanLomba)
+    @Headers("No-Authentication: true")
+    fun modifyPengalamanLomba(
+        @Header("app-key") string: String?, @Body pengalamanLombaOrganisasi: PengalamanLombaOrganisasiResponse
+    ): Observable<PengalamanLombaOrganisasiResponse>
 
+    @PUT(Endpoints.modifyPengalamanOrganisasi)
+    @Headers("No-Authentication: true")
+    fun modifyPengalamanOrganisasi(
+        @Header("app-key") string: String?, @Body pengalamanLombaOrganisasi: PengalamanLombaOrganisasiResponse
+    ): Observable<PengalamanLombaOrganisasiResponse>
 
+    //BidangKerja
+    @GET(Endpoints.bidangKerjaSearch)
+    @Headers("No-Authentication: true")
+    fun getBidangKerjaSearch(@Header("app-key") string: String?, @Path("namaBidangKerja") namaBidangKerja: String?): Observable<MutableList<BidangKerja>>
+
+    @POST(Endpoints.makeBidangKerja)
+    @Headers("No-Authentication: true")
+    fun makeBidangKerja(@Header("app-key") string: String?, @Path("namaBidangKerja") namaBidangKerja: String?): Observable<BidangKerja>
 }

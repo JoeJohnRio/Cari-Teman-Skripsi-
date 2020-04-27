@@ -1,10 +1,9 @@
 package com.example.cariteman.ui.dashboard.barudilihat.view
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.MotionEvent
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +12,6 @@ import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
 import com.example.cariteman.databinding.ActivityListOrangBinding
 import com.example.cariteman.ui.base.view.BaseActivity
 import com.example.cariteman.ui.dashboard.barudilihat.presenter.BaruDilihatPresenter
-import com.example.cariteman.ui.profile.view.ProfileActivity
 import com.example.cariteman.util.Mapper
 import com.example.cariteman.util.Utils
 import dagger.android.AndroidInjector
@@ -136,20 +134,28 @@ class BaruDilihatActivity : BaseActivity(), BaruDilihatMVPView, HasActivityInjec
     }
 
     override fun populateBaruDilihatProfil(responses: List<MahasiswaHistoryDashboardResponse>) {
-        dataPkl = dataPkl + Mapper.historyResponseMapper(responses)
+        if (responses.isNullOrEmpty()){
+            viewBind.rvItemPeople.visibility = View.GONE
+            viewBind.incItemKosongBaruDilihat.visibility = View.VISIBLE
+        }else{
+            viewBind.rvItemPeople.visibility = View.VISIBLE
+            viewBind.incItemKosongBaruDilihat.visibility = View.GONE
 
-        adapterWithList.submitList(dataPkl)
-        viewBind.rvItemPeople.apply {
-            if (adapter == null) {
-                adapter = adapterWithList
-            }
-            if (layoutManager == null) {
-                layoutManager = LinearLayoutManager(context)
-            }
-            adapter?.notifyDataSetChanged()
+            dataPkl = dataPkl + Mapper.historyResponseMapper(responses)
 
-            viewBind.rvItemPeople.tb_favorite.setOnClickListener{
-                super.showMessageToast("FAVORITE")
+            adapterWithList.submitList(dataPkl)
+            viewBind.rvItemPeople.apply {
+                if (adapter == null) {
+                    adapter = adapterWithList
+                }
+                if (layoutManager == null) {
+                    layoutManager = LinearLayoutManager(context)
+                }
+                adapter?.notifyDataSetChanged()
+
+                viewBind.rvItemPeople.tb_favorite.setOnClickListener{
+                    super.showMessageToast("FAVORITE")
+                }
             }
         }
     }

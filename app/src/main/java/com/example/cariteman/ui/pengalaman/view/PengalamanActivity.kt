@@ -1,31 +1,70 @@
 package com.example.cariteman.ui.pengalaman.view
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.example.cariteman.R
+import com.example.cariteman.data.model.PengalamanLombaOrganisasiResponse
 import com.example.cariteman.databinding.ActivityPengalamanBinding
+import com.example.cariteman.ui.base.view.BaseActivity
+import com.example.cariteman.ui.pengalaman.pengalamanhome.view.PengalamanListAdapter
+import com.example.cariteman.ui.dashboard.presenter.PengalamanPresenter
+import com.example.cariteman.util.Utils
+import com.example.cariteman.util.extension.removeFragment
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
+import javax.inject.Inject
+import com.example.cariteman.ui.pengalaman.pengalamanhome.view.PengalamanHomeFragment
+import com.example.cariteman.util.extension.addFragmentWithBackStack
+import com.example.cariteman.util.extension.addFragmentWithoutBackStack
 
-class PengalamanActivity: AppCompatActivity(){
+class PengalamanActivity: BaseActivity(), PengalamanMVPView, HasSupportFragmentInjector {
 
-    override fun onStart() {
-        super.onStart()
-        setContentView(R.layout.activity_pengalaman)
+    @Inject
+    lateinit var presenter: PengalamanPresenter<PengalamanMVPView>
 
+    @Inject
+    internal lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
-        val viewBind: ActivityPengalamanBinding = DataBindingUtil.setContentView(this,
-            R.layout.activity_pengalaman
+    lateinit var viewBind: ActivityPengalamanBinding
+    lateinit var adapterPengalaman: PengalamanListAdapter
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentDispatchingAndroidInjector
+    lateinit var pengalaman: PengalamanLombaOrganisasiResponse
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewBind = DataBindingUtil.setContentView(this, R.layout.activity_pengalaman)
+        presenter.onAttach(this)
+        presenter.setKey(Utils.loadData(applicationContext))
+
+        viewBind.ivBack.setOnClickListener {
+            onBackPressed()
+        }
+
+        supportFragmentManager.addFragmentWithoutBackStack(
+            R.id.cl_tambah_pengalaman_lomba,
+            PengalamanHomeFragment.newInstance(),
+            PengalamanHomeFragment.TAG
         )
-
-        viewBind.llPengalamanLomba.setOnClickListener{
-            val intent= Intent(this, TambahPengalamanLombaActivity::class.java)
-            startActivity(intent)
-        }
-
-        viewBind.llPengalamanOrganisasi.setOnClickListener{
-            val intent= Intent(this, TambahPengalamanOrganisasiActivity::class.java)
-            startActivity(intent)
-        }
     }
 
+    override fun onBackPressed() {
+        val count = supportFragmentManager.backStackEntryCount
+        if (count == 0) {
+            super.onBackPressed()
+            //additional code
+        } else {
+            supportFragmentManager.popBackStack()
+        }
+
+    }
+
+    override fun onFragmentAttached() {
+        //notImplemented
+    }
+
+    override fun onFragmentDetached(tag: String) {
+        supportFragmentManager?.removeFragment(tag = tag)
+    }
 }

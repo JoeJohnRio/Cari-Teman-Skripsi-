@@ -248,15 +248,20 @@
                                     app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat" />
                             </LinearLayout>
 
+                            <include android:id="@+id/inc_item_kosong"
+                                layout="@layout/item_profile_dashboard"/>
+
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rv_dashboard_baru_lihat"
                                 tools:listitem="@layout/item_profile_dashboard"
                                 android:orientation="horizontal"
+                                android:visibility="gone"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="@dimen/space_little" />
 
-                            </LinearLayout>
+
+                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout

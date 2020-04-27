@@ -124,13 +124,13 @@ class FavoriteFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Das
                     if (lastPage > pageNumber) {
                         Log.d("onScrolled", "Sedang scroll")
                         if (type == 0) {
-                            presenter.getFavoriteFriendPklResponse(false, pageNumber+1)
+                            presenter.getFavoriteFriendPklResponse(false, pageNumber + 1)
                             pageNumber++
                         } else if (type == 1) {
-                            presenter.getFavoriteFriendLombaResponse(false, pageNumber+1)
+                            presenter.getFavoriteFriendLombaResponse(false, pageNumber + 1)
                             pageNumber++
                         } else if (type == 2) {
-                            presenter.getFavoriteTempatPklResponse(false, pageNumber+1)
+                            presenter.getFavoriteTempatPklResponse(false, pageNumber + 1)
                             pageNumber++
                         }
                     }
@@ -145,30 +145,37 @@ class FavoriteFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Das
     }
 
     override fun populateFavoriteProfil(responses: MutableList<RelationTempatPklFavorite>) {
-        dataPkl = dataPkl + Mapper.favoriteDashboardResponseMapper(responses)
+        if (responses.isNullOrEmpty()) {
+            viewBind.rvItemPeople.visibility = View.GONE
+            viewBind.incItemKosongFavorite.visibility = View.VISIBLE
+        } else {
+            viewBind.rvItemPeople.visibility = View.VISIBLE
+            viewBind.incItemKosongFavorite.visibility = View.GONE
 
-        adapterWithList.submitList(dataPkl)
-        viewBind.rvItemPeople.apply {
-            if (adapter == null) {
-                adapter = adapterWithList
-            }
-            if (layoutManager == null) {
-                layoutManager = LinearLayoutManager(context)
-            }
-            adapter?.notifyDataSetChanged()
+            dataPkl = dataPkl + Mapper.favoriteDashboardResponseMapper(responses)
 
+            adapterWithList.submitList(dataPkl)
+            viewBind.rvItemPeople.apply {
+                if (adapter == null) {
+                    adapter = adapterWithList
+                }
+                if (layoutManager == null) {
+                    layoutManager = LinearLayoutManager(context)
+                }
+                adapter?.notifyDataSetChanged()
+            }
         }
     }
 
-        override fun onNothingSelected(parent: AdapterView<*>?) {
-            //notImplemented
-        }
-
-        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            //notImplemented
-        }
-
-        override fun populateLombaDanPklDashboard(responses: List<MahasiswaHistoryDashboardResponse>) {
-            //notImplemented
-        }
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        //notImplemented
     }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        //notImplemented
+    }
+
+    override fun populateLombaDanPklDashboard(responses: List<MahasiswaHistoryDashboardResponse>) {
+        //notImplemented
+    }
+}

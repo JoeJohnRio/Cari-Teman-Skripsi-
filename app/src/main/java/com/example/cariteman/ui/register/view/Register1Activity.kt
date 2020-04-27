@@ -8,7 +8,7 @@ import com.example.cariteman.data.model.*
 import com.example.cariteman.databinding.ActivityRegister1Binding
 import com.example.cariteman.ui.base.view.BaseActivity
 import com.example.cariteman.ui.register.presenter.RegisterMVPPresenter
-import com.example.cariteman.util.extension.addFragment
+import com.example.cariteman.util.extension.addFragmentWithBackStack
 import com.example.cariteman.util.extension.removeFragment
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
@@ -23,6 +23,25 @@ class Register1Activity : BaseActivity(), RegisterMVPView, HasSupportFragmentInj
     internal lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
     lateinit var viewBind: ActivityRegister1Binding
     lateinit var mahasiswa: Mahasiswa
+
+    override fun supportFragmentInjector() = fragmentDispatchingAndroidInjector
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_register_1)
+        presenter.onAttach(this)
+
+        viewBind = DataBindingUtil.setContentView(this, R.layout.activity_register_1)
+
+        viewBind.etNameLogin.setText(R.string.nama_login)
+        viewBind.etNimLogin.setText(R.string.nim_login)
+        viewBind.etEmailLogin.setText(R.string.email_login)
+        viewBind.etPasswordLogin.setText(R.string.password_login)
+        viewBind.etPasswordConfirmationLogin.setText(R.string.password_confirm_login)
+        viewBind.bNext.setOnClickListener {
+            presenter.onNextRegisterClick()
+        }
+    }
 
     override fun onDestroy() {
         presenter.onDetach()
@@ -42,7 +61,7 @@ class Register1Activity : BaseActivity(), RegisterMVPView, HasSupportFragmentInj
             it.password = viewBind.etPasswordLogin.text.toString()
             it.password_confirmation = viewBind.etPasswordConfirmationLogin.text.toString()
         }
-        supportFragmentManager.addFragment(
+        supportFragmentManager.addFragmentWithBackStack(
             R.id.cl_register_2,
             Register2Fragment.newInstance(),
             Register2Fragment.TAG
@@ -55,25 +74,6 @@ class Register1Activity : BaseActivity(), RegisterMVPView, HasSupportFragmentInj
             super.onBackPressed()
         } else {
             supportFragmentManager.removeFragment("Register1")
-        }
-    }
-
-    override fun supportFragmentInjector() = fragmentDispatchingAndroidInjector
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register_1)
-        presenter.onAttach(this)
-
-        viewBind = DataBindingUtil.setContentView(this, R.layout.activity_register_1)
-
-        viewBind.etNameLogin.setText(R.string.nama_login)
-        viewBind.etNimLogin.setText(R.string.nim_login)
-        viewBind.etEmailLogin.setText(R.string.email_login)
-        viewBind.etPasswordLogin.setText(R.string.password_login)
-        viewBind.etPasswordConfirmationLogin.setText(R.string.password_confirm_login)
-        viewBind.bNext.setOnClickListener {
-            presenter.onNextRegisterClick()
         }
     }
 

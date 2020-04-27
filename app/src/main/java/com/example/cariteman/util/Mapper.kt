@@ -75,7 +75,6 @@ object Mapper {
                         tanggalMulai = it.tanggalMulai,
                         tanggalSelesai = it.tanggalSelesai,
                         idMahasiswa = it.idMahasiswa,
-                        idBidangKerja = it.idBidangKerja,
                         createdAt = it.createdAt,
                         updatedAt = it.updatedAt,
                         relationBidangKerja = it.relationBidangKerja

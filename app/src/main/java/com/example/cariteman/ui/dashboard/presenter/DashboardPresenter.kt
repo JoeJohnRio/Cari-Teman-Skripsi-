@@ -19,19 +19,18 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(
     lateinit var mNetworkApi: INetworkApi
 
     override fun getHistoryDashboardLombaResponse() {
+        getView()?.showProgress()
         getView()?.let {
             addDisposable(mNetworkApi.getHistoryDashboardLomba(getKey()).subscribeOn(IoScheduler()).observeOn(
                 AndroidSchedulers.mainThread()
             )
                 .subscribe(
                     { result ->
-                        getView().let {
-                            if (!result.isNullOrEmpty()) {
-                                it?.populateLombaDanPklDashboard(result)
-                            }
-                        }
+                        it.hideProgress()
+                        it.populateLombaDanPklDashboard(result)
                     },
                     { error ->
+                        it.hideProgress()
                         Log.d("error", error.message + "test")
                     }
                 )
@@ -40,19 +39,18 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(
     }
 
     override fun getHistoryDashboardPklResponse() {
+        getView()?.showProgress()
         getView()?.let {
             addDisposable(mNetworkApi.getHistoryDashboardPkl(getKey()).subscribeOn(IoScheduler()).observeOn(
                 AndroidSchedulers.mainThread()
             )
                 .subscribe(
                     { result ->
-                        getView().let {
-                            if (!result.isNullOrEmpty()) {
-                                it?.populateLombaDanPklDashboard(result)
-                            }
-                        }
+                        it.populateLombaDanPklDashboard(result)
+                        it.hideProgress()
                     },
                     { error ->
+                        it.hideProgress()
                         Log.d("error", error.message + "test")
                     }
                 )
@@ -61,19 +59,18 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(
     }
 
     override fun getHistoryDashboardTempatPklResponse() {
+        getView()?.showProgress()
         getView()?.let {
             addDisposable(mNetworkApi.getHistoryDashboardTempatPkl(getKey()).subscribeOn(IoScheduler()).observeOn(
                 AndroidSchedulers.mainThread()
             )
                 .subscribe(
                     { result ->
-                        getView().let {
-                            if (!result.isNullOrEmpty()) {
-                                it?.populateLombaDanPklDashboard(result)
-                            }
-                        }
+                        it.hideProgress()
+                        it.populateLombaDanPklDashboard(result)
                     },
                     { error ->
+                        it.hideProgress()
                         Log.d("error", error.message + "test")
                     }
                 )
@@ -82,6 +79,7 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(
     }
 
     override fun getFavoriteFriendLombaResponse(isRefresh: Boolean, pageNumber: Int) {
+        getView()?.showProgress()
         getView()?.let {
             addDisposable(mNetworkApi.getDashboardFavoriteFriendLomba(
                 getKey(),
@@ -91,11 +89,13 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(
             )
                 .subscribe(
                     { result ->
-                        getView()?.populateFavoriteProfil(result.data!!)
-                        getView()?.setLastPageLimiter(result.lastPage!!)
+                        it.hideProgress()
+                        it.populateFavoriteProfil(result.data!!)
+                        it.setLastPageLimiter(result.lastPage!!)
                     },
                     { error ->
-                        it?.showMessageToast(error.message!!)
+                        it.hideProgress()
+                        it.showMessageToast(error.message!!)
                         Log.d("error", error.message + "test")
                     }
                 )
@@ -104,6 +104,7 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(
     }
 
     override fun getFavoriteFriendPklResponse(isRefresh: Boolean, pageNumber: Int) {
+        getView()?.showProgress()
         getView()?.let {
             addDisposable(mNetworkApi.getDashboardFavoriteFriendPkl(
                 getKey(),
@@ -113,11 +114,13 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(
             )
                 .subscribe(
                     { result ->
-                        getView()?.populateFavoriteProfil(result.data!!)
-                        getView()?.setLastPageLimiter(result.lastPage!!)
+                        it.hideProgress()
+                        it.populateFavoriteProfil(result.data!!)
+                        it.setLastPageLimiter(result.lastPage!!)
                     },
                     { error ->
-                        it?.showMessageToast(error.message!!)
+                        it.hideProgress()
+                        it.showMessageToast(error.message!!)
                         Log.d("error", error.message + "test")
                     }
                 )
@@ -126,25 +129,28 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(
     }
 
     override fun getFavoriteTempatPklResponse(isRefresh: Boolean, pageNumber: Int) {
+        getView()?.showProgress()
         getView()?.let {
-        addDisposable(mNetworkApi.getDashboardFavoriteTempatPkl(
-            getKey(),
-            pageNumber
-        ).subscribeOn(IoScheduler()).observeOn(
-            AndroidSchedulers.mainThread()
-        )
-            .subscribe(
-                { result ->
-                    getView()?.populateFavoriteProfil(result.data!!)
-                    getView()?.setLastPageLimiter(result.lastPage!!)
-                },
-                { error ->
-                    it?.showMessageToast(error.message!!)
-                    Log.d("error", error.message + "test")
-                }
+            addDisposable(mNetworkApi.getDashboardFavoriteTempatPkl(
+                getKey(),
+                pageNumber
+            ).subscribeOn(IoScheduler()).observeOn(
+                AndroidSchedulers.mainThread()
             )
-        )
-    }
+                .subscribe(
+                    { result ->
+                        it.hideProgress()
+                        it.populateFavoriteProfil(result.data!!)
+                        it.setLastPageLimiter(result.lastPage!!)
+                    },
+                    { error ->
+                        it.hideProgress()
+                        it.showMessageToast(error.message!!)
+                        Log.d("error", error.message + "test")
+                    }
+                )
+            )
+        }
     }
 
     override fun toggleFavoriteFriend(idTarget: Int, isActive: Boolean) {

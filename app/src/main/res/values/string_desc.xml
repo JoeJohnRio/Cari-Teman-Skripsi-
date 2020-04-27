@@ -35,6 +35,7 @@
     <string name="daftar_kelompok">Daftar Kelompok</string>
     <string name="daftar_kelompok_desc">Melihat, menambah, menghapus, dan
 mengganti kelompok.</string>
+    <string name="no_item_found">Sepertinya barang yang anda cari \n <b>belum</b> ada</string>
     <string name="pengalaman">Pengalaman</string>
     <string name="pengalaman_desc">Melihat, menambah, menghapus, dan
 mengganti pengalaman. </string>

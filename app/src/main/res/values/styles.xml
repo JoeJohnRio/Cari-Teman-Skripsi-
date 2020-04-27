@@ -31,7 +31,7 @@
     </style>
 
     <style name="ExposedDropdownMenu.DropdownItem">
-        <!-- sets the background of a single item, but background of dropdown still shows -->
+        <!-- sets the background of addFragmentWithBackStack single item, but background of dropdown still shows -->
         <!-- <item name="android:background">@color/dialog_bg_color</item>-->
         <item name="android:textColor">@color/grey_low</item>
         <item name="android:textStyle">bold</item>

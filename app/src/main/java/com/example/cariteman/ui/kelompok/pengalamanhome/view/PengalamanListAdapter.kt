@@ -1,18 +1,21 @@
-package com.example.cariteman.ui.dashboard.barudilihat.view
+package com.example.cariteman.ui.pengalaman.pengalamanhome.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cariteman.R
-import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
+import com.example.cariteman.data.model.BidangKerja
 import com.example.cariteman.data.model.PengalamanLombaOrganisasiResponse
-import com.example.cariteman.ui.dashboard.presenter.ProfilePresenter
-import com.example.cariteman.ui.profile.view.ProfileMVPView
+import com.example.cariteman.ui.bidangkerja.view.BidangKerjaDiffCallback
+import com.example.cariteman.ui.dashboard.barudilihat.view.ProfileDiffCallBack
+import com.example.cariteman.ui.dashboard.barudilihat.view.ProfilePengalaman
+import com.example.cariteman.ui.dashboard.barudilihat.view.ProfilePengalamanLombaViewHolder
+import com.example.cariteman.ui.dashboard.barudilihat.view.ProfilePengalamanOrganisasiViewHolder
 
-class PengalamanListAdapter(presenter: ProfilePresenter<ProfileMVPView>) :
+class PengalamanListAdapter(view: PengalamanHomeFragment) :
     ListAdapter<PengalamanLombaOrganisasiResponse, RecyclerView.ViewHolder>(ProfileDiffCallBack()) {
-    var presenterAdapter = presenter
+    var pengalamanActivity = view
 
     override fun getItemViewType(position: Int): Int {
         if (getItem(position).namaOrganisasi != null) {
@@ -27,7 +30,7 @@ class PengalamanListAdapter(presenter: ProfilePresenter<ProfileMVPView>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
         ProfilePengalaman.Organisasi -> ProfilePengalamanOrganisasiViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_pengalaman_profile ,
+                R.layout.item_pengalaman_profile_with_modify,
                 parent,
                 false
             )
@@ -35,7 +38,7 @@ class PengalamanListAdapter(presenter: ProfilePresenter<ProfileMVPView>) :
 
         ProfilePengalaman.LOMBA -> ProfilePengalamanLombaViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_pengalaman_profile ,
+                R.layout.item_pengalaman_profile_with_modify,
                 parent,
                 false
             )
@@ -44,20 +47,21 @@ class PengalamanListAdapter(presenter: ProfilePresenter<ProfileMVPView>) :
         else -> throw NullPointerException("View holder for type $viewType not found")
     }
 
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ProfilePengalamanOrganisasiViewHolder) {
             val response = getItem(position) as PengalamanLombaOrganisasiResponse
 
-            holder.bindHistory(response, presenterAdapter)
+            holder.bindPengalaman(response, pengalamanActivity)
         }else if (holder is ProfilePengalamanLombaViewHolder) {
             val response = getItem(position) as PengalamanLombaOrganisasiResponse
 
-            holder.bindHistory(response, presenterAdapter)
+            holder.bindPengalaman(response, pengalamanActivity)
         }
     }
 }
 
-object ProfilePengalaman {
+object Pengalaman {
     const val Organisasi = 0
     const val LOMBA = 1
     const val TEMPATPKL = 2

@@ -12,18 +12,10 @@ import androidx.fragment.app.FragmentActivity
 import android.app.Activity
 import com.example.cariteman.R
 import com.example.cariteman.data.model.*
-import com.example.cariteman.util.extension.addFragment
+import com.example.cariteman.util.extension.addFragmentWithBackStack
 import com.example.cariteman.ui.register.presenter.RegisterMVPPresenter
 import javax.inject.Inject
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import com.example.cariteman.util.Utils
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import okhttp3.ResponseBody
-import java.io.File
 
 
 class Register2Fragment : BaseFragment(), AdapterView.OnItemSelectedListener, RegisterMVPView {
@@ -61,7 +53,7 @@ class Register2Fragment : BaseFragment(), AdapterView.OnItemSelectedListener, Re
 //                    var file = File("image/ss.jpg")
 //                    var request : RequestBody = ResponseBody.create(MediaType.parse("image/*"), file)
 //                    var multipartBody: MultipartBody.Part = MultipartBody.Part.createFormData("newimage", file.name, request)
-//                    var someData: RequestBody = RequestBody.create(MediaType.parse("text/plain"), "this is a new image")
+//                    var someData: RequestBody = RequestBody.create(MediaType.parse("text/plain"), "this is addFragmentWithBackStack new image")
 
                     it.foto_profil = "https://cdn0-production-images-kly.akamaized.net/2Sr4_IgZ4EVApX_JbCljXD_ympY=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2714564/original/034635400_1548654389-Dx95B_oUUAANtWV.jpg"
                     it.foto_ktm = "https://cdn0-production-images-kly.akamaized.net/2Sr4_IgZ4EVApX_JbCljXD_ympY=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2714564/original/034635400_1548654389-Dx95B_oUUAANtWV.jpg"
@@ -75,7 +67,7 @@ class Register2Fragment : BaseFragment(), AdapterView.OnItemSelectedListener, Re
                     Toast.makeText(context, "" + it.jenis_kelamin, Toast.LENGTH_LONG).show()
                 }
 
-                fragmentManager?.addFragment(
+                fragmentManager?.addFragmentWithBackStack(
                     R.id.cl_register_next,
                     Register3Fragment.newInstance(),
                     Register3Fragment.TAG

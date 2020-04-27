@@ -31,12 +31,20 @@ object Endpoints {
 
     //rekomendasi
     const val totalPengalaman = "rekomendasi/count"
-    const val pengalamanLomba = "pengalaman/lomba"
-    const val pengalamanOrganisasi = "pengalaman/organisasi"
+//    const val pengalamanLomba = "pengalaman/lomba"
+//    const val pengalamanOrganisasi = "pengalaman/organisasi"
     const val profilInfoOthers = "rekomendasi/profil/{id}"
-    const val pengalamanLombaOrganisasi = "pengalaman/both/{id}"
+    const val pengalamanLombaOrganisasiWithRekomendasi = "pengalaman/bothwithrekomendasi/{id}"
+    const val pengalamanLombaOrganisasi= "pengalaman/both"
+    const val modifyPengalamanLomba= "pengalaman/lomba/modify"
+    const val modifyPengalamanOrganisasi= "pengalaman/organisasi/modify"
 
     //ulasanTempatPkl
     const val showUlasanTempat = "ulasantempatpkl/show"
     const val saveUlasanTempat = "ulasantempatpkl/save"
+
+    //bidangKerjaNama
+
+    const val bidangKerjaSearch = "bidangkerja/search/{namaBidangKerja}"
+    const val makeBidangKerja = "bidangkerja/make/{namaBidangKerja}"
 }

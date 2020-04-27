@@ -120,11 +120,18 @@
         android:background="@color/grey_low"
         />
 
+    <include
+        android:id="@+id/inc_item_kosong_baru_dilihat"
+        layout="@layout/view_not_found"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_item_people"
         tools:listitem="@layout/item_people_and_place"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 </LinearLayout>
 </layout>

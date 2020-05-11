@@ -74,28 +74,11 @@
             android:textSize="15sp"
             android:text="FILTER - LOMBA"/>
 
-        <include
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_more_than_little"
-            android:layout_marginEnd="@dimen/space_more_than_little"
-            android:layout_marginTop="@dimen/space_little"
-            layout="@layout/item_search_history"/>
 
-        <include
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/cl_search_home"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_more_than_little"
-            android:layout_marginEnd="@dimen/space_more_than_little"
-            android:layout_marginTop="@dimen/space_little"
-            layout="@layout/item_search_history"/>
+            android:layout_height="match_parent"/>
 
-        <include
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_more_than_little"
-            android:layout_marginEnd="@dimen/space_more_than_little"
-            android:layout_marginTop="@dimen/space_little"
-            layout="@layout/item_search_history"/>
     </LinearLayout>
 </layout>

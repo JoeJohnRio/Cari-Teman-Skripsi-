@@ -1,18 +1,16 @@
 package com.example.cariteman.di.builder
 
-import com.example.cariteman.ui.dashboard.DashboardModule
+import com.example.cariteman.ui.dashboard.*
 import com.example.cariteman.ui.dashboard.view.DashboardBottomViewActivity
-import com.example.cariteman.ui.dashboard.DashboardFragmentProvider
-import com.example.cariteman.ui.dashboard.PengalamanModule
-import com.example.cariteman.ui.dashboard.ProfileModule
 import com.example.cariteman.ui.dashboard.barudilihat.BaruDilihatModule
 import com.example.cariteman.ui.dashboard.barudilihat.view.BaruDilihatActivity
 import com.example.cariteman.ui.login.LoginActivityModule
 import com.example.cariteman.ui.login.view.LoginActivity
-import com.example.cariteman.ui.pengalaman.pengalamanhome.BidangKerjaFragmentProvider
-import com.example.cariteman.ui.pengalaman.pengalamanhome.PengalamanHomeFragmentProvider
+import com.example.cariteman.ui.pengalaman.pengalamanhome.*
 import com.example.cariteman.ui.pengalaman.tambahpengalaman.TambahPengalamanFragmentProvider
+import com.example.cariteman.ui.pengalaman.view.KelompokActivity
 import com.example.cariteman.ui.pengalaman.view.PengalamanActivity
+import com.example.cariteman.ui.pengalaman.view.SearchActivity
 import com.example.cariteman.ui.profile.view.ProfileActivity
 import com.example.cariteman.ui.register.RegisterFragmentProvider
 import com.example.cariteman.ui.register.RegisterActivityModule
@@ -44,4 +42,9 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = [(PengalamanModule::class), (TambahPengalamanFragmentProvider::class), (PengalamanHomeFragmentProvider::class), (BidangKerjaFragmentProvider::class)])
     abstract fun bindPengalamanActivity(): PengalamanActivity
 
+    @ContributesAndroidInjector(modules = [(KelompokModule::class), (KelompokHomeFragmentProvider::class), (TambahKelompok1FragmentProvider::class), (TambahKelompok2FragmentProvider::class), DetailKelompokFragmentProvider::class])
+    abstract fun bindKelompokActivity(): KelompokActivity
+
+    @ContributesAndroidInjector(modules = [(SearchModule::class)])
+    abstract fun bindSearchActivity(): SearchActivity
 }

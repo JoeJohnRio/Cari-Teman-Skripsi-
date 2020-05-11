@@ -10,11 +10,11 @@ import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
 import com.example.cariteman.data.model.RelationTempatPklFavorite
 import com.example.cariteman.databinding.FragmentProfileBinding
-import com.example.cariteman.ui.DaftarKelompokActivity
 import com.example.cariteman.ui.PengaturanActivity
 import com.example.cariteman.ui.UserProfilActivity
 import com.example.cariteman.ui.base.view.BaseFragment
 import com.example.cariteman.ui.dashboard.presenter.DashboardPresenter
+import com.example.cariteman.ui.pengalaman.view.KelompokActivity
 import com.example.cariteman.ui.pengalaman.view.PengalamanActivity
 import com.example.cariteman.util.Utils
 import javax.inject.Inject
@@ -60,7 +60,7 @@ class ProfileFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dash
         }
 
         viewBind.bDaftarKelompok.setOnClickListener{
-            val intent = Intent(context, DaftarKelompokActivity::class.java)
+            val intent = Intent(context, KelompokActivity::class.java)
             startActivity(intent)
         }
 

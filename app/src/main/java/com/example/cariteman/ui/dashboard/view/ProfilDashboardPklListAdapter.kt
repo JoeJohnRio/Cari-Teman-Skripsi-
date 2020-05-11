@@ -72,7 +72,7 @@ class DashboardHistoryViewHolder(override val containerView: View) :
 
         if (response != null) {
             if (response.mahasiswaTwoPkl != null) {
-                Glide.with(this.itemView.context).load(response.mahasiswaTwoPkl?.foto_ktm)
+                Glide.with(this.itemView.context).load(response.mahasiswaTwoPkl?.foto_profil)
                     .into(profilePic)
 
                 try {
@@ -106,7 +106,7 @@ class DashboardHistoryViewHolder(override val containerView: View) :
                     tvRecommendationTotal?.text =
                         response.mahasiswaTwoPkl?.countRekomendasi?.size.toString() + " of Recommendation" ?: "0 of Recommendation"
                 }
-                tvName?.text = "Organisasi - " + response.mahasiswaTwoPkl?.name ?: "no name"
+                tvName?.text = "${response.mahasiswaTwoPkl?.name}"
 
                 try {
                     tvRiwayatLomba?.text =
@@ -125,7 +125,7 @@ class DashboardHistoryViewHolder(override val containerView: View) :
                     tvJabatan?.text = "Belum mengikuti organisasi"
                 }
             } else if (response.mahasiswaTwoLomba != null) {
-                Glide.with(this.itemView.context).load(response.mahasiswaTwoLomba?.foto_ktm)
+                Glide.with(this.itemView.context).load(response.mahasiswaTwoLomba?.foto_profil)
                     .into(profilePic)
 
                 try {
@@ -191,7 +191,7 @@ class DashboardHistoryViewHolder(override val containerView: View) :
                     tvRecommendationTotal?.text =
                         response.tempatPkl?.countUlasanTempatPkl?.size.toString() + " of Recommendation" ?: "0 of Recommendation"
                 }
-                tvName?.text = "Organisasi - " + response.tempatPkl?.namaPerusahaan ?: "no name"
+                tvName?.text = "${response.tempatPkl?.namaPerusahaan}"
 
                 try {
                     tvRiwayatLomba?.text = response.tempatPkl?.lokasiPkl?.namaKota ?: "Kota Error"

@@ -44,7 +44,14 @@ object Endpoints {
     const val saveUlasanTempat = "ulasantempatpkl/save"
 
     //bidangKerjaNama
-
     const val bidangKerjaSearch = "bidangkerja/search/{namaBidangKerja}"
     const val makeBidangKerja = "bidangkerja/make/{namaBidangKerja}"
+
+    //Kelompok
+    const val showKelompok = "kelompok/show"
+    const val makeKelompok = "kelompok/make"
+    const val showFriendWithNamaOnly = "relationteman/showfriendnama"
+    const val addFriendToKelompok = "kelompok/addfriend"
+    const val showAnggotaKelompok = "kelompok/anggotakelompok/{id_kelompok}"
+    const val showFriendNotAdded = "kelompok/showfriendnotadded/{id_kelompok}"
 }

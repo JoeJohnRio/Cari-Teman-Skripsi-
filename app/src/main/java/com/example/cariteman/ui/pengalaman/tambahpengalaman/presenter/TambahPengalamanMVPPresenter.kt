@@ -6,9 +6,11 @@ import com.example.cariteman.ui.pengalaman.tambahpengalaman.view.TambahPengalama
 
 interface TambahPengalamanMVPPresenter <V: TambahPengalamanMVPView>: MVPPresenter<V>{
 
+    fun tambahPengalamanOrganisasi(response: PengalamanLombaOrganisasiResponse)
+
+    fun tambahPengalamanLomba(response: PengalamanLombaOrganisasiResponse)
+
     fun modifyPengalamanOrganisasi(response: PengalamanLombaOrganisasiResponse)
 
     fun modifyPengalamanLomba(response: PengalamanLombaOrganisasiResponse)
-
-
 }

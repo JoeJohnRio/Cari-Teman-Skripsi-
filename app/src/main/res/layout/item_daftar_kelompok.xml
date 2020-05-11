@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_little"
+        android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_kelompok_ic2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/pengalaman"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center|start"
+            android:layout_marginStart="@dimen/space_little">
+            <TextView
+                android:id="@+id/tv_nama_kelompok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PKL - Tim Berjalan Bersama"
+                android:textColor="@color/black_effective"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_more_than_normal" />
+            <TextView
+                android:id="@+id/tv_anggota_kelompok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Anda"
+                android:textColor="@color/black_effective"
+                android:textSize="@dimen/text_normal"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/space_little"
+                android:background="@color/black_effective"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

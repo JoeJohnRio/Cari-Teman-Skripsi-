@@ -4,6 +4,16 @@ import com.example.cariteman.data.model.*
 
 object Mapper {
 
+    fun temanToRelationKelompok(responses: ArrayList<DaftarTemanHanyaNama>): MutableList<RelationKelompok>{
+        var mutableListOfRelationKelompok = mutableListOf<RelationKelompok>()
+
+        for (response in responses){
+            mutableListOfRelationKelompok.add(RelationKelompok(idMahasiswa = response.id))
+        }
+
+        return mutableListOfRelationKelompok
+    }
+
     fun dashboardHistoryLombaResponseMapper(responses: List<MahasiswaHistoryDashboardResponse>): List<MahasiswaHistoryDashboardResponse?> {
         val responseDashboard: Array<MahasiswaHistoryDashboardResponse?> = arrayOfNulls(5)
         var index = 0

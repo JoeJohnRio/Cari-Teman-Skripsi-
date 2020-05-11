@@ -113,4 +113,31 @@ interface INetworkApi {
     @POST(Endpoints.makeBidangKerja)
     @Headers("No-Authentication: true")
     fun makeBidangKerja(@Header("app-key") string: String?, @Path("namaBidangKerja") namaBidangKerja: String?): Observable<BidangKerja>
+
+    //Kelompok
+    @GET(Endpoints.showKelompok)
+    @Headers("No-Authentication: true")
+    fun showKelompok(@Header("app-key") string: String?): Observable<MutableList<RelationKelompok>>
+
+    @GET(Endpoints.showFriendWithNamaOnly)
+    @Headers("No-Authentication: true")
+    fun showFriendWithNamaOnly(@Header("app-key") string: String?): Observable<MutableList<DaftarTemanHanyaNama>>
+
+    @GET(Endpoints.showFriendNotAdded)
+    @Headers("No-Authentication: true")
+    fun showFriendNotAdded(@Header("app-key") string: String?,  @Path("id_kelompok") idKelompok: Int?): Observable<MutableList<DaftarTemanHanyaNama>>
+
+    @POST(Endpoints.addFriendToKelompok)
+    @Headers("No-Authentication: true")
+    fun addFriendToKelompok(@Header("app-key") string: String?, @Body kelompok: Kelompok): Observable<RelationKelompok>
+
+    @POST(Endpoints.makeKelompok)
+    @Headers("No-Authentication: true")
+    fun makeKelompok(@Header("app-key") string: String?, @Body kelompok: Kelompok): Observable<Kelompok>
+
+    @GET(Endpoints.showAnggotaKelompok)
+    @Headers("No-Authentication: true")
+    fun showAnggotaKelompok(@Header("app-key") string: String?, @Path("id_kelompok") idKelompok: Int?): Observable<MutableList<AnggotaKelompok>>
+
+
 }

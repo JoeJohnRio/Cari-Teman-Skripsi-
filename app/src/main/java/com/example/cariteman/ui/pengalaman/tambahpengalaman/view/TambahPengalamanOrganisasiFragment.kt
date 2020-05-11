@@ -58,7 +58,7 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
 
         val bundle: Bundle? = arguments
         var idPengalaman = bundle?.getInt("idPengalaman", 0)
-        var tipePengalamanLombaFragment = bundle?.getString("tipePengalamanOrganisasi") ?: "tambah"
+        var tipePengalamanOrganisasi = bundle?.getString("tipePengalamanOrganisasi") ?: "tambah"
         var namaOrganisasi = bundle?.getString("namaOrganisasi") ?: ""
         var namaBidangKerja =
             bundle?.getString("namaBidangKerja") ?: ""
@@ -66,7 +66,7 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
         var tanggalMulai = bundle?.getString("tanggalMulai") ?: "$year-$month-$day"
         var tanggalSelesai = bundle?.getString("tanggalSelesai") ?: "$year-$month-$day"
 
-        if (tipePengalamanLombaFragment == "modify") {
+        if (tipePengalamanOrganisasi == "modify") {
             viewBind.etOrganisationName.setText(namaOrganisasi)
             viewBind.tvBidangKerja.text = namaBidangKerja
             viewBind.etDescription.setText(deskripsi)
@@ -76,6 +76,42 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
             viewBind.tvDateEnd.setText(
                 "${Utils.formatterDate.format(Utils.parserDate.parse("${tanggalSelesai}"))}"
             )
+
+            viewBind.mbSaveButton.setOnClickListener {
+                presenter.modifyPengalamanOrganisasi(
+                    PengalamanLombaOrganisasiResponse(
+                        idPengalamanOrganisasi = idPengalaman,
+                        namaOrganisasi = namaOrganisasi,
+                        deskripsi = deskripsi,
+                        gambar = urlGambar,
+                        tanggalMulai = tanggalMulai,
+                        tanggalSelesai = tanggalSelesai,
+                        idBidangKerja = bidangKerjaId
+                    )
+                )
+            }
+
+            viewBind.mbDeleteButton.visibility = View.VISIBLE
+
+            viewBind.mbDeleteButton.setOnClickListener {
+
+            }
+        }else if(tipePengalamanOrganisasi == "tambah"){
+            viewBind.mbSaveButton.setOnClickListener {
+                presenter.tambahPengalamanOrganisasi(
+                    PengalamanLombaOrganisasiResponse(
+                        idPengalamanOrganisasi = idPengalaman,
+                        namaOrganisasi = namaOrganisasi,
+                        deskripsi = deskripsi,
+                        gambar = urlGambar,
+                        tanggalMulai = tanggalMulai,
+                        tanggalSelesai = tanggalSelesai,
+                        idBidangKerja = bidangKerjaId
+                    )
+                )
+            }
+
+            viewBind.mbDeleteButton.visibility = View.GONE
         }
 
 
@@ -148,23 +184,6 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
                 bidangKerja,
                 BidangKerjaFragment.TAG
             )
-        }
-
-        viewBind.mbSaveButton.setOnClickListener {
-            presenter.modifyPengalamanLomba(
-                PengalamanLombaOrganisasiResponse(
-                    idPengalamanOrganisasi = idPengalaman,
-                    namaOrganisasi = namaOrganisasi,
-                    deskripsi = deskripsi,
-                    gambar = urlGambar,
-                    tanggalMulai = tanggalMulai,
-                    tanggalSelesai = tanggalSelesai,
-                    idBidangKerja = bidangKerjaId
-                )
-            )
-        }
-        viewBind.mbDeleteButton.setOnClickListener {
-
         }
 
         return viewBind.root

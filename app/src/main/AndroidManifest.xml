@@ -37,21 +37,11 @@
         </activity>
         <activity android:name=".ui.profile.view.ProfileActivity">
         </activity>
-        <activity android:name=".ui.DaftarKelompokActivity">
-        </activity>
         <activity android:name=".ui.pengalaman.view.PengalamanActivity">
         </activity>
         <activity android:name=".ui.PengaturanActivity">
         </activity>
         <activity android:name=".ui.MessageActivity">
-        </activity>
-        <activity android:name=".ui.DetailKelompokActivity">
-        </activity>
-        <activity android:name=".ui.TambahKelompok1Activity">
-        </activity>
-        <activity android:name=".ui.TambahKelompok2Activity">
-        </activity>
-        <activity android:name=".ui.TambahAnggota1Activity">
         </activity>
         <activity android:name=".ui.pengalaman.view.KelompokActivity">
         </activity>

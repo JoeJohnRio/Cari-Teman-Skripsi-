@@ -55,7 +55,7 @@ class TambahPengalamanLombaFragment : BaseFragment(),
 
         viewBind = FragmentTambahPengalamanLombaBinding.inflate(inflater, container, false)
         presenter.onAttach(this)
-        context.let {presenter.setKey(Utils.loadData(it!!))}
+        context.let { presenter.setKey(Utils.loadData(it!!)) }
 
         val bundle: Bundle? = arguments
         var idPengalaman = bundle?.getInt("idPengalaman", 0)
@@ -73,8 +73,41 @@ class TambahPengalamanLombaFragment : BaseFragment(),
             viewBind.tvDate.setText(
                 "${Utils.formatterDate.format(Utils.parserDate.parse("${tanggal}"))}"
             )
-        }
 
+            viewBind.mbSaveButton.setOnClickListener {
+                presenter.modifyPengalamanLomba(
+                    PengalamanLombaOrganisasiResponse(
+                        idPengalamanLomba = idPengalaman,
+                        namaKompetisi = namaKompetisi,
+                        deskripsi = deskripsi,
+                        gambar = urlGambar,
+                        tanggal = tanggal,
+                        idBidangKerja = bidangKerjaId
+                    )
+                )
+            }
+
+            viewBind.mbDeleteButton.visibility = View.VISIBLE
+
+            viewBind.mbDeleteButton.setOnClickListener {
+
+            }
+        } else if (tipePengalamanLombaFragment == "tambah") {
+            viewBind.mbDeleteButton.visibility = View.GONE
+
+            viewBind.mbSaveButton.setOnClickListener {
+                presenter.tambahPengalamanLomba(
+                    PengalamanLombaOrganisasiResponse(
+                        idPengalamanLomba = idPengalaman,
+                        namaKompetisi = namaKompetisi,
+                        deskripsi = deskripsi,
+                        gambar = urlGambar,
+                        tanggal = tanggal,
+                        idBidangKerja = bidangKerjaId
+                    )
+                )
+            }
+        }
 
         viewBind.etCompetitionName.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -133,22 +166,6 @@ class TambahPengalamanLombaFragment : BaseFragment(),
                 bidangKerja,
                 BidangKerjaFragment.TAG
             )
-        }
-
-        viewBind.mbSaveButton.setOnClickListener {
-            presenter.modifyPengalamanLomba(
-                PengalamanLombaOrganisasiResponse(
-                    idPengalamanLomba = idPengalaman,
-                    namaKompetisi = namaKompetisi,
-                    deskripsi = deskripsi,
-                    gambar = urlGambar,
-                    tanggal = tanggal,
-                    idBidangKerja = bidangKerjaId
-                )
-            )
-        }
-        viewBind.mbDeleteButton.setOnClickListener {
-
         }
 
         return viewBind.root

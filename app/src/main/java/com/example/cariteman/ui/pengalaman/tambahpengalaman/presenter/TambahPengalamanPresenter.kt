@@ -16,9 +16,40 @@ class TambahPengalamanPresenter<V : TambahPengalamanMVPView> @Inject internal co
     disposable: CompositeDisposable
 ) : BasePresenter<V>(schedulerProvider = schedulerProvider, compositeDisposable = disposable),
     TambahPengalamanMVPPresenter<V> {
-
     @Inject
     lateinit var mNetworkApi: INetworkApi
+
+    override fun tambahPengalamanOrganisasi(response: PengalamanLombaOrganisasiResponse) {
+        getView()?.let {
+            addDisposable(
+                mNetworkApi.modifyPengalamanOrganisasi(
+                    getKey(),
+                    response
+                ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                    { result ->
+                        it.getBackToPengalamanHome()
+                    }, { error ->
+                        it.showMessageToast(error.message!!)
+                    })
+            )
+        }
+    }
+
+    override fun tambahPengalamanLomba(response: PengalamanLombaOrganisasiResponse) {
+        getView()?.let {
+            addDisposable(
+                mNetworkApi.modifyPengalamanLomba(
+                    getKey(),
+                    response
+                ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                    { result ->
+                        it.getBackToPengalamanHome()
+                    }, { error ->
+                        it.showMessageToast(error.message!!)
+                    })
+            )
+        }
+    }
 
     override fun modifyPengalamanOrganisasi(response: PengalamanLombaOrganisasiResponse) {
         getView()?.let {
@@ -28,7 +59,6 @@ class TambahPengalamanPresenter<V : TambahPengalamanMVPView> @Inject internal co
                     response
                 ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
                     { result ->
-//                        it.showMessageToast(result)
                         it.getBackToPengalamanHome()
                     }, { error ->
                         it.showMessageToast(error.message!!)

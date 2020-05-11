@@ -64,7 +64,7 @@
             layout="@layout/item_tambah_pilih_teman"/>
 
         <LinearLayout
-            android:id="@+id/fab_add_kelompok"
+            android:id="@+id/fab_remove_anggota"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/black_effective"

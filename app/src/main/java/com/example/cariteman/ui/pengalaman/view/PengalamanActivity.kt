@@ -28,9 +28,8 @@ class PengalamanActivity: BaseActivity(), PengalamanMVPView, HasSupportFragmentI
     internal lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
     lateinit var viewBind: ActivityPengalamanBinding
-    lateinit var adapterPengalaman: PengalamanListAdapter
+
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentDispatchingAndroidInjector
-    lateinit var pengalaman: PengalamanLombaOrganisasiResponse
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

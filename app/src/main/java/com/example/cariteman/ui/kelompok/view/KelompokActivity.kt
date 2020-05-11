@@ -4,11 +4,15 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.cariteman.R
+import com.example.cariteman.data.model.DaftarTemanHanyaNama
 import com.example.cariteman.data.model.PengalamanLombaOrganisasiResponse
+import com.example.cariteman.databinding.ActivityKelompokBinding
 import com.example.cariteman.databinding.ActivityPengalamanBinding
 import com.example.cariteman.ui.base.view.BaseActivity
+import com.example.cariteman.ui.dashboard.presenter.KelompokPresenter
 import com.example.cariteman.ui.pengalaman.pengalamanhome.view.PengalamanListAdapter
 import com.example.cariteman.ui.dashboard.presenter.PengalamanPresenter
+import com.example.cariteman.ui.pengalaman.pengalamanhome.view.KelompokHomeFragment
 import com.example.cariteman.util.Utils
 import com.example.cariteman.util.extension.removeFragment
 import dagger.android.AndroidInjector
@@ -22,19 +26,18 @@ import com.example.cariteman.util.extension.addFragmentWithoutBackStack
 class KelompokActivity: BaseActivity(), KelompokMVPView, HasSupportFragmentInjector {
 
     @Inject
-    lateinit var presenter: PengalamanPresenter<PengalamanMVPView>
+    lateinit var presenter: KelompokPresenter<KelompokMVPView>
 
     @Inject
     internal lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
-    lateinit var viewBind: ActivityPengalamanBinding
-    lateinit var adapterPengalaman: PengalamanListAdapter
+    lateinit var viewBind: ActivityKelompokBinding
+
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentDispatchingAndroidInjector
-    lateinit var pengalaman: PengalamanLombaOrganisasiResponse
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBind = DataBindingUtil.setContentView(this, R.layout.activity_pengalaman)
+        viewBind = DataBindingUtil.setContentView(this, R.layout.activity_kelompok)
         presenter.onAttach(this)
         presenter.setKey(Utils.loadData(applicationContext))
 
@@ -43,9 +46,9 @@ class KelompokActivity: BaseActivity(), KelompokMVPView, HasSupportFragmentInjec
         }
 
         supportFragmentManager.addFragmentWithoutBackStack(
-            R.id.cl_tambah_pengalaman_lomba,
-            PengalamanHomeFragment.newInstance(),
-            PengalamanHomeFragment.TAG
+            R.id.cl_kelompok_home,
+            KelompokHomeFragment.newInstance(),
+            KelompokHomeFragment.TAG
         )
     }
 
@@ -57,7 +60,6 @@ class KelompokActivity: BaseActivity(), KelompokMVPView, HasSupportFragmentInjec
         } else {
             supportFragmentManager.popBackStack()
         }
-
     }
 
     override fun onFragmentAttached() {

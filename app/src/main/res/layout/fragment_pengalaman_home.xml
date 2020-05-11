@@ -64,12 +64,18 @@
                     tools:listitem="@layout/item_pengalaman_profile_with_modify"/>
             </androidx.cardview.widget.CardView>
 
-
-
-
-
         </LinearLayout>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_pengalaman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_white_24dp"
+            app:backgroundTint="@color/black_effective"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/space_decent"
+            android:layout_marginBottom="@dimen/space_big"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -10,6 +10,7 @@ import com.example.cariteman.data.model.PengalamanLombaOrganisasiResponse
 import com.example.cariteman.databinding.FragmentPengalamanHomeBinding
 import com.example.cariteman.ui.base.view.BaseFragment
 import com.example.cariteman.ui.pengalaman.pengalamanhome.presenter.PengalamanHomePresenter
+import com.example.cariteman.ui.pengalaman.tambahpengalaman.view.TambahPengalamanChooseFragment
 import com.example.cariteman.ui.pengalaman.tambahpengalaman.view.TambahPengalamanLombaFragment
 import com.example.cariteman.ui.pengalaman.tambahpengalaman.view.TambahPengalamanOrganisasiFragment
 import com.example.cariteman.util.Utils
@@ -44,6 +45,14 @@ class PengalamanHomeFragment : BaseFragment(),
             PengalamanListAdapter(this)
         presenter.getPengalamanLombaDanOrganisasi()
         modifyPengalaman = PengalamanLombaOrganisasiResponse()
+
+        viewBind.fabAddPengalaman.setOnClickListener {
+            getBaseActivity()?.supportFragmentManager?.addFragmentWithBackStack(
+                R.id.cl_tambah_pengalaman_lomba,
+                TambahPengalamanChooseFragment.newInstance(),
+                TambahPengalamanChooseFragment.TAG
+            )
+        }
 
         return viewBind.root
     }

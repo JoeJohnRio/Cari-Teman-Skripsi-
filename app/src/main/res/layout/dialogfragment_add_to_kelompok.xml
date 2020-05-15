@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginStart="@dimen/space_more_than_little"
+        android:layout_marginEnd="@dimen/space_more_than_little"
+        android:background="@color/white_high"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_more_than_little"
+            android:layout_marginTop="@dimen/space_little"
+            android:text="Tambahkan ke"
+            android:textColor="@color/black_effective"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list_kelompok_to_add"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/space_more_than_little"
+            android:layout_marginTop="@dimen/space_little"
+            android:layout_marginEnd="@dimen/space_more_than_little"
+            android:layout_marginBottom="@dimen/space_more_than_little"
+            tools:listitem="@layout/item_daftar_kelompok" />
+    </LinearLayout>
+
+</layout>

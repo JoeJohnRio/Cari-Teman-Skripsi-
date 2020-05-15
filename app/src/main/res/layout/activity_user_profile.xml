@@ -76,51 +76,133 @@
                     android:textColor="@color/blue_low"
                     android:layout_marginTop="@dimen/space_big"
                     android:gravity="center"/>
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="@dimen/space_little"
                     android:gravity="center">
 
-                    <Button
-                        android:id="@+id/b_kirim_pesan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:backgroundTint="@color/blue_low"
-                        android:paddingStart="15dp"
-                        android:paddingTop="2dp"
-                        android:paddingEnd="15dp"
-                        android:paddingBottom="2dp"
-                        android:text="@string/kirim_pesan"
-                        android:textAllCaps="true"
-                        android:textColor="@color/white_high"
-                        android:textSize="15sp"
-                        app:cornerRadius="4dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat" />
+                    <LinearLayout
+                        android:id="@+id/ll_status_zero"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/space_little"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:gravity="center">
+                        <Button
+                            android:id="@+id/b_add_friend"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/blue_low"
+                            android:paddingStart="15dp"
+                            android:paddingTop="2dp"
+                            android:paddingEnd="15dp"
+                            android:paddingBottom="2dp"
+                            android:text="+Teman"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white_high"
+                            android:textSize="15sp"
+                            app:cornerRadius="4dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat" />
 
-                    <Button
-                        android:id="@+id/b_tambah_kelompok"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:backgroundTint="@color/blue_low"
-                        android:paddingStart="15dp"
-                        android:paddingTop="2dp"
-                        android:paddingEnd="15dp"
-                        android:paddingBottom="2dp"
-                        android:text="@string/tambah_kelompok"
-                        android:textAllCaps="true"
-                        android:textColor="@color/white_high"
-                        android:textSize="15sp"
-                        app:cornerRadius="4dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat" />
+                    </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/ll_status_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/space_little"
+                        android:visibility="gone"
+                        android:gravity="center">
+                        <Button
+                            android:id="@+id/b_kirim_pesan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/blue_low"
+                            android:paddingStart="15dp"
+                            android:paddingTop="2dp"
+                            android:paddingEnd="15dp"
+                            android:paddingBottom="2dp"
+                            android:text="@string/kirim_pesan"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white_high"
+                            android:textSize="15sp"
+                            app:cornerRadius="4dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat" />
 
-                </LinearLayout>
+                        <Button
+                            android:id="@+id/b_tambah_kelompok"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/blue_low"
+                            android:paddingStart="15dp"
+                            android:paddingTop="2dp"
+                            android:paddingEnd="15dp"
+                            android:paddingBottom="2dp"
+                            android:text="@string/tambah_kelompok"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white_high"
+                            android:textSize="15sp"
+                            app:cornerRadius="4dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_status_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/space_little"
+                        android:visibility="gone"
+                        android:gravity="center">
+                        <Button
+                            android:id="@+id/b_accept_friend"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/blue_low"
+                            android:paddingStart="15dp"
+                            android:paddingTop="2dp"
+                            android:paddingEnd="15dp"
+                            android:paddingBottom="2dp"
+                            android:text="ACCEPT"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white_high"
+                            android:textSize="15sp"
+                            app:cornerRadius="4dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat" />
+
+                        <Button
+                            android:id="@+id/b_reject_friend"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/white_low"
+                            android:paddingStart="15dp"
+                            android:paddingTop="2dp"
+                            android:paddingEnd="15dp"
+                            android:paddingBottom="2dp"
+                            android:text="REJECT"
+                            android:textAllCaps="true"
+                            android:textColor="@color/blue_low"
+                            android:textSize="15sp"
+                            app:cornerRadius="4dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat" />
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

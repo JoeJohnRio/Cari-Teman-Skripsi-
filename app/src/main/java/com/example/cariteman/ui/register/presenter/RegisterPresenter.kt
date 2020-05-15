@@ -16,7 +16,11 @@ import io.reactivex.internal.schedulers.IoScheduler
 import javax.inject.Inject
 import kotlin.coroutines.coroutineContext
 
-class RegisterPresenter<V : RegisterMVPView> @Inject internal constructor(schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V>(schedulerProvider = schedulerProvider, compositeDisposable = disposable), RegisterMVPPresenter<V> {
+class RegisterPresenter<V : RegisterMVPView> @Inject internal constructor(
+    schedulerProvider: SchedulerProvider,
+    disposable: CompositeDisposable
+) : BasePresenter<V>(schedulerProvider = schedulerProvider, compositeDisposable = disposable),
+    RegisterMVPPresenter<V> {
 
     @Inject
     lateinit var mNetworkApi: INetworkApi
@@ -25,7 +29,7 @@ class RegisterPresenter<V : RegisterMVPView> @Inject internal constructor(schedu
     var programStudiResponse: List<ProgramStudiResponse> = listOf(ProgramStudiResponse(id = 0))
     var keminatanResponse: List<KeminatanResponse> = listOf(KeminatanResponse(id = 0))
 
-    override fun onNextRegisterClick(){
+    override fun onNextRegisterClick() {
         val bundle = Bundle()
         bundle.putString("message", "From Activity")
         var fragment2: Register2Fragment = Register2Fragment.newInstance()
@@ -33,12 +37,13 @@ class RegisterPresenter<V : RegisterMVPView> @Inject internal constructor(schedu
         getView()?.openRegisterFragment()
     }
 
-    override fun sendMahasiswaData(mahasiswa: Mahasiswa){
+    override fun sendMahasiswaData(mahasiswa: Mahasiswa) {
 //        var mahasiswaTwoPkl = Mapper.mahasiswaToMahasiswaResponseMapper(mahasiswa)
         getView()?.let {
             it.showProgress()
-            addDisposable(mNetworkApi.registerApi(mahasiswa = mahasiswa).subscribeOn(IoScheduler()).
-                observeOn(AndroidSchedulers.mainThread())
+            addDisposable(mNetworkApi.registerApi(mahasiswa = mahasiswa).subscribeOn(IoScheduler()).observeOn(
+                AndroidSchedulers.mainThread()
+            )
                 .subscribe(
                     { result ->
                         getView()?.showMessageToast("Sedang direview")
@@ -55,7 +60,9 @@ class RegisterPresenter<V : RegisterMVPView> @Inject internal constructor(schedu
 
     override fun getFakultasResponse() {
         getView()?.let {
-            addDisposable(mNetworkApi.getFakultas().subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread())
+            addDisposable(mNetworkApi.getFakultas().subscribeOn(IoScheduler()).observeOn(
+                AndroidSchedulers.mainThread()
+            )
                 .subscribe(
                     { result ->
                         getView().let {
@@ -64,12 +71,15 @@ class RegisterPresenter<V : RegisterMVPView> @Inject internal constructor(schedu
                     },
                     { error ->
                     }
-                ) ) }
+                ))
+        }
     }
 
     override fun getProgramStudiResponse(id: Int) {
         getView()?.let {
-            addDisposable(mNetworkApi.getProgramStudi(id = id).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread())
+            addDisposable(mNetworkApi.getProgramStudi(id = id).subscribeOn(IoScheduler()).observeOn(
+                AndroidSchedulers.mainThread()
+            )
                 .subscribe(
                     { result ->
                         programStudiResponse = result
@@ -79,18 +89,21 @@ class RegisterPresenter<V : RegisterMVPView> @Inject internal constructor(schedu
                     },
                     { error ->
                     }
-                ) ) }
+                ))
+        }
     }
 
     override fun getKeminatanResponse(position: Int) {
         getView()?.let {
             val id: Int?
-            if (position == 0){
+            if (position == 0) {
                 id = 0
-            }else{
-                id = programStudiResponse[position-1].id
+            } else {
+                id = programStudiResponse[position - 1].id
             }
-            addDisposable(mNetworkApi.getKeminatan(id = id).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread())
+            addDisposable(mNetworkApi.getKeminatan(id = id).subscribeOn(IoScheduler()).observeOn(
+                AndroidSchedulers.mainThread()
+            )
                 .subscribe(
                     { result ->
                         getView().let {
@@ -99,7 +112,8 @@ class RegisterPresenter<V : RegisterMVPView> @Inject internal constructor(schedu
                     },
                     { error ->
                     }
-                ) ) }
+                ))
+        }
     }
 
 }

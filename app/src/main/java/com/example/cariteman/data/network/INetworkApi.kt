@@ -85,9 +85,17 @@ interface INetworkApi {
     @Headers("No-Authentication: true")
     fun getProfilInfoOthers(@Header("app-key") string: String?, @Path("id") id: Int?): Observable<ProfilInfoOthers>
 
+    @POST(Endpoints.profilInfoOthersItself)
+    @Headers("No-Authentication: true")
+    fun getProfilInfoOthersItself(@Header("app-key") string: String?): Observable<ProfilInfoOthers>
+
     @GET(Endpoints.pengalamanLombaOrganisasiWithRekomendasi)
     @Headers("No-Authentication: true")
     fun getPengalamanAndRekomendasi(@Header("app-key") string: String?, @Path("id") id: Int?): Observable<ProfilePengalamanRekomendasi>
+
+    @POST(Endpoints.pengalamanLombaOrganisasiWithRekomendasiItself)
+    @Headers("No-Authentication: true")
+    fun getPengalamanAndRekomendasiItself(@Header("app-key") string: String?): Observable<ProfilePengalamanRekomendasi>
 
     @GET(Endpoints.pengalamanLombaOrganisasi)
     @Headers("No-Authentication: true")
@@ -114,6 +122,15 @@ interface INetworkApi {
     @Headers("No-Authentication: true")
     fun makeBidangKerja(@Header("app-key") string: String?, @Path("namaBidangKerja") namaBidangKerja: String?): Observable<BidangKerja>
 
+    //SkillHobi
+    @GET(Endpoints.skillHobiSearch)
+    @Headers("No-Authentication: true")
+    fun getSkillhobiSearch(@Header("app-key") string: String?, @Path("namaSkillhobi") namaBidangKerja: String?): Observable<MutableList<SkillHobi>>
+
+    @POST(Endpoints.skillHobiKerja)
+    @Headers("No-Authentication: true")
+    fun makeSkillHobi(@Header("app-key") string: String?, @Path("namaSkillhobi") namaBidangKerja: String?): Observable<SkillHobi>
+
     //Kelompok
     @GET(Endpoints.showKelompok)
     @Headers("No-Authentication: true")
@@ -139,5 +156,20 @@ interface INetworkApi {
     @Headers("No-Authentication: true")
     fun showAnggotaKelompok(@Header("app-key") string: String?, @Path("id_kelompok") idKelompok: Int?): Observable<MutableList<AnggotaKelompok>>
 
+    @POST(Endpoints.searchMahasiswa)
+    @Headers("No-Authentication: true")
+    fun searchMahasiswa(@Header("app-key") string: String?, @Body mahasiswaSearch: MahasiswaSearchFilter?): Observable<SearchFilter>
+
+    @POST(Endpoints.searchTempatPkl)
+    @Headers("No-Authentication: true")
+    fun searchTempatPkl(@Header("app-key") string: String?, @Body tempatPklSearch: TempatPklSearchFilter?): Observable<SearchFilter>
+
+    @POST(Endpoints.addSearchHistory)
+    @Headers("No-Authentication: true")
+    fun addSearchHistory(@Header("app-key") string: String?, @Body searchHistory: SearchHistory?): Observable<SearchHistory>
+
+    @GET(Endpoints.showSearchHistory)
+    @Headers("No-Authentication: true")
+    fun showSearchHistory(@Header("app-key") string: String?): Observable<MutableList<SearchHistory>>
 
 }

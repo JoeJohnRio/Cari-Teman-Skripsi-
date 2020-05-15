@@ -3,6 +3,7 @@ package com.example.cariteman.util
 import android.content.Context
 import android.content.res.Resources
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
@@ -27,6 +28,11 @@ object Utils {
         turnDown1.setTextColor(resources.getColor(colorOn))
     }
 
+    fun toggleVisibility(viewWantToVisible: View, viewWantToGone: View){
+        viewWantToGone.visibility = View.GONE
+        viewWantToVisible.visibility = View.VISIBLE
+    }
+
     fun toggleBoolean(intBoolean: Int): Int{
         if (intBoolean==1){
             return 0
@@ -40,6 +46,14 @@ object Utils {
             return true
         }else{
             return false
+        }
+    }
+
+    fun booleanToInt(booleanVar: Boolean): Int{
+        if (booleanVar){
+            return 1
+        }else{
+            return 0
         }
     }
 

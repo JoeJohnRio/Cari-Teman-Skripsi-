@@ -8,4 +8,7 @@ interface ProfileMVPView : MVPView{
 
     fun setPengalamanAndRekomendasi(rekomendasi: MutableList<Rekomendasi>?, rekomendasipengalamanLombaOrganisasiResponse: MutableList<PengalamanLombaOrganisasiResponse>)
 
+    fun setFriendStatusView(profilInfoOthers: ProfilInfoOthers)
+
+    fun handleShowKelompok(response: MutableList<RelationKelompok>)
 }

@@ -7,6 +7,7 @@ import com.example.cariteman.ui.dashboard.barudilihat.view.BaruDilihatActivity
 import com.example.cariteman.ui.login.LoginActivityModule
 import com.example.cariteman.ui.login.view.LoginActivity
 import com.example.cariteman.ui.pengalaman.pengalamanhome.*
+import com.example.cariteman.ui.pengalaman.pengalamanhome.view.SkillHobiFragment
 import com.example.cariteman.ui.pengalaman.tambahpengalaman.TambahPengalamanFragmentProvider
 import com.example.cariteman.ui.pengalaman.view.KelompokActivity
 import com.example.cariteman.ui.pengalaman.view.PengalamanActivity
@@ -15,6 +16,7 @@ import com.example.cariteman.ui.profile.view.ProfileActivity
 import com.example.cariteman.ui.register.RegisterFragmentProvider
 import com.example.cariteman.ui.register.RegisterActivityModule
 import com.example.cariteman.ui.register.view.Register1Activity
+import com.example.cariteman.ui.search.frontprofile.FrontProfileFragmentProvider
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -45,6 +47,6 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = [(KelompokModule::class), (KelompokHomeFragmentProvider::class), (TambahKelompok1FragmentProvider::class), (TambahKelompok2FragmentProvider::class), DetailKelompokFragmentProvider::class])
     abstract fun bindKelompokActivity(): KelompokActivity
 
-    @ContributesAndroidInjector(modules = [(SearchModule::class)])
+    @ContributesAndroidInjector(modules = [(SearchModule::class), (FilterSearchFragmentProvider::class), (FrontProfileFragmentProvider::class), (SearchHistoryFragmentProvider::class), (SkillHobiFragmentProvider::class)])
     abstract fun bindSearchActivity(): SearchActivity
 }

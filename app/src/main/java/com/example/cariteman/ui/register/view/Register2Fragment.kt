@@ -50,10 +50,6 @@ class Register2Fragment : BaseFragment(), AdapterView.OnItemSelectedListener, Re
                 Toast.makeText(context, "Isi informasi terlebih dahulu", Toast.LENGTH_LONG).show()
             } else {
                 (contextActivity as Register1Activity).mahasiswa.let {
-//                    var file = File("image/ss.jpg")
-//                    var request : RequestBody = ResponseBody.create(MediaType.parse("image/*"), file)
-//                    var multipartBody: MultipartBody.Part = MultipartBody.Part.createFormData("newimage", file.name, request)
-//                    var someData: RequestBody = RequestBody.create(MediaType.parse("text/plain"), "this is addFragmentWithBackStack new image")
 
                     it.foto_profil = "https://cdn0-production-images-kly.akamaized.net/2Sr4_IgZ4EVApX_JbCljXD_ympY=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2714564/original/034635400_1548654389-Dx95B_oUUAANtWV.jpg"
                     it.foto_ktm = "https://cdn0-production-images-kly.akamaized.net/2Sr4_IgZ4EVApX_JbCljXD_ympY=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2714564/original/034635400_1548654389-Dx95B_oUUAANtWV.jpg"
@@ -67,7 +63,7 @@ class Register2Fragment : BaseFragment(), AdapterView.OnItemSelectedListener, Re
                     Toast.makeText(context, "" + it.jenis_kelamin, Toast.LENGTH_LONG).show()
                 }
 
-                fragmentManager?.addFragmentWithBackStack(
+                activity?.supportFragmentManager?.addFragmentWithBackStack(
                     R.id.cl_register_next,
                     Register3Fragment.newInstance(),
                     Register3Fragment.TAG

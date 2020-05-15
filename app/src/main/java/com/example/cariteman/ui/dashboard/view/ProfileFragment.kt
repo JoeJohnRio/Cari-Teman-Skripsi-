@@ -16,6 +16,7 @@ import com.example.cariteman.ui.base.view.BaseFragment
 import com.example.cariteman.ui.dashboard.presenter.DashboardPresenter
 import com.example.cariteman.ui.pengalaman.view.KelompokActivity
 import com.example.cariteman.ui.pengalaman.view.PengalamanActivity
+import com.example.cariteman.ui.profile.view.ProfileActivity
 import com.example.cariteman.util.Utils
 import javax.inject.Inject
 
@@ -55,7 +56,8 @@ class ProfileFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dash
         }
 
         viewBind.bProfilSaya.setOnClickListener {
-            val intent = Intent(context, UserProfilActivity::class.java)
+            val intent = Intent(context, ProfileActivity::class.java)
+            intent.putExtra("isSearchingItself", true)
             startActivity(intent)
         }
 

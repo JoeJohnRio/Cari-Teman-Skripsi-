@@ -25,9 +25,7 @@
         </activity>
         <activity android:name=".ui.RecommendationActivity">
         </activity>
-        <activity android:name=".ui.SearchActivity">
-        </activity>
-        <activity android:name=".ui.filter.FilterDialog">
+        <activity android:name=".ui.pengalaman.view.SearchActivity">
         </activity>
         <activity android:name=".ui.dashboard.view.DashboardBottomViewActivity">
         </activity>

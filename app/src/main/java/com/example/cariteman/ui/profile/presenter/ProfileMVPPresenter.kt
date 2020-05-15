@@ -9,4 +9,10 @@ interface ProfileMVPPresenter <V : ProfileMVPView> : MVPPresenter<V> {
 
     fun getPengalamanAndRekomendasi(id: Int)
 
+    fun getProfilInfoOthersItself()
+
+    fun getPengalamanAndRekomendasiItself()
+
+    fun showKelompok()
+
 }

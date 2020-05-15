@@ -34,7 +34,9 @@ object Endpoints {
 //    const val pengalamanLomba = "pengalaman/lomba"
 //    const val pengalamanOrganisasi = "pengalaman/organisasi"
     const val profilInfoOthers = "rekomendasi/profil/{id}"
+    const val profilInfoOthersItself = "rekomendasi/profil/itself"
     const val pengalamanLombaOrganisasiWithRekomendasi = "pengalaman/bothwithrekomendasi/{id}"
+    const val pengalamanLombaOrganisasiWithRekomendasiItself = "pengalaman/bothwithrekomendasi/itself"
     const val pengalamanLombaOrganisasi= "pengalaman/both"
     const val modifyPengalamanLomba= "pengalaman/lomba/modify"
     const val modifyPengalamanOrganisasi= "pengalaman/organisasi/modify"
@@ -46,6 +48,16 @@ object Endpoints {
     //bidangKerjaNama
     const val bidangKerjaSearch = "bidangkerja/search/{namaBidangKerja}"
     const val makeBidangKerja = "bidangkerja/make/{namaBidangKerja}"
+
+    //skillHobi
+    const val skillHobiSearch = "skillhobi/search/{namaSkillhobi}"
+    const val skillHobiKerja = "skillhobi/make/{namaSkillhobi}"
+
+    //search
+    const val searchMahasiswa = "search/mahasiswa"
+    const val searchTempatPkl = "search/tempatpkl"
+    const val addSearchHistory = "search/add"
+    const val showSearchHistory = "search/show"
 
     //Kelompok
     const val showKelompok = "kelompok/show"

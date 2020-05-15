@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cariteman.R
 import com.example.cariteman.data.model.BidangKerja
-import com.example.cariteman.data.model.PengalamanLombaOrganisasiResponse
 import com.example.cariteman.ui.bidangkerja.view.BidangKerjaDiffCallback
+import com.example.cariteman.ui.bidangkerja.view.SkillHobiDiffCallback
 import com.example.cariteman.ui.bidangkerja.view.BidangKerjaViewHolder
 
 class BidangKerjaListAdapter(view: BidangKerjaFragment) :

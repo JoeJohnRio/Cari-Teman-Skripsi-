@@ -38,7 +38,7 @@ class KelompokHomeFragment : BaseFragment(),
         viewBind = FragmentDaftarKelompokBinding.inflate(inflater, container, false)
         presenter.onAttach(this)
         context.let {presenter.setKey(Utils.loadData(it!!))}
-        adapterPengalaman =DaftarKelompokListAdapter(this)
+        adapterPengalaman =DaftarKelompokListAdapter(type = 0, kelompokHomeFragment = this)
 
         presenter.showKelompok()
 

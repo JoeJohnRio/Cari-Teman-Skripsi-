@@ -55,5 +55,52 @@ class ProfilePresenter<V : ProfileMVPView> @Inject internal constructor(
         )
     }
 
+    override fun getProfilInfoOthersItself() {
+        addDisposable(
+            mNetworkApi.getProfilInfoOthersItself(
+                getKey()
+            ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe({ response ->
+                getView()?.setInfoProfil(response)
+            },
+                { error ->
+                    getView()?.showMessageToast(error.message!!)
+                })
+        )
+    }
+
+    override fun getPengalamanAndRekomendasiItself() {
+        getView()?.showProgress()
+        addDisposable(
+            mNetworkApi.getPengalamanAndRekomendasiItself(
+                getKey()
+            ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe({ response ->
+                getView()?.setPengalamanAndRekomendasi(
+                    response.rekomendasi,
+                    Mapper.pengalamanLombaMapper(response.pengalaman)
+                )
+                getView()?.hideProgress()
+            },
+                { error ->
+                    Log.d("error", "" + error.message!!)
+                    getView()?.showMessageToast(error.message!!)
+                    getView()?.hideProgress()
+                })
+        )
+    }
+
+    override fun showKelompok() {
+        getView()?.let {
+            addDisposable(mNetworkApi.showKelompok(getKey()).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                {response->
+                    it.handleShowKelompok(response)
+                },
+                {
+                        error->
+                    it.showMessageToast(error.message!!)
+                }
+            ))
+        }
+    }
+
 
 }

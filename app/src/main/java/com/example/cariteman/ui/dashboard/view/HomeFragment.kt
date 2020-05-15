@@ -16,6 +16,7 @@ import com.example.cariteman.ui.*
 import com.example.cariteman.ui.dashboard.barudilihat.view.BaruDilihatActivity
 import com.example.cariteman.ui.base.view.BaseFragment
 import com.example.cariteman.ui.dashboard.presenter.DashboardPresenter
+import com.example.cariteman.ui.pengalaman.view.SearchActivity
 import com.example.cariteman.util.Mapper
 import com.example.cariteman.util.Utils
 import com.example.cariteman.util.Utils.toggleThreeButton

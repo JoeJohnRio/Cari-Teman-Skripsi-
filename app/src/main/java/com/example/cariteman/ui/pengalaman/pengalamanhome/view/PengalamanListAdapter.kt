@@ -5,9 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cariteman.R
-import com.example.cariteman.data.model.BidangKerja
 import com.example.cariteman.data.model.PengalamanLombaOrganisasiResponse
-import com.example.cariteman.ui.bidangkerja.view.BidangKerjaDiffCallback
 import com.example.cariteman.ui.dashboard.barudilihat.view.ProfileDiffCallBack
 import com.example.cariteman.ui.dashboard.barudilihat.view.ProfilePengalaman
 import com.example.cariteman.ui.dashboard.barudilihat.view.ProfilePengalamanLombaViewHolder

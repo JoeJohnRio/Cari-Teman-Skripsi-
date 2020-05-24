@@ -209,6 +209,7 @@ class FilterSearchFragment : BaseFragment(),
         val currentType = (activity as SearchActivity).filterDetails.preferensi ?: 0
         if (currentType == 0){
             type = 0
+            (activity as SearchActivity).filterSearchButton.text = "FILTER - PKL"
             Utils.toggleThreeButton(
                 viewBind.bTypeFilterPkl,
                 viewBind.bTypeFilterLomba,
@@ -219,6 +220,7 @@ class FilterSearchFragment : BaseFragment(),
             )
         }else if (currentType == 1){
             type = 1
+            (activity as SearchActivity).filterSearchButton.text = "FILTER - LOMBA"
             Utils.toggleThreeButton(
                 viewBind.bTypeFilterLomba,
                 viewBind.bTypeFilterPkl,
@@ -229,6 +231,7 @@ class FilterSearchFragment : BaseFragment(),
             )
         }else if (currentType == 2){
             type = 2
+            (activity as SearchActivity).filterSearchButton.text = "FILTER - TEMPAT PKL"
             Utils.toggleThreeButton(
                 viewBind.bTypeFilterTempatPkl,
                 viewBind.bTypeFilterPkl,
@@ -242,6 +245,7 @@ class FilterSearchFragment : BaseFragment(),
         viewBind.bTypeFilterPkl.setOnClickListener {
             if (type != 0) {
                 type = 0
+                (activity as SearchActivity).filterSearchButton.text = "FILTER - PKL"
                 Utils.toggleThreeButton(
                     viewBind.bTypeFilterPkl,
                     viewBind.bTypeFilterLomba,
@@ -256,6 +260,7 @@ class FilterSearchFragment : BaseFragment(),
         viewBind.bTypeFilterLomba.setOnClickListener {
             if (type != 1) {
                 type = 1
+                (activity as SearchActivity).filterSearchButton.text = "FILTER - LOMBA"
                 Utils.toggleThreeButton(
                     viewBind.bTypeFilterLomba,
                     viewBind.bTypeFilterPkl,
@@ -270,6 +275,7 @@ class FilterSearchFragment : BaseFragment(),
         viewBind.bTypeFilterTempatPkl.setOnClickListener {
             if (type != 2) {
                 type = 2
+                (activity as SearchActivity).filterSearchButton.text = "FILTER - TEMPAT PKL"
                 Utils.toggleThreeButton(
                     viewBind.bTypeFilterTempatPkl,
                     viewBind.bTypeFilterPkl,
@@ -280,6 +286,10 @@ class FilterSearchFragment : BaseFragment(),
                 )
             }
         }
+    }
+
+    override fun backstack() {
+        activity?.onBackPressed()
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

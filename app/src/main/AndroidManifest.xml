@@ -29,7 +29,7 @@
         </activity>
         <activity android:name=".ui.dashboard.view.DashboardBottomViewActivity">
         </activity>
-        <activity android:name=".ui.register.view.Register1Activity">
+        <activity android:name=".ui.register.view.RegisterActivity">
         </activity>
         <activity android:name=".ui.UserProfilActivity">
         </activity>
@@ -40,6 +40,8 @@
         <activity android:name=".ui.PengaturanActivity">
         </activity>
         <activity android:name=".ui.MessageActivity">
+        </activity>
+        <activity android:name=".ui.profile.tempatpklprofile.view.ProfileTempatPklActivity">
         </activity>
         <activity android:name=".ui.pengalaman.view.KelompokActivity">
         </activity>

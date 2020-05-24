@@ -12,10 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cariteman.R
 import com.example.cariteman.data.model.FrontProfileResponse
-import com.example.cariteman.ui.dashboard.presenter.SearchPresenter
 import com.example.cariteman.ui.pengalaman.pengalamanhome.presenter.FrontProfilePresenter
-import com.example.cariteman.ui.pengalaman.view.SearchMVPView
-import com.example.cariteman.ui.profile.view.ProfileActivity
+import com.example.cariteman.ui.profile.tempatpklprofile.view.ProfileTempatPklActivity
 import com.example.cariteman.ui.search.filtersearch.view.FrontProfileMVPView
 import com.example.cariteman.util.Utils
 import kotlinx.android.extensions.LayoutContainer
@@ -47,11 +45,9 @@ class FrontProfileTempatPklViewHolder(override val containerView: View) :
         response: FrontProfileResponse,
         presenter: FrontProfilePresenter<FrontProfileMVPView>
     ) {
-
         itemView.setOnClickListener {
-            val intent =
-                Intent(itemView.context, ProfileActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.putExtra("MAHASISWA_ID", response.idMahasiswaTwo)
+            val intent = Intent(itemView.context, ProfileTempatPklActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.putExtra("tempatPklId", response.tempatPkl?.id)
             itemView.context.startActivity(intent)
         }
 

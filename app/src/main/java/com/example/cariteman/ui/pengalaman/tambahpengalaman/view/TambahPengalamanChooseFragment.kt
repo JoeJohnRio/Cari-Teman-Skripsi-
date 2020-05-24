@@ -35,9 +35,9 @@ class TambahPengalamanChooseFragment : BaseFragment(),
 
         viewBind = FragmentPengalamanTambahBinding.inflate(inflater, container, false)
         presenter.onAttach(this)
-        context.let {presenter.setKey(Utils.loadData(it!!))}
+        context.let { presenter.setKey(Utils.loadData(it!!)) }
 
-        viewBind.llPengalamanLomba.setOnClickListener{
+        viewBind.llPengalamanLomba.setOnClickListener {
             getBaseActivity()?.supportFragmentManager?.addFragmentWithBackStack(
                 R.id.cl_tambah_pengalaman_lomba,
                 TambahPengalamanLombaFragment.newInstance(),
@@ -45,7 +45,7 @@ class TambahPengalamanChooseFragment : BaseFragment(),
             )
         }
 
-        viewBind.llPengalamanOrganisasi.setOnClickListener{
+        viewBind.llPengalamanOrganisasi.setOnClickListener {
             getBaseActivity()?.supportFragmentManager?.addFragmentWithBackStack(
                 R.id.cl_tambah_pengalaman_lomba,
                 TambahPengalamanOrganisasiFragment.newInstance(),
@@ -54,6 +54,10 @@ class TambahPengalamanChooseFragment : BaseFragment(),
         }
 
         return viewBind.root
+    }
+
+    override fun backstack() {
+        activity?.onBackPressed()
     }
 
     override fun getBackToPengalamanHome() {

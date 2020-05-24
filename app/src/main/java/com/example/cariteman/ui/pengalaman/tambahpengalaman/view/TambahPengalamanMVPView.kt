@@ -5,4 +5,5 @@ import com.example.cariteman.ui.base.MVPView
 interface TambahPengalamanMVPView : MVPView {
     fun getBackToPengalamanHome()
 
+    fun backstack()
 }

@@ -21,14 +21,17 @@ class TambahPengalamanPresenter<V : TambahPengalamanMVPView> @Inject internal co
 
     override fun tambahPengalamanOrganisasi(response: PengalamanLombaOrganisasiResponse) {
         getView()?.let {
+            it.showProgress()
             addDisposable(
                 mNetworkApi.modifyPengalamanOrganisasi(
                     getKey(),
                     response
                 ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
                     { result ->
+                        it.hideProgress()
                         it.getBackToPengalamanHome()
                     }, { error ->
+                        it.hideProgress()
                         it.showMessageToast(error.message!!)
                     })
             )
@@ -37,14 +40,17 @@ class TambahPengalamanPresenter<V : TambahPengalamanMVPView> @Inject internal co
 
     override fun tambahPengalamanLomba(response: PengalamanLombaOrganisasiResponse) {
         getView()?.let {
+            it.showProgress()
             addDisposable(
                 mNetworkApi.modifyPengalamanLomba(
                     getKey(),
                     response
                 ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
                     { result ->
+                        it.hideProgress()
                         it.getBackToPengalamanHome()
                     }, { error ->
+                        it.hideProgress()
                         it.showMessageToast(error.message!!)
                     })
             )
@@ -53,14 +59,17 @@ class TambahPengalamanPresenter<V : TambahPengalamanMVPView> @Inject internal co
 
     override fun modifyPengalamanOrganisasi(response: PengalamanLombaOrganisasiResponse) {
         getView()?.let {
+            it.showProgress()
             addDisposable(
                 mNetworkApi.modifyPengalamanOrganisasi(
                     getKey(),
                     response
                 ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
                     { result ->
+                        it.hideProgress()
                         it.getBackToPengalamanHome()
                     }, { error ->
+                        it.hideProgress()
                         it.showMessageToast(error.message!!)
                     })
             )
@@ -69,15 +78,58 @@ class TambahPengalamanPresenter<V : TambahPengalamanMVPView> @Inject internal co
 
     override fun modifyPengalamanLomba(response: PengalamanLombaOrganisasiResponse) {
         getView()?.let {
+            it.showProgress()
             addDisposable(
                 mNetworkApi.modifyPengalamanLomba(
                     getKey(),
                     response
                 ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
                     { result ->
+                        it.hideProgress()
                         it.getBackToPengalamanHome()
                     }, { error ->
+                        it.hideProgress()
                         it.showMessageToast(error.message!!)
+                    })
+            )
+        }
+    }
+
+    override fun deletePengalamanOrganisasi(id: Int) {
+        getView()?.let {
+        it.showProgress()
+        addDisposable(
+            mNetworkApi.deletePengalamanOrganisasi(
+                getKey(),
+                id
+            ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                { result ->
+                    it.hideProgress()
+                    it.backstack()
+                }, { error ->
+                    it.hideProgress()
+                    it.showMessageToast(error.message ?: "")
+                    it.backstack()
+                })
+        )
+    }
+    }
+
+    override fun deletePengalamanLomba(id: Int) {
+        getView()?.let {
+            it.showProgress()
+            addDisposable(
+                mNetworkApi.deletePengalamanLomba(
+                    getKey(),
+                    id
+                ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                    { result ->
+                        it.hideProgress()
+                        it.backstack()
+                    }, { error ->
+                        it.hideProgress()
+                        it.showMessageToast(error.message ?: "")
+                        it.backstack()
                     })
             )
         }

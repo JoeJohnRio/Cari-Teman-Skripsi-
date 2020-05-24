@@ -104,7 +104,7 @@ class SkillHobiFragment : BaseFragment(),
     override fun popBackStackWithBidangKerja(skillHobi: SkillHobi) {
         (activity as SearchActivity).skillHobi = skillHobi
 
-        activity?.supportFragmentManager?.popBackStack()
+        activity?.onBackPressed()
     }
 
     override fun showBidangKerja(listOfBidangKerja: MutableList<SkillHobi>) {

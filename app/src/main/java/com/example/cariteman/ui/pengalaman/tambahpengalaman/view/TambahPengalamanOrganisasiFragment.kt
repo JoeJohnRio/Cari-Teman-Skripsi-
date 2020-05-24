@@ -94,7 +94,12 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
             viewBind.mbDeleteButton.visibility = View.VISIBLE
 
             viewBind.mbDeleteButton.setOnClickListener {
-
+                if (idPengalaman != 0){
+                    presenter.deletePengalamanOrganisasi(idPengalaman ?: 0)
+                }else{
+                    backstack()
+                    showMessageToast("ID Error")
+                }
             }
         }else if(tipePengalamanOrganisasi == "tambah"){
             viewBind.mbSaveButton.setOnClickListener {
@@ -198,6 +203,10 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
                 bidangKerjaId = data!!.getIntExtra("bidangKerjaId", 0)
             }
         }
+    }
+
+    override fun backstack() {
+        activity?.onBackPressed()
     }
 
     override fun onStart() {

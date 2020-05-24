@@ -7,15 +7,15 @@ import com.example.cariteman.ui.dashboard.barudilihat.view.BaruDilihatActivity
 import com.example.cariteman.ui.login.LoginActivityModule
 import com.example.cariteman.ui.login.view.LoginActivity
 import com.example.cariteman.ui.pengalaman.pengalamanhome.*
-import com.example.cariteman.ui.pengalaman.pengalamanhome.view.SkillHobiFragment
 import com.example.cariteman.ui.pengalaman.tambahpengalaman.TambahPengalamanFragmentProvider
 import com.example.cariteman.ui.pengalaman.view.KelompokActivity
 import com.example.cariteman.ui.pengalaman.view.PengalamanActivity
 import com.example.cariteman.ui.pengalaman.view.SearchActivity
+import com.example.cariteman.ui.profile.tempatpklprofile.view.ProfileTempatPklActivity
 import com.example.cariteman.ui.profile.view.ProfileActivity
 import com.example.cariteman.ui.register.RegisterFragmentProvider
 import com.example.cariteman.ui.register.RegisterActivityModule
-import com.example.cariteman.ui.register.view.Register1Activity
+import com.example.cariteman.ui.register.view.RegisterActivity
 import com.example.cariteman.ui.search.frontprofile.FrontProfileFragmentProvider
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -27,7 +27,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [(RegisterActivityModule::class), (RegisterFragmentProvider::class)])
-    abstract fun bindRegisterActivity(): Register1Activity
+    abstract fun bindRegisterActivity(): RegisterActivity
 
     @ContributesAndroidInjector(modules = [(LoginActivityModule::class)])
     abstract fun bindLoginActivity(): LoginActivity
@@ -40,6 +40,9 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [(ProfileModule::class)])
     abstract fun bindProfilActivity(): ProfileActivity
+
+    @ContributesAndroidInjector(modules = [(ProfileTempatPklModule::class)])
+    abstract fun bindProfileTempatPklActivity(): ProfileTempatPklActivity
 
     @ContributesAndroidInjector(modules = [(PengalamanModule::class), (TambahPengalamanFragmentProvider::class), (PengalamanHomeFragmentProvider::class), (BidangKerjaFragmentProvider::class)])
     abstract fun bindPengalamanActivity(): PengalamanActivity

@@ -9,8 +9,8 @@ import com.example.cariteman.data.model.Login
 import com.example.cariteman.databinding.ActivityLoginBinding
 import com.example.cariteman.ui.base.view.BaseActivity
 import com.example.cariteman.ui.dashboard.view.DashboardBottomViewActivity
-import com.example.cariteman.ui.register.view.Register1Activity
 import com.example.cariteman.ui.login.presenter.LoginMVPPresenter
+import com.example.cariteman.ui.register.view.RegisterActivity
 import com.example.cariteman.util.CommonUtil.emailPattern
 import com.example.cariteman.util.Utils.SHARED_PREFS
 import com.example.cariteman.util.Utils.TEXT
@@ -58,7 +58,7 @@ class LoginActivity : BaseActivity(), LoginMVPView {
         }
 
         viewBind.tvSignUpNotHaveAccount.setOnClickListener {
-            val intent = Intent(this, Register1Activity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
     }

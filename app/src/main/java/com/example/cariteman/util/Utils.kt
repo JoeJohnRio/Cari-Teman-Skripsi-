@@ -2,11 +2,22 @@ package com.example.cariteman.util
 
 import android.content.Context
 import android.content.res.Resources
+import android.net.Uri
+import android.os.Handler
 import android.util.Log
 import android.view.View
+import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cariteman.ui.base.view.BaseActivity
+import com.example.cariteman.ui.base.view.BaseFragment
+import com.example.cariteman.util.Utils.mStorageRef
+import com.google.android.gms.tasks.Continuation
+import com.google.android.gms.tasks.Task
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
 import java.text.SimpleDateFormat
 
 object Utils {
@@ -18,8 +29,16 @@ object Utils {
 
     val parserDate = SimpleDateFormat("yyyy-MM-dd")
     val formatterDate = SimpleDateFormat("dd MMMM, yyyy")
+    var mStorageRef = FirebaseStorage.getInstance().getReference("uploads")
 
-    fun toggleThreeButton(turnUp: MaterialButton, turnDown: MaterialButton, turnDown1: MaterialButton, colorOn: Int, colorOff: Int, resources: Resources){
+    fun toggleThreeButton(
+        turnUp: MaterialButton,
+        turnDown: MaterialButton,
+        turnDown1: MaterialButton,
+        colorOn: Int,
+        colorOff: Int,
+        resources: Resources
+    ) {
         turnUp.setBackgroundColor(resources.getColor(colorOn))
         turnUp.setTextColor(resources.getColor(colorOff))
         turnDown.setBackgroundColor(resources.getColor(colorOff))
@@ -28,43 +47,117 @@ object Utils {
         turnDown1.setTextColor(resources.getColor(colorOn))
     }
 
-    fun toggleVisibility(viewWantToVisible: View, viewWantToGone: View){
+    fun uploadFileFromFragment(foto: Uri, context: Context, view: BaseFragment): String {
+        val fileReference: StorageReference =
+            mStorageRef.child(
+                "${System.currentTimeMillis()}.${getFileExtension(
+                    foto,
+                    context
+                )}"
+            )
+
+        val putFile = fileReference.putFile(foto)
+        var url = ""
+        var urlTask: Task<Uri> =
+            putFile.continueWithTask(object : Continuation<UploadTask.TaskSnapshot, Task<Uri>> {
+                override fun then(p0: Task<UploadTask.TaskSnapshot>): Task<Uri> {
+                    if (!p0.isSuccessful) {
+                        view.showMessageToast("error 1")
+                    }
+                    return fileReference.downloadUrl
+                }
+            }).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val uri = it.result
+                    val string = uri.toString()
+                    url = string
+                } else {
+                    view.showMessageToast("error")
+                }
+            }
+
+        for (x in 1..20){
+            if (url == ""){
+
+            }
+        }
+    }
+
+
+    fun uploadFileFromActivity(foto: Uri, context: Context, view: BaseActivity): String {
+        val fileReference: StorageReference =
+            mStorageRef.child(
+                "${System.currentTimeMillis()}.${Utils.getFileExtension(
+                    foto,
+                    context
+                )}"
+            )
+
+        val putFile = fileReference.putFile(foto)
+        var url = ""
+        var urlTask: Task<Uri> =
+            putFile.continueWithTask(object : Continuation<UploadTask.TaskSnapshot, Task<Uri>> {
+                override fun then(p0: Task<UploadTask.TaskSnapshot>): Task<Uri> {
+                    if (!p0.isSuccessful) {
+                        view.showMessageToast("error 1")
+                    }
+                    return fileReference.downloadUrl
+                }
+            }).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val uri = it.result
+                    val string = uri.toString()
+                    url = string
+                } else {
+                    view.showMessageToast("error")
+                }
+            }
+        return url
+    }
+
+    fun toggleVisibility(viewWantToVisible: View, viewWantToGone: View) {
         viewWantToGone.visibility = View.GONE
         viewWantToVisible.visibility = View.VISIBLE
     }
 
-    fun toggleBoolean(intBoolean: Int): Int{
-        if (intBoolean==1){
+    fun getFileExtension(uri: Uri, context: Context): String? {
+        val cR = context.contentResolver
+        val mime = MimeTypeMap.getSingleton()
+        return mime.getExtensionFromMimeType(cR.getType(uri))
+    }
+
+    fun toggleBoolean(intBoolean: Int): Int {
+        if (intBoolean == 1) {
             return 0
-        }else{
+        } else {
             return 1
         }
     }
 
-    fun intToBoolean(intNumber: Int?): Boolean{
-        if (intNumber==1){
+    fun intToBoolean(intNumber: Int?): Boolean {
+        if (intNumber == 1) {
             return true
-        }else{
+        } else {
             return false
         }
     }
 
-    fun booleanToInt(booleanVar: Boolean): Int{
-        if (booleanVar){
+    fun booleanToInt(booleanVar: Boolean): Int {
+        if (booleanVar) {
             return 1
-        }else{
+        } else {
             return 0
         }
     }
 
-    fun loadData(context: Context) : String?{
-        val sharedPreferences = context.getSharedPreferences(SHARED_PREFS,
+    fun loadData(context: Context): String? {
+        val sharedPreferences = context.getSharedPreferences(
+            SHARED_PREFS,
             AppCompatActivity.MODE_PRIVATE
         )
         return sharedPreferences.getString(TEXT, "")
 //        Toast.makeText(context, sharedPreferences.getString(TEXT, ""), Toast.LENGTH_LONG ).show()
     }
-
 
 
 }

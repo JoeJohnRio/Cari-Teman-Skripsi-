@@ -29,6 +29,7 @@ import java.util.*
 
 class TambahPengalamanLombaFragment : BaseFragment(),
     TambahPengalamanMVPView {
+
     @Inject
     lateinit var presenter: TambahPengalamanPresenter<TambahPengalamanMVPView>
     lateinit var viewBind: FragmentTambahPengalamanLombaBinding
@@ -90,7 +91,12 @@ class TambahPengalamanLombaFragment : BaseFragment(),
             viewBind.mbDeleteButton.visibility = View.VISIBLE
 
             viewBind.mbDeleteButton.setOnClickListener {
-
+                if (idPengalaman != 0){
+                    presenter.deletePengalamanLomba(idPengalaman ?: 0)
+                }else{
+                    backstack()
+                    showMessageToast("ID Error")
+                }
             }
         } else if (tipePengalamanLombaFragment == "tambah") {
             viewBind.mbDeleteButton.visibility = View.GONE
@@ -188,6 +194,10 @@ class TambahPengalamanLombaFragment : BaseFragment(),
         viewBind.tvBidangKerja.setText(bidangKerja)
         viewBind.tvBidangKerja.setTextColor(resources.getColor(R.color.black_effective))
         viewBind.tvDate.setTextColor(resources.getColor(R.color.black_effective))
+    }
+
+    override fun backstack() {
+        activity?.onBackPressed()
     }
 
     override fun getBackToPengalamanHome() {

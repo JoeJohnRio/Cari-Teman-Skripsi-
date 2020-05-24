@@ -78,7 +78,11 @@ interface INetworkApi {
 
     @GET(Endpoints.showUlasanTempat)
     @Headers("No-Authentication: true")
-    fun getUlasanTempatPkl(@Header("app-key") string: String?): Observable<List<UlasanTempatPkl>>
+    fun getUlasanTempatPkl(@Header("app-key") string: String?, @Path("id") id: Int?): Observable<MutableList<UlasanTempatPklProfile>>
+
+    @GET(Endpoints.showTempatPklProfile)
+    @Headers("No-Authentication: true")
+    fun getTempatPklProfile(@Header("app-key") string: String?, @Path("id") id: Int?): Observable<TempatPklProfile>
 
     //Rekomendasi
     @GET(Endpoints.profilInfoOthers)
@@ -111,6 +115,18 @@ interface INetworkApi {
     @Headers("No-Authentication: true")
     fun modifyPengalamanOrganisasi(
         @Header("app-key") string: String?, @Body pengalamanLombaOrganisasi: PengalamanLombaOrganisasiResponse
+    ): Observable<PengalamanLombaOrganisasiResponse>
+
+    @POST(Endpoints.deletePengalamanLomba)
+    @Headers("No-Authentication: true")
+    fun deletePengalamanLomba(
+        @Header("app-key") string: String?, @Path("id") id: Int?
+    ): Observable<PengalamanLombaOrganisasiResponse>
+
+    @POST(Endpoints.deletePengalamanOrganisasi)
+    @Headers("No-Authentication: true")
+    fun deletePengalamanOrganisasi(
+        @Header("app-key") string: String?, @Path("id") id: Int?
     ): Observable<PengalamanLombaOrganisasiResponse>
 
     //BidangKerja

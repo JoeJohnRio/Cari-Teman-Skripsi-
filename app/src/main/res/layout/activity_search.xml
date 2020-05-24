@@ -68,7 +68,7 @@
             android:padding="@dimen/space_really_small"
             android:paddingStart="@dimen/space_little"
             android:paddingEnd="@dimen/space_little"
-            android:text="FILTER - LOMBA"
+            android:text="FILTER - PKL"
             android:textColor="@color/black_effective"
             android:textSize="15sp" />
 

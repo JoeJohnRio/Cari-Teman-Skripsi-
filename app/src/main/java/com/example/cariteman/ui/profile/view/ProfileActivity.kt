@@ -48,6 +48,7 @@ class ProfileActivity : BaseActivity(), ProfileMVPView {
         }else{
             if (mahasiswaId == -1) {
                 showMessageToast("ID Error, please try again later")
+                finish()
             } else {
                 presenter.getProfilInfoOthers(mahasiswaId)
                 presenter.getPengalamanAndRekomendasi(mahasiswaId)

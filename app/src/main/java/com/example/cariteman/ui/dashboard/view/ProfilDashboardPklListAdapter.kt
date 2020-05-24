@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
+import com.example.cariteman.ui.profile.tempatpklprofile.view.ProfileTempatPklActivity
 import com.example.cariteman.ui.profile.view.ProfileActivity
 import kotlinx.android.extensions.LayoutContainer
 
@@ -64,14 +65,18 @@ class DashboardHistoryViewHolder(override val containerView: View) :
     }
 
     fun bind(response: MahasiswaHistoryDashboardResponse?) {
-        itemView.setOnClickListener{
-            val intent = Intent(itemView.context, ProfileActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.putExtra("MAHASISWA_ID", response?.idMahasiswaTwo)
-            itemView.context.startActivity(intent)
-        }
-
         if (response != null) {
             if (response.mahasiswaTwoPkl != null) {
+
+                itemView.setOnClickListener {
+                    val intent = Intent(
+                        itemView.context,
+                        ProfileActivity::class.java
+                    ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    intent.putExtra("MAHASISWA_ID", response?.idMahasiswaTwo)
+                    itemView.context.startActivity(intent)
+                }
+
                 Glide.with(this.itemView.context).load(response.mahasiswaTwoPkl?.foto_profil)
                     .into(profilePic)
 
@@ -104,7 +109,8 @@ class DashboardHistoryViewHolder(override val containerView: View) :
                     tvRecommendationTotal?.text = "0 of Recommendation"
                 } else {
                     tvRecommendationTotal?.text =
-                        response.mahasiswaTwoPkl?.countRekomendasi?.size.toString() + " of Recommendation" ?: "0 of Recommendation"
+                        "${response.mahasiswaTwoPkl?.countRekomendasi?.size.toString()} of Recommendation"
+                            ?: "0 of Recommendation"
                 }
                 tvName?.text = "${response.mahasiswaTwoPkl?.name}"
 
@@ -125,6 +131,16 @@ class DashboardHistoryViewHolder(override val containerView: View) :
                     tvJabatan?.text = "Belum mengikuti organisasi"
                 }
             } else if (response.mahasiswaTwoLomba != null) {
+
+                itemView.setOnClickListener {
+                    val intent = Intent(
+                        itemView.context,
+                        ProfileActivity::class.java
+                    ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    intent.putExtra("MAHASISWA_ID", response?.idMahasiswaTwo)
+                    itemView.context.startActivity(intent)
+                }
+
                 Glide.with(this.itemView.context).load(response.mahasiswaTwoLomba?.foto_profil)
                     .into(profilePic)
 
@@ -156,8 +172,7 @@ class DashboardHistoryViewHolder(override val containerView: View) :
                 if (response.mahasiswaTwoLomba?.countRekomendasi?.size == null) {
                     tvRecommendationTotal?.text = "0 of Recommendation"
                 } else {
-                    tvRecommendationTotal?.text =
-                        response.mahasiswaTwoLomba?.countRekomendasi?.size.toString() + " of Recommendation" ?: "0 of Recommendation"
+                    tvRecommendationTotal?.text =" ${response.mahasiswaTwoLomba?.countRekomendasi?.size.toString()} of Recommendation" ?: "0 of Recommendation"
                 }
                 tvName?.text = "Lomba - " + response.mahasiswaTwoLomba?.name ?: "no name"
 
@@ -177,6 +192,15 @@ class DashboardHistoryViewHolder(override val containerView: View) :
                     tvJabatan?.text = "Belum mengikuti organisasi"
                 }
             } else if (response.tempatPkl != null) {
+                itemView.setOnClickListener {
+                    val intent = Intent(
+                        itemView.context,
+                        ProfileTempatPklActivity::class.java
+                    ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    intent.putExtra("tempatPklId", response.tempatPkl?.id)
+                    itemView.context.startActivity(intent)
+                }
+
                 Glide.with(this.itemView.context).load(response.tempatPkl?.gambar).into(profilePic)
 
                 Glide.with(this.itemView.context).load(urlBlank)
@@ -188,8 +212,7 @@ class DashboardHistoryViewHolder(override val containerView: View) :
                 if (response.tempatPkl?.countUlasanTempatPkl?.size == null) {
                     tvRecommendationTotal?.text = "0 Ulasan"
                 } else {
-                    tvRecommendationTotal?.text =
-                        response.tempatPkl?.countUlasanTempatPkl?.size.toString() + " of Recommendation" ?: "0 of Recommendation"
+                    tvRecommendationTotal?.text = "${response.tempatPkl?.countUlasanTempatPkl?.size.toString()} of Recommendation" ?: "0 of Recommendation"
                 }
                 tvName?.text = "${response.tempatPkl?.namaPerusahaan}"
 

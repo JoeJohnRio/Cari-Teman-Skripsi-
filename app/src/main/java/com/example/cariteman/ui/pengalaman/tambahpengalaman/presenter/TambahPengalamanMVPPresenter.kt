@@ -13,4 +13,8 @@ interface TambahPengalamanMVPPresenter <V: TambahPengalamanMVPView>: MVPPresente
     fun modifyPengalamanOrganisasi(response: PengalamanLombaOrganisasiResponse)
 
     fun modifyPengalamanLomba(response: PengalamanLombaOrganisasiResponse)
+
+    fun deletePengalamanOrganisasi(id: Int)
+
+    fun deletePengalamanLomba(id: Int)
 }

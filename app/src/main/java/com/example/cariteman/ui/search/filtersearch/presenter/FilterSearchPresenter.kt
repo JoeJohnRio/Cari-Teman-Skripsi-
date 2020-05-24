@@ -39,6 +39,7 @@ class FilterSearchPresenter<V : FilterSearchMVPView> @Inject internal constructo
                     { error ->
                         it.hideProgress()
                         it.showMessageToast(error.message!!)
+                        it.backstack()
                     }
                 ))
         }
@@ -59,6 +60,7 @@ class FilterSearchPresenter<V : FilterSearchMVPView> @Inject internal constructo
                     { error ->
                         it.hideProgress()
                         it.showMessageToast(error.message ?: "")
+                        it.backstack()
                     }
                 ))
         }
@@ -84,6 +86,7 @@ class FilterSearchPresenter<V : FilterSearchMVPView> @Inject internal constructo
                     { error ->
                         it.hideProgress()
                         it.showMessageToast(error.message ?: "")
+                        it.backstack()
                     }
                 ))
         }

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -16,15 +17,14 @@
                 android:id="@+id/abl_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_more_than_little"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginBottom="@dimen/space_more_than_little">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.appbar.MaterialToolbar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    >
+                    android:background="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -35,17 +35,17 @@
                             android:id="@+id/iv_back"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_back"/>
+                            android:src="@drawable/ic_back" />
 
                         <TextView
                             android:id="@+id/tv_toolbar_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space_more_than_little"
                             android:text="Profil Saya"
-                            android:textStyle="bold"
                             android:textColor="@color/black_effective"
                             android:textSize="20sp"
-                            android:layout_marginStart="@dimen/space_more_than_little"/>
+                            android:textStyle="bold" />
 
                     </LinearLayout>
                 </com.google.android.material.appbar.MaterialToolbar>
@@ -53,8 +53,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/grey_low"
-                    />
+                    android:background="@color/grey_low" />
             </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -62,36 +61,38 @@
                 android:id="@+id/ll_profil_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="150dp"
                 android:background="@color/white_high"
-                android:layout_marginTop="150dp">
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/tv_nama_profil"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/nama_login"
-                    android:textSize="@dimen/text_big"
-                    android:textColor="@color/blue_low"
                     android:layout_marginTop="@dimen/space_big"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:text="@string/nama_login"
+                    android:textColor="@color/blue_low"
+                    android:textSize="@dimen/text_big" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginTop="@dimen/space_little"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/ll_status_zero"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
                         android:layout_marginTop="@dimen/space_little"
+                        android:gravity="center"
+                        android:orientation="horizontal"
                         android:visibility="gone"
-                        tools:visibility="visible"
-                        android:gravity="center">
+                        tools:visibility="visible">
+
                         <Button
                             android:id="@+id/b_add_friend"
                             android:layout_width="wrap_content"
@@ -116,10 +117,11 @@
                         android:id="@+id/ll_status_one"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
                         android:layout_marginTop="@dimen/space_little"
-                        android:visibility="gone"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
                         <Button
                             android:id="@+id/b_kirim_pesan"
                             android:layout_width="wrap_content"
@@ -161,10 +163,11 @@
                         android:id="@+id/ll_status_two"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
                         android:layout_marginTop="@dimen/space_little"
-                        android:visibility="gone"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
                         <Button
                             android:id="@+id/b_accept_friend"
                             android:layout_width="wrap_content"
@@ -207,15 +210,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/space_little">
+                    android:layout_marginTop="@dimen/space_little"
+                    android:orientation="horizontal">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_weight="1"
                         android:gravity="center"
-                        >
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tv_jumlah_rekomendasi"
@@ -223,25 +226,23 @@
                             android:layout_height="wrap_content"
                             android:text="201"
                             android:textColor="@color/blue_low"
-                            android:textStyle="bold"
                             android:textSize="@dimen/text_more_than_normal"
-                            />
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Rekomendasi"
                             android:textColor="@color/blue_low"
-                            android:textSize="@dimen/text_normal"/>
+                            android:textSize="@dimen/text_normal" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_weight="1"
                         android:gravity="center"
-                        >
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tv_jumlah_tim"
@@ -249,24 +250,23 @@
                             android:layout_height="wrap_content"
                             android:text="10"
                             android:textColor="@color/blue_low"
-                            android:textStyle="bold"
                             android:textSize="@dimen/text_more_than_normal"
-                            />
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/blue_low"
                             android:text="Tim"
-                            android:textSize="@dimen/text_normal"/>
+                            android:textColor="@color/blue_low"
+                            android:textSize="@dimen/text_normal" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_weight="1"
                         android:gravity="center"
-                        >
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tv_jumlah_teman"
@@ -274,16 +274,15 @@
                             android:layout_height="wrap_content"
                             android:text="89"
                             android:textColor="@color/blue_low"
-                            android:textStyle="bold"
                             android:textSize="@dimen/text_more_than_normal"
-                            />
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Teman"
                             android:textColor="@color/blue_low"
-                            android:textSize="@dimen/text_normal"/>
+                            android:textSize="@dimen/text_normal" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -292,13 +291,15 @@
                     android:id="@+id/tv_fakultas_prodi_keminatan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textSize="@dimen/text_more_than_normal"
                     android:layout_marginTop="@dimen/space_more_than_little"
                     android:layout_marginBottom="@dimen/space_more_than_little"
+                    android:layout_marginStart="@dimen/space_more_than_little"
+                    android:layout_marginEnd="@dimen/space_more_than_little"
+                    android:gravity="center"
                     android:text="Fakultas Ilmu Komputer, Teknik Informatika
 Rekayasa Perangkat Lunak"
-                    android:textColor="@color/blue_low"/>
+                    android:textColor="@color/blue_low"
+                    android:textSize="@dimen/text_more_than_normal" />
             </LinearLayout>
 
 
@@ -306,27 +307,29 @@ Rekayasa Perangkat Lunak"
                 android:id="@+id/ll_pengalaman"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@id/ll_profil_desc"
+                android:layout_marginTop="@dimen/space_more_than_little"
                 android:background="@color/white_high"
+                android:orientation="vertical"
                 android:padding="@dimen/space_more_than_little"
-                android:layout_marginTop="@dimen/space_more_than_little">
+                app:layout_constraintTop_toBottomOf="@id/ll_profil_desc">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/pengalaman"
-                    android:textSize="@dimen/text_kinda_big"
-                    android:textColor="@color/blue_low"/>
+                    android:textColor="@color/blue_low"
+                    android:textSize="@dimen/text_kinda_big" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginTop="@dimen/space_little"
-                    android:background="@color/black"/>
+                    android:background="@color/black" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_item_pengalaman_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
 
             </LinearLayout>
@@ -335,49 +338,48 @@ Rekayasa Perangkat Lunak"
                 android:id="@+id/ll_rekomendasi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@id/ll_pengalaman"
+                android:layout_marginTop="@dimen/space_more_than_little"
                 android:background="@color/white_high"
+                android:orientation="vertical"
                 android:paddingStart="@dimen/space_more_than_little"
-                android:paddingBottom="@dimen/space_more_than_little"
-                android:paddingEnd="@dimen/space_more_than_little"
                 android:paddingTop="@dimen/space_little"
-                android:layout_marginTop="@dimen/space_more_than_little">
+                android:paddingEnd="@dimen/space_more_than_little"
+                android:paddingBottom="@dimen/space_more_than_little"
+                app:layout_constraintTop_toBottomOf="@id/ll_pengalaman">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_pengalaman"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="@string/rekomendasi"
-                        android:textSize="@dimen/text_kinda_big"
-                        android:textColor="@color/blue_low"
                         android:gravity="center|left"
+                        android:text="@string/rekomendasi"
+                        android:textColor="@color/blue_low"
+                        android:textSize="@dimen/text_kinda_big"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/b_tambah_pengalaman"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="+"
-                        app:cornerRadius="8dp"
-                        android:textColor="@color/white_high"
-                        android:paddingStart="@dimen/space_more_than_little"
-                        android:paddingEnd="@dimen/space_more_than_little"
-                        android:paddingTop="@dimen/space_really_small"
-                        android:paddingBottom="@dimen/space_really_small"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/text_kinda_big"
                         android:backgroundTint="@color/orange_high"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        android:paddingStart="@dimen/space_more_than_little"
+                        android:paddingTop="@dimen/space_really_small"
+                        android:paddingEnd="@dimen/space_more_than_little"
+                        android:paddingBottom="@dimen/space_really_small"
+                        android:text="+"
+                        android:textColor="@color/white_high"
+                        android:textSize="@dimen/text_kinda_big"
+                        android:textStyle="bold"
+                        app:cornerRadius="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -385,12 +387,12 @@ Rekayasa Perangkat Lunak"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
                     android:layout_marginTop="@dimen/space_little"
-                    android:background="@color/black"/>
+                    android:background="@color/black" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_item_rekomendasi_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -398,18 +400,17 @@ Rekayasa Perangkat Lunak"
                 android:id="@+id/civ_profil"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:src="@drawable/profile_picture"
                 android:layout_marginTop="@dimen/space_more_than_little"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/abl_name"
                 android:foregroundGravity="center"
-                />
+                android:src="@drawable/profile_picture"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/abl_name" />
 
-<!--            <com.mikhaellopez.circularimageview.CircularImageView-->
-<!--                android:layout_width="250dp"-->
-<!--                android:layout_height="250dp"-->
-<!--                android:src="@drawable/image"/>-->
+            <!--            <com.mikhaellopez.circularimageview.CircularImageView-->
+            <!--                android:layout_width="250dp"-->
+            <!--                android:layout_height="250dp"-->
+            <!--                android:src="@drawable/image"/>-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

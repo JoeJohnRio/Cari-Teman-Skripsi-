@@ -40,10 +40,15 @@ object Endpoints {
     const val pengalamanLombaOrganisasi= "pengalaman/both"
     const val modifyPengalamanLomba= "pengalaman/lomba/modify"
     const val modifyPengalamanOrganisasi= "pengalaman/organisasi/modify"
+    const val deletePengalamanLomba= "pengalaman/lomba/delete/{id}"
+    const val deletePengalamanOrganisasi= "pengalaman/organisasi/delete/{id}"
 
     //ulasanTempatPkl
-    const val showUlasanTempat = "ulasantempatpkl/show"
+    const val showUlasanTempat = "ulasantempatpkl/show/{id}"
     const val saveUlasanTempat = "ulasantempatpkl/save"
+
+    //tempatPkl
+    const val showTempatPklProfile = "tempatpkl/profile/{id}"
 
     //bidangKerjaNama
     const val bidangKerjaSearch = "bidangkerja/search/{namaBidangKerja}"

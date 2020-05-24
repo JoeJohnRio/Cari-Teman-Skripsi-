@@ -17,7 +17,7 @@ import com.example.cariteman.data.model.RelationTempatPklFavorite
 import com.example.cariteman.ui.dashboard.barudilihat.presenter.BaruDilihatPresenter
 import com.example.cariteman.ui.dashboard.presenter.DashboardPresenter
 import com.example.cariteman.ui.dashboard.view.DashboardMVPView
-import com.example.cariteman.ui.profile.view.ProfileActivity
+import com.example.cariteman.ui.profile.tempatpklprofile.view.ProfileTempatPklActivity
 import com.example.cariteman.util.Utils
 import kotlinx.android.extensions.LayoutContainer
 
@@ -47,8 +47,8 @@ class BaruDilihatTempatPklViewHolder(override val containerView: View) :
     fun bindHistory(context: Context, response: MahasiswaHistoryDashboardResponse, presenter: BaruDilihatPresenter<BaruDilihatMVPView>) {
 
         itemView.setOnClickListener {
-            val intent = Intent(context, ProfileActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.putExtra("MAHASISWA_ID", response.idMahasiswaTwo)
+            val intent = Intent(context, ProfileTempatPklActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.putExtra("tempatPklId", response.tempatPkl?.id)
             context.startActivity(intent)
         }
 
@@ -153,6 +153,12 @@ class BaruDilihatTempatPklViewHolder(override val containerView: View) :
         scaleAnimation?.setDuration(500)
         val bounceInterpolator = BounceInterpolator()
         scaleAnimation?.setInterpolator(bounceInterpolator)
+
+        itemView.setOnClickListener {
+            val intent = Intent(itemView.context, ProfileTempatPklActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.putExtra("tempatPklId", response.tempatPkl?.id)
+            itemView.context.startActivity(intent)
+        }
 
         tbFavorite?.setOnClickListener{
             tbFavorite?.startAnimation(scaleAnimation)

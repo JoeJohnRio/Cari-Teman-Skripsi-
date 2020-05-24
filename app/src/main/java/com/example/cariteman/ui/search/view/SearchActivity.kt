@@ -25,6 +25,7 @@ import com.example.cariteman.ui.search.filtersearch.view.SearchHistoryFragment
 import com.example.cariteman.util.Mapper
 import com.example.cariteman.util.extension.addFragmentWithBackStack
 import com.example.cariteman.util.extension.addFragmentWithoutBackStack
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 
 class SearchActivity : BaseActivity(), SearchMVPView, HasSupportFragmentInjector {
@@ -37,6 +38,7 @@ class SearchActivity : BaseActivity(), SearchMVPView, HasSupportFragmentInjector
 
     lateinit var viewBind: ActivitySearchBinding
     lateinit var searchEditText: TextInputEditText
+    lateinit var filterSearchButton: MaterialButton
     var filterDetails = MahasiswaSearchFilter(keyword = "", preferensi = 0)
     var skillHobi = SkillHobi()
     var isFirstTimeSearching = true
@@ -54,6 +56,8 @@ class SearchActivity : BaseActivity(), SearchMVPView, HasSupportFragmentInjector
             SearchHistoryFragment.newInstance(),
             SearchHistoryFragment.TAG
         )
+
+        filterSearchButton = viewBind.bFilterSearch
 
         viewBind.ivBack.setOnClickListener {
             onBackPressed()
@@ -81,45 +85,44 @@ class SearchActivity : BaseActivity(), SearchMVPView, HasSupportFragmentInjector
                         filterDetails.keyword = s.toString()
                         bundle.putString("keyword", filterDetails.keyword)
                         bundle.putInt("searchType", filterDetails.preferensi ?: 0)
-                        supportFragmentManager?.addFragmentWithoutBackStack(
+                        supportFragmentManager?.addFragmentWithBackStack(
                             R.id.cl_search,
                             FrontProfileFragment.newInstance(),
                             FrontProfileFragment.TAG
                         )
-                    }else{
+                    } else {
 
                     }
-                    }, 500)
-                }
-            })
-
-            viewBind.bFilterSearch.setOnClickListener()
-            {
-                supportFragmentManager?.addFragmentWithBackStack(
-                    R.id.cl_search,
-                    FilterSearchFragment.newInstance(),
-                    FilterSearchFragment.TAG
-                )
+                }, 500)
             }
+        })
 
+        viewBind.bFilterSearch.setOnClickListener()
+        {
+            supportFragmentManager?.addFragmentWithBackStack(
+                R.id.cl_search,
+                FilterSearchFragment.newInstance(),
+                FilterSearchFragment.TAG
+            )
         }
 
-                override fun onBackPressed() {
-            val count = supportFragmentManager.backStackEntryCount
-            if (count == 0) {
-                super.onBackPressed()
-                //additional code
-            } else {
-                supportFragmentManager.popBackStack()
-            }
+    }
 
-        }
-
-                override fun onFragmentAttached() {
-            //notImplemented
-        }
-
-                override fun onFragmentDetached(tag: String) {
-            supportFragmentManager?.removeFragment(tag = tag)
+    override fun onBackPressed() {
+        val count = supportFragmentManager.backStackEntryCount
+        if (count == 0) {
+            super.onBackPressed()
+            //additional code
+        } else {
+            supportFragmentManager.popBackStack()
         }
     }
+
+    override fun onFragmentAttached() {
+        //notImplemented
+    }
+
+    override fun onFragmentDetached(tag: String) {
+        supportFragmentManager?.removeFragment(tag = tag)
+    }
+}

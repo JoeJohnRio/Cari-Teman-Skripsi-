@@ -9,4 +9,6 @@ interface FilterSearchMVPView : MVPView{
     fun showProgramStudi(responses: ArrayList<ProgramStudi>)
 
     fun showKeminatan(responses: ArrayList<Keminatan>)
+
+    fun backstack()
 }

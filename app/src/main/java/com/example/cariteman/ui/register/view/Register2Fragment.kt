@@ -76,8 +76,8 @@ class Register2Fragment : BaseFragment(), AdapterView.OnItemSelectedListener, Re
                     it.id_keminatan = positionKeminatan
                     if (it.id_keminatan == 0) it.id_keminatan = null
                     it.tahun_mulai = positionTahun + 2012
-                    it.jenis_kelamin =
-                        viewBind.rgJenisKelamin.checkedRadioButtonId.equals(viewBind.rPerempuan)
+                    it.jenis_kelamin = Utils.booleanToInt(
+                        viewBind.rgJenisKelamin.checkedRadioButtonId.equals(viewBind.rPerempuan))
                     Toast.makeText(context, "" + it.jenis_kelamin, Toast.LENGTH_LONG).show()
                 }
 
@@ -117,6 +117,10 @@ class Register2Fragment : BaseFragment(), AdapterView.OnItemSelectedListener, Re
         startActivityForResult(intent, PICK_FOTO_PROFILE)
     }
 
+    override fun finishActivity() {
+        (contextActivity as RegisterActivity).finish()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_FOTO_KTM && resultCode == RESULT_OK
@@ -149,13 +153,6 @@ class Register2Fragment : BaseFragment(), AdapterView.OnItemSelectedListener, Re
                     Glide.with(this.context)
                         .load((activity as RegisterActivity).fotoProfileUri)
                         .into(viewBind.ivAddFotoProfile)
-                    showMessageToast(
-                        Utils.uploadFileFromFragment(
-                            (activity as RegisterActivity).fotoProfileUri!!,
-                            contextActivity,
-                            this
-                        )
-                    )
                 } else {
                     showMessageToast("File melebihi 1MB")
                 }

@@ -42,6 +42,7 @@ class TambahKelompok1Fragment : BaseFragment(),
         viewBind = FragmentTambahKelompok1Binding.inflate(inflater, container, false)
         presenter.onAttach(this)
         context.let { presenter.setKey(Utils.loadData(it!!)) }
+        listOfFriend = arrayListOf()
         adapterPengalaman = DaftarTemanHanyaNamaListAdapter(this)
 
         val bundle: Bundle? = arguments

@@ -21,7 +21,7 @@ class DaftarTemanViewHolder(override val containerView: View) :
 
     private var civFotoProfil: CircleImageView? = null
     private var tvNamaTeman: TextView? = null
-    private var cbCheckTeman: CheckBox? = null
+    var cbCheckTeman: CheckBox? = null
 
     init {
         civFotoProfil = itemView.findViewById(R.id.civ_foto_profil)

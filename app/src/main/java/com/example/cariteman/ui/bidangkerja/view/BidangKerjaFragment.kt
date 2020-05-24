@@ -53,12 +53,13 @@ class BidangKerjaFragment : BaseFragment(),
         presenter.onAttach(this)
         context.let { presenter.setKey(Utils.loadData(it!!)) }
         val bundle: Bundle?= arguments
-        var namaBidangKerja = bundle?.getString("namaBidangKerja") ?: ""
+        bidangKerjaNama = bundle?.getString("namaBidangKerja") ?: ""
         adapterBidangKerja = BidangKerjaListAdapter(this)
         modifyPengalaman = PengalamanLombaOrganisasiResponse()
 
-        if (!namaBidangKerja.isNullOrEmpty()){
-            presenter.getBidangKerjaSearch(namaBidangKerja)
+        if (!bidangKerjaNama.isEmpty()){
+            viewBind.etBidangKerjaName.setText(bidangKerjaNama)
+            presenter.getBidangKerjaSearch(bidangKerjaNama)
         }
 
         viewBind.etBidangKerjaName.addTextChangedListener(object: TextWatcher{

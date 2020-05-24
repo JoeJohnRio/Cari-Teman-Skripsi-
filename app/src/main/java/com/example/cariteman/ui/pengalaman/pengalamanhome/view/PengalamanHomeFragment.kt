@@ -66,6 +66,7 @@ class PengalamanHomeFragment : BaseFragment(),
         bundle.putString("namaBidangKerja", pengalaman.relationBidangKerja?.bidangKerja?.namaBidangKerja ?: "")
         bundle.putString("deskripsi", pengalaman.deskripsi)
         bundle.putString("tanggal", pengalaman.tanggal)
+        bundle.putString("fotoPengalaman", pengalaman.gambar)
         val pengalamanLombaFragment = TambahPengalamanLombaFragment.newInstance()
         pengalamanLombaFragment.arguments = bundle
         getBaseActivity()?.supportFragmentManager?.addFragmentWithBackStack(
@@ -85,6 +86,7 @@ class PengalamanHomeFragment : BaseFragment(),
         bundle.putString("deskripsi", pengalaman.deskripsi)
         bundle.putString("tanggalMulai", pengalaman.tanggalMulai)
         bundle.putString("tanggalSelesai", pengalaman.tanggalSelesai)
+        bundle.putString("fotoPengalaman", pengalaman.gambar)
         val pengalamanOrganisasiFragment = TambahPengalamanOrganisasiFragment.newInstance()
         pengalamanOrganisasiFragment.arguments = bundle
 

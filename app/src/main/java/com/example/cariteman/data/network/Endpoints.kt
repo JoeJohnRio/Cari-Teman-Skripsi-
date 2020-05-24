@@ -4,6 +4,7 @@ object Endpoints {
     const val login = "login/"
     const val register = "register/"
     const val mahasiswa = "mahasiswa/"
+    const val checkUserExist = "mahasiswa/checkexist"
 
     //fakultas
     const val fakultas = "fakultas/"

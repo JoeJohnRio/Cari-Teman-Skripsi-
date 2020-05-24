@@ -16,7 +16,7 @@ data class DaftarTemanHanyaNama(
     }
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //notImplemented
     }
 
     override fun describeContents(): Int {

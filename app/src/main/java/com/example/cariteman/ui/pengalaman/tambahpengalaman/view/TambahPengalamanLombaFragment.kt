@@ -5,25 +5,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.DataBindingUtil.setContentView
 import com.example.cariteman.R
 import com.example.cariteman.databinding.FragmentTambahPengalamanLombaBinding
 import com.example.cariteman.ui.base.view.BaseFragment
 import com.example.cariteman.ui.pengalaman.pengalamanhome.view.BidangKerjaFragment
 import com.example.cariteman.ui.pengalaman.tambahpengalaman.presenter.TambahPengalamanPresenter
-import com.example.cariteman.ui.pengalaman.view.PengalamanActivity
 import com.example.cariteman.util.extension.addFragmentWithBackStack
 import javax.inject.Inject
 import android.app.Activity.RESULT_OK
 import android.app.DatePickerDialog
+import android.content.Context
+import android.net.Uri
+import android.provider.OpenableColumns
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.CalendarView
 import android.widget.DatePicker
+import com.bumptech.glide.Glide
 import com.example.cariteman.data.model.PengalamanLombaOrganisasiResponse
 import com.example.cariteman.util.AppConstants
 import com.example.cariteman.util.Utils
+import com.google.android.gms.tasks.Continuation
+import com.google.android.gms.tasks.Task
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
 import java.util.*
 
 
@@ -33,12 +37,19 @@ class TambahPengalamanLombaFragment : BaseFragment(),
     @Inject
     lateinit var presenter: TambahPengalamanPresenter<TambahPengalamanMVPView>
     lateinit var viewBind: FragmentTambahPengalamanLombaBinding
-    var bidangKerja = ""
-    var bidangKerjaId = 0
     lateinit var calendar: Calendar
     lateinit var dpd: DatePickerDialog
-    var urlGambar =
-        "https://ae01.alicdn.com/kf/HTB1N_RqXiDxK1Rjy1zcq6yGeXXay/Pesona-Serangga-Kalung-Liontin-Ambar-Scorpion-Liontin-Kalung-dengan-Tali-Adjustable-Scorpion-Lebah-Semut-Tawon.jpg"
+    val PICK_FOTO_PENGALAMAN_LOMBA_MODIFY = 1
+    val PICK_FOTO_PENGALAMAN_LOMBA_SAVE = 2
+    var fotoLombaUri: Uri? = null
+    var idPengalaman = 0
+    var tipePengalamanLombaFragment = "tambah"
+    var namaKompetisi = ""
+    var bidangKerja = ""
+    var bidangKerjaId = 0
+    var deskripsi = "Masukkan Deskripsi"
+    var tanggal = "Masukkan Tanggal"
+    var fotoPengalaman = ""
 
     companion object {
         internal val TAG = "Pengalaman"
@@ -59,41 +70,63 @@ class TambahPengalamanLombaFragment : BaseFragment(),
         context.let { presenter.setKey(Utils.loadData(it!!)) }
 
         val bundle: Bundle? = arguments
-        var idPengalaman = bundle?.getInt("idPengalaman", 0)
-        var tipePengalamanLombaFragment = bundle?.getString("tipePengalamanLomba") ?: "tambah"
-        var namaKompetisi = bundle?.getString("namaKompetisi") ?: "e.g. &quot;Cyber Jawara&quot;"
-        var namaBidangKerja =
-            bundle?.getString("namaBidangKerja") ?: "e.g. &quot;Mobile developer&quot;"
-        var deskripsi = bundle?.getString("deskripsi") ?: "Masukkan Deskripsi"
-        var tanggal = bundle?.getString("tanggal") ?: "Masukkan Tanggal"
+        idPengalaman = bundle?.getInt("idPengalaman", 0) ?: 0
+        tipePengalamanLombaFragment = bundle?.getString("tipePengalamanLomba") ?: "tambah"
+        namaKompetisi = bundle?.getString("namaKompetisi") ?: ""
+        bidangKerja =
+            bundle?.getString("namaBidangKerja") ?: ""
+        deskripsi = bundle?.getString("deskripsi") ?: "Masukkan Deskripsi"
+        tanggal = bundle?.getString("tanggal") ?: "Masukkan Tanggal"
+        fotoPengalaman = bundle?.getString("fotoPengalaman") ?: ""
 
         if (tipePengalamanLombaFragment == "modify") {
             viewBind.etCompetitionName.setText(namaKompetisi)
-            viewBind.tvBidangKerja.setText(namaBidangKerja)
+            viewBind.tvBidangKerja.setText(bidangKerja)
             viewBind.etDescription.setText(deskripsi)
             viewBind.tvDate.setText(
                 "${Utils.formatterDate.format(Utils.parserDate.parse("${tanggal}"))}"
             )
 
             viewBind.mbSaveButton.setOnClickListener {
-                presenter.modifyPengalamanLomba(
-                    PengalamanLombaOrganisasiResponse(
-                        idPengalamanLomba = idPengalaman,
-                        namaKompetisi = namaKompetisi,
-                        deskripsi = deskripsi,
-                        gambar = urlGambar,
-                        tanggal = tanggal,
-                        idBidangKerja = bidangKerjaId
-                    )
-                )
+                if (namaKompetisi.isEmpty() || bidangKerja.isEmpty() || deskripsi.isEmpty() || tanggal.isEmpty() || fotoPengalaman.isEmpty()) {
+                    showMessageToast("Selesaikan form terlebih dahulu")
+                } else {
+                    if (fotoLombaUri != null) {
+                        uploadFotoProfile(
+                            fotoLombaUri!!,
+                            context!!,
+                            this,
+                            PICK_FOTO_PENGALAMAN_LOMBA_MODIFY
+                        )
+                    } else {
+                        presenter.modifyPengalamanLomba(
+                            PengalamanLombaOrganisasiResponse(
+                                idPengalamanLomba = idPengalaman,
+                                namaKompetisi = namaKompetisi,
+                                deskripsi = deskripsi,
+                                gambar = fotoPengalaman,
+                                tanggal = tanggal,
+                                idBidangKerja = bidangKerjaId
+                            )
+                        )
+                    }
+                }
             }
 
             viewBind.mbDeleteButton.visibility = View.VISIBLE
 
+            if (!fotoPengalaman.isEmpty()) {
+                viewBind.ivFotoPengalamanLomba.visibility = View.VISIBLE
+
+                Glide.with(this.context)
+                    .load(fotoPengalaman)
+                    .into(viewBind.ivFotoPengalamanLomba)
+            }
+
             viewBind.mbDeleteButton.setOnClickListener {
-                if (idPengalaman != 0){
+                if (idPengalaman != 0) {
                     presenter.deletePengalamanLomba(idPengalaman ?: 0)
-                }else{
+                } else {
                     backstack()
                     showMessageToast("ID Error")
                 }
@@ -102,16 +135,29 @@ class TambahPengalamanLombaFragment : BaseFragment(),
             viewBind.mbDeleteButton.visibility = View.GONE
 
             viewBind.mbSaveButton.setOnClickListener {
-                presenter.tambahPengalamanLomba(
-                    PengalamanLombaOrganisasiResponse(
-                        idPengalamanLomba = idPengalaman,
-                        namaKompetisi = namaKompetisi,
-                        deskripsi = deskripsi,
-                        gambar = urlGambar,
-                        tanggal = tanggal,
-                        idBidangKerja = bidangKerjaId
-                    )
-                )
+                if (namaKompetisi.isEmpty() || bidangKerja.isEmpty() || deskripsi.isEmpty() || tanggal.isEmpty() || fotoPengalaman.isEmpty()) {
+                    showMessageToast("Selesaikan form terlebih dahulu")
+                } else {
+                    if (fotoLombaUri != null) {
+                        uploadFotoProfile(
+                            fotoLombaUri!!,
+                            context!!,
+                            this,
+                            PICK_FOTO_PENGALAMAN_LOMBA_SAVE
+                        )
+                    } else {
+                        presenter.tambahPengalamanLomba(
+                            PengalamanLombaOrganisasiResponse(
+                                idPengalamanLomba = idPengalaman,
+                                namaKompetisi = namaKompetisi,
+                                deskripsi = deskripsi,
+                                gambar = fotoPengalaman,
+                                tanggal = tanggal,
+                                idBidangKerja = bidangKerjaId
+                            )
+                        )
+                    }
+                }
             }
         }
 
@@ -174,7 +220,19 @@ class TambahPengalamanLombaFragment : BaseFragment(),
             )
         }
 
+        viewBind.ivAddFotoPengalamanLomba.setOnClickListener {
+            openFileFotoPengalamanLomba()
+        }
+
         return viewBind.root
+    }
+
+
+    fun openFileFotoPengalamanLomba() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, PICK_FOTO_PENGALAMAN_LOMBA_MODIFY)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -186,6 +244,84 @@ class TambahPengalamanLombaFragment : BaseFragment(),
                 bidangKerjaId = data!!.getIntExtra("bidangKerjaId", 0)
             }
         }
+
+        if ((requestCode == PICK_FOTO_PENGALAMAN_LOMBA_MODIFY || requestCode == PICK_FOTO_PENGALAMAN_LOMBA_SAVE) && resultCode == RESULT_OK
+            && data != null && data.getData() != null
+        ) {
+            data.data.let { returnUri ->
+                context?.contentResolver?.query(returnUri!!, null, null, null, null)
+            }?.use { cursor ->
+                val sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE)
+                cursor.moveToFirst()
+                if (cursor.getLong(sizeIndex).toDouble().div(1024) < 1000.0) {
+                    fotoLombaUri = data.getData()!!
+                    viewBind.ivFotoPengalamanLomba.visibility = View.VISIBLE
+                    Glide.with(this.context)
+                        .load(fotoLombaUri)
+                        .into(viewBind.ivFotoPengalamanLomba)
+                } else {
+                    showMessageToast("File melebihi 1MB")
+                }
+            }
+        }
+    }
+
+
+    fun uploadFotoProfile(foto: Uri, context: Context, view: BaseFragment, pickFoto: Int) {
+        showProgress()
+        val fileReference: StorageReference =
+            Utils.mStorageRef.child(
+                "${System.currentTimeMillis()}.${Utils.getFileExtension(
+                    foto,
+                    context
+                )}"
+            )
+
+        val putFile = fileReference.putFile(foto)
+        var url = ""
+        var urlTask: Task<Uri> =
+            putFile.continueWithTask(object : Continuation<UploadTask.TaskSnapshot, Task<Uri>> {
+                override fun then(p0: Task<UploadTask.TaskSnapshot>): Task<Uri> {
+                    if (!p0.isSuccessful) {
+                        view.showMessageToast("error 1")
+                    }
+                    return fileReference.downloadUrl
+                }
+            }).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val uri = it.result
+                    val string = uri.toString()
+                    fotoPengalaman = string
+
+                    hideProgress()
+                    if (pickFoto == PICK_FOTO_PENGALAMAN_LOMBA_MODIFY) {
+                        presenter.modifyPengalamanLomba(
+                            PengalamanLombaOrganisasiResponse(
+                                idPengalamanLomba = idPengalaman,
+                                namaKompetisi = namaKompetisi,
+                                deskripsi = deskripsi,
+                                gambar = fotoPengalaman,
+                                tanggal = tanggal,
+                                idBidangKerja = bidangKerjaId
+                            )
+                        )
+                    } else if (pickFoto == PICK_FOTO_PENGALAMAN_LOMBA_SAVE) {
+                        presenter.tambahPengalamanLomba(
+                            PengalamanLombaOrganisasiResponse(
+                                idPengalamanLomba = idPengalaman,
+                                namaKompetisi = namaKompetisi,
+                                deskripsi = deskripsi,
+                                gambar = fotoPengalaman,
+                                tanggal = tanggal,
+                                idBidangKerja = bidangKerjaId
+                            )
+                        )
+                    }
+                } else {
+                    view.showMessageToast("error")
+                }
+                hideProgress()
+            }
     }
 
     override fun onStart() {

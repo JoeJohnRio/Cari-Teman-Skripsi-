@@ -47,7 +47,7 @@
                     android:text="Tipe Kelompok"
                     android:textColor="@color/black_effective"
                     app:layout_constraintTop_toBottomOf="@id/iv_group_profil_photo"
-                    app:layout_constraintStart_toStartOf="@id/et_competition_name"
+                    app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginLeft="3dp"
                     android:layout_marginTop="@dimen/space_little"
                     android:textSize="@dimen/text_normal"/>

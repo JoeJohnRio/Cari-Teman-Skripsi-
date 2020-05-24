@@ -32,6 +32,7 @@ class TambahPengalamanPresenter<V : TambahPengalamanMVPView> @Inject internal co
                         it.getBackToPengalamanHome()
                     }, { error ->
                         it.hideProgress()
+                        it.getBackToPengalamanHome()
                         it.showMessageToast(error.message!!)
                     })
             )
@@ -51,6 +52,7 @@ class TambahPengalamanPresenter<V : TambahPengalamanMVPView> @Inject internal co
                         it.getBackToPengalamanHome()
                     }, { error ->
                         it.hideProgress()
+                        it.getBackToPengalamanHome()
                         it.showMessageToast(error.message!!)
                     })
             )
@@ -70,6 +72,7 @@ class TambahPengalamanPresenter<V : TambahPengalamanMVPView> @Inject internal co
                         it.getBackToPengalamanHome()
                     }, { error ->
                         it.hideProgress()
+                        it.getBackToPengalamanHome()
                         it.showMessageToast(error.message!!)
                     })
             )
@@ -89,6 +92,7 @@ class TambahPengalamanPresenter<V : TambahPengalamanMVPView> @Inject internal co
                         it.getBackToPengalamanHome()
                     }, { error ->
                         it.hideProgress()
+                        it.getBackToPengalamanHome()
                         it.showMessageToast(error.message!!)
                     })
             )

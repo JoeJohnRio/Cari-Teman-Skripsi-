@@ -10,10 +10,10 @@ interface INetworkApi {
     fun loginApi(@Body login: Login): Observable<Token>
 
     @POST(Endpoints.register)
-    fun registerApi(@Body mahasiswa: Mahasiswa): Observable<Mahasiswa>
+    fun registerApi(@Body mahasiswa: MahasiswaResponse): Observable<MahasiswaResponse>
 
-    @GET(Endpoints.mahasiswa)
-    fun getMahasiswa(@Header("app-key") string: String): Observable<List<MahasiswaResponse>>
+    @POST(Endpoints.checkUserExist)
+    fun checkIfUserExist(@Body mahasiswa: MahasiswaResponse): Observable<Message>
 
     @GET(Endpoints.fakultas)
     @Headers("No-Authentication: true")

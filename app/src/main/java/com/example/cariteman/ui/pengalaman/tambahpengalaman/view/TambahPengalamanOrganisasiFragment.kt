@@ -2,14 +2,18 @@ package com.example.cariteman.ui.pengalaman.tambahpengalaman.view
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.OpenableColumns
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import com.bumptech.glide.Glide
 import com.example.cariteman.R
 import com.example.cariteman.data.model.PengalamanLombaOrganisasiResponse
 import com.example.cariteman.databinding.FragmentTambahPengalamanOrganisasiBinding
@@ -19,6 +23,10 @@ import com.example.cariteman.ui.pengalaman.tambahpengalaman.presenter.TambahPeng
 import com.example.cariteman.util.AppConstants
 import com.example.cariteman.util.Utils
 import com.example.cariteman.util.extension.addFragmentWithBackStack
+import com.google.android.gms.tasks.Continuation
+import com.google.android.gms.tasks.Task
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
 import java.util.*
 import javax.inject.Inject
 
@@ -30,13 +38,22 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
     lateinit var dpdStart: DatePickerDialog
     lateinit var dpdEnd: DatePickerDialog
     var calendar = Calendar.getInstance()
-    var bidangKerja = ""
-    var bidangKerjaId = 0
-    var urlGambar =
-    "https://ae01.alicdn.com/kf/HTB1N_RqXiDxK1Rjy1zcq6yGeXXay/Pesona-Serangga-Kalung-Liontin-Ambar-Scorpion-Liontin-Kalung-dengan-Tali-Adjustable-Scorpion-Lebah-Semut-Tawon.jpg"
     val day = calendar.get(Calendar.DAY_OF_MONTH)
     val month = calendar.get(Calendar.MONTH)
     val year = calendar.get(Calendar.YEAR)
+
+    val PICK_FOTO_PENGALAMAN_ORGANISASI_MODIFY = 1
+    val PICK_FOTO_PENGALAMAN_ORGANISASI_SAVE = 2
+    var fotoOrganisasiUri: Uri? = null
+    var idPengalaman = 0
+    var tipePengalamanOrganisasi = "tambah"
+    var namaOrganisasi = ""
+    var bidangKerja = ""
+    var bidangKerjaId = 0
+    var deskripsi = "Masukkan Deskripsi"
+    var tanggalMulai = "Masukkan Tanggal"
+    var tanggalSelesai = "Masukkan Tanggal"
+    var fotoPengalaman = ""
 
     companion object {
 
@@ -45,6 +62,7 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
             return TambahPengalamanOrganisasiFragment()
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,21 +72,22 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
 
         viewBind = FragmentTambahPengalamanOrganisasiBinding.inflate(inflater, container, false)
         presenter.onAttach(this)
-        context.let {presenter.setKey(Utils.loadData(it!!))}
+        context.let { presenter.setKey(Utils.loadData(it!!)) }
 
         val bundle: Bundle? = arguments
-        var idPengalaman = bundle?.getInt("idPengalaman", 0)
-        var tipePengalamanOrganisasi = bundle?.getString("tipePengalamanOrganisasi") ?: "tambah"
-        var namaOrganisasi = bundle?.getString("namaOrganisasi") ?: ""
-        var namaBidangKerja =
+        idPengalaman = bundle?.getInt("idPengalaman", 0) ?: 0
+        tipePengalamanOrganisasi = bundle?.getString("tipePengalamanOrganisasi") ?: "tambah"
+        namaOrganisasi = bundle?.getString("namaOrganisasi") ?: ""
+        bidangKerja =
             bundle?.getString("namaBidangKerja") ?: ""
-        var deskripsi = bundle?.getString("deskripsi") ?: ""
-        var tanggalMulai = bundle?.getString("tanggalMulai") ?: "$year-$month-$day"
-        var tanggalSelesai = bundle?.getString("tanggalSelesai") ?: "$year-$month-$day"
+        deskripsi = bundle?.getString("deskripsi") ?: ""
+        fotoPengalaman = bundle?.getString("fotoPengalaman") ?: ""
+        tanggalMulai = bundle?.getString("tanggalMulai") ?: "$year-$month-$day"
+        tanggalSelesai = bundle?.getString("tanggalSelesai") ?: "$year-$month-$day"
 
         if (tipePengalamanOrganisasi == "modify") {
             viewBind.etOrganisationName.setText(namaOrganisasi)
-            viewBind.tvBidangKerja.text = namaBidangKerja
+            viewBind.tvBidangKerja.text = bidangKerja
             viewBind.etDescription.setText(deskripsi)
             viewBind.tvDateStart.setText(
                 "${Utils.formatterDate.format(Utils.parserDate.parse("${tanggalMulai}"))}"
@@ -78,42 +97,76 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
             )
 
             viewBind.mbSaveButton.setOnClickListener {
-                presenter.modifyPengalamanOrganisasi(
-                    PengalamanLombaOrganisasiResponse(
-                        idPengalamanOrganisasi = idPengalaman,
-                        namaOrganisasi = namaOrganisasi,
-                        deskripsi = deskripsi,
-                        gambar = urlGambar,
-                        tanggalMulai = tanggalMulai,
-                        tanggalSelesai = tanggalSelesai,
-                        idBidangKerja = bidangKerjaId
-                    )
-                )
+                if (namaOrganisasi.isEmpty() || deskripsi.isEmpty() || fotoPengalaman.isEmpty() || tanggalMulai.isEmpty() || tanggalSelesai.isEmpty() || bidangKerja.isEmpty()) {
+                    showMessageToast("Selesaikan form terlebih dahulu")
+                } else {
+                    if (fotoOrganisasiUri != null) {
+                        uploadFotoProfile(
+                            fotoOrganisasiUri!!,
+                            context!!,
+                            this,
+                            PICK_FOTO_PENGALAMAN_ORGANISASI_MODIFY
+                        )
+                    } else {
+                        presenter.modifyPengalamanOrganisasi(
+                            PengalamanLombaOrganisasiResponse(
+                                idPengalamanOrganisasi = idPengalaman,
+                                namaOrganisasi = namaOrganisasi,
+                                deskripsi = deskripsi,
+                                gambar = fotoPengalaman,
+                                tanggalMulai = tanggalMulai,
+                                tanggalSelesai = tanggalSelesai,
+                                idBidangKerja = bidangKerjaId
+                            )
+                        )
+                    }
+                }
             }
 
             viewBind.mbDeleteButton.visibility = View.VISIBLE
 
+            if (!fotoPengalaman.isEmpty()) {
+                viewBind.ivFotoPengalamanOrganisasi.visibility = View.VISIBLE
+
+                Glide.with(this.context)
+                    .load(fotoPengalaman)
+                    .into(viewBind.ivFotoPengalamanOrganisasi)
+            }
+
             viewBind.mbDeleteButton.setOnClickListener {
-                if (idPengalaman != 0){
+                if (idPengalaman != 0) {
                     presenter.deletePengalamanOrganisasi(idPengalaman ?: 0)
-                }else{
+                } else {
                     backstack()
                     showMessageToast("ID Error")
                 }
             }
-        }else if(tipePengalamanOrganisasi == "tambah"){
+        } else if (tipePengalamanOrganisasi == "tambah") {
             viewBind.mbSaveButton.setOnClickListener {
-                presenter.tambahPengalamanOrganisasi(
-                    PengalamanLombaOrganisasiResponse(
-                        idPengalamanOrganisasi = idPengalaman,
-                        namaOrganisasi = namaOrganisasi,
-                        deskripsi = deskripsi,
-                        gambar = urlGambar,
-                        tanggalMulai = tanggalMulai,
-                        tanggalSelesai = tanggalSelesai,
-                        idBidangKerja = bidangKerjaId
-                    )
-                )
+                if (namaOrganisasi.isEmpty() || deskripsi.isEmpty() || fotoPengalaman.isEmpty() || tanggalMulai.isEmpty() || tanggalSelesai.isEmpty() || bidangKerja.isEmpty()) {
+                    showMessageToast("Selesaikan form terlebih dahulu")
+                } else {
+                    if (fotoOrganisasiUri != null) {
+                        uploadFotoProfile(
+                            fotoOrganisasiUri!!,
+                            context!!,
+                            this,
+                            PICK_FOTO_PENGALAMAN_ORGANISASI_SAVE
+                        )
+                    } else {
+                        presenter.tambahPengalamanOrganisasi(
+                            PengalamanLombaOrganisasiResponse(
+                                idPengalamanOrganisasi = idPengalaman,
+                                namaOrganisasi = namaOrganisasi,
+                                deskripsi = deskripsi,
+                                gambar = fotoPengalaman,
+                                tanggalMulai = tanggalMulai,
+                                tanggalSelesai = tanggalSelesai,
+                                idBidangKerja = bidangKerjaId
+                            )
+                        )
+                    }
+                }
             }
 
             viewBind.mbDeleteButton.visibility = View.GONE
@@ -191,7 +244,18 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
             )
         }
 
+        viewBind.ivAddFotoPengalamanOrganisasi.setOnClickListener {
+            openFileFotoPengalamanOrganisasi()
+        }
+
         return viewBind.root
+    }
+
+    fun openFileFotoPengalamanOrganisasi() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, PICK_FOTO_PENGALAMAN_ORGANISASI_MODIFY)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -203,6 +267,86 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
                 bidangKerjaId = data!!.getIntExtra("bidangKerjaId", 0)
             }
         }
+
+        if ((requestCode == PICK_FOTO_PENGALAMAN_ORGANISASI_MODIFY || requestCode == PICK_FOTO_PENGALAMAN_ORGANISASI_SAVE) && resultCode == Activity.RESULT_OK
+            && data != null && data.getData() != null
+        ) {
+            data.data.let { returnUri ->
+                context?.contentResolver?.query(returnUri!!, null, null, null, null)
+            }?.use { cursor ->
+                val sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE)
+                cursor.moveToFirst()
+                if (cursor.getLong(sizeIndex).toDouble().div(1024) < 1000.0) {
+                    fotoOrganisasiUri = data.getData()!!
+                    viewBind.ivFotoPengalamanOrganisasi.visibility = View.VISIBLE
+                    Glide.with(this.context)
+                        .load(fotoOrganisasiUri)
+                        .into(viewBind.ivFotoPengalamanOrganisasi)
+                } else {
+                    showMessageToast("File melebihi 1MB")
+                }
+            }
+        }
+    }
+
+
+    fun uploadFotoProfile(foto: Uri, context: Context, view: BaseFragment, pickFoto: Int) {
+        showProgress()
+        val fileReference: StorageReference =
+            Utils.mStorageRef.child(
+                "${System.currentTimeMillis()}.${Utils.getFileExtension(
+                    foto,
+                    context
+                )}"
+            )
+
+        val putFile = fileReference.putFile(foto)
+        var url = ""
+        var urlTask: Task<Uri> =
+            putFile.continueWithTask(object : Continuation<UploadTask.TaskSnapshot, Task<Uri>> {
+                override fun then(p0: Task<UploadTask.TaskSnapshot>): Task<Uri> {
+                    if (!p0.isSuccessful) {
+                        view.showMessageToast("error 1")
+                    }
+                    return fileReference.downloadUrl
+                }
+            }).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val uri = it.result
+                    val string = uri.toString()
+                    fotoPengalaman = string
+
+                    hideProgress()
+                    if (pickFoto == PICK_FOTO_PENGALAMAN_ORGANISASI_MODIFY) {
+                        presenter.modifyPengalamanLomba(
+                            PengalamanLombaOrganisasiResponse(
+                                idPengalamanOrganisasi = idPengalaman,
+                                namaOrganisasi = namaOrganisasi,
+                                deskripsi = deskripsi,
+                                gambar = fotoPengalaman,
+                                tanggalMulai = tanggalMulai,
+                                tanggalSelesai = tanggalSelesai,
+                                idBidangKerja = bidangKerjaId
+                            )
+                        )
+                    } else if (pickFoto == PICK_FOTO_PENGALAMAN_ORGANISASI_SAVE) {
+                        presenter.tambahPengalamanOrganisasi(
+                            PengalamanLombaOrganisasiResponse(
+                                idPengalamanOrganisasi = idPengalaman,
+                                namaOrganisasi = namaOrganisasi,
+                                deskripsi = deskripsi,
+                                gambar = fotoPengalaman,
+                                tanggalMulai = tanggalMulai,
+                                tanggalSelesai = tanggalSelesai,
+                                idBidangKerja = bidangKerjaId
+                            )
+                        )
+                    }
+                } else {
+                    view.showMessageToast("error")
+                }
+                hideProgress()
+            }
     }
 
     override fun backstack() {

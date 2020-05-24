@@ -19,6 +19,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import java.text.SimpleDateFormat
+import java.util.regex.Pattern
 
 object Utils {
     lateinit var fakultas: Array<String>
@@ -47,42 +48,20 @@ object Utils {
         turnDown1.setTextColor(resources.getColor(colorOn))
     }
 
-    fun uploadFileFromFragment(foto: Uri, context: Context, view: BaseFragment): String {
-        val fileReference: StorageReference =
-            mStorageRef.child(
-                "${System.currentTimeMillis()}.${getFileExtension(
-                    foto,
-                    context
-                )}"
-            )
-
-        val putFile = fileReference.putFile(foto)
-        var url = ""
-        var urlTask: Task<Uri> =
-            putFile.continueWithTask(object : Continuation<UploadTask.TaskSnapshot, Task<Uri>> {
-                override fun then(p0: Task<UploadTask.TaskSnapshot>): Task<Uri> {
-                    if (!p0.isSuccessful) {
-                        view.showMessageToast("error 1")
-                    }
-                    return fileReference.downloadUrl
-                }
-            }).addOnCompleteListener {
-                if (it.isSuccessful) {
-                    val uri = it.result
-                    val string = uri.toString()
-                    url = string
-                } else {
-                    view.showMessageToast("error")
-                }
-            }
-
-        for (x in 1..20){
-            if (url == ""){
-
-            }
-        }
+    fun isEmailValid(email: String): Boolean {
+        val expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$"
+        val pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE)
+        val matcher = pattern.matcher(email)
+        return matcher.matches()
     }
 
+    fun isNimValid(email: String): Boolean {
+        if (email.length == 15){
+            return true
+        }else{
+            return false
+        }
+    }
 
     fun uploadFileFromActivity(foto: Uri, context: Context, view: BaseActivity): String {
         val fileReference: StorageReference =

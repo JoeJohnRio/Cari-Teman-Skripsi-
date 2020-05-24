@@ -8,7 +8,7 @@ import com.example.cariteman.ui.register.view.RegisterMVPView
 
 interface RegisterMVPPresenter<V : RegisterMVPView> : MVPPresenter<V> {
 
-    fun onNextRegisterClick() : Unit?
+    fun onNextRegisterClick(nim: String, email: String) : Unit?
 
     fun getFakultasResponse()
 
@@ -16,6 +16,6 @@ interface RegisterMVPPresenter<V : RegisterMVPView> : MVPPresenter<V> {
 
     fun getKeminatanResponse(id: Int)
 
-    fun sendMahasiswaData(mahasiswa: Mahasiswa)
+    fun sendMahasiswaData(mahasiswa: MahasiswaResponse)
 
 }

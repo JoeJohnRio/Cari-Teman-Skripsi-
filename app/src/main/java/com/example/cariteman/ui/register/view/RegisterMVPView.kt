@@ -15,4 +15,6 @@ interface RegisterMVPView : MVPView {
 
     fun showKeminatan(responses: ArrayList<Keminatan>)
 
+    fun finishActivity()
+
 }

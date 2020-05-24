@@ -29,15 +29,35 @@ class RegisterPresenter<V : RegisterMVPView> @Inject internal constructor(
     var programStudiResponse: List<ProgramStudiResponse> = listOf(ProgramStudiResponse(id = 0))
     var keminatanResponse: List<KeminatanResponse> = listOf(KeminatanResponse(id = 0))
 
-    override fun onNextRegisterClick() {
-        val bundle = Bundle()
-        bundle.putString("message", "From Activity")
-        var fragment2: Register2Fragment = Register2Fragment.newInstance()
-        fragment2.arguments = bundle
-        getView()?.openRegisterFragment()
+    override fun onNextRegisterClick(nim: String, email: String) {
+        getView()?.let {
+            it.showProgress()
+            addDisposable(mNetworkApi.checkIfUserExist(
+                mahasiswa = MahasiswaResponse(
+                    nim = nim,
+                    email = email
+                )
+            ).subscribeOn(IoScheduler()).observeOn(
+                AndroidSchedulers.mainThread()
+            )
+                .subscribe(
+                    { result ->
+                        it.hideProgress()
+                        if (result.message == "Mahasiswa belum terdaftar"){
+                            it.openRegisterFragment()
+                        }else{
+                            it.showMessageToast(result.message ?: "Mahasiswa sudah terdaftar")
+                        }
+                    },
+                    { error ->
+                        it.showMessageToast(error.message ?: "Error")
+                        it.hideProgress()
+                    }
+                ))
+        }
     }
 
-    override fun sendMahasiswaData(mahasiswa: Mahasiswa) {
+    override fun sendMahasiswaData(mahasiswa: MahasiswaResponse) {
 //        var mahasiswaTwoPkl = Mapper.mahasiswaToMahasiswaResponseMapper(mahasiswa)
         getView()?.let {
             it.showProgress()
@@ -46,15 +66,16 @@ class RegisterPresenter<V : RegisterMVPView> @Inject internal constructor(
             )
                 .subscribe(
                     { result ->
-                        getView()?.showMessageToast("Sedang direview")
-                        getView()?.hideProgress()
+                        it.showMessageToast("Sedang direview")
+                        it.hideProgress()
+                        it.finishActivity()
                     },
                     { error ->
-                        getView()?.showMessageToast(error.message!!)
-                        getView()?.hideProgress()
+                        //                        it.showMessageToast(error.message!!)
+                        it.hideProgress()
+                        it.finishActivity()
                     }
                 ))
-
         }
     }
 

@@ -2,6 +2,7 @@ package com.example.cariteman.data.network
 
 object Endpoints {
     const val login = "login/"
+    const val loginAdmin = "admin/login"
     const val register = "register/"
     const val mahasiswa = "mahasiswa/"
     const val checkUserExist = "mahasiswa/checkexist"
@@ -26,6 +27,8 @@ object Endpoints {
 
     //relasiTeman
     const val toggleFavoriteFriend = "relationteman/favorite/toggle/{id}"
+    const val addFriend = "relationteman/addfriend"
+    const val confirmFriend= "relationteman/confirm"
 
     //relasiTempatPkl
     const val toggleFavoriteTempatPkl = "relationtempatpkl/favorite/toogle/{id}"
@@ -71,5 +74,16 @@ object Endpoints {
     const val showFriendWithNamaOnly = "relationteman/showfriendnama"
     const val addFriendToKelompok = "kelompok/addfriend"
     const val showAnggotaKelompok = "kelompok/anggotakelompok/{id_kelompok}"
+    const val confirmAnggotaKelompok = "kelompok/confirm"
     const val showFriendNotAdded = "kelompok/showfriendnotadded/{id_kelompok}"
+
+    //message
+    const val sendMessageKelompok = "pesankelompok/send"
+    const val showMessageKelompok = "pesankelompok/show"
+    const val sendMessageUser = "pesanuser/send"
+    const val showMessageUser = "pesanuser/show"
+
+    //Notifikasi
+    const val showNotifikasi = "notifikasi/show"
+
 }

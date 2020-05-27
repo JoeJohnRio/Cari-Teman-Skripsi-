@@ -5,7 +5,11 @@ import com.example.cariteman.ui.dashboard.view.DashboardBottomViewActivity
 import com.example.cariteman.ui.dashboard.barudilihat.BaruDilihatModule
 import com.example.cariteman.ui.dashboard.barudilihat.view.BaruDilihatActivity
 import com.example.cariteman.ui.login.LoginActivityModule
+import com.example.cariteman.ui.login.LoginAdminActivityModule
 import com.example.cariteman.ui.login.view.LoginActivity
+import com.example.cariteman.ui.loginadmin.view.LoginAdminActivity
+import com.example.cariteman.ui.message.view.MessageActivity
+import com.example.cariteman.ui.notifikasi.view.NotifikasiActivity
 import com.example.cariteman.ui.pengalaman.pengalamanhome.*
 import com.example.cariteman.ui.pengalaman.tambahpengalaman.TambahPengalamanFragmentProvider
 import com.example.cariteman.ui.pengalaman.view.KelompokActivity
@@ -32,6 +36,9 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = [(LoginActivityModule::class)])
     abstract fun bindLoginActivity(): LoginActivity
 
+    @ContributesAndroidInjector(modules = [(LoginAdminActivityModule::class)])
+    abstract fun bindLoginAdminActivity(): LoginAdminActivity
+
     @ContributesAndroidInjector(modules = [(DashboardModule::class), (DashboardFragmentProvider::class)])
     abstract fun bindDashboardActivity(): DashboardBottomViewActivity
 
@@ -43,6 +50,12 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [(ProfileTempatPklModule::class)])
     abstract fun bindProfileTempatPklActivity(): ProfileTempatPklActivity
+
+    @ContributesAndroidInjector(modules = [(MessageModule::class)])
+    abstract fun bindMessageActivity(): MessageActivity
+
+    @ContributesAndroidInjector(modules = [(NotifikasiModule::class), (DetailKelompokFragmentProvider::class)])
+    abstract fun bindNotifikasiActivity(): NotifikasiActivity
 
     @ContributesAndroidInjector(modules = [(PengalamanModule::class), (TambahPengalamanFragmentProvider::class), (PengalamanHomeFragmentProvider::class), (BidangKerjaFragmentProvider::class)])
     abstract fun bindPengalamanActivity(): PengalamanActivity

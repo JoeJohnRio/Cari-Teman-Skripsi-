@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cv_text_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_little"
+        android:layout_marginTop="@dimen/space_really_small"
+        android:layout_marginEnd="@dimen/space_little"
+        android:layout_marginBottom="@dimen/space_really_small"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/space_pretty_big">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_decent"
+            android:backgroundTint="@color/navy_blue_high"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/space_more_than_little"
+                android:paddingTop="@dimen/space_little"
+                android:paddingEnd="@dimen/space_more_than_little"
+                android:paddingBottom="@dimen/space_little">
+
+                <TextView
+                    android:id="@+id/tv_isi_pesan_is_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Jadi gimana  kita yang kemarinJadi gimana  kita yang kemarin?"
+                    android:textColor="@color/white_low"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -21,6 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.loginadmin.view.LoginAdminActivity">
+        </activity>
         <activity android:name=".ui.dashboard.barudilihat.view.BaruDilihatActivity">
         </activity>
         <activity android:name=".ui.RecommendationActivity">
@@ -31,15 +33,15 @@
         </activity>
         <activity android:name=".ui.register.view.RegisterActivity">
         </activity>
-        <activity android:name=".ui.UserProfilActivity">
-        </activity>
         <activity android:name=".ui.profile.view.ProfileActivity">
+        </activity>
+        <activity android:name=".ui.notifikasi.view.NotifikasiActivity">
         </activity>
         <activity android:name=".ui.pengalaman.view.PengalamanActivity">
         </activity>
         <activity android:name=".ui.PengaturanActivity">
         </activity>
-        <activity android:name=".ui.MessageActivity">
+        <activity android:name=".ui.message.view.MessageActivity">
         </activity>
         <activity android:name=".ui.profile.tempatpklprofile.view.ProfileTempatPklActivity">
         </activity>
@@ -48,8 +50,6 @@
         <activity android:name=".ui.pengalaman.tambahpengalaman.view.TambahPengalamanLombaFragment">
         </activity>
         <activity android:name=".ui.pengalaman.tambahpengalaman.view.TambahPengalamanOrganisasiFragment">
-        </activity>
-        <activity android:name=".ui.NotifikasiActivity">
         </activity>
 
         <service

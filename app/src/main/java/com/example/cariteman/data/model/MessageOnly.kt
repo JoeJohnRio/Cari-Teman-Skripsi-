@@ -2,7 +2,7 @@ package com.example.cariteman.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Message(
+data class MessageOnly(
     @SerializedName("message") var message: String? = null
     )
 

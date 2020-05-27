@@ -2,6 +2,7 @@ package com.example.cariteman.ui.dashboard.presenter
 
 import android.util.Log
 import androidx.annotation.MainThread
+import com.example.cariteman.data.model.RelationTeman
 import com.example.cariteman.data.network.INetworkApi
 import com.example.cariteman.ui.base.presenter.BasePresenter
 import com.example.cariteman.ui.profile.view.ProfileMVPView
@@ -19,6 +20,50 @@ class ProfilePresenter<V : ProfileMVPView> @Inject internal constructor(
     ProfileMVPPresenter<V> {
     @Inject
     lateinit var mNetworkApi: INetworkApi
+
+    override fun addFriend(relation: RelationTeman) {
+        getView()?.let {
+            it.showProgress()
+            addDisposable(
+                mNetworkApi.addFriend(
+                    getKey(),
+                    relation
+                ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                    { response ->
+                        it.showMessageToast(response.message ?: "Menunggu persetujuan")
+                        it.hideProgress()
+                        it.restartActivity()
+                    },
+                    { error ->
+                        Log.d("error", "" + error.message!!)
+                        it.showMessageToast(error.message!!)
+                        it.hideProgress()
+                    })
+            )
+        }
+    }
+
+    override fun confirmFriend(relation: RelationTeman) {
+        getView()?.let {
+            it.showProgress()
+            addDisposable(
+                mNetworkApi.confirmFriend(
+                    getKey(),
+                    relation
+                ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                    { response ->
+                        it.showMessageToast(response.message ?: "")
+                        it.hideProgress()
+                        it.restartActivity()
+                    },
+                    { error ->
+                        Log.d("error", "" + error.message!!)
+                        it.showMessageToast(error.message!!)
+                        it.hideProgress()
+                    })
+            )
+        }
+    }
 
     override fun getPengalamanAndRekomendasi(id: Int) {
         getView()?.showProgress()
@@ -90,12 +135,13 @@ class ProfilePresenter<V : ProfileMVPView> @Inject internal constructor(
 
     override fun showKelompok() {
         getView()?.let {
-            addDisposable(mNetworkApi.showKelompok(getKey()).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
-                {response->
+            addDisposable(mNetworkApi.showKelompok(getKey()).subscribeOn(IoScheduler()).observeOn(
+                AndroidSchedulers.mainThread()
+            ).subscribe(
+                { response ->
                     it.handleShowKelompok(response)
                 },
-                {
-                        error->
+                { error ->
                     it.showMessageToast(error.message!!)
                 }
             ))

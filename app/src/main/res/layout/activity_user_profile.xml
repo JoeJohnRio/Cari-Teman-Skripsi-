@@ -90,8 +90,7 @@
                         android:layout_marginTop="@dimen/space_little"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        android:visibility="gone"
-                        tools:visibility="visible">
+                        android:visibility="gone">
 
                         <Button
                             android:id="@+id/b_add_friend"
@@ -205,6 +204,36 @@
                             app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/ll_status_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/space_little"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+
+                        <Button
+                            android:id="@+id/b_status_three"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/white_low"
+                            android:paddingStart="15dp"
+                            android:paddingTop="2dp"
+                            android:paddingEnd="15dp"
+                            android:paddingBottom="2dp"
+                            android:text="Menunggu persetujuan pertemanan"
+                            android:textAllCaps="true"
+                            android:textColor="@color/blue_low"
+                            android:textSize="15sp"
+                            app:cornerRadius="4dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_baru_dilihat" />
+                    </LinearLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
@@ -291,10 +320,10 @@
                     android:id="@+id/tv_fakultas_prodi_keminatan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_more_than_little"
-                    android:layout_marginBottom="@dimen/space_more_than_little"
                     android:layout_marginStart="@dimen/space_more_than_little"
+                    android:layout_marginTop="@dimen/space_more_than_little"
                     android:layout_marginEnd="@dimen/space_more_than_little"
+                    android:layout_marginBottom="@dimen/space_more_than_little"
                     android:gravity="center"
                     android:text="Fakultas Ilmu Komputer, Teknik Informatika
 Rekayasa Perangkat Lunak"

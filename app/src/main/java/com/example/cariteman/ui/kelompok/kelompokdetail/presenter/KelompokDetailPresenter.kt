@@ -1,5 +1,6 @@
 package com.example.cariteman.ui.pengalaman.pengalamanhome.presenter
 
+import com.example.cariteman.data.model.RelationKelompok
 import com.example.cariteman.data.network.INetworkApi
 import com.example.cariteman.ui.base.presenter.BasePresenter
 import com.example.cariteman.ui.pengalaman.pengalamanhome.view.KelompokDetailMVPView
@@ -20,17 +21,40 @@ class KelompokDetailPresenter<V : KelompokDetailMVPView> @Inject internal constr
     override fun getAnggotaKelompok(idKelompok: Int) {
         getView()?.let {
             it.showProgress()
-            addDisposable(mNetworkApi.showAnggotaKelompok(getKey(), idKelompok).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
-                {
-                    result->
+            addDisposable(mNetworkApi.showAnggotaKelompok(
+                getKey(),
+                idKelompok
+            ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                { result ->
                     it.hideProgress()
                     it.showAnggotaKelompokWithoutRemove(result)
                 },
                 {
 
-                    error->
+                        error ->
                     it.hideProgress()
                     it.showMessageToast(error.message!!)
+                }
+            ))
+        }
+    }
+
+    override fun confirmAnggotaKelompok(relationKelompok: RelationKelompok) {
+        getView()?.let {
+            it.showProgress()
+            addDisposable(mNetworkApi.confirmAnggotaKelompok(
+                getKey(),
+                relationKelompok
+            ).subscribeOn(
+                IoScheduler()
+            ).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                { result ->
+                    it.hideProgress()
+                    it.updateAfterConfirmKelompok(relationKelompok.status ?: 0)
+                },
+                { error ->
+                    it.hideProgress()
+                    it.updateAfterConfirmKelompok(relationKelompok.status ?: 0)
                 }
             ))
         }

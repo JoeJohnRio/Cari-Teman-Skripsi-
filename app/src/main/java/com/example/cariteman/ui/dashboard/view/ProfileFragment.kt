@@ -11,7 +11,6 @@ import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
 import com.example.cariteman.data.model.RelationTempatPklFavorite
 import com.example.cariteman.databinding.FragmentProfileBinding
 import com.example.cariteman.ui.PengaturanActivity
-import com.example.cariteman.ui.UserProfilActivity
 import com.example.cariteman.ui.base.view.BaseFragment
 import com.example.cariteman.ui.dashboard.presenter.DashboardPresenter
 import com.example.cariteman.ui.pengalaman.view.KelompokActivity
@@ -21,23 +20,16 @@ import com.example.cariteman.util.Utils
 import javax.inject.Inject
 
 class ProfileFragment : BaseFragment(), AdapterView.OnItemSelectedListener, DashboardMVPView{
-    override fun setLastPageLimiter(lastPage: Int) {
-        //notImplemented
-    }
-
-    override fun populateFavoriteProfil(responses: MutableList<RelationTempatPklFavorite>) {
-        //notimplemented
-    }
-
-    override fun populateLombaDanPklDashboard(responses: List<MahasiswaHistoryDashboardResponse>) {
-        //notimplemented
-    }
-
     private lateinit var viewBind: FragmentProfileBinding
 
     @Inject
     lateinit var presenter: DashboardPresenter<DashboardMVPView>
 
+    companion object {
+
+        val TAG: String = ProfileFragment::class.java.simpleName
+        fun newInstance() = ProfileFragment()
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         viewBind = FragmentProfileBinding.inflate(inflater, container, false)
@@ -72,16 +64,23 @@ class ProfileFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dash
         }
     }
 
+    override fun setLastPageLimiter(lastPage: Int) {
+        //notImplemented
+    }
+
+    override fun populateFavoriteProfil(responses: MutableList<RelationTempatPklFavorite>) {
+        //notimplemented
+    }
+
+    override fun populateLombaDanPklDashboard(responses: List<MahasiswaHistoryDashboardResponse>) {
+        //notimplemented
+    }
+
     override fun onNothingSelected(parent: AdapterView<*>?) {
         //notImplemented
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         //notImplemented
-    }
-
-    companion object {
-        val TAG: String = ProfileFragment::class.java.simpleName
-        fun newInstance() = ProfileFragment()
     }
 }

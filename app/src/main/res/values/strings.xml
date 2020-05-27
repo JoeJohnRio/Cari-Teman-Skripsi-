@@ -16,6 +16,7 @@
     <dimen name="space_really_small">5dp</dimen>
     <dimen name="space_little">10dp</dimen>
     <dimen name="space_more_than_little">20dp</dimen>
+    <dimen name="space_pretty_big">30dp</dimen>
     <dimen name="space_decent">40dp</dimen>
     <dimen name="space_big">60dp</dimen>
 </resources>

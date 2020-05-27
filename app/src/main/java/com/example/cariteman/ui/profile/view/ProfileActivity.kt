@@ -5,23 +5,20 @@ import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.DialogFragment.STYLE_NORMAL
-import androidx.fragment.app.DialogFragment.STYLE_NO_FRAME
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.cariteman.R
-import com.example.cariteman.data.model.PengalamanLombaOrganisasiResponse
-import com.example.cariteman.data.model.ProfilInfoOthers
-import com.example.cariteman.data.model.Rekomendasi
-import com.example.cariteman.data.model.RelationKelompok
+import com.example.cariteman.data.model.*
 import com.example.cariteman.databinding.ActivityUserProfileBinding
-import com.example.cariteman.ui.MessageActivity
 import com.example.cariteman.ui.base.view.BaseActivity
 import com.example.cariteman.ui.dashboard.barudilihat.view.ProfilPengalamanListAdapter
 import com.example.cariteman.ui.dashboard.barudilihat.view.RekomendasiListAdapter
 import com.example.cariteman.ui.dashboard.presenter.ProfilePresenter
+import com.example.cariteman.ui.message.view.MessageActivity
 import com.example.cariteman.util.Utils
 import javax.inject.Inject
+
+
 
 class ProfileActivity : BaseActivity(), ProfileMVPView {
     @Inject
@@ -33,13 +30,15 @@ class ProfileActivity : BaseActivity(), ProfileMVPView {
     var isSearchingItself = false
     var url =
         "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png"
+    var name = ""
+    var mahasiswaId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBind = DataBindingUtil.setContentView(this, R.layout.activity_user_profile)
         presenter.onAttach(this)
         presenter.setKey(Utils.loadData(applicationContext))
-        val mahasiswaId = intent.getIntExtra("MAHASISWA_ID", -1)
+        mahasiswaId = intent.getIntExtra("MAHASISWA_ID", -1)
         val isSearchingItself = intent.getBooleanExtra("isSearchingItself", false)
         this.isSearchingItself = isSearchingItself
         if (isSearchingItself){
@@ -56,7 +55,6 @@ class ProfileActivity : BaseActivity(), ProfileMVPView {
         }
         adapterRekomendasi = RekomendasiListAdapter(presenter)
         adapterPengalaman = ProfilPengalamanListAdapter(presenter)
-
     }
 
     override fun setPengalamanAndRekomendasi(
@@ -94,6 +92,7 @@ class ProfileActivity : BaseActivity(), ProfileMVPView {
         if (!isSearchingItself){
             setFriendStatusView(profilInfoOthers)
         }
+        name = profilInfoOthers.name ?: ""
         viewBind.tvNamaProfil.text = "${profilInfoOthers.name}, ${profilInfoOthers.tahunMulai}"
         viewBind.tvJumlahRekomendasi.text = "${profilInfoOthers.jumlahRekomendasi}"
         viewBind.tvJumlahTim.text = "${profilInfoOthers.jumlahKelompok}"
@@ -114,12 +113,20 @@ class ProfileActivity : BaseActivity(), ProfileMVPView {
         if (status == 0) {
             viewBind.llStatusZero.visibility = View.VISIBLE
             viewBind.bAddFriend.setOnClickListener {
-
+                if (mahasiswaId == -1){
+                    showMessageToast("Error")
+                }else{
+                    presenter.addFriend(RelationTeman(idMahasiswaTwo = mahasiswaId))
+                }
             }
         } else if (status == 1) {
             viewBind.llStatusOne.visibility = View.VISIBLE
             viewBind.bKirimPesan.setOnClickListener {
-                startActivity(Intent(this, MessageActivity::class.java))
+                var intent = Intent(baseContext, MessageActivity::class.java)
+                intent.putExtra("isKelompok", 0)
+                intent.putExtra("idMahasiswaPenerima", mahasiswaId)
+                intent.putExtra("namaToolbar", name)
+                startActivity(intent)
             }
             viewBind.bTambahKelompok.setOnClickListener {
                 presenter.showKelompok()
@@ -127,12 +134,31 @@ class ProfileActivity : BaseActivity(), ProfileMVPView {
         } else if (status == 2) {
             viewBind.llStatusTwo.visibility = View.VISIBLE
             viewBind.bAcceptFriend.setOnClickListener {
-
+                if (mahasiswaId == -1){
+                    showMessageToast("Error")
+                }else{
+                    presenter.confirmFriend(RelationTeman(idMahasiswaTwo = mahasiswaId, status = 1))
+                }
             }
             viewBind.bRejectFriend.setOnClickListener {
-
+                if (mahasiswaId == -1){
+                    showMessageToast("Error")
+                }else{
+                    presenter.confirmFriend(RelationTeman(idMahasiswaTwo = mahasiswaId, status = 0))
+                }
             }
+        } else if (status == 3){
+            viewBind.llStatusThree.visibility = View.VISIBLE
+        } else if(status == -1){
+
         }
+    }
+
+    override fun restartActivity() {
+        val intent = intent
+        this.intent.putExtra("MAHASISWA_ID", mahasiswaId)
+        finish()
+        startActivity(intent)
     }
 
     override fun handleShowKelompok(response: MutableList<RelationKelompok>) {

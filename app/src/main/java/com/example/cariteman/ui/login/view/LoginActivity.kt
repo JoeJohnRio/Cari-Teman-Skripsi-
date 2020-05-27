@@ -10,8 +10,10 @@ import com.example.cariteman.databinding.ActivityLoginBinding
 import com.example.cariteman.ui.base.view.BaseActivity
 import com.example.cariteman.ui.dashboard.view.DashboardBottomViewActivity
 import com.example.cariteman.ui.login.presenter.LoginMVPPresenter
+import com.example.cariteman.ui.loginadmin.view.LoginAdminActivity
 import com.example.cariteman.ui.register.view.RegisterActivity
 import com.example.cariteman.util.CommonUtil.emailPattern
+import com.example.cariteman.util.Utils
 import com.example.cariteman.util.Utils.SHARED_PREFS
 import com.example.cariteman.util.Utils.TEXT
 import javax.inject.Inject
@@ -22,6 +24,7 @@ class LoginActivity : BaseActivity(), LoginMVPView {
     lateinit var presenter: LoginMVPPresenter<LoginMVPView>
 
     lateinit var viewBind: ActivityLoginBinding
+    var hiddenClick = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,28 +36,36 @@ class LoginActivity : BaseActivity(), LoginMVPView {
         viewBind.etPassword.setText(R.string.password_login)
         viewBind.etPasswordConfirmation.setText(R.string.password_confirm_login)
 
-        viewBind.bSignIn.setOnClickListener {
-            if (viewBind.etEmail.getText().toString().isEmpty()) {
-                Toast.makeText(getApplicationContext(), "enter email address", Toast.LENGTH_SHORT)
-                    .show();
-            } else {
-                if (viewBind.etEmail.getText().toString().trim().matches(emailPattern.toRegex())) {
+        viewBind.ivHiddenClick.setOnClickListener {
+            hiddenClick++
+            if (hiddenClick == 15){
+                val intent = Intent(this, LoginAdminActivity::class.java)
+                Toast.makeText(getApplicationContext(), "Anda telah masuk ke login Admin", Toast.LENGTH_SHORT).show()
+                startActivity(intent)
+            }
+        }
 
+        viewBind.bSignIn.setOnClickListener {
+            if (viewBind.etEmail.getText().toString().isEmpty() && viewBind.etPassword.text.toString().isEmpty() && viewBind.etPasswordConfirmation.text.toString().isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Penuhi form terlebih dahulu", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                if (Utils.isEmailValid(viewBind.etEmail.getText().toString().trim())) {
+                    presenter.onLoginBtnClicked(
+                        Login(
+                            email = viewBind.etEmail.text.toString(),
+                            password = viewBind.etPassword.text.toString(),
+                            passwordConfirmation = viewBind.etPasswordConfirmation.text.toString()
+                        )
+                    )
                 } else {
                     Toast.makeText(
                         getApplicationContext(),
-                        "Invalid email address",
+                        "Email tidak benar",
                         Toast.LENGTH_SHORT
-                    ).show();
+                    ).show()
                 }
             }
-            presenter.onLoginBtnClicked(
-                Login(
-                    email = viewBind.etEmail.text.toString(),
-                    password = viewBind.etPassword.text.toString(),
-                    passwordConfirmation = viewBind.etPasswordConfirmation.text.toString()
-                )
-            )
         }
 
         viewBind.tvSignUpNotHaveAccount.setOnClickListener {

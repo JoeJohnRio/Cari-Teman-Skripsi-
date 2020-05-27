@@ -8,19 +8,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cariteman.R
 import com.example.cariteman.data.model.AnggotaKelompok
-import com.example.cariteman.data.model.PengalamanLombaOrganisasiResponse
-import com.example.cariteman.data.model.RelationBidangKerja
 import com.example.cariteman.data.model.RelationKelompok
-import com.example.cariteman.databinding.FragmentDaftarKelompokBinding
 import com.example.cariteman.databinding.FragmentDetailKelompokBinding
-import com.example.cariteman.databinding.FragmentPengalamanHomeBinding
-import com.example.cariteman.ui.MessageActivity
 import com.example.cariteman.ui.base.view.BaseFragment
+import com.example.cariteman.ui.message.view.MessageActivity
 import com.example.cariteman.ui.pengalaman.pengalamanhome.presenter.KelompokDetailPresenter
-import com.example.cariteman.ui.pengalaman.pengalamanhome.presenter.KelompokHomePresenter
-import com.example.cariteman.ui.pengalaman.pengalamanhome.presenter.PengalamanHomePresenter
-import com.example.cariteman.ui.pengalaman.tambahpengalaman.view.TambahPengalamanLombaFragment
-import com.example.cariteman.ui.pengalaman.tambahpengalaman.view.TambahPengalamanOrganisasiFragment
 import com.example.cariteman.util.Utils
 import com.example.cariteman.util.extension.addFragmentWithBackStack
 import javax.inject.Inject
@@ -33,6 +25,7 @@ class KelompokDetailFragment : BaseFragment(),
     lateinit var viewBind: FragmentDetailKelompokBinding
 
     lateinit var adapterWithList: DetailKelompokAnggotaListAdapter
+    var idKelompok = 0
     companion object {
         internal val TAG = "Kelompok"
 
@@ -48,37 +41,60 @@ class KelompokDetailFragment : BaseFragment(),
         super.onCreate(savedInstanceState)
 
         val bundle: Bundle? = arguments
-        val idKelompok: Int? = bundle?.getInt("id")
+        idKelompok = bundle?.getInt("id") ?: 0
         val namaKelompok: String? = bundle?.getString("namaKelompok")
+        val isAlreadyKelompok: Int? = bundle?.getInt("isAlreadyKelompok" ,-1)
 
         viewBind = FragmentDetailKelompokBinding.inflate(inflater, container, false)
         presenter.onAttach(this)
         context.let {presenter.setKey(Utils.loadData(it!!))}
 
-        presenter.getAnggotaKelompok(idKelompok ?: 0)
-        viewBind.tvKelompokTitle.setText(namaKelompok.toString())
+        if (isAlreadyKelompok == 1){
+            presenter.getAnggotaKelompok(idKelompok ?: 0)
+            viewBind.tvKelompokTitle.setText(namaKelompok.toString())
 
-        viewBind.ivMessageButton.setOnClickListener {
-            startActivity(Intent(context, MessageActivity::class.java))
+            viewBind.ivMessageButton.setOnClickListener {
+                var intent = Intent(context, MessageActivity::class.java)
+                intent.putExtra("isKelompok", 1)
+                intent.putExtra("idKelompok", idKelompok)
+                intent.putExtra("namaToolbar", namaKelompok)
+                startActivity(intent)
+            }
+
+            viewBind.fabRemoveAnggota.setOnClickListener {
+
+            }
+
+            viewBind.bTambahAnggota.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putBoolean("isMakingKelompok", false)
+                bundle.putInt("idKelompok", idKelompok!!)
+                val tambahKelompok1Fragment = TambahKelompok1Fragment.newInstance()
+                tambahKelompok1Fragment.arguments = bundle
+
+                getBaseActivity()?.supportFragmentManager?.addFragmentWithBackStack(
+                    R.id.cl_kelompok_home,
+                    tambahKelompok1Fragment,
+                    TambahKelompok1Fragment.TAG
+                )
+            }
+        }else if(isAlreadyKelompok == 0){
+            presenter.getAnggotaKelompok(idKelompok ?: 0)
+            viewBind.ivMessageButton.visibility = View.GONE
+            viewBind.fabRemoveAnggota.visibility = View.GONE
+            viewBind.bTambahAnggota.visibility = View.GONE
+            viewBind.bAcceptKelompok.visibility = View.VISIBLE
+            viewBind.bDeclineKelompok.visibility = View.VISIBLE
+
+            viewBind.bAcceptKelompok.setOnClickListener {
+                presenter.confirmAnggotaKelompok(relationKelompok = RelationKelompok(idKelompok = idKelompok, status = 1))
+            }
+
+            viewBind.bDeclineKelompok.setOnClickListener {
+                presenter.confirmAnggotaKelompok(relationKelompok = RelationKelompok(idKelompok = idKelompok, status = 0))
+            }
         }
 
-        viewBind.fabRemoveAnggota.setOnClickListener {
-
-        }
-
-        viewBind.bTambahAnggota.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putBoolean("isMakingKelompok", false)
-            bundle.putInt("idKelompok", idKelompok!!)
-            val tambahKelompok1Fragment = TambahKelompok1Fragment.newInstance()
-            tambahKelompok1Fragment.arguments = bundle
-
-            getBaseActivity()?.supportFragmentManager?.addFragmentWithBackStack(
-                R.id.cl_kelompok_home,
-                tambahKelompok1Fragment,
-                TambahKelompok1Fragment.TAG
-            )
-        }
 
         return viewBind.root
     }
@@ -97,6 +113,9 @@ class KelompokDetailFragment : BaseFragment(),
         }
     }
 
+    override fun updateAfterConfirmKelompok(status: Int) {
+        activity?.onBackPressed()
+    }
 
     override fun setUp() {
 

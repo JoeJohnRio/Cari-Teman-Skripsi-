@@ -1,11 +1,13 @@
 package com.example.cariteman.util
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.net.Uri
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -31,6 +33,11 @@ object Utils {
     val parserDate = SimpleDateFormat("yyyy-MM-dd")
     val formatterDate = SimpleDateFormat("dd MMMM, yyyy")
     var mStorageRef = FirebaseStorage.getInstance().getReference("uploads")
+
+    fun hideKeyboard(context: Context, view: View) {
+        val inputMethodManager = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
 
     fun toggleThreeButton(
         turnUp: MaterialButton,

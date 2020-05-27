@@ -75,6 +75,7 @@ class KelompokHomeFragment : BaseFragment(),
         val bundle = Bundle()
         bundle.putInt("id", id)
         bundle.putString("namaKelompok", namaKelompok)
+        bundle.putInt("isAlreadyKelompok", 1)
         val kelompokDetailFragment = KelompokDetailFragment.newInstance()
         kelompokDetailFragment.arguments = bundle
 

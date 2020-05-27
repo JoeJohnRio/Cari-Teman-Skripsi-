@@ -11,4 +11,6 @@ interface ProfileMVPView : MVPView{
     fun setFriendStatusView(profilInfoOthers: ProfilInfoOthers)
 
     fun handleShowKelompok(response: MutableList<RelationKelompok>)
+
+    fun restartActivity()
 }

@@ -9,11 +9,14 @@ interface INetworkApi {
     @POST(Endpoints.login)
     fun loginApi(@Body login: Login): Observable<Token>
 
+    @POST(Endpoints.loginAdmin)
+    fun loginAdminApi(@Body login: Login): Observable<MessageOnly>
+
     @POST(Endpoints.register)
     fun registerApi(@Body mahasiswa: MahasiswaResponse): Observable<MahasiswaResponse>
 
     @POST(Endpoints.checkUserExist)
-    fun checkIfUserExist(@Body mahasiswa: MahasiswaResponse): Observable<Message>
+    fun checkIfUserExist(@Body mahasiswa: MahasiswaResponse): Observable<MessageOnly>
 
     @GET(Endpoints.fakultas)
     @Headers("No-Authentication: true")
@@ -172,6 +175,10 @@ interface INetworkApi {
     @Headers("No-Authentication: true")
     fun showAnggotaKelompok(@Header("app-key") string: String?, @Path("id_kelompok") idKelompok: Int?): Observable<MutableList<AnggotaKelompok>>
 
+    @POST(Endpoints.confirmAnggotaKelompok)
+    @Headers("No-Authentication: true")
+    fun confirmAnggotaKelompok(@Header("app-key") string: String?, @Body relationKelompok: RelationKelompok): Observable<MessageOnly>
+
     @POST(Endpoints.searchMahasiswa)
     @Headers("No-Authentication: true")
     fun searchMahasiswa(@Header("app-key") string: String?, @Body mahasiswaSearch: MahasiswaSearchFilter?): Observable<SearchFilter>
@@ -188,4 +195,34 @@ interface INetworkApi {
     @Headers("No-Authentication: true")
     fun showSearchHistory(@Header("app-key") string: String?): Observable<MutableList<SearchHistory>>
 
+    //Message
+    @POST(Endpoints.showMessageKelompok)
+    @Headers("No-Authentication: true")
+    fun showMessageKelompok(@Header("app-key") string: String?, @Body messageSend: MessageSend): Observable<MutableList<MessageKelompok>>
+
+    @POST(Endpoints.sendMessageKelompok)
+    @Headers("No-Authentication: true")
+    fun sendMessageKelompok(@Header("app-key") string: String?, @Body messageSend: MessageSend): Observable<MessageOnly>
+
+    @POST(Endpoints.showMessageUser)
+    @Headers("No-Authentication: true")
+    fun showMessageUser(@Header("app-key") string: String?, @Body messageSend: MessageSend): Observable<MutableList<MessageKelompok>>
+
+    @POST(Endpoints.sendMessageUser)
+    @Headers("No-Authentication: true")
+    fun sendMessageUser(@Header("app-key") string: String?, @Body messageSend: MessageSend): Observable<MessageOnly>
+
+    //Notifikasi
+    @GET(Endpoints.showNotifikasi)
+    @Headers("No-Authentication: true")
+    fun showNotifikasi(@Header("app-key") string: String?): Observable<MutableList<NotifikasiResponse>>
+
+    //Relation
+    @POST(Endpoints.addFriend)
+    @Headers("No-Authentication: true")
+    fun addFriend(@Header("app-key") string: String?, @Body relation: RelationTeman): Observable<MessageOnly>
+
+    @POST(Endpoints.confirmFriend)
+    @Headers("No-Authentication: true")
+    fun confirmFriend(@Header("app-key") string: String?, @Body relation: RelationTeman): Observable<MessageOnly>
 }

@@ -1,5 +1,6 @@
 package com.example.cariteman.ui.dashboard.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -32,6 +33,11 @@ class DashboardBottomViewActivity : BaseActivity(), DashboardMVPView, HasSupport
     private lateinit var binding: NavigationBottomParentBinding
     private var navPosition: BottomNavigationPosition = BottomNavigationPosition.HOME
 
+    companion object {
+        lateinit var activityEnd: Activity
+        const val KEY_POSITION = "keyPosition"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         restoreSavedInstanceState(savedInstanceState)
@@ -39,6 +45,7 @@ class DashboardBottomViewActivity : BaseActivity(), DashboardMVPView, HasSupport
         binding = DataBindingUtil.setContentView(this, R.layout.navigation_bottom_parent)
 
         presenter.onAttach(this)
+        activityEnd = this
         binding.bottomNavigation.apply {
             // This is required in Support Library 27 or lower:
             // bottomNavigation.disableShiftMode()
@@ -74,10 +81,10 @@ class DashboardBottomViewActivity : BaseActivity(), DashboardMVPView, HasSupport
         //notImplemented
     }
 
+
     override fun onFragmentDetached(tag: String) {
         supportFragmentManager?.removeFragment(tag = tag)
     }
-
 
     private fun restoreSavedInstanceState(savedInstanceState: Bundle?) {
         // Restore the current navigation position.
@@ -117,9 +124,5 @@ class DashboardBottomViewActivity : BaseActivity(), DashboardMVPView, HasSupport
 
     override fun populateLombaDanPklDashboard(responses: List<MahasiswaHistoryDashboardResponse>) {
         //notImplemented
-    }
-
-    companion object {
-        const val KEY_POSITION = "keyPosition"
     }
 }

@@ -1,5 +1,6 @@
 package com.example.cariteman.ui.dashboard.barudilihat.view
 
+import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -8,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.cariteman.R
 import com.example.cariteman.data.model.AnggotaKelompok
 import com.example.cariteman.ui.pengalaman.pengalamanhome.view.KelompokDetailFragment
+import com.example.cariteman.ui.profile.view.ProfileActivity
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.extensions.LayoutContainer
 
@@ -39,5 +41,13 @@ class DetailKelompokAnggotaViewHolder(override val containerView: View) :
         tvNamaAnggota?.setText(response.name ?: "")
         tvNamaFakultas?.setText(response.namaFakultas)
 
+        itemView.setOnClickListener {
+            val intent = Intent(itemView.context, ProfileActivity::class.java)
+            intent.putExtra(
+                "MAHASISWA_ID",
+                response.id
+            )
+            itemView.context.startActivity(intent)
+        }
     }
 }

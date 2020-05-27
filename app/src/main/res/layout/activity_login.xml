@@ -60,6 +60,7 @@
                 android:layout_marginStart="@dimen/space_more_than_little"
                 android:layout_marginEnd="@dimen/space_more_than_little">
                 <ImageView
+                    android:id="@+id/iv_hidden_click"
                     android:layout_marginTop="@dimen/space_more_than_little"
                     android:layout_width="wrap_content"
                     android:layout_height="180dp"

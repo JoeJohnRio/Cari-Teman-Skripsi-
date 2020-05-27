@@ -168,7 +168,6 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
                     }
                 }
             }
-
             viewBind.mbDeleteButton.visibility = View.GONE
         }
 

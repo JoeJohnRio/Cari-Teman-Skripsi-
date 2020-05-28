@@ -225,4 +225,14 @@ interface INetworkApi {
     @POST(Endpoints.confirmFriend)
     @Headers("No-Authentication: true")
     fun confirmFriend(@Header("app-key") string: String?, @Body relation: RelationTeman): Observable<MessageOnly>
+
+    //Admin
+    @POST(Endpoints.showMahasiswaNotVerified)
+    fun showMahasiswaNotVerified(): Observable<MutableList<MahasiswaNotVerifiedListResponse>>
+
+    @POST(Endpoints.showMahasiswaNotVerifiedDetail)
+    fun showMahasiswaNotVerifiedDetail(@Body response: MahasiswaNotVerifiedListResponse): Observable<MahasiswaNotVerifiedListResponse>
+
+    @POST(Endpoints.showMahasiswaNotVerifiedConfirm)
+    fun showMahasiswaNotVerifiedConfirm(@Body response: MahasiswaNotVerifiedListResponse): Observable<MessageOnly>
 }

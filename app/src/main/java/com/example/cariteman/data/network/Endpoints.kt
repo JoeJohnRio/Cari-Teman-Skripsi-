@@ -86,4 +86,8 @@ object Endpoints {
     //Notifikasi
     const val showNotifikasi = "notifikasi/show"
 
+    //Admin
+    const val showMahasiswaNotVerified = "admin/mahasiswa"
+    const val showMahasiswaNotVerifiedDetail = "admin/mahasiswa/detail"
+    const val showMahasiswaNotVerifiedConfirm = "admin/mahasiswa/confirm"
 }

@@ -22,15 +22,14 @@ class LoginAdminPresenter<V : LoginAdminMVPView> @Inject internal constructor(
     override fun onLoginAdminButtonClicked(loginInfo: Login) {
         getView()?.let {
             it.showProgress()
-            addDisposable(mNetworkApi.loginApi(loginInfo).subscribeOn(IoScheduler()).observeOn(
+            addDisposable(mNetworkApi.loginAdminApi(loginInfo).subscribeOn(IoScheduler()).observeOn(
                 AndroidSchedulers.mainThread()
             )
                 .subscribe(
                     { result ->
                         getView().let {
                             it?.hideProgress()
-                            getView()?.goToDashboard()
-                            getView()?.saveData(result.token.toString())
+                            getView()?.goToVerifikasiList()
                         }
                     },
                     { error ->

@@ -15,12 +15,14 @@ import com.example.cariteman.ui.pengalaman.tambahpengalaman.TambahPengalamanFrag
 import com.example.cariteman.ui.pengalaman.view.KelompokActivity
 import com.example.cariteman.ui.pengalaman.view.PengalamanActivity
 import com.example.cariteman.ui.pengalaman.view.SearchActivity
+import com.example.cariteman.ui.verifikasiakun.view.VerifikasiAkunActivity
 import com.example.cariteman.ui.profile.tempatpklprofile.view.ProfileTempatPklActivity
 import com.example.cariteman.ui.profile.view.ProfileActivity
 import com.example.cariteman.ui.register.RegisterFragmentProvider
 import com.example.cariteman.ui.register.RegisterActivityModule
 import com.example.cariteman.ui.register.view.RegisterActivity
 import com.example.cariteman.ui.search.frontprofile.FrontProfileFragmentProvider
+import com.example.cariteman.ui.verifikasiakun.VerifikasiAkunModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -53,6 +55,9 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [(MessageModule::class)])
     abstract fun bindMessageActivity(): MessageActivity
+
+    @ContributesAndroidInjector(modules = [(VerifikasiAkunModule::class), (VerifikasiAkunListFragmentProvider::class), (VerifikasiAkunDetailFragmentProvider::class)])
+    abstract fun bindVerifikasiAkunActivity(): VerifikasiAkunActivity
 
     @ContributesAndroidInjector(modules = [(NotifikasiModule::class), (DetailKelompokFragmentProvider::class)])
     abstract fun bindNotifikasiActivity(): NotifikasiActivity

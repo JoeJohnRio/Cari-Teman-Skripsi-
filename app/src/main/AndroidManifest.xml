@@ -43,6 +43,8 @@
         </activity>
         <activity android:name=".ui.message.view.MessageActivity">
         </activity>
+        <activity android:name="com.example.cariteman.ui.verifikasiakun.view.VerifikasiAkunActivity">
+        </activity>
         <activity android:name=".ui.profile.tempatpklprofile.view.ProfileTempatPklActivity">
         </activity>
         <activity android:name=".ui.pengalaman.view.KelompokActivity">

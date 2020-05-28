@@ -8,10 +8,9 @@ import com.example.cariteman.R
 import com.example.cariteman.data.model.Login
 import com.example.cariteman.databinding.ActivityLoginAdminBinding
 import com.example.cariteman.ui.base.view.BaseActivity
-import com.example.cariteman.ui.dashboard.view.DashboardBottomViewActivity
 import com.example.cariteman.ui.loginadmin.presenter.LoginAdminMVPPresenter
-import com.example.cariteman.ui.register.view.RegisterActivity
-import com.example.cariteman.util.CommonUtil.emailPattern
+import com.example.cariteman.ui.verifikasiakun.view.VerifikasiAkunActivity
+import com.example.cariteman.util.Utils
 import com.example.cariteman.util.Utils.SHARED_PREFS
 import com.example.cariteman.util.Utils.TEXT
 import javax.inject.Inject
@@ -37,34 +36,29 @@ class LoginAdminActivity : BaseActivity(), LoginAdminMVPView {
                 Toast.makeText(getApplicationContext(), "enter email address", Toast.LENGTH_SHORT)
                     .show();
             } else {
-                if (viewBind.etEmail.getText().toString().trim().matches(emailPattern.toRegex())) {
+                if (Utils.isEmailValid(viewBind.etEmail.getText().toString().trim())) {
+                    presenter.onLoginAdminButtonClicked(
+                        Login(
+                            email = viewBind.etEmail.text.toString(),
+                            password = viewBind.etPassword.text.toString()
+                        )
+                    )
 
                 } else {
                     Toast.makeText(
                         getApplicationContext(),
                         "Invalid email address",
                         Toast.LENGTH_SHORT
-                    ).show();
+                    ).show()
                 }
             }
-            presenter.onLoginAdminButtonClicked(
-                Login(
-                    email = viewBind.etEmail.text.toString(),
-                    password = viewBind.etPassword.text.toString()
-                )
-            )
-        }
 
-        viewBind.tvSignUpNotHaveAccount.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
         }
     }
 
-    override fun goToDashboard() {
-        val intent = Intent(this, DashboardBottomViewActivity::class.java)
-        Toast.makeText(getApplicationContext(), "Anda telah masuk", Toast.LENGTH_SHORT).show();
-        startActivity(intent)
+    override fun goToVerifikasiList() {
+        Toast.makeText(getApplicationContext(), "Anda telah masuk", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, VerifikasiAkunActivity::class.java))
     }
 
     override fun saveData(apiKey: String) {

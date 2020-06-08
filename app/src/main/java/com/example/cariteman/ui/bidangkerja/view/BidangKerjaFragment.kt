@@ -19,6 +19,8 @@ import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 import android.content.Intent
+import com.example.cariteman.data.model.SkillHobi
+import com.example.cariteman.ui.pengalaman.view.SearchActivity
 
 
 class BidangKerjaFragment : BaseFragment(),
@@ -32,6 +34,7 @@ class BidangKerjaFragment : BaseFragment(),
     var bidangKerjaId = 0
     var bidangKerjaNama: String = ""
     var isFirst: Boolean = true
+    var isFilter: Boolean = false
     var mutableListOfBidangKerja: MutableList<BidangKerja> = mutableListOf()
 
     companion object {
@@ -54,6 +57,7 @@ class BidangKerjaFragment : BaseFragment(),
         context.let { presenter.setKey(Utils.loadData(it!!)) }
         val bundle: Bundle?= arguments
         bidangKerjaNama = bundle?.getString("namaBidangKerja") ?: ""
+        isFilter = bundle?.getBoolean("isFilter") ?: false
         adapterBidangKerja = BidangKerjaListAdapter(this)
         modifyPengalaman = PengalamanLombaOrganisasiResponse()
 
@@ -102,11 +106,18 @@ class BidangKerjaFragment : BaseFragment(),
     }
 
     override fun popBackStackWithBidangKerja(bidangKerja: BidangKerja) {
-        val intent = Intent(context, BidangKerjaFragment::class.java)
-        intent.putExtra("bidangKerjaNama", bidangKerja.namaBidangKerja)
-        intent.putExtra("bidangKerjaId", bidangKerja.id)
-        targetFragment!!.onActivityResult(targetRequestCode, RESULT_OK, intent)
-        activity?.supportFragmentManager?.popBackStack()
+        if (isFilter == true){
+            (activity as SearchActivity).bidangKerja = bidangKerja
+            (activity as SearchActivity).skillHobi = SkillHobi()
+
+            activity?.onBackPressed()
+        }else{
+            val intent = Intent(context, BidangKerjaFragment::class.java)
+            intent.putExtra("bidangKerjaNama", bidangKerja.namaBidangKerja)
+            intent.putExtra("bidangKerjaId", bidangKerja.id)
+            targetFragment!!.onActivityResult(targetRequestCode, RESULT_OK, intent)
+            activity?.supportFragmentManager?.popBackStack()
+        }
     }
 
     override fun showBidangKerja(listOfBidangKerja: MutableList<BidangKerja>) {

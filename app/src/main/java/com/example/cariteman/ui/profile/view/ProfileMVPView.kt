@@ -13,4 +13,8 @@ interface ProfileMVPView : MVPView{
     fun handleShowKelompok(response: MutableList<RelationKelompok>)
 
     fun restartActivity()
+
+    fun handleAfterInviteToKelompok()
+
+    fun addFriendToKelompok(idKelompok: Int)
 }

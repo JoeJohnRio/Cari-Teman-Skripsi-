@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
+import com.example.cariteman.data.model.RekomendasiResponse
 import com.example.cariteman.data.model.RelationTempatPklFavorite
 import com.example.cariteman.databinding.FragmentFavoriteBinding
 import com.example.cariteman.ui.base.view.BaseFragment
@@ -176,6 +177,10 @@ class FavoriteFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Das
     }
 
     override fun populateLombaDanPklDashboard(responses: List<MahasiswaHistoryDashboardResponse>) {
+        //notImplemented
+    }
+
+    override fun populateRekomendasi(responses: MutableList<RekomendasiResponse>) {
         //notImplemented
     }
 }

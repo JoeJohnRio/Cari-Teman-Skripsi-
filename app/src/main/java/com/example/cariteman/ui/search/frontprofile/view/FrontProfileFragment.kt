@@ -55,9 +55,9 @@ class FrontProfileFragment : BaseFragment(),
         frontProfileListAdapter =
             FrontProfileListAdapter(presenter)
 
-        val bundle: Bundle? = arguments
-        val keyword = bundle?.getString("keyword") ?: activity.filterDetails.keyword
-        val searchType = bundle?.getInt("searchType",   0) ?: activity.filterDetails.preferensi
+        var searchType = (activity as SearchActivity).filterDetails.preferensi
+
+        var keyword = (activity as SearchActivity).filterDetails.keyword
 
         if (searchType == 0 || searchType == 1) {
             activity.filterDetails.let {
@@ -82,16 +82,23 @@ class FrontProfileFragment : BaseFragment(),
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                Handler().postDelayed({
-                    activity.filterDetails.let {
-                        it.keyword = s.toString()
-                    }
-                    showMessageToast(s.toString())
-                    presenter.searchMahasiswa(activity.filterDetails)
-                }, 1000)
+                if(activity.filterDetails.preferensi == 1 || activity.filterDetails.preferensi == 0){
+                    Handler().postDelayed({
+                        activity.filterDetails.let {
+                            it.keyword = s.toString()
+                        }
+                        presenter.searchMahasiswa(activity.filterDetails)
+                    }, 1000)
+                }else if(activity.filterDetails.preferensi == 2){
+                    Handler().postDelayed({
+                        activity.filterDetails.let {
+                            it.keyword = s.toString()
+                        }
+                        presenter.searchTempatPkl(activity.filterTempatPkl)
+                    }, 1000)
+                }
             }
         })
-//        (getBaseActivity() as (SearchActivity)).filterDetails
 
         return viewBind.root
     }
@@ -113,7 +120,19 @@ class FrontProfileFragment : BaseFragment(),
     }
 
     override fun handleSearchTempatPkl(tempatPklResponse: SearchFilter) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        frontProfileListAdapter.submitList(
+            Mapper.searchFilterToFrontProfileResponse(tempatPklResponse)
+        )
+
+        viewBind.rvSearchResult.apply {
+            if (adapter == null) {
+                adapter = frontProfileListAdapter
+            }
+            if (layoutManager == null) {
+                layoutManager = LinearLayoutManager(context)
+            }
+            adapter?.notifyDataSetChanged()
+        }
     }
 
     override fun setUp() {

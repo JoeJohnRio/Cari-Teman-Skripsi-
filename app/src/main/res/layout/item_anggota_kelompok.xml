@@ -19,7 +19,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/pengalaman"/>
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -31,6 +31,8 @@
                 android:layout_height="wrap_content"
                 android:text="Joel Johanes Cirio"
                 android:textColor="@color/black_effective"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_more_than_normal" />
             <TextView
@@ -39,15 +41,17 @@
                 android:layout_height="wrap_content"
                 android:text="Fakultas Ilmu Komputer"
                 android:textColor="@color/black_effective"
+                app:layout_constraintTop_toBottomOf="@id/tv_nama_anggota"
+                app:layout_constraintStart_toStartOf="parent"
                 android:textSize="@dimen/text_normal"/>
-
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginTop="@dimen/space_little"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:background="@color/black_effective"/>
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
 </LinearLayout>

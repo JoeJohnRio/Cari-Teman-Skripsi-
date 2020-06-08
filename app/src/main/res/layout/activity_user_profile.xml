@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_big"
                     android:gravity="center"
-                    android:text="@string/nama_login"
+                    android:text="No User"
                     android:textColor="@color/blue_low"
                     android:textSize="@dimen/text_big" />
 
@@ -358,7 +358,28 @@ Rekayasa Perangkat Lunak"
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_item_pengalaman_profile"
                     android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:layout_height="wrap_content" />
+
+
+                <LinearLayout
+                    android:id="@+id/ll_no_pengalaman"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/ic_undraw_towing_6yy4"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black_effective"
+                        android:textStyle="italic"
+                        android:text="Sepertinya user belum memiliki pengalaman"/>
+                </LinearLayout>
 
 
             </LinearLayout>
@@ -394,7 +415,7 @@ Rekayasa Perangkat Lunak"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/b_tambah_pengalaman"
+                        android:id="@+id/b_tambah_rekomendasi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/orange_high"
@@ -406,6 +427,7 @@ Rekayasa Perangkat Lunak"
                         android:textColor="@color/white_high"
                         android:textSize="@dimen/text_kinda_big"
                         android:textStyle="bold"
+                        android:visibility="gone"
                         app:cornerRadius="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -421,7 +443,27 @@ Rekayasa Perangkat Lunak"
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_item_rekomendasi_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_no_rekomendasi"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/ic_undraw_towing_6yy4"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black_effective"
+                        android:textStyle="italic"
+                        android:text="Sepertinya user belum mendapat rekomendasi"/>
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -431,10 +473,19 @@ Rekayasa Perangkat Lunak"
                 android:layout_height="120dp"
                 android:layout_marginTop="@dimen/space_more_than_little"
                 android:foregroundGravity="center"
-                android:src="@drawable/profile_picture"
+                android:src="@drawable/nophoto"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/abl_name" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_ic_modify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_mode_edit_modify_black_24dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/civ_profil"
+                app:layout_constraintEnd_toEndOf="@id/civ_profil" />
 
             <!--            <com.mikhaellopez.circularimageview.CircularImageView-->
             <!--                android:layout_width="250dp"-->

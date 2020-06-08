@@ -24,8 +24,12 @@ class KelompokDetailFragment : BaseFragment(),
 
     lateinit var viewBind: FragmentDetailKelompokBinding
 
+    lateinit var listAnggotaKelompok: MutableList<AnggotaKelompok>
     lateinit var adapterWithList: DetailKelompokAnggotaListAdapter
+    lateinit var adapterWithoutRemoveList: DetailKelompokAnggotaListAdapter
+    lateinit var adapterAnggotaPending: DetailKelompokAnggotaListAdapter
     var idKelompok = 0
+    var isOnDelete = false
     companion object {
         internal val TAG = "Kelompok"
 
@@ -50,7 +54,8 @@ class KelompokDetailFragment : BaseFragment(),
         context.let {presenter.setKey(Utils.loadData(it!!))}
 
         if (isAlreadyKelompok == 1){
-            presenter.getAnggotaKelompok(idKelompok ?: 0)
+            presenter.getAnggotaKelompok(idKelompok)
+            presenter.getPendingAnggotaKelompok(idKelompok)
             viewBind.tvKelompokTitle.setText(namaKelompok.toString())
 
             viewBind.ivMessageButton.setOnClickListener {
@@ -62,7 +67,17 @@ class KelompokDetailFragment : BaseFragment(),
             }
 
             viewBind.fabRemoveAnggota.setOnClickListener {
-
+                if (isOnDelete){
+                    isOnDelete = false
+                    if (!listAnggotaKelompok.isNullOrEmpty()){
+                        showAnggotaKelompokWithRemove(listAnggotaKelompok)
+                    }
+                }else{
+                    isOnDelete = true
+                    if (!listAnggotaKelompok.isNullOrEmpty()){
+                        showAnggotaKelompokWithoutRemove(listAnggotaKelompok)
+                    }
+                }
             }
 
             viewBind.bTambahAnggota.setOnClickListener {
@@ -99,9 +114,14 @@ class KelompokDetailFragment : BaseFragment(),
         return viewBind.root
     }
 
+    override fun removeAnggotaKelompok(idMahasiswa: Int) {
+        presenter.removeAnggota(RelationKelompok(idKelompok = idKelompok, idMahasiswa = idMahasiswa))
+    }
+
     override fun showAnggotaKelompokWithoutRemove(response: MutableList<AnggotaKelompok>) {
         adapterWithList = DetailKelompokAnggotaListAdapter(this, false)
 
+        listAnggotaKelompok = response
         viewBind.tvJumlahAnggota.setText(response.size.toString() + " anggota kelompok")
         adapterWithList.submitList(response)
         viewBind.rvAnggotaKelompok.apply {
@@ -110,6 +130,42 @@ class KelompokDetailFragment : BaseFragment(),
                 layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
             }
             adapter?.notifyDataSetChanged()
+        }
+    }
+
+    override fun showAnggotaKelompokWithRemove(response: MutableList<AnggotaKelompok>) {
+        adapterWithoutRemoveList = DetailKelompokAnggotaListAdapter(this, true)
+
+        listAnggotaKelompok = response
+        viewBind.tvJumlahAnggota.setText(response.size.toString() + " anggota kelompok")
+        adapterWithoutRemoveList.submitList(response)
+        viewBind.rvAnggotaKelompok.apply {
+            adapter = adapterWithoutRemoveList
+            if (layoutManager == null){
+                layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+            }
+            adapter?.notifyDataSetChanged()
+        }
+    }
+
+    override fun showPendingAnggota(response: MutableList<AnggotaKelompok>) {
+        if (response.isNullOrEmpty()){
+            viewBind.rvAnggotaPending.visibility = View.GONE
+            viewBind.llNoAnggotaPending.visibility = View.VISIBLE
+        }else{
+            viewBind.rvAnggotaPending.visibility = View.VISIBLE
+            viewBind.llNoAnggotaPending.visibility = View.GONE
+
+            adapterAnggotaPending = DetailKelompokAnggotaListAdapter(this, false)
+
+            adapterAnggotaPending.submitList(response)
+            viewBind.rvAnggotaPending.apply {
+                adapter = adapterAnggotaPending
+                if (layoutManager == null){
+                    layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+                }
+                adapter?.notifyDataSetChanged()
+            }
         }
     }
 

@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
+import com.example.cariteman.data.model.RekomendasiResponse
 import com.example.cariteman.data.model.RelationTempatPklFavorite
 import com.example.cariteman.databinding.NavigationBottomParentBinding
 import com.example.cariteman.ui.base.view.BaseActivity
@@ -123,6 +124,10 @@ class DashboardBottomViewActivity : BaseActivity(), DashboardMVPView, HasSupport
     }
 
     override fun populateLombaDanPklDashboard(responses: List<MahasiswaHistoryDashboardResponse>) {
+        //notImplemented
+    }
+
+    override fun populateRekomendasi(responses: MutableList<RekomendasiResponse>) {
         //notImplemented
     }
 }

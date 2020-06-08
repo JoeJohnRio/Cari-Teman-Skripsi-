@@ -33,6 +33,18 @@ object Mapper {
         return responseDashboard.toList()
     }
 
+    fun listOfRekomendasiToOnly5(responses: MutableList<RekomendasiResponse>): MutableList<RekomendasiResponse?> {
+        val responseDashboard: Array<RekomendasiResponse?> = arrayOfNulls(5)
+        var index = 0
+        for (item in responses) {
+                responseDashboard[index] = item
+                index++
+
+            if (index == 5) break
+        }
+        return responseDashboard.toMutableList()
+    }
+
     fun historyResponseMapper(responses: List<MahasiswaHistoryDashboardResponse>): List<MahasiswaHistoryDashboardResponse?> {
         var index = 0
         val responsesMapped: MutableList<MahasiswaHistoryDashboardResponse> = mutableListOf()
@@ -67,8 +79,7 @@ object Mapper {
                 responsesMapped.add(FrontProfileResponse(tempatPkl = item))
             }
         }
-
-            return responsesMapped
+        return responsesMapped
     }
 
     fun searchHistoryDownTo8(responses: MutableList<SearchHistory>): MutableList<SearchHistory>{

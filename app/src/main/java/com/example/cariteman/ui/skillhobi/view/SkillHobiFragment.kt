@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cariteman.data.model.BidangKerja
 import com.example.cariteman.data.model.PengalamanLombaOrganisasiResponse
 import com.example.cariteman.ui.base.view.BaseFragment
 import com.example.cariteman.util.Utils
@@ -103,6 +104,7 @@ class SkillHobiFragment : BaseFragment(),
 
     override fun popBackStackWithBidangKerja(skillHobi: SkillHobi) {
         (activity as SearchActivity).skillHobi = skillHobi
+        (activity as SearchActivity).bidangKerja = BidangKerja()
 
         activity?.onBackPressed()
     }

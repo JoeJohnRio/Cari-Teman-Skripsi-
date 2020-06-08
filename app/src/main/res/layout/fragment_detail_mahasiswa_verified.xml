@@ -325,7 +325,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/mb_accept_verification"
+                        android:id="@+id/mb_decline_verification"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_little"
@@ -342,7 +342,7 @@
                         app:layout_constraintEnd_toEndOf="parent" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/mb_decline_verification"
+                        android:id="@+id/mb_accept_verification"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_little"
@@ -357,7 +357,7 @@
                         android:textColor="@color/white"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/mb_accept_verification" />
+                        app:layout_constraintEnd_toStartOf="@id/mb_decline_verification" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>

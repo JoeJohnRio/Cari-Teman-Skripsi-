@@ -45,6 +45,22 @@ class FilterSearchPresenter<V : FilterSearchMVPView> @Inject internal constructo
         }
     }
 
+    override fun getLokasiPkl() {
+        getView()?.let {
+            it.showProgress()
+            addDisposable(mNetworkApi.getLokasiPkl().subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                { result ->
+                    it.handleLokasiPkl(result)
+                    it.hideProgress()
+                },
+                { error ->
+                    it.hideProgress()
+                    it.showMessageToast(error.message!!)
+                }
+            ))
+        }
+    }
+
     override fun getProgramStudiResponse(id: Int) {
         getView()?.let {
             it.showProgress()

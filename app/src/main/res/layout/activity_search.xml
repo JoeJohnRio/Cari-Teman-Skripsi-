@@ -59,18 +59,39 @@
                 android:background="@color/grey_low" />
         </com.google.android.material.appbar.AppBarLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/b_filter_search"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_more_than_little"
-            android:backgroundTint="@color/white_low"
-            android:padding="@dimen/space_really_small"
-            android:paddingStart="@dimen/space_little"
-            android:paddingEnd="@dimen/space_little"
-            android:text="FILTER - PKL"
-            android:textColor="@color/black_effective"
-            android:textSize="15sp" />
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/b_filter_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_more_than_little"
+                android:backgroundTint="@color/white_low"
+                android:padding="@dimen/space_really_small"
+                android:paddingStart="@dimen/space_little"
+                android:paddingEnd="@dimen/space_little"
+                android:textStyle="bold"
+                android:text="FILTER - PKL"
+                android:textColor="@color/black_effective"
+                android:textSize="15sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/b_add_tempat_pkl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_little"
+                android:backgroundTint="@color/white_low"
+                android:padding="@dimen/space_really_small"
+                android:paddingStart="@dimen/space_little"
+                android:paddingEnd="@dimen/space_little"
+                android:text="+TAMBAH TEMPAT"
+                android:textColor="@color/black_effective"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout

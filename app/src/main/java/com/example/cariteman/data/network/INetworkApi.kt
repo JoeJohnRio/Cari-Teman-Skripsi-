@@ -24,10 +24,13 @@ interface INetworkApi {
 
     @GET(Endpoints.programStudi)
     @Headers("No-Authentication: true")
-    fun getProgramStudi(@Path("isVerified") id: Int): Observable<List<ProgramStudiResponse>>
+    fun getProgramStudi(@Path("id") id: Int): Observable<List<ProgramStudiResponse>>
 
     @GET(Endpoints.keminatan)
-    fun getKeminatan(@Path("isVerified") id: Int?): Observable<List<KeminatanResponse>>
+    fun getKeminatan(@Path("id") id: Int?): Observable<List<KeminatanResponse>>
+
+    @GET(Endpoints.lokasiPkl)
+    fun getLokasiPkl(): Observable<MutableList<LokasiPklResponse>>
 
     //History Dashboard
     @GET(Endpoints.historyDashboardLomba)
@@ -46,10 +49,18 @@ interface INetworkApi {
     @Headers("No-Authentication: true")
     fun getHistoryProfilTempatPkl(@Header("app-key") string: String?, @Query("page") page: Int): Observable<Pagination<MahasiswaHistoryDashboardResponse>>
 
+    @POST(Endpoints.addHistoryLihatProfil)
+    @Headers("No-Authentication: true")
+    fun addHistoryLihatProfil(@Header("app-key") string: String?, @Path("id") idMahasiswa: Int): Observable<MessageOnly>
+
     //Dashboard Home
     @GET(Endpoints.historyDashboardPkl)
     @Headers("No-Authentication: true")
     fun getHistoryDashboardPkl(@Header("app-key") string: String?): Observable<List<MahasiswaHistoryDashboardResponse>>
+
+    @POST(Endpoints.rekomendasiDashboard)
+    @Headers("No-Authentication: true")
+    fun getDashboardRekomendasi(@Header("app-key") string: String?, @Body rekomendasi: RekomendasiResponse): Observable<MutableList<RekomendasiResponse>>
 
     @GET(Endpoints.historyDashboardTempatPkl)
     @Headers("No-Authentication: true")
@@ -83,6 +94,10 @@ interface INetworkApi {
     @Headers("No-Authentication: true")
     fun getUlasanTempatPkl(@Header("app-key") string: String?, @Path("id") id: Int?): Observable<MutableList<UlasanTempatPklProfile>>
 
+    @POST(Endpoints.saveUlasanTempat)
+    @Headers("No-Authentication: true")
+    fun saveUlasanTempatPkl(@Header("app-key") string: String?, @Body ulasanTempatPklProfile: UlasanTempatPklProfile?): Observable<MessageOnly>
+
     @GET(Endpoints.showTempatPklProfile)
     @Headers("No-Authentication: true")
     fun getTempatPklProfile(@Header("app-key") string: String?, @Path("id") id: Int?): Observable<TempatPklProfile>
@@ -91,6 +106,14 @@ interface INetworkApi {
     @GET(Endpoints.profilInfoOthers)
     @Headers("No-Authentication: true")
     fun getProfilInfoOthers(@Header("app-key") string: String?, @Path("id") id: Int?): Observable<ProfilInfoOthers>
+
+    @POST(Endpoints.saveRekomendasi)
+    @Headers("No-Authentication: true")
+    fun saveRekomendasi(@Header("app-key") string: String?,@Body rekomendasi: Rekomendasi?): Observable<MessageOnly>
+
+    @POST(Endpoints.changeProfilPicture)
+    @Headers("No-Authentication: true")
+    fun changeProfilPicture(@Header("app-key") string: String?,@Body mahasiswa: MahasiswaResponse?): Observable<MessageOnly>
 
     @POST(Endpoints.profilInfoOthersItself)
     @Headers("No-Authentication: true")
@@ -155,6 +178,10 @@ interface INetworkApi {
     @Headers("No-Authentication: true")
     fun showKelompok(@Header("app-key") string: String?): Observable<MutableList<RelationKelompok>>
 
+    @GET(Endpoints.showKelompokNotInvitedYet)
+    @Headers("No-Authentication: true")
+    fun showKelompokNotInvitedYet(@Header("app-key") string: String?, @Path("id_mahasiswa") idMahasiswa: Int): Observable<MutableList<RelationKelompok>>
+
     @GET(Endpoints.showFriendWithNamaOnly)
     @Headers("No-Authentication: true")
     fun showFriendWithNamaOnly(@Header("app-key") string: String?): Observable<MutableList<DaftarTemanHanyaNama>>
@@ -165,7 +192,7 @@ interface INetworkApi {
 
     @POST(Endpoints.addFriendToKelompok)
     @Headers("No-Authentication: true")
-    fun addFriendToKelompok(@Header("app-key") string: String?, @Body kelompok: Kelompok): Observable<RelationKelompok>
+    fun addFriendToKelompok(@Header("app-key") string: String?, @Body kelompok: Kelompok): Observable<MutableList<RelationKelompok>>
 
     @POST(Endpoints.makeKelompok)
     @Headers("No-Authentication: true")
@@ -175,9 +202,17 @@ interface INetworkApi {
     @Headers("No-Authentication: true")
     fun showAnggotaKelompok(@Header("app-key") string: String?, @Path("id_kelompok") idKelompok: Int?): Observable<MutableList<AnggotaKelompok>>
 
+    @GET(Endpoints.showPending)
+    @Headers("No-Authentication: true")
+    fun showPendingMember(@Header("app-key") string: String?, @Path("id_kelompok") idKelompok: Int?): Observable<MutableList<AnggotaKelompok>>
+
     @POST(Endpoints.confirmAnggotaKelompok)
     @Headers("No-Authentication: true")
     fun confirmAnggotaKelompok(@Header("app-key") string: String?, @Body relationKelompok: RelationKelompok): Observable<MessageOnly>
+
+    @POST(Endpoints.removeAnggota)
+    @Headers("No-Authentication: true")
+    fun removeAnggota(@Header("app-key") string: String?, @Body relationKelompok: RelationKelompok): Observable<MutableList<AnggotaKelompok>>
 
     @POST(Endpoints.searchMahasiswa)
     @Headers("No-Authentication: true")
@@ -186,6 +221,10 @@ interface INetworkApi {
     @POST(Endpoints.searchTempatPkl)
     @Headers("No-Authentication: true")
     fun searchTempatPkl(@Header("app-key") string: String?, @Body tempatPklSearch: TempatPklSearchFilter?): Observable<SearchFilter>
+
+    @POST(Endpoints.addTempatPkl)
+    @Headers("No-Authentication: true")
+    fun addTempatPkl(@Header("app-key") string: String?, @Body tempatPklSearch: TempatPklResponse?): Observable<MessageOnly>
 
     @POST(Endpoints.addSearchHistory)
     @Headers("No-Authentication: true")

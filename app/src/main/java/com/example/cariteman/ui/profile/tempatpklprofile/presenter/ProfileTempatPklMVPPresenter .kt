@@ -1,5 +1,6 @@
 package com.example.cariteman.ui.profile.tempatpklprofile.presenter
 
+import com.example.cariteman.data.model.UlasanTempatPklProfile
 import com.example.cariteman.ui.base.presenter.MVPPresenter
 import com.example.cariteman.ui.profile.tempatpklprofile.view.ProfileTempatPklMVPView
 
@@ -8,5 +9,5 @@ interface ProfileTempatPklMVPPresenter <V : ProfileTempatPklMVPView> : MVPPresen
 
     fun getUlasanTempatPkl(id: Int)
 
-    fun tambahUlasanTempatPkl()
+    fun saveUlasanTempatPkl(ulasanTempatPklProfile: UlasanTempatPklProfile)
 }

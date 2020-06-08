@@ -29,9 +29,45 @@ class KelompokDetailPresenter<V : KelompokDetailMVPView> @Inject internal constr
                     it.hideProgress()
                     it.showAnggotaKelompokWithoutRemove(result)
                 },
-                {
+                { error ->
+                    it.hideProgress()
+                    it.showMessageToast(error.message!!)
+                }
+            ))
+        }
+    }
 
-                        error ->
+    override fun removeAnggota(relationKelompok: RelationKelompok) {
+        getView()?.let {
+            it.showProgress()
+            addDisposable(mNetworkApi.removeAnggota(
+                getKey(),
+                relationKelompok
+            ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                { result ->
+                    it.hideProgress()
+                    it.showAnggotaKelompokWithRemove(result)
+                },
+                { error ->
+                    it.hideProgress()
+                    it.showMessageToast(error.message ?: "")
+                }
+            ))
+        }
+    }
+
+    override fun getPendingAnggotaKelompok(idKelompok: Int) {
+        getView()?.let {
+            it.showProgress()
+            addDisposable(mNetworkApi.showPendingMember(
+                getKey(),
+                idKelompok
+            ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                { result ->
+                    it.hideProgress()
+                    it.showPendingAnggota(result)
+                },
+                { error ->
                     it.hideProgress()
                     it.showMessageToast(error.message!!)
                 }

@@ -10,5 +10,7 @@ interface FilterSearchMVPView : MVPView{
 
     fun showKeminatan(responses: ArrayList<Keminatan>)
 
+    fun handleLokasiPkl(responses: MutableList<LokasiPklResponse>)
+
     fun backstack()
 }

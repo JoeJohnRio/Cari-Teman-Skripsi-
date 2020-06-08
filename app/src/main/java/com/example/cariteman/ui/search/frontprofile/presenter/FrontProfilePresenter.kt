@@ -46,6 +46,30 @@ class FrontProfilePresenter<V : FrontProfileMVPView> @Inject internal constructo
         }
     }
 
+    override fun toggleFavoriteTempatPkl(idTarget: Int, isActive: Boolean) {
+        getView()?.let {
+            addDisposable(mNetworkApi.toggleFavoriteTempatPkl(
+                getKey(),
+                idTarget
+            ).subscribeOn(IoScheduler()).observeOn(
+                AndroidSchedulers.mainThread()
+            )
+                .subscribe(
+                    { result ->
+                        if (isActive) {
+                            getView()?.showMessageToast("Ditambahkan ke dalam daftar favorit")
+                        } else {
+                            getView()?.showMessageToast("Dihapus dari daftar favorit")
+                        }
+                    },
+                    { error ->
+                        error.message?.let { getView()?.showMessageToast(it) }
+                    }
+                )
+            )
+        }
+    }
+
     override fun searchMahasiswa(mahasiswa: MahasiswaSearchFilter) {
         getView()?.let {
             addDisposable(mNetworkApi.searchMahasiswa(

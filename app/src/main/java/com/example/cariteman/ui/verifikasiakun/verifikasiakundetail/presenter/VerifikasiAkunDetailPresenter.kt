@@ -27,11 +27,12 @@ class VerifikasiAkunDetailPresenter<V : VerifikasiAkunDetailMVPView> @Inject int
             ).subscribe(
                 { response ->
                     it.hideProgress()
+                    it.showMessageToast(response.message ?: "sudah dikonfirmasi")
                     it.mahasiswaConfirmed()
                 },
                 { error ->
+                    it.showMessageToast(error.message ?: "")
                     it.hideProgress()
-                    it.mahasiswaConfirmed()
                 }
             ))
         }

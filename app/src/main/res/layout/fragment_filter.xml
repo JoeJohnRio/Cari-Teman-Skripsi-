@@ -83,117 +83,179 @@
             android:layout_marginEnd="@dimen/space_more_than_little"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_little"
-                android:text="@string/fakultas"
-                android:textColor="@color/black_effective"
-                android:textSize="@dimen/text_normal" />
 
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spinner_fakultas"
+            <LinearLayout
+                android:id="@+id/ll_filter_pkl_and_lomba"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_little" />
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_little"
-                android:text="@string/program_studi"
-                android:textColor="@color/black_effective"
-                android:textSize="@dimen/text_normal" />
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spinner_program_studi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_little" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_little"
-                android:text="@string/keminatan"
-                android:textColor="@color/black_effective"
-                android:textSize="@dimen/text_normal" />
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spinner_keminatan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_little" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_little"
-                android:text="Tahun Mulai"
-                android:textColor="@color/black_effective"
-                android:textSize="@dimen/text_normal" />
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spinner_tahun_mulai"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_little" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_little"
-                android:text="@string/skill_hobi"
-                android:textColor="@color/black_effective"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/tv_skill_hobi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_little"
-                android:layout_marginBottom="2dp"
-                android:hint="e.g. &quot;Fotografi, programming&quot;"
-                android:textSize="15sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="@dimen/space_little"
-                android:background="@color/grey_low" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_little"
-                android:text="@string/jenis_kelamin"
-                android:textColor="@color/black_effective"
-                android:textSize="@dimen/text_normal" />
-
-            <RadioGroup
-                android:id="@+id/rg_jenis_kelamin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_little"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/r_laki_laki"
+                <TextView
+                    android:id="@+id/tv_fakultas_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/black_effective"
-                    android:checked="true"
-                    android:text="@string/laki_laki" />
+                    android:layout_marginTop="@dimen/space_little"
+                    android:text="@string/fakultas"
+                    android:textColor="@color/black_effective"
+                    android:textSize="@dimen/text_normal" />
 
-                <RadioButton
-                    android:id="@+id/r_perempuan"
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_fakultas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little" />
+
+                <TextView
+                    android:id="@+id/tv_program_studi_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/black_effective"
-                    android:text="@string/perempuan" />
-            </RadioGroup>
+                    android:layout_marginTop="@dimen/space_little"
+                    android:text="@string/program_studi"
+                    android:textColor="@color/black_effective"
+                    android:textSize="@dimen/text_normal" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_program_studi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little" />
+
+                <TextView
+                    android:id="@+id/tv_keminatan_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little"
+                    android:text="@string/keminatan"
+                    android:textColor="@color/black_effective"
+                    android:textSize="@dimen/text_normal" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_keminatan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little" />
+
+                <TextView
+                    android:id="@+id/tv_tahun_mulai_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little"
+                    android:text="Tahun Mulai"
+                    android:textColor="@color/black_effective"
+                    android:textSize="@dimen/text_normal" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_tahun_mulai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little" />
+
+
+                <TextView
+                    android:id="@+id/tv_skill_hobi_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little"
+                    android:text="@string/skill_hobi"
+                    android:textColor="@color/black_effective"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_skill_hobi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little"
+                    android:layout_marginBottom="2dp"
+                    android:hint="e.g. &quot;Fotografi, programming&quot;"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="@dimen/space_little"
+                    android:background="@color/grey_low" />
+
+                <TextView
+                    android:id="@+id/tv_jenis_kelamin_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little"
+                    android:text="@string/jenis_kelamin"
+                    android:textColor="@color/black_effective"
+                    android:textSize="@dimen/text_normal" />
+
+                <RadioGroup
+                    android:id="@+id/rg_jenis_kelamin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/r_laki_laki"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/black_effective"
+                        android:checked="true"
+                        android:text="@string/laki_laki" />
+
+                    <RadioButton
+                        android:id="@+id/r_perempuan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/black_effective"
+                        android:text="@string/perempuan" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_filter_tempat_pkl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_bidang_kerja_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little"
+                    android:text="Bidang Kerja"
+                    android:textColor="@color/black_effective"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_bidang_kerja"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little"
+                    android:layout_marginBottom="2dp"
+                    android:hint="e.g. &quot;Fotografi, programming&quot;"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="@dimen/space_little"
+                    android:background="@color/grey_low" />
+
+                <TextView
+                    android:id="@+id/tv_kota_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little"
+                    android:text="Kota"
+                    android:textColor="@color/black_effective"
+                    android:textSize="@dimen/text_normal" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_kota"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_little" />
+            </LinearLayout>
 
 
             <com.google.android.material.button.MaterialButton
@@ -205,25 +267,12 @@
                 android:layout_marginTop="@dimen/space_decent"
                 android:backgroundTint="@color/navy_blue_high"
                 android:padding="10dp"
-                android:text="@string/cari_teman"
+                android:text="Pasang Filter"
                 android:textAllCaps="false"
                 android:textColor="@color/bg_color"
                 android:textSize="20sp"
                 app:cornerRadius="10dp" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/b_reset"
-                style="@style/AppTheme.RoundedCornerMaterialButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/white_low"
-                android:padding="10dp"
-                android:text="@string/reset"
-                android:textAllCaps="false"
-                android:textColor="@color/navy_blue_high"
-                android:textSize="20sp"
-                app:cornerRadius="10dp" />
 
         </LinearLayout>
 

@@ -38,7 +38,7 @@ class LoginActivity : BaseActivity(), LoginMVPView {
 
         viewBind.ivHiddenClick.setOnClickListener {
             hiddenClick++
-            if (hiddenClick == 15){
+            if (hiddenClick == 5){
                 val intent = Intent(this, LoginAdminActivity::class.java)
                 Toast.makeText(getApplicationContext(), "Anda telah masuk ke login Admin", Toast.LENGTH_SHORT).show()
                 startActivity(intent)
@@ -76,7 +76,8 @@ class LoginActivity : BaseActivity(), LoginMVPView {
 
     override fun goToDashboard() {
         val intent = Intent(this, DashboardBottomViewActivity::class.java)
-        Toast.makeText(getApplicationContext(), "Anda telah masuk", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Anda telah masuk", Toast.LENGTH_SHORT).show()
+        finish()
         startActivity(intent)
     }
 
@@ -86,6 +87,10 @@ class LoginActivity : BaseActivity(), LoginMVPView {
 
         editor.putString(TEXT, apiKey)
         editor.apply()
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 
     override fun onFragmentDetached(tag: String) {

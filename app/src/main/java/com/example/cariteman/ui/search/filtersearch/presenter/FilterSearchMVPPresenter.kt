@@ -5,6 +5,8 @@ import com.example.cariteman.ui.search.filtersearch.view.FilterSearchMVPView
 
 interface FilterSearchMVPPresenter<V: FilterSearchMVPView>: MVPPresenter<V>{
 
+    fun getLokasiPkl()
+
     fun getFakultasResponse()
 
     fun getProgramStudiResponse(id: Int)

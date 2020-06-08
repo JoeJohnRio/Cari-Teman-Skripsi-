@@ -1,23 +1,17 @@
 package com.example.cariteman.ui.search.filtersearch.view
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cariteman.R
-import com.example.cariteman.data.model.MahasiswaSearchFilter
 import com.example.cariteman.data.model.SearchHistory
-import com.example.cariteman.data.model.TempatPklSearchFilter
-import com.example.cariteman.databinding.FragmentFilterBinding
 import com.example.cariteman.databinding.FragmentHistorySearchBinding
 import com.example.cariteman.ui.base.view.BaseFragment
 import com.example.cariteman.ui.pengalaman.pengalamanhome.presenter.SearchHistoryPresenter
 import com.example.cariteman.ui.pengalaman.pengalamanhome.view.SearchHistoryListAdapter
 import com.example.cariteman.ui.pengalaman.view.SearchActivity
-import com.example.cariteman.util.AppConstants
 import com.example.cariteman.util.Mapper
 import com.example.cariteman.util.Utils
 import com.example.cariteman.util.extension.addFragmentWithBackStack
@@ -71,9 +65,6 @@ class SearchHistoryFragment : BaseFragment(),
     }
 
     override fun searchWithFilter(searchHistory: SearchHistory) {
-        val bundle = Bundle()
-        bundle.putString("keyword", searchHistory.name)
-        bundle.putInt("searchType", searchHistory.searchType ?: 0)
 
         (activity as SearchActivity).filterDetails.let {
             it.keyword = searchHistory.name
@@ -88,9 +79,6 @@ class SearchHistoryFragment : BaseFragment(),
     }
 
     override fun searchWithSearchHistory(searchHistory: SearchHistory) {
-        val bundle = Bundle()
-        bundle.putString("keyword", searchHistory.name)
-        bundle.putInt("searchType", searchHistory.searchType ?: 0)
 
         (activity as SearchActivity).filterDetails.let {
             it.keyword = searchHistory.name

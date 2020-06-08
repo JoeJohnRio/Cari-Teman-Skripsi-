@@ -73,8 +73,12 @@ class TambahPengalamanLombaFragment : BaseFragment(),
         idPengalaman = bundle?.getInt("idPengalaman", 0) ?: 0
         tipePengalamanLombaFragment = bundle?.getString("tipePengalamanLomba") ?: "tambah"
         namaKompetisi = bundle?.getString("namaKompetisi") ?: ""
-        bidangKerja =
-            bundle?.getString("namaBidangKerja") ?: ""
+        if (bidangKerja.isEmpty()){
+            bidangKerja =
+                bundle?.getString("namaBidangKerja") ?: ""
+        }else{
+            viewBind.tvBidangKerja.setText(bidangKerja)
+        }
         deskripsi = bundle?.getString("deskripsi") ?: "Masukkan Deskripsi"
         tanggal = bundle?.getString("tanggal") ?: "Masukkan Tanggal"
         fotoPengalaman = bundle?.getString("fotoPengalaman") ?: ""
@@ -88,7 +92,7 @@ class TambahPengalamanLombaFragment : BaseFragment(),
             )
 
             viewBind.mbSaveButton.setOnClickListener {
-                if (namaKompetisi.isEmpty() || bidangKerja.isEmpty() || deskripsi.isEmpty() || tanggal.isEmpty() || fotoPengalaman.isEmpty()) {
+                if (namaKompetisi.isEmpty() || bidangKerja.isEmpty() || deskripsi.isEmpty() || tanggal.isEmpty()) {
                     showMessageToast("Selesaikan form terlebih dahulu")
                 } else {
                     if (fotoLombaUri != null) {
@@ -135,7 +139,7 @@ class TambahPengalamanLombaFragment : BaseFragment(),
             viewBind.mbDeleteButton.visibility = View.GONE
 
             viewBind.mbSaveButton.setOnClickListener {
-                if (namaKompetisi.isEmpty() || bidangKerja.isEmpty() || deskripsi.isEmpty() || tanggal.isEmpty() || fotoPengalaman.isEmpty()) {
+                if (namaKompetisi.isEmpty() || bidangKerja.isEmpty() || deskripsi.isEmpty() || tanggal.isEmpty() || fotoLombaUri == null) {
                     showMessageToast("Selesaikan form terlebih dahulu")
                 } else {
                     if (fotoLombaUri != null) {
@@ -327,7 +331,6 @@ class TambahPengalamanLombaFragment : BaseFragment(),
     override fun onStart() {
         super.onStart()
 
-        viewBind.tvBidangKerja.setText(bidangKerja)
         viewBind.tvBidangKerja.setTextColor(resources.getColor(R.color.black_effective))
         viewBind.tvDate.setTextColor(resources.getColor(R.color.black_effective))
     }

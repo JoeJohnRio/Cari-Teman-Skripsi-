@@ -13,6 +13,7 @@ import com.example.cariteman.ui.pengalaman.pengalamanhome.presenter.FilterSearch
 import com.example.cariteman.ui.pengalaman.pengalamanhome.view.SkillHobiFragment
 import com.example.cariteman.ui.pengalaman.view.SearchActivity
 import com.example.cariteman.R
+import com.example.cariteman.ui.pengalaman.pengalamanhome.view.BidangKerjaFragment
 import com.example.cariteman.util.Utils
 import com.example.cariteman.util.extension.addFragmentWithBackStack
 import javax.inject.Inject
@@ -32,6 +33,7 @@ class FilterSearchFragment : BaseFragment(),
     private var positionProgramStudi: Int = 0
     private var positionKeminatan: Int = 0
     private var positionTahun: Int = 0
+    private var positionKota: Int = 0
 
 
     companion object {
@@ -51,6 +53,7 @@ class FilterSearchFragment : BaseFragment(),
         context.let { presenter.setKey(Utils.loadData(it!!)) }
 
         presenter.getFakultasResponse()
+        presenter.getLokasiPkl()
 
         val activityMain = activity as SearchActivity
         spinnerTahunMulai =
@@ -61,29 +64,56 @@ class FilterSearchFragment : BaseFragment(),
             ArrayAdapter(context!!, android.R.layout.simple_spinner_item, spinnerItemTahunMulai)
         spinnerAdapterTahunMulai.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-        if (!activityMain.skillHobi.namaSkillhobi.isNullOrEmpty()){
+        if (!activityMain.skillHobi.namaSkillhobi.isNullOrEmpty()) {
             viewBind.tvSkillHobi.setText(activityMain.skillHobi.namaSkillhobi)
+        }
+        if (!activityMain.bidangKerja.namaBidangKerja.isNullOrEmpty()) {
+            viewBind.tvSkillHobi.setText(activityMain.bidangKerja.namaBidangKerja)
         }
 
         viewBind.tvSkillHobi.setOnClickListener {
+                getBaseActivity()?.supportFragmentManager?.addFragmentWithBackStack(
+                    com.example.cariteman.R.id.cl_search,
+                    SkillHobiFragment.newInstance(),
+                    SkillHobiFragment.TAG
+                )
+        }
+
+        viewBind.tvBidangKerja.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putBoolean("isFilter", true)
+
+            val bidangKerja = BidangKerjaFragment.newInstance()
+            bidangKerja.arguments = bundle
             getBaseActivity()?.supportFragmentManager?.addFragmentWithBackStack(
                 com.example.cariteman.R.id.cl_search,
-                SkillHobiFragment.newInstance(),
-                SkillHobiFragment.TAG
+                bidangKerja,
+                BidangKerjaFragment.TAG
             )
         }
 
         viewBind.bFilter.setOnClickListener {
-            activityMain.filterDetails.let {
-                it.preferensi = type
-                it.idFakultas = positionFakultas
-                it.idProgramStudi = positionProgramStudi
-                it.idKeminatan = positionKeminatan
-                it.idSkillHobi = activityMain.skillHobi.id
-                it.jenisKelamin =
-                    Utils.booleanToInt(viewBind.rgJenisKelamin.checkedRadioButtonId.equals(viewBind.rPerempuan))
-                if (it.tahunMulai != 0) {
-                    it.tahunMulai = positionTahun + 2012
+            if (activityMain.filterDetails.preferensi == 3) {
+                activityMain.filterTempatPkl.let {
+                    it.idLokasiPkl = positionKota
+                    it.idBidangKerja = (activity as SearchActivity).bidangKerja.id
+                }
+            } else {
+                activityMain.filterDetails.let {
+                    it.preferensi = (activity as SearchActivity).filterDetails.preferensi
+                    it.idFakultas = positionFakultas
+                    it.idProgramStudi = positionProgramStudi
+                    it.idKeminatan = positionKeminatan
+                    it.idSkillHobi = activityMain.skillHobi.id
+                    it.jenisKelamin =
+                        Utils.booleanToInt(
+                            viewBind.rgJenisKelamin.checkedRadioButtonId.equals(
+                                viewBind.rPerempuan
+                            )
+                        )
+                    if (it.tahunMulai != 0) {
+                        it.tahunMulai = positionTahun + 2012
+                    }
                 }
             }
 
@@ -108,6 +138,35 @@ class FilterSearchFragment : BaseFragment(),
             }
 
         return viewBind.root
+    }
+
+    override fun handleLokasiPkl(responses: MutableList<LokasiPklResponse>) {
+        var counter = 0
+        val kotaArray = arrayOfNulls<String>(responses.size)
+        for (response in responses) {
+            kotaArray[counter] = response.namaKota
+            counter++
+        }
+        val spinnerItemFakultas = kotaArray
+        val spinnerAdapterFakultas =
+            ArrayAdapter(context!!, android.R.layout.simple_spinner_item, spinnerItemFakultas)
+        spinnerAdapterFakultas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        viewBind.spinnerKota.adapter = spinnerAdapterFakultas
+        viewBind.spinnerKota.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    //notImplemented
+                }
+
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    positionKota = position
+                }
+            }
     }
 
     override fun showFakultas(responses: ArrayList<Fakultas>) {
@@ -206,9 +265,7 @@ class FilterSearchFragment : BaseFragment(),
     }
 
     override fun setUp() {
-        val currentType = (activity as SearchActivity).filterDetails.preferensi ?: 0
-        if (currentType == 0){
-            type = 0
+        if ((activity as SearchActivity).filterDetails.preferensi == 0) {
             (activity as SearchActivity).filterSearchButton.text = "FILTER - PKL"
             Utils.toggleThreeButton(
                 viewBind.bTypeFilterPkl,
@@ -218,8 +275,9 @@ class FilterSearchFragment : BaseFragment(),
                 R.color.white,
                 resources
             )
-        }else if (currentType == 1){
-            type = 1
+            viewBind.llFilterPklAndLomba.visibility = View.VISIBLE
+            viewBind.llFilterTempatPkl.visibility = View.GONE
+        } else if ((activity as SearchActivity).filterDetails.preferensi == 1) {
             (activity as SearchActivity).filterSearchButton.text = "FILTER - LOMBA"
             Utils.toggleThreeButton(
                 viewBind.bTypeFilterLomba,
@@ -229,8 +287,9 @@ class FilterSearchFragment : BaseFragment(),
                 R.color.white,
                 resources
             )
-        }else if (currentType == 2){
-            type = 2
+            viewBind.llFilterPklAndLomba.visibility = View.VISIBLE
+            viewBind.llFilterTempatPkl.visibility = View.GONE
+        } else if ((activity as SearchActivity).filterDetails.preferensi == 2) {
             (activity as SearchActivity).filterSearchButton.text = "FILTER - TEMPAT PKL"
             Utils.toggleThreeButton(
                 viewBind.bTypeFilterTempatPkl,
@@ -240,11 +299,17 @@ class FilterSearchFragment : BaseFragment(),
                 R.color.white,
                 resources
             )
+            viewBind.llFilterPklAndLomba.visibility = View.GONE
+            viewBind.llFilterTempatPkl.visibility = View.VISIBLE
         }
 
         viewBind.bTypeFilterPkl.setOnClickListener {
-            if (type != 0) {
-                type = 0
+            if ((activity as SearchActivity).filterDetails.preferensi != 0) {
+                if ((activity as SearchActivity).filterDetails.preferensi == 2) {
+                    viewBind.llFilterPklAndLomba.visibility = View.VISIBLE
+                    viewBind.llFilterTempatPkl.visibility = View.GONE
+                }
+                (activity as SearchActivity).filterDetails.preferensi = 0
                 (activity as SearchActivity).filterSearchButton.text = "FILTER - PKL"
                 Utils.toggleThreeButton(
                     viewBind.bTypeFilterPkl,
@@ -254,12 +319,17 @@ class FilterSearchFragment : BaseFragment(),
                     R.color.white,
                     resources
                 )
+                (activity as SearchActivity).bidangKerja = BidangKerja()
             }
         }
 
         viewBind.bTypeFilterLomba.setOnClickListener {
-            if (type != 1) {
-                type = 1
+            if ((activity as SearchActivity).filterDetails.preferensi != 1) {
+                if ((activity as SearchActivity).filterDetails.preferensi == 2) {
+                    viewBind.llFilterPklAndLomba.visibility = View.VISIBLE
+                    viewBind.llFilterTempatPkl.visibility = View.GONE
+                }
+                (activity as SearchActivity).filterDetails.preferensi = 1
                 (activity as SearchActivity).filterSearchButton.text = "FILTER - LOMBA"
                 Utils.toggleThreeButton(
                     viewBind.bTypeFilterLomba,
@@ -269,12 +339,15 @@ class FilterSearchFragment : BaseFragment(),
                     R.color.white,
                     resources
                 )
+                (activity as SearchActivity).bidangKerja = BidangKerja()
             }
         }
 
         viewBind.bTypeFilterTempatPkl.setOnClickListener {
-            if (type != 2) {
-                type = 2
+            if ((activity as SearchActivity).filterDetails.preferensi != 2) {
+                viewBind.llFilterPklAndLomba.visibility = View.GONE
+                viewBind.llFilterTempatPkl.visibility = View.VISIBLE
+                (activity as SearchActivity).filterDetails.preferensi = 2
                 (activity as SearchActivity).filterSearchButton.text = "FILTER - TEMPAT PKL"
                 Utils.toggleThreeButton(
                     viewBind.bTypeFilterTempatPkl,
@@ -284,6 +357,7 @@ class FilterSearchFragment : BaseFragment(),
                     R.color.white,
                     resources
                 )
+                (activity as SearchActivity).skillHobi = SkillHobi()
             }
         }
     }

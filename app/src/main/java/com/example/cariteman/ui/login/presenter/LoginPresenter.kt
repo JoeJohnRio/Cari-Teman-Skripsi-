@@ -10,21 +10,29 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.internal.schedulers.IoScheduler
 import javax.inject.Inject
 
-class LoginPresenter<V : LoginMVPView> @Inject internal constructor(schedulerProvider: SchedulerProvider, disposable: CompositeDisposable) : BasePresenter<V>(schedulerProvider = schedulerProvider, compositeDisposable = disposable), LoginMVPPresenter<V> {
+class LoginPresenter<V : LoginMVPView> @Inject internal constructor(
+    schedulerProvider: SchedulerProvider,
+    disposable: CompositeDisposable
+) : BasePresenter<V>(schedulerProvider = schedulerProvider, compositeDisposable = disposable),
+    LoginMVPPresenter<V> {
 
     @Inject
     lateinit var mNetworkApi: INetworkApi
 
-    override fun onLoginBtnClicked(loginInfo: Login){
+    override fun onLoginBtnClicked(login: Login) {
         getView()?.let {
             it.showProgress()
-            addDisposable(mNetworkApi.loginApi(loginInfo).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread())
+            addDisposable(mNetworkApi.loginApi(login).subscribeOn(IoScheduler()).observeOn(
+                AndroidSchedulers.mainThread()
+            )
                 .subscribe(
                     { result ->
-                        getView().let {
-                            it?.hideProgress()
-                            getView()?.goToDashboard()
-                            getView()?.saveData(result.token.toString())
+                        it.hideProgress()
+                        if (!result.error.isNullOrEmpty()) {
+                            it.showMessageToast(result.error ?: "")
+                        } else {
+                            it.goToDashboard()
+                            it.saveData(result.token.toString())
                         }
                     },
                     { error ->
@@ -32,7 +40,8 @@ class LoginPresenter<V : LoginMVPView> @Inject internal constructor(schedulerPro
                             it?.hideProgress()
                         }
                     }
-                ) ) }
+                ))
+        }
     }
 
 }

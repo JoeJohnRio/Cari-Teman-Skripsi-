@@ -12,4 +12,7 @@ interface KelompokDetailMVPPresenter<V: KelompokDetailMVPView>: MVPPresenter<V>{
 
     fun confirmAnggotaKelompok(relationKelompok: RelationKelompok)
 
+    fun getPendingAnggotaKelompok(idKelompok: Int)
+
+    fun removeAnggota(relationKelompok: RelationKelompok)
 }

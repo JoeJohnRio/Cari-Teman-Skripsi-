@@ -105,6 +105,7 @@
                             android:layout_gravity="center"
                             android:hint="@string/nim"
                             android:textSize="18sp"
+                            android:inputType="numberDecimal"
                             android:textStyle="italic" />
 
                     </com.google.android.material.textfield.TextInputLayout>

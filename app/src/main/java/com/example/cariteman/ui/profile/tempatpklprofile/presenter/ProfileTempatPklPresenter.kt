@@ -1,5 +1,6 @@
 package com.example.cariteman.ui.profile.tempatpklprofile.presenter
 
+import com.example.cariteman.data.model.UlasanTempatPklProfile
 import com.example.cariteman.data.network.INetworkApi
 import com.example.cariteman.ui.base.presenter.BasePresenter
 import com.example.cariteman.ui.profile.tempatpklprofile.view.ProfileTempatPklMVPView
@@ -34,8 +35,27 @@ class ProfileTempatPklPresenter<V : ProfileTempatPklMVPView> @Inject internal co
         }
     }
 
-    override fun tambahUlasanTempatPkl() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun saveUlasanTempatPkl(ulasanTempatPklProfile: UlasanTempatPklProfile) {
+        getView()?.let {
+            it.showProgress()
+            addDisposable(
+                mNetworkApi.saveUlasanTempatPkl(
+                    getKey(),
+                    ulasanTempatPklProfile
+                ).subscribeOn(IoScheduler()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                    { response ->
+                        it.hideProgress()
+                        ulasanTempatPklProfile.idTempatPkl?.let {
+                            getUlasanTempatPkl(it)
+                        }
+                        it.showMessageToast(response.message ?: "")
+                    },
+                    { error ->
+                        it.hideProgress()
+                        it.showMessageToast(error.message ?: "")
+                    })
+            )
+        }
     }
 
     override fun getProfilTempatPkl(id: Int) {

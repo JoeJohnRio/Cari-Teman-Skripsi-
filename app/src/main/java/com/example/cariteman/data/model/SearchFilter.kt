@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class SearchFilter(
     @SerializedName("mahasiswa") var mahasiswa: MutableList<MahasiswaResponse>? = null,
-    @SerializedName("tempat_pkl") var tempatPkl: MutableList<TempatPklResponse>? = null
+    @SerializedName("tempat_pkl") var tempatPkl: MutableList<RekomendasiResponse>? = null
     )
 

@@ -62,7 +62,7 @@ class TambahKelompok1Presenter<V : TambahKelompok1MVPView> @Inject internal cons
                     it.goToKelompokDetail()
                 },
                 { error ->
-                    it.showMessageToast(error.message!!)
+                    it.showMessageToast(error.message ?: "")
                 }
             ))
         }

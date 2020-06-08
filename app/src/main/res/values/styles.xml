@@ -7,8 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/navy_blue_mid</item>
     </style>
-    <style name="AppTheme.RoundedCornerMaterialButton" parent="Widget.AppCompat.Button">
-    </style>
+
+    <style name="AppTheme.RoundedCornerMaterialButton" parent="Widget.AppCompat.Button"></style>
 
     <style name="ExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <!-- color of box ONLY, not dropdown -->
@@ -36,5 +36,15 @@
         <item name="android:textColor">@color/grey_low</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="ratingBarCustom" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingbarstar</item>
+        <item name="android:minHeight">22dip</item>
+        <item name="android:maxHeight">22dip</item>
+    </style>
+
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/popup_background</item>
     </style>
 </resources>

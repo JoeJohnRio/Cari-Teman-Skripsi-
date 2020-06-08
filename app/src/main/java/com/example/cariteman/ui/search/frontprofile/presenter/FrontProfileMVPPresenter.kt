@@ -12,4 +12,6 @@ interface FrontProfileMVPPresenter<V: FrontProfileMVPView>: MVPPresenter<V>{
     fun searchTempatPkl(tempatPkl: TempatPklSearchFilter)
 
     fun toggleFavoriteFriend(idTarget: Int, isActive: Boolean)
+
+    fun toggleFavoriteTempatPkl(idTarget: Int, isActive: Boolean)
 }

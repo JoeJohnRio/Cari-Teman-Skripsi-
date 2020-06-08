@@ -81,7 +81,7 @@ class BaruDilihatTempatPklViewHolder(override val containerView: View) :
             tvBidangKerja?.text = "Tidak memiliki bidang kerja"
         }
 
-        tvBanyakUlasan?.text = "${response.tempatPkl?.countUlasanTempatPkl?.size} orang pernah Organisasi di sini"
+        tvBanyakUlasan?.text = "${response.tempatPkl?.countUlasanTempatPkl?.size} orang pernah berada di sini"
 
         val scaleAnimation = ScaleAnimation(
             0.7f,
@@ -108,6 +108,11 @@ class BaruDilihatTempatPklViewHolder(override val containerView: View) :
     }
 
     fun bindFavorite(response: RelationTempatPklFavorite, presenter: DashboardPresenter<DashboardMVPView>) {
+        itemView.setOnClickListener {
+            val intent = Intent(itemView.context, ProfileTempatPklActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.putExtra("tempatPklId", response.tempatPkl?.id)
+            itemView.context.startActivity(intent)
+        }
 
         try {
             Glide.with(this.itemView.context)

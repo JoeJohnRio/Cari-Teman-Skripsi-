@@ -82,9 +82,7 @@ class BaruDilihatLombaViewHolder(override val containerView: View) :
         }
         try {
             tvPrestasiLomba?.text =
-                "" + response.mahasiswaTwoLomba?.pengalamanLomba?.get(0)?.namaKompetisi + " at " + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
-                    0
-                )?.namaOrganisasi
+                "" + response.mahasiswaTwoLomba?.pengalamanLomba?.get(0)?.relationBidangKerja?.bidangKerja?.namaBidangKerja + " at " + response.mahasiswaTwoLomba?.pengalamanLomba?.get(0)?.namaKompetisi
         } catch (e: Exception) {
             tvPrestasiLomba?.text = "Belum memiliki pengalaman lomba"
         }
@@ -114,6 +112,12 @@ class BaruDilihatLombaViewHolder(override val containerView: View) :
     }
 
     fun bindFavorite(response: RelationTempatPklFavorite, presenter: DashboardPresenter<DashboardMVPView>) {
+        itemView.setOnClickListener {
+            val intent = Intent(itemView.context, ProfileActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.putExtra("MAHASISWA_ID", response.idMahasiswaTwo)
+            itemView.context.startActivity(intent)
+        }
+
         try {
             Glide.with(this.itemView.context)
                 .load(response.mahasiswaTwoLomba?.foto_profil ?: url)
@@ -143,9 +147,7 @@ class BaruDilihatLombaViewHolder(override val containerView: View) :
         }
         try {
             tvPrestasiLomba?.text =
-                "" + response.mahasiswaTwoLomba?.pengalamanLomba?.get(0)?.namaKompetisi + " at " + response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(
-                    0
-                )?.namaOrganisasi
+                "" + response.mahasiswaTwoLomba?.pengalamanLomba?.get(0)?.relationBidangKerja?.bidangKerja?.namaBidangKerja + " at " + response.mahasiswaTwoLomba?.pengalamanLomba?.get(0)?.namaKompetisi
         } catch (e: Exception) {
             tvPrestasiLomba?.text = "Belum memiliki pengalaman lomba"
         }

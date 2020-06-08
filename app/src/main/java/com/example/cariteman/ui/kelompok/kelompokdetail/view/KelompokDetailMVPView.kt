@@ -6,5 +6,11 @@ import com.example.cariteman.ui.base.MVPView
 interface KelompokDetailMVPView : MVPView{
     fun showAnggotaKelompokWithoutRemove(response: MutableList<AnggotaKelompok>)
 
+    fun showAnggotaKelompokWithRemove(response: MutableList<AnggotaKelompok>)
+
+    fun showPendingAnggota(response: MutableList<AnggotaKelompok>)
+
     fun updateAfterConfirmKelompok(status: Int)
+
+    fun removeAnggotaKelompok(idMahasiswa: Int)
 }

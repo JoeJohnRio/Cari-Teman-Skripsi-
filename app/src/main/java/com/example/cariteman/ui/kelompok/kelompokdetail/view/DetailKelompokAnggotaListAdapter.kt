@@ -31,7 +31,7 @@ class DetailKelompokAnggotaListAdapter(var view: KelompokDetailFragment, var isW
 
         Kelompok.WITHREMOVE-> DetailKelompokAnggotaWithRemoveViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_anggota_kelompok,
+                R.layout.item_anggota_kelompok_with_remove,
                 parent,
                 false
             )

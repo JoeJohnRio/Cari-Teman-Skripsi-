@@ -142,7 +142,6 @@ object Utils {
             AppCompatActivity.MODE_PRIVATE
         )
         return sharedPreferences.getString(TEXT, "")
-//        Toast.makeText(context, sharedPreferences.getString(TEXT, ""), Toast.LENGTH_LONG ).show()
     }
 
 

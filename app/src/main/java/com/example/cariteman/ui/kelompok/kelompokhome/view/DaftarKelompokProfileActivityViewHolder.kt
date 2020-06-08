@@ -45,7 +45,7 @@ class DaftarKelompokProfileActivityViewHolder(override val containerView: View) 
 
         itemView.setOnClickListener {
             view.showMessageToast("clicked")
-//            view.goToKelompokDetail(response.idKelompok ?: 0, response.kelompok?.jumlahAnggota!!,  tipeKelompok + " - " + response.kelompok?.namaKelompok)
+            view.addFriendToKelompok(response.idKelompok!!)
         }
     }
 }

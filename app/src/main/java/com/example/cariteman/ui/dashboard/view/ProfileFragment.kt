@@ -8,13 +8,14 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
+import com.example.cariteman.data.model.RekomendasiResponse
 import com.example.cariteman.data.model.RelationTempatPklFavorite
 import com.example.cariteman.databinding.FragmentProfileBinding
-import com.example.cariteman.ui.PengaturanActivity
 import com.example.cariteman.ui.base.view.BaseFragment
 import com.example.cariteman.ui.dashboard.presenter.DashboardPresenter
 import com.example.cariteman.ui.pengalaman.view.KelompokActivity
 import com.example.cariteman.ui.pengalaman.view.PengalamanActivity
+import com.example.cariteman.ui.pengaturan.view.PengaturanActivity
 import com.example.cariteman.ui.profile.view.ProfileActivity
 import com.example.cariteman.util.Utils
 import javax.inject.Inject
@@ -44,6 +45,7 @@ class ProfileFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dash
     override fun setUp() {
         viewBind.bPengaturan.setOnClickListener {
             val intent = Intent(context, PengaturanActivity::class.java)
+            activity?.finish()
             startActivity(intent)
         }
 
@@ -70,6 +72,10 @@ class ProfileFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dash
 
     override fun populateFavoriteProfil(responses: MutableList<RelationTempatPklFavorite>) {
         //notimplemented
+    }
+
+    override fun populateRekomendasi(responses: MutableList<RekomendasiResponse>) {
+        //notImplemented
     }
 
     override fun populateLombaDanPklDashboard(responses: List<MahasiswaHistoryDashboardResponse>) {

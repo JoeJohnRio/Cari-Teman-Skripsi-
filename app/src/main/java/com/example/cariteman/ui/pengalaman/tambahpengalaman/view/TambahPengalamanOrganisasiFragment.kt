@@ -75,11 +75,15 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
         context.let { presenter.setKey(Utils.loadData(it!!)) }
 
         val bundle: Bundle? = arguments
+        if(!bidangKerja.isEmpty()){
+            viewBind.tvBidangKerja.setText(bidangKerja)
+        }else{
+            bidangKerja =
+                bundle?.getString("namaBidangKerja") ?: ""
+        }
         idPengalaman = bundle?.getInt("idPengalaman", 0) ?: 0
         tipePengalamanOrganisasi = bundle?.getString("tipePengalamanOrganisasi") ?: "tambah"
         namaOrganisasi = bundle?.getString("namaOrganisasi") ?: ""
-        bidangKerja =
-            bundle?.getString("namaBidangKerja") ?: ""
         deskripsi = bundle?.getString("deskripsi") ?: ""
         fotoPengalaman = bundle?.getString("fotoPengalaman") ?: ""
         tanggalMulai = bundle?.getString("tanggalMulai") ?: "$year-$month-$day"
@@ -97,7 +101,7 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
             )
 
             viewBind.mbSaveButton.setOnClickListener {
-                if (namaOrganisasi.isEmpty() || deskripsi.isEmpty() || fotoPengalaman.isEmpty() || tanggalMulai.isEmpty() || tanggalSelesai.isEmpty() || bidangKerja.isEmpty()) {
+                if (namaOrganisasi.isEmpty() || deskripsi.isEmpty() || tanggalMulai.isEmpty() || tanggalSelesai.isEmpty() || bidangKerja.isEmpty()) {
                     showMessageToast("Selesaikan form terlebih dahulu")
                 } else {
                     if (fotoOrganisasiUri != null) {
@@ -143,7 +147,7 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
             }
         } else if (tipePengalamanOrganisasi == "tambah") {
             viewBind.mbSaveButton.setOnClickListener {
-                if (namaOrganisasi.isEmpty() || deskripsi.isEmpty() || fotoPengalaman.isEmpty() || tanggalMulai.isEmpty() || tanggalSelesai.isEmpty() || bidangKerja.isEmpty()) {
+                if (namaOrganisasi.isEmpty() || deskripsi.isEmpty() || fotoOrganisasiUri == null || tanggalMulai.isEmpty() || tanggalSelesai.isEmpty() || bidangKerja.isEmpty()) {
                     showMessageToast("Selesaikan form terlebih dahulu")
                 } else {
                     if (fotoOrganisasiUri != null) {
@@ -355,7 +359,6 @@ class TambahPengalamanOrganisasiFragment : BaseFragment(),
     override fun onStart() {
         super.onStart()
 
-        viewBind.tvBidangKerja.setText(bidangKerja)
         viewBind.tvBidangKerja.setTextColor(resources.getColor(R.color.black_effective))
         viewBind.tvDateStart.setTextColor(resources.getColor(R.color.black_effective))
         viewBind.tvDateEnd.setTextColor(resources.getColor(R.color.black_effective))

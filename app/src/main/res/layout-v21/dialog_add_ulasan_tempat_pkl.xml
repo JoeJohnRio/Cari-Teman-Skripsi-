@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_really_small"
+        android:text="Tambah rekomendasi"
+        android:textColor="@color/black_effective"
+        android:textSize="@dimen/text_kinda_big"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/inMobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Isi deskripsi..."/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_little"
+        android:backgroundTint="@color/navy_blue_high"
+        android:paddingStart="@dimen/space_little"
+        android:paddingTop="@dimen/space_really_small"
+        android:paddingEnd="@dimen/space_little"
+        android:paddingBottom="@dimen/space_really_small"
+        android:text="SUBMIT"
+        android:layout_gravity="end"
+        android:textSize="@dimen/text_normal"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+</LinearLayout>

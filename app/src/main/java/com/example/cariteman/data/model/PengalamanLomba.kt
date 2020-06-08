@@ -11,6 +11,8 @@ data class PengalamanLomba(
     @SerializedName("tanggal") var tanggal: String? = null,
     @SerializedName("created_at") var createdAt: String? = null,
     @SerializedName("updated_at") var updatedAt: String? = null,
+    @SerializedName("bidang_kerja_id") var bidangKerjaId: Int? = null,
+    @SerializedName("bidang_kerja_nama") var bidangKerjaNama: String? = null,
     @SerializedName("relation_bidang_kerja") var relationBidangKerja: RelationBidangKerja? = null)
 
 data class PengalamanLombaOrganisasiResponse(

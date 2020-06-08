@@ -10,12 +10,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.cariteman.R
 import com.example.cariteman.data.model.MahasiswaHistoryDashboardResponse
+import com.example.cariteman.data.model.RekomendasiResponse
 import com.example.cariteman.data.model.RelationTempatPklFavorite
 import com.example.cariteman.databinding.FragmentHomeBinding
 import com.example.cariteman.ui.*
 import com.example.cariteman.ui.dashboard.barudilihat.view.BaruDilihatActivity
 import com.example.cariteman.ui.base.view.BaseFragment
+import com.example.cariteman.ui.dashboard.barudilihat.view.RekomendasiActivity
 import com.example.cariteman.ui.dashboard.presenter.DashboardPresenter
+import com.example.cariteman.ui.dashboard.rekomendasi.ProfilDashboardRekomendasiListAdapter
 import com.example.cariteman.ui.notifikasi.view.NotifikasiActivity
 import com.example.cariteman.ui.pengalaman.view.SearchActivity
 import com.example.cariteman.util.Mapper
@@ -28,19 +31,26 @@ import javax.inject.Inject
 class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, DashboardMVPView{
     @Inject
     lateinit var presenter: DashboardPresenter<DashboardMVPView>
-    private lateinit var viewBind: FragmentHomeBinding
-    private lateinit var adapterWithList: ProfilDashboardPklListAdapter
 
+    private lateinit var viewBind: FragmentHomeBinding
+    private lateinit var profilDashboardPklListAdapter: ProfilDashboardPklListAdapter
+    private lateinit var profilRekomendasiListAdapter: ProfilDashboardRekomendasiListAdapter
     companion object {
+
         val TAG: String = HomeFragment::class.java.simpleName
         fun newInstance() = HomeFragment()
     }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewBind = FragmentHomeBinding.inflate(inflater, container, false)
         activity?.title = getString(R.string.title_home)
         toggleThreeButton(
-            viewBind.bFilterPklBaruDilihat, viewBind.bSearchLomba, viewBind.bSearchTempatPkl,
+            viewBind.bFilterPklBaruDilihat, viewBind.bFilterLombaBaruDilihat, viewBind.bFilterTempatPklBaruDilihat,
+            R.color.navy_blue,
+            R.color.white, resources
+        )
+
+        toggleThreeButton(
+            viewBind.bFilterPklRecommendation, viewBind.bFilterLombaBaruDilihat, viewBind.bFilterTempatPklRecommendation,
             R.color.navy_blue,
             R.color.white, resources
         )
@@ -52,6 +62,8 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
 
     override fun setUp() {
         presenter.getHistoryDashboardPklResponse()
+        presenter.getDashboardRekomendasiResponse(RekomendasiResponse(typeOfRecommendation = 1))
+
         viewBind.ivNotifikasiIc.setOnClickListener {
             val intent = Intent(context, NotifikasiActivity::class.java)
             startActivity(intent)
@@ -67,7 +79,7 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
         }
 
         viewBind.tvLihatSemuaRecommendation.setOnClickListener{
-            val intent = Intent(context, RecommendationActivity::class.java)
+            val intent = Intent(context, RekomendasiActivity::class.java)
             startActivity(intent)
         }
 
@@ -124,6 +136,7 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
                 R.color.navy_blue,
                 R.color.white, resources
             )
+            presenter.getDashboardRekomendasiResponse(RekomendasiResponse(typeOfRecommendation = 2))
         }
         viewBind.bFilterPklRecommendation.setOnClickListener{
             toggleThreeButton(
@@ -131,6 +144,7 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
                 R.color.navy_blue,
                 R.color.white, resources
             )
+            presenter.getDashboardRekomendasiResponse(RekomendasiResponse(typeOfRecommendation = 1))
         }
         viewBind.bFilterTempatPklRecommendation.setOnClickListener{
             toggleThreeButton(
@@ -138,6 +152,7 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
                 R.color.navy_blue,
                 R.color.white, resources
             )
+            presenter.getDashboardRekomendasiResponse(RekomendasiResponse(typeOfRecommendation = 3))
         }
 
         viewBind.incItemKosong.iv_profil_pic
@@ -154,9 +169,9 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
             .into(viewBind.incItemKosong.civ_image_three)
         viewBind.incItemKosong.tv_recommendation_total?.text = "0 of Recommendation"
 
-        viewBind.incItemKosong.tv_jabatan?.text = "Belum mengikuti organisasi"
+        viewBind.incItemKosong.tv_jabatan?.text = "(Belum Memiliki Riwayat Organisasi)"
 
-        viewBind.incItemKosong.tv_riwayat_lomba?.text = "Belum mengikuti kompetisi"
+        viewBind.incItemKosong.tv_riwayat_lomba?.text = "(Belum Memiliki Riwayat Lomba)"
         viewBind.incItemKosong.tv_name?.text = "Tidak ada data"
     }
 
@@ -170,16 +185,30 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemSelectedListener, Dashboa
             viewBind.incItemKosong.visibility = View.GONE
             viewBind.rvDashboardBaruLihat.visibility = View.VISIBLE
             val data = Mapper.dashboardHistoryLombaResponseMapper(responses)
-            adapterWithList = ProfilDashboardPklListAdapter()
+            profilDashboardPklListAdapter = ProfilDashboardPklListAdapter()
 
-            adapterWithList.submitList(data)
+            profilDashboardPklListAdapter.submitList(data)
             viewBind.rvDashboardBaruLihat.apply {
-                adapter = adapterWithList
+                adapter = profilDashboardPklListAdapter
                 if (layoutManager == null){
                     layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
                 }
                 adapter?.notifyDataSetChanged()
             }
+        }
+    }
+
+    override fun populateRekomendasi(responses: MutableList<RekomendasiResponse>) {
+        viewBind.rvDashboardRekomendasi.visibility = View.VISIBLE
+        profilRekomendasiListAdapter = ProfilDashboardRekomendasiListAdapter()
+        profilRekomendasiListAdapter.submitList(
+            Mapper.listOfRekomendasiToOnly5(responses))
+        viewBind.rvDashboardRekomendasi.apply {
+            adapter = profilRekomendasiListAdapter
+            if (layoutManager == null){
+                layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            }
+            adapter?.notifyDataSetChanged()
         }
     }
 

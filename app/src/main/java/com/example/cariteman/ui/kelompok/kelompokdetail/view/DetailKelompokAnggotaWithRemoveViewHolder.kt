@@ -21,11 +21,13 @@ class DetailKelompokAnggotaWithRemoveViewHolder(override val containerView: View
     private var civFotoProfilAnggota: CircleImageView? = null
     private var tvNamaAnggota: TextView? = null
     private var tvNamaFakultas: TextView? = null
+    private var ivRemoveAnggota: ImageView? = null
 
     init {
         civFotoProfilAnggota = itemView.findViewById(R.id.civ_foto_profil_anggota)
         tvNamaAnggota = itemView.findViewById(R.id.tv_nama_anggota)
         tvNamaFakultas = itemView.findViewById(R.id.tv_nama_fakultas)
+        ivRemoveAnggota = itemView.findViewById(R.id.iv_remove_anggota)
     }
 
     fun bind(
@@ -35,9 +37,12 @@ class DetailKelompokAnggotaWithRemoveViewHolder(override val containerView: View
         Glide.with(this.itemView.context)
             .load(response.fotoProfil ?: url)
             .into(civFotoProfilAnggota)
-        var tipeKelompok = ""
         tvNamaAnggota?.setText(response.name ?: "")
         tvNamaFakultas?.setText(response.namaFakultas)
+
+        ivRemoveAnggota?.setOnClickListener {
+            view.removeAnggotaKelompok(response.id!!)
+        }
 
     }
 }

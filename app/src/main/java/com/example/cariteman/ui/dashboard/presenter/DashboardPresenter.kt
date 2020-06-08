@@ -1,6 +1,7 @@
 package com.example.cariteman.ui.dashboard.presenter
 
 import android.util.Log
+import com.example.cariteman.data.model.RekomendasiResponse
 import com.example.cariteman.data.network.INetworkApi
 import com.example.cariteman.ui.base.presenter.BasePresenter
 import com.example.cariteman.ui.dashboard.view.DashboardMVPView
@@ -39,14 +40,34 @@ class DashboardPresenter<V : DashboardMVPView> @Inject internal constructor(
     }
 
     override fun getHistoryDashboardPklResponse() {
-        getView()?.showProgress()
         getView()?.let {
+            it.showProgress()
             addDisposable(mNetworkApi.getHistoryDashboardPkl(getKey()).subscribeOn(IoScheduler()).observeOn(
                 AndroidSchedulers.mainThread()
             )
                 .subscribe(
                     { result ->
                         it.populateLombaDanPklDashboard(result)
+                        it.hideProgress()
+                    },
+                    { error ->
+                        it.hideProgress()
+                        Log.d("error", error.message + "test")
+                    }
+                )
+            )
+        }
+    }
+
+    override fun getDashboardRekomendasiResponse(rekomendasi: RekomendasiResponse) {
+        getView()?.let {
+            it.showProgress()
+            addDisposable(mNetworkApi.getDashboardRekomendasi(getKey(), rekomendasi).subscribeOn(IoScheduler()).observeOn(
+                AndroidSchedulers.mainThread()
+            )
+                .subscribe(
+                    { result ->
+                        it.populateRekomendasi(result)
                         it.hideProgress()
                     },
                     { error ->

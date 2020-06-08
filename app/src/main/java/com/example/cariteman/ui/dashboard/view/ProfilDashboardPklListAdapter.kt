@@ -23,7 +23,7 @@ class ProfilDashboardPklListAdapter :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is DashboardHistoryViewHolder) {
-            val response = getItem(position) as MahasiswaHistoryDashboardResponse
+            val response = getItem(position)
             holder.bind(response)
         }
     }
@@ -117,18 +117,18 @@ class DashboardHistoryViewHolder(override val containerView: View) :
                 try {
                     tvRiwayatLomba?.text =
                         response.mahasiswaTwoPkl?.pengalamanLomba?.get(0)?.namaKompetisi
-                            ?: "Belum mengikuti kompetisi"
+                            ?: "(Belum Memiliki Riwayat Lomba)"
 
                 } catch (e: Throwable) {
-                    tvRiwayatLomba?.text = "Belum mengikuti kompetisi"
+                    tvRiwayatLomba?.text = "(Belum Memiliki Riwayat Lomba)"
                 }
 
                 try {
                     tvJabatan?.text =
                         response.mahasiswaTwoPkl?.pengalamanOrganisasi?.get(0)?.namaOrganisasi
-                            ?: "Belum mengikuti organisasi"
+                            ?: "(Belum mengikuti organisasi)"
                 } catch (e: Throwable) {
-                    tvJabatan?.text = "Belum mengikuti organisasi"
+                    tvJabatan?.text = "(Belum mengikuti organisasi)"
                 }
             } else if (response.mahasiswaTwoLomba != null) {
 
@@ -179,17 +179,17 @@ class DashboardHistoryViewHolder(override val containerView: View) :
                 try {
                     tvRiwayatLomba?.text =
                         response.mahasiswaTwoLomba?.pengalamanLomba?.get(0)?.namaKompetisi
-                            ?: "Belum mengikuti kompetisi"
+                            ?: "(Belum Memiliki Riwayat Lomba)"
                 } catch (e: Throwable) {
-                    tvRiwayatLomba?.text = "Belum mengikuti kompetisi"
+                    tvRiwayatLomba?.text = "(Belum Memiliki Riwayat Lomba)"
                 }
 
                 try {
                     tvJabatan?.text =
                         response.mahasiswaTwoLomba?.pengalamanOrganisasi?.get(0)?.namaOrganisasi
-                            ?: "Belum mengikuti organisasi"
+                            ?: "(Belum mengikuti organisasi)"
                 } catch (e: Throwable) {
-                    tvJabatan?.text = "Belum mengikuti organisasi"
+                    tvJabatan?.text = "(Belum mengikuti organisasi)"
                 }
             } else if (response.tempatPkl != null) {
                 itemView.setOnClickListener {

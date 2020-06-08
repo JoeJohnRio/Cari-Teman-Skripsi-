@@ -67,7 +67,7 @@ class Register2Fragment : BaseFragment(), AdapterView.OnItemSelectedListener, Re
     ): View? {
         viewBind = ActivityRegister2Binding.inflate(inflater, container, false)
         viewBind.bRegister.setOnClickListener {
-            if (positionFakultas * positionProgramStudi * positionTahun == 0 || (activity as RegisterActivity).fotoKtmUri == null || (activity as RegisterActivity).fotoProfileUri == null) {
+            if (positionFakultas * positionProgramStudi * positionKeminatan * positionTahun == 0 || (activity as RegisterActivity).fotoKtmUri == null || (activity as RegisterActivity).fotoProfileUri == null) {
                 Toast.makeText(context, "Isi informasi terlebih dahulu", Toast.LENGTH_LONG).show()
             } else {
                 (contextActivity as RegisterActivity).mahasiswa.let {

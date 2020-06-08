@@ -3,7 +3,11 @@ package com.example.cariteman.di.builder
 import com.example.cariteman.ui.dashboard.*
 import com.example.cariteman.ui.dashboard.view.DashboardBottomViewActivity
 import com.example.cariteman.ui.dashboard.barudilihat.BaruDilihatModule
+import com.example.cariteman.ui.dashboard.barudilihat.ListRekomendasiModule
 import com.example.cariteman.ui.dashboard.barudilihat.view.BaruDilihatActivity
+import com.example.cariteman.ui.dashboard.barudilihat.view.RekomendasiActivity
+import com.example.cariteman.ui.firstpage.FirstPageActivityModule
+import com.example.cariteman.ui.firstpage.view.FirstPageActivity
 import com.example.cariteman.ui.login.LoginActivityModule
 import com.example.cariteman.ui.login.LoginAdminActivityModule
 import com.example.cariteman.ui.login.view.LoginActivity
@@ -15,9 +19,13 @@ import com.example.cariteman.ui.pengalaman.tambahpengalaman.TambahPengalamanFrag
 import com.example.cariteman.ui.pengalaman.view.KelompokActivity
 import com.example.cariteman.ui.pengalaman.view.PengalamanActivity
 import com.example.cariteman.ui.pengalaman.view.SearchActivity
+import com.example.cariteman.ui.pengaturan.view.PengaturanActivity
 import com.example.cariteman.ui.verifikasiakun.view.VerifikasiAkunActivity
 import com.example.cariteman.ui.profile.tempatpklprofile.view.ProfileTempatPklActivity
 import com.example.cariteman.ui.profile.view.ProfileActivity
+import com.example.cariteman.ui.pengaturan.PengaturanActivityModule
+import com.example.cariteman.ui.pengaturan.PengaturanFragmentProvider
+import com.example.cariteman.ui.pengaturan.view.PengaturanFragment
 import com.example.cariteman.ui.register.RegisterFragmentProvider
 import com.example.cariteman.ui.register.RegisterActivityModule
 import com.example.cariteman.ui.register.view.RegisterActivity
@@ -38,6 +46,12 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = [(LoginActivityModule::class)])
     abstract fun bindLoginActivity(): LoginActivity
 
+    @ContributesAndroidInjector(modules = [(FirstPageActivityModule::class)])
+    abstract fun bindFirstPageActivity(): FirstPageActivity
+
+    @ContributesAndroidInjector(modules = [(PengaturanActivityModule::class), (PengaturanFragmentProvider::class)])
+    abstract fun bindPengaturanActivity(): PengaturanActivity
+
     @ContributesAndroidInjector(modules = [(LoginAdminActivityModule::class)])
     abstract fun bindLoginAdminActivity(): LoginAdminActivity
 
@@ -46,6 +60,9 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [(BaruDilihatModule::class)])
     abstract fun bindBaruDilihatActivity(): BaruDilihatActivity
+
+    @ContributesAndroidInjector(modules = [(ListRekomendasiModule::class)])
+    abstract fun bindListRekomendasiActivity(): RekomendasiActivity
 
     @ContributesAndroidInjector(modules = [(ProfileModule::class)])
     abstract fun bindProfilActivity(): ProfileActivity
@@ -68,6 +85,6 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = [(KelompokModule::class), (KelompokHomeFragmentProvider::class), (TambahKelompok1FragmentProvider::class), (TambahKelompok2FragmentProvider::class), DetailKelompokFragmentProvider::class])
     abstract fun bindKelompokActivity(): KelompokActivity
 
-    @ContributesAndroidInjector(modules = [(SearchModule::class), (FilterSearchFragmentProvider::class), (FrontProfileFragmentProvider::class), (SearchHistoryFragmentProvider::class), (SkillHobiFragmentProvider::class)])
+    @ContributesAndroidInjector(modules = [(SearchModule::class), (FilterSearchFragmentProvider::class), (FrontProfileFragmentProvider::class), (SearchHistoryFragmentProvider::class), (SkillHobiFragmentProvider::class), (AddTempatPklFragmentProvider::class), (BidangKerjaFragmentProvider::class)])
     abstract fun bindSearchActivity(): SearchActivity
 }

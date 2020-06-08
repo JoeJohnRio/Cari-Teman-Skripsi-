@@ -8,6 +8,8 @@ data class TempatPklResponse(
     @SerializedName("gambar") var gambar: String? = null,
     @SerializedName("id_lokasi_pkl") var idLokasiPkl: Int? = null,
     @SerializedName("id_relation_bidang_kerja") var idRelationBidangKerja: Int? = null,
+    @SerializedName("id_bidang_kerja") var idBidangKerja: Int? = null,
+    @SerializedName("phone_number") var phoneNumber: Int? = null,
     @SerializedName("relation_tempat_pkl") var relationTempatPkl: RelationTempatPkl? = null,
     @SerializedName("lokasi_pkl") var lokasiPkl: LokasiPklResponse? = null,
     @SerializedName("relation_bidang_kerja") var relationBidangKerja: MutableList<RelationBidangKerja>? = null,

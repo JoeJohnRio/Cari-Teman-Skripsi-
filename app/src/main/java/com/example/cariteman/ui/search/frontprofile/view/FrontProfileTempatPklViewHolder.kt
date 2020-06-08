@@ -42,18 +42,22 @@ class FrontProfileTempatPklViewHolder(override val containerView: View) :
 
 
     fun bind(
-        response: FrontProfileResponse,
+        responses: FrontProfileResponse,
         presenter: FrontProfilePresenter<FrontProfileMVPView>
     ) {
+        var response = responses.tempatPkl
         itemView.setOnClickListener {
-            val intent = Intent(itemView.context, ProfileTempatPklActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.putExtra("tempatPklId", response.tempatPkl?.id)
+            val intent = Intent(
+                itemView.context,
+                ProfileTempatPklActivity::class.java
+            ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.putExtra("tempatPklId", response?.id)
             itemView.context.startActivity(intent)
         }
 
         try {
             Glide.with(this.itemView.context)
-                .load(response.tempatPkl?.gambar ?: url)
+                .load(response?.gambar ?: url)
                 .into(ivProfilPic)
         } catch (e: Throwable) {
             Glide.with(this.itemView.context).load(url)
@@ -61,28 +65,12 @@ class FrontProfileTempatPklViewHolder(override val containerView: View) :
         }
 
         tvItemType?.text = "Tempat PKL"
-        tvItemName?.text = response.tempatPkl?.namaPerusahaan
-        tbFavorite?.isChecked =
-            Utils.intToBoolean(response.tempatPkl?.relationTempatPkl?.isFavorite)
+        tvItemName?.text = response?.namaPerusahaan
+        tbFavorite?.isChecked = Utils.intToBoolean(response?.isFavorite)
 
-        response.tempatPkl?.relationBidangKerja?.size
+        tvBidangKerja?.text = response?.namaBidangKerja
 
-        var bidangKerja = ""
-        for (data in response.tempatPkl?.relationBidangKerja!!) {
-            bidangKerja = bidangKerja + "${data.bidangKerja?.namaBidangKerja}"
-            if (data != response.tempatPkl?.relationBidangKerja?.get(response.tempatPkl?.relationBidangKerja?.size!! - 1)) {
-                bidangKerja = bidangKerja + ", "
-            }
-        }
-
-        if (bidangKerja.isNotEmpty()) {
-            tvBidangKerja?.text = bidangKerja
-        } else {
-            tvBidangKerja?.text = "Tidak memiliki bidang kerja"
-        }
-
-        tvBanyakUlasan?.text =
-            "${response.tempatPkl?.countUlasanTempatPkl?.size} orang pernah Organisasi di sini"
+        tvBanyakUlasan?.text = "${response?.jumlahRekomendasi} orang pernah berada di sini"
 
         val scaleAnimation = ScaleAnimation(
             0.7f,
@@ -94,17 +82,16 @@ class FrontProfileTempatPklViewHolder(override val containerView: View) :
             Animation.RELATIVE_TO_SELF,
             0.7f
         )
-        scaleAnimation?.setDuration(500)
+        scaleAnimation.setDuration(500)
         val bounceInterpolator = BounceInterpolator()
-        scaleAnimation?.setInterpolator(bounceInterpolator)
+        scaleAnimation.setInterpolator(bounceInterpolator)
 
         tbFavorite?.setOnClickListener {
             tbFavorite?.startAnimation(scaleAnimation)
 
-            response.tempatPkl?.id?.let {
-//                presenter.toggleFavoriteTempatPkl(it, tbFavorite?.isChecked!!)
-                response.tempatPkl?.relationTempatPkl?.isFavorite =
-                    Utils.toggleBoolean(response.tempatPkl?.relationTempatPkl?.isFavorite!!)
+            response?.id?.let {
+                presenter.toggleFavoriteTempatPkl(it, tbFavorite?.isChecked!!)
+                response.isFavorite = Utils.toggleBoolean(response.isFavorite!!)
             }
         }
     }

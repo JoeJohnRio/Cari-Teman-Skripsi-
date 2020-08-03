@@ -1,4 +1,4 @@
-<p align="center"><img src="https://i.ibb.co/WfmPLLP/Untitled-design-5.png" width="80"></p>
+<p align="center"><img src="https://i.ibb.co/WfmPLLP/Untitled-design-5.png" width="150"></p>
 
 ## About Cari Teman
 

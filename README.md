@@ -9,6 +9,6 @@ Here some of the foto from the app.
 
 <p align="center"><img src="https://drive.google.com/file/d/1QS-yvIkCPMc5k1V3dz9gPmdUUH1ajRPx/view?usp=sharing" width="400"></p>
 <p align="center"><img src="https://drive.google.com/file/d/1QRdkI1Q4TnWw7MfphaxkOsTsspgsN7vO/view?usp=sharing" width="400"></p>
-<p align="center"><img src="https://drive.google.com/file/d/1QQPjRtpFsXst5ox5UDj9pZGw1XdKVK4U/view?usp=sharing" width="400"></p>
+<p align="center"><img src="https://lh4.googleusercontent.com/SzlHw0wYvJsMU07AoDXyyByzlREtJCy_dMSFt8GMTnYivZUofjl4KbKWDPncrTm_Hs5GhUh93ZQjVA=w1920-h969-rw" width="400"></p>
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
